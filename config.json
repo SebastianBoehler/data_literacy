@@ -1,0 +1,17 @@
+{
+  "gtfs_api_url": "https://api.mobidata-bw.de/gtfs/",
+  "weather_api_url": "https://api.brightsky.dev/",
+  "efa_api_url": "https://www.efa-bw.de/mobidata-bw",
+  "trias_endpoints": [
+    "https://www.efa-bw.de/mobidata-bw/trias"
+  ],
+  "trias_requestor_ref": "YOUR_REQUESTOR_REF",
+  "user_agent": "Data-Literacy-Project-University-Tuebingen/1.0",
+  "output_dir": "exports",
+  "tuebingen_bounds": {
+    "min_lat": 48.490,
+    "max_lat": 48.560,
+    "min_lon": 9.030,
+    "max_lon": 9.090
+  }
+}
