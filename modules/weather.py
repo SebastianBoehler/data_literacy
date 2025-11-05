@@ -33,6 +33,10 @@ class WeatherClient:
             except ValueError:
                 weather_timestamp = timestamp_raw
 
+        # Bright Sky exposes precipitation/wind metrics over multiple trailing intervals (10/30/60 min).
+        # We surface the most recent available value to represent "current" conditions while keeping
+        # raw columns in the output so downstream analysis can still distinguish measurement windows.
+
         precip = (
             weather.get("precipitation_60")
             if weather.get("precipitation_60") is not None

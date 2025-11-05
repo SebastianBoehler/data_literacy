@@ -16,7 +16,7 @@ from modules.weather import WeatherClient
 
 CONFIG_PATH = "config.json"
 EXPORT_DIR = Path("exports")
-DEPARTURE_LIMIT = 25
+DEPARTURE_LIMIT = 10
 
 
 def main() -> None:
@@ -28,6 +28,7 @@ def main() -> None:
     print(f"Fetched {len(stops)} stops within {config['search_radius_km']} km")
 
     departures = trias.fetch_departures_for_stops(stops, limit_per_stop=DEPARTURE_LIMIT)
+    departures = departures.dropna(subset=["stop_id"]).reset_index(drop=True)
 
     weather_client = WeatherClient()
     weather_by_stop: dict[str, dict] = {}
