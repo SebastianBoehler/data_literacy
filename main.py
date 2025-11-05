@@ -25,6 +25,7 @@ def main() -> None:
     trias = TriasClient(config["trias_requestor_ref"])
     center = (config["center_lat"], config["center_lon"])
     stops = trias.fetch_stops(center=center, radius_km=config["search_radius_km"])
+    print(f"Fetched {len(stops)} stops within {config['search_radius_km']} km")
 
     departures = trias.fetch_departures_for_stops(stops, limit_per_stop=DEPARTURE_LIMIT)
 

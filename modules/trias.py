@@ -1,4 +1,5 @@
 import uuid
+from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Iterable, Optional
 
@@ -58,19 +59,29 @@ class TriasClient:
 </LocationInformationRequest>
 """
         root = self._execute(payload)
-        results = []
+        occurrences: dict[str, int] = defaultdict(int)
+        results: list[dict[str, object]] = []
+
         for node in root.findall(".//trias:LocationResult", TRIAS_NS):
             location = node.find("trias:Location", TRIAS_NS)
             if location is None:
                 continue
 
-            stop_point_ref = location.find("trias:LocationRef/trias:StopPointRef", TRIAS_NS)
-            stop_place_ref = location.find("trias:StopPlace/trias:StopPlaceRef", TRIAS_NS)
-            stop_id = None
-            if stop_point_ref is not None and stop_point_ref.text:
-                stop_id = stop_point_ref.text
-            elif stop_place_ref is not None and stop_place_ref.text:
-                stop_id = stop_place_ref.text
+            stop_point_elem = location.find("trias:LocationRef/trias:StopPointRef", TRIAS_NS)
+            stop_place_elem = location.find("trias:StopPlace/trias:StopPlaceRef", TRIAS_NS)
+
+            base_ref = None
+            if stop_point_elem is not None and stop_point_elem.text:
+                base_ref = stop_point_elem.text
+            elif stop_place_elem is not None and stop_place_elem.text:
+                base_ref = stop_place_elem.text
+
+            if not base_ref:
+                continue
+
+            occurrences[base_ref] += 1
+            occurrence_index = occurrences[base_ref]
+            stop_uid = base_ref if occurrence_index == 1 else f"{base_ref}#{occurrence_index}"
 
             primary_name = location.find("trias:LocationName/trias:Text", TRIAS_NS)
             stop_place_name = location.find("trias:StopPlace/trias:StopPlaceName/trias:Text", TRIAS_NS)
@@ -86,16 +97,28 @@ class TriasClient:
             lat_elem = pos.find("trias:Latitude", TRIAS_NS) if pos is not None else None
             lon_elem = pos.find("trias:Longitude", TRIAS_NS) if pos is not None else None
 
+            probability_elem = node.find("trias:Probability", TRIAS_NS)
+            probability = (
+                float(probability_elem.text)
+                if probability_elem is not None and probability_elem.text
+                else None
+            )
+
             results.append(
                 {
-                    "stop_id": stop_id,
+                    "stop_id": stop_uid,
+                    "trias_ref": base_ref,
                     "stop_name": stop_name,
                     "latitude": float(lat_elem.text) if lat_elem is not None and lat_elem.text else None,
                     "longitude": float(lon_elem.text) if lon_elem is not None and lon_elem.text else None,
+                    "probability": probability,
                 }
             )
+
         stops = pd.DataFrame(results)
-        return stops.dropna(subset=["stop_id"]).drop_duplicates(subset=["stop_id"])
+        if stops.empty:
+            return stops
+        return stops.sort_values(by="probability", ascending=False, na_position="last").reset_index(drop=True)
 
     def fetch_departures(
         self,
@@ -127,24 +150,56 @@ class TriasClient:
             this_call = event.find("trias:ThisCall/trias:CallAtStop", TRIAS_NS)
             if this_call is None:
                 continue
-            stop = this_call.find("trias:StopPointRef", TRIAS_NS)
-            stop_name = this_call.find("trias:StopPointName/trias:Text", TRIAS_NS)
-            service = this_call.find("trias:Service", TRIAS_NS)
-            published_line = service.find("trias:PublishedLineName/trias:Text", TRIAS_NS) if service is not None else None
-            destination = service.find("trias:DestinationText/trias:Text", TRIAS_NS) if service is not None else None
+            stop_ref_elem = this_call.find("trias:StopPointRef", TRIAS_NS)
+            stop_name_elem = this_call.find("trias:StopPointName/trias:Text", TRIAS_NS)
+            raw_stop_ref = stop_ref_elem.text if stop_ref_elem is not None else stop_id
+            stop_base_id = raw_stop_ref
+            if raw_stop_ref:
+                parts = raw_stop_ref.split(":")
+                if len(parts) >= 3:
+                    stop_base_id = ":".join(parts[:3])
+            service = event.find("trias:Service", TRIAS_NS)
+            service_section = service.find("trias:ServiceSection", TRIAS_NS) if service is not None else None
+            published_line_elem = (
+                service_section.find("trias:PublishedLineName/trias:Text", TRIAS_NS)
+                if service_section is not None
+                else None
+            )
+            route_description = service.find("trias:RouteDescription/trias:Text", TRIAS_NS) if service is not None else None
+            destination_elem = service.find("trias:DestinationText/trias:Text", TRIAS_NS) if service is not None else None
+
+            line_name = None
+            if published_line_elem is not None and published_line_elem.text:
+                line_name = published_line_elem.text
+
+            destination = None
+            if destination_elem is not None and destination_elem.text:
+                destination = destination_elem.text
+            elif route_description is not None and route_description.text:
+                destination = route_description.text
             departure = this_call.find("trias:ServiceDeparture", TRIAS_NS)
             planned = departure.find("trias:TimetabledTime", TRIAS_NS) if departure is not None else None
             estimated = departure.find("trias:EstimatedTime", TRIAS_NS) if departure is not None else None
-            platform = this_call.find("trias:PlannedBay/trias:Text", TRIAS_NS)
+            platform_elem = this_call.find("trias:PlannedBay", TRIAS_NS)
+            if platform_elem is None:
+                platform_elem = this_call.find("trias:ServiceDeparture/trias:Bay", TRIAS_NS)
+            platform = None
+            if platform_elem is not None:
+                bay_text = platform_elem.find("trias:Text", TRIAS_NS)
+                if bay_text is not None and bay_text.text:
+                    platform = bay_text.text
+                elif platform_elem.text:
+                    platform = platform_elem.text
             records.append(
                 {
-                    "stop_id": stop.text if stop is not None else stop_id,
-                    "stop_name": stop_name.text if stop_name is not None else None,
+                    "stop_id": stop_base_id,
+                    "stop_point_ref": raw_stop_ref,
+                    "stop_name": stop_name_elem.text if stop_name_elem is not None else None,
                     "planned_time": planned.text if planned is not None else None,
                     "estimated_time": estimated.text if estimated is not None else None,
-                    "line_name": published_line.text if published_line is not None else None,
-                    "destination": destination.text if destination is not None else None,
-                    "platform": platform.text if platform is not None else None,
+                    "line_name": line_name,
+                    "destination": destination,
+                    "platform": platform,
                 }
             )
         df = pd.DataFrame(records)

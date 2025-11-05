@@ -33,14 +33,40 @@ class WeatherClient:
             except ValueError:
                 weather_timestamp = timestamp_raw
 
+        precip = (
+            weather.get("precipitation_60")
+            if weather.get("precipitation_60") is not None
+            else weather.get("precipitation_30")
+        )
+        if precip is None:
+            precip = weather.get("precipitation_10")
+
+        wind_speed = (
+            weather.get("wind_speed_10")
+            if weather.get("wind_speed_10") is not None
+            else weather.get("wind_speed_30")
+        )
+        if wind_speed is None:
+            wind_speed = weather.get("wind_speed_60")
+
+        wind_direction = (
+            weather.get("wind_direction_10")
+            if weather.get("wind_direction_10") is not None
+            else weather.get("wind_direction_30")
+        )
+        if wind_direction is None:
+            wind_direction = weather.get("wind_direction_60")
+
+        pressure = weather.get("pressure_msl")
+
         return {
             "weather_timestamp": weather_timestamp,
             "temperature": weather.get("temperature"),
-            "precipitation": weather.get("precipitation"),
-            "wind_speed": weather.get("wind_speed"),
-            "wind_direction": weather.get("wind_direction"),
+            "precipitation_mm": precip,
+            "wind_speed_ms": wind_speed,
+            "wind_direction_deg": wind_direction,
             "cloud_cover": weather.get("cloud_cover"),
-            "pressure": weather.get("pressure"),
+            "pressure_hpa": pressure,
             "relative_humidity": weather.get("relative_humidity"),
             "condition": weather.get("condition"),
             "icon": weather.get("icon"),

@@ -37,6 +37,14 @@ def attach_weather_to_stops(stops: pd.DataFrame, weather_by_stop: dict[str, dict
         weather_rows.append(weather_by_stop.get(row["stop_id"], {}))
 
     weather_df = pd.DataFrame(weather_rows)
+    for col, default in (
+        ("precipitation_mm", 0.0),
+        ("wind_speed_ms", 0.0),
+        ("wind_direction_deg", None),
+        ("pressure_hpa", None),
+    ):
+        if col not in weather_df.columns:
+            weather_df[col] = default
     return pd.concat([enriched.reset_index(drop=True), weather_df], axis=1)
 
 
@@ -52,6 +60,14 @@ def attach_weather_to_departures(
         weather_rows.append(weather_by_stop.get(row["stop_id"], {}))
 
     weather_df = pd.DataFrame(weather_rows)
+    for col, default in (
+        ("precipitation_mm", 0.0),
+        ("wind_speed_ms", 0.0),
+        ("wind_direction_deg", None),
+        ("pressure_hpa", None),
+    ):
+        if col not in weather_df.columns:
+            weather_df[col] = default
     merged = pd.concat([enriched.reset_index(drop=True), weather_df], axis=1)
 
     if "planned_time" in merged.columns:
