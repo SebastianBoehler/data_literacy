@@ -14,6 +14,9 @@ from modules.utils import (
 )
 from modules.weather import WeatherClient
 
+# Re-export Cloud Function handlers for deployment
+from gc_function import create_departure_data, health_check
+
 CONFIG_PATH = "config.json"
 EXPORT_DIR = Path("exports")
 DEPARTURE_LIMIT = 10
