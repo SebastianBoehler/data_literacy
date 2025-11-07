@@ -28,7 +28,10 @@ def main() -> None:
     print(f"Fetched {len(stops)} stops within {config['search_radius_km']} km")
 
     departures = trias.fetch_departures_for_stops(stops, limit_per_stop=DEPARTURE_LIMIT)
-    departures = departures.dropna(subset=["stop_id"]).reset_index(drop=True)
+    departures = departures.dropna(subset=["stop_id"])
+
+    known_stop_ids = set(stops["trias_ref"].dropna().unique())
+    departures = departures[departures["stop_id"].isin(known_stop_ids)].reset_index(drop=True)
 
     weather_client = WeatherClient()
     weather_by_stop: dict[str, dict] = {}
@@ -37,7 +40,15 @@ def main() -> None:
         lon = stop.get("longitude")
         if lat is None or lon is None:
             continue
-        weather_by_stop[stop["stop_id"]] = weather_client.fetch_current(lat, lon)
+
+        base_ref = stop.get("trias_ref") or stop.get("stop_id")
+        if base_ref in weather_by_stop:
+            weather = weather_by_stop[base_ref]
+        else:
+            weather = weather_client.fetch_current(lat, lon)
+
+        weather_by_stop[base_ref] = weather
+        weather_by_stop[stop["stop_id"]] = weather
 
     stops_with_weather = attach_weather_to_stops(stops, weather_by_stop)
     departures_with_weather = attach_weather_to_departures(departures, weather_by_stop)
