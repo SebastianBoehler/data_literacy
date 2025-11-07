@@ -42,11 +42,6 @@ ENV/
 ehthumbs.db
 Thumbs.db
 
-# Data files (too large for git)
-exports/*.csv
-exports/*.json
-exports/*.xlsx
-
 # Logs
 *.log
 logs/
