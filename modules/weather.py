@@ -33,35 +33,32 @@ class WeatherClient:
             except ValueError:
                 weather_timestamp = timestamp_raw
 
-        # Bright Sky exposes precipitation/wind metrics over multiple trailing intervals (10/30/60 min).
-        # We surface the most recent available value to represent "current" conditions while keeping
-        # raw columns in the output so downstream analysis can still distinguish measurement windows.
+        def coalesce(*keys: str) -> Optional[float]:
+            for key in keys:
+                if key is None:
+                    continue
+                value = weather.get(key)
+                if value is not None:
+                    return value
+            return None
 
-        precip = (
-            weather.get("precipitation_60")
-            if weather.get("precipitation_60") is not None
-            else weather.get("precipitation_30")
+        # Bright Sky exposes precipitation/wind metrics over multiple trailing intervals (10/30/60 min)
+        # and recently added aggregate keys (without suffix). We pick the freshest available value.
+
+        precip = coalesce("precipitation_60", "precipitation_30", "precipitation_10", "precipitation")
+
+        wind_speed = coalesce("wind_speed_10", "wind_speed_30", "wind_speed_60", "wind_speed")
+
+        wind_direction = coalesce(
+            "wind_direction_10",
+            "wind_direction_30",
+            "wind_direction_60",
+            "wind_direction",
         )
-        if precip is None:
-            precip = weather.get("precipitation_10")
 
-        wind_speed = (
-            weather.get("wind_speed_10")
-            if weather.get("wind_speed_10") is not None
-            else weather.get("wind_speed_30")
-        )
-        if wind_speed is None:
-            wind_speed = weather.get("wind_speed_60")
+        pressure = coalesce("pressure_msl", "pressure")
 
-        wind_direction = (
-            weather.get("wind_direction_10")
-            if weather.get("wind_direction_10") is not None
-            else weather.get("wind_direction_30")
-        )
-        if wind_direction is None:
-            wind_direction = weather.get("wind_direction_60")
-
-        pressure = weather.get("pressure_msl")
+        cloud_cover = coalesce("cloud_cover", "cloud_cover_total")
 
         source_id = weather.get("source_id")
         station_name: Optional[str] = None
@@ -80,7 +77,7 @@ class WeatherClient:
             "precipitation_mm": precip,
             "wind_speed_ms": wind_speed,
             "wind_direction_deg": wind_direction,
-            "cloud_cover": weather.get("cloud_cover"),
+            "cloud_cover": cloud_cover,
             "pressure_hpa": pressure,
             "relative_humidity": weather.get("relative_humidity"),
             "condition": weather.get("condition"),
