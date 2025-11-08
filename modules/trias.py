@@ -1,5 +1,4 @@
 import uuid
-from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -59,7 +58,7 @@ class TriasClient:
 </LocationInformationRequest>
 """
         root = self._execute(payload)
-        occurrences: dict[str, int] = defaultdict(int)
+        seen_refs: set[str] = set()
         results: list[dict[str, object]] = []
 
         for node in root.findall(".//trias:LocationResult", TRIAS_NS):
@@ -79,9 +78,9 @@ class TriasClient:
             if not base_ref:
                 continue
 
-            occurrences[base_ref] += 1
-            occurrence_index = occurrences[base_ref]
-            stop_uid = base_ref if occurrence_index == 1 else f"{base_ref}#{occurrence_index}"
+            if base_ref in seen_refs:
+                continue
+            seen_refs.add(base_ref)
 
             primary_name = location.find("trias:LocationName/trias:Text", TRIAS_NS)
             stop_place_name = location.find("trias:StopPlace/trias:StopPlaceName/trias:Text", TRIAS_NS)
@@ -106,7 +105,7 @@ class TriasClient:
 
             results.append(
                 {
-                    "stop_id": stop_uid,
+                    "stop_id": base_ref,
                     "trias_ref": base_ref,
                     "stop_name": stop_name,
                     "latitude": float(lat_elem.text) if lat_elem is not None and lat_elem.text else None,
@@ -123,14 +122,17 @@ class TriasClient:
     def fetch_departures(
         self,
         stop_id: str,
+        *,
+        stop_point_ref: Optional[str] = None,
         limit: int = 20,
     ) -> pd.DataFrame:
         timestamp = _utc_now()
+        target_ref = stop_point_ref or stop_id
         payload = f"""
 <StopEventRequest>
   <Location>
     <LocationRef>
-      <StopPointRef>{stop_id}</StopPointRef>
+      <StopPointRef>{target_ref}</StopPointRef>
     </LocationRef>
     <DepArrTime>{timestamp}</DepArrTime>
   </Location>
@@ -210,6 +212,10 @@ class TriasClient:
         df = pd.DataFrame(records)
         if df.empty:
             return df
+        if stop_point_ref is not None:
+            df = df[df["stop_point_ref"] == stop_point_ref].reset_index(drop=True)
+            if df.empty:
+                return df
         berlin = "Europe/Berlin"
         df["planned_time"] = (
             pd.to_datetime(df["planned_time"], errors="coerce", utc=True)
@@ -225,6 +231,34 @@ class TriasClient:
             (df["estimated_time"] - df["planned_time"]).dt.total_seconds() / 60
         )
         return df
+
+    def fetch_departures_for_stop_points(
+        self,
+        stops: pd.DataFrame,
+        limit_per_stop_point: int = 100,
+    ) -> pd.DataFrame:
+        if stops.empty or "stop_point_ref" not in stops.columns:
+            return pd.DataFrame()
+
+        unique = (
+            stops.dropna(subset=["stop_point_ref"])
+            .drop_duplicates(subset=["stop_point_ref"])
+            .loc[:, ["stop_point_ref", "trias_ref", "stop_id"]]
+        )
+
+        frames: list[pd.DataFrame] = []
+        for _, row in unique.iterrows():
+            stop_point_ref = row["stop_point_ref"]
+            base_ref = row.get("trias_ref") or row.get("stop_id")
+            if pd.isna(base_ref):
+                base_ref = row["stop_id"]
+            frame = self.fetch_departures(
+                str(base_ref), stop_point_ref=str(stop_point_ref), limit=limit_per_stop_point
+            )
+            if not frame.empty:
+                frames.append(frame)
+
+        return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
     def fetch_trip_info(
         self,
