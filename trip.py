@@ -12,8 +12,9 @@ from modules.utils import ensure_directory, load_config, timestamp_slug
 SCRIPT_DIR = Path(__file__).resolve().parent
 CONFIG_PATH = SCRIPT_DIR / "config.json"
 EXPORT_DIR = SCRIPT_DIR / "exports"
-DEPARTURE_LIMIT = 10
+DEPARTURE_LIMIT = 20
 DEFAULT_MAX_TRIPS = 50
+DEFAULT_DEPARTURE_HORIZON_MINUTES = 180
 
 
 def parse_args() -> argparse.Namespace:
@@ -37,7 +38,13 @@ def parse_args() -> argparse.Namespace:
         "--departure-limit",
         type=int,
         default=DEPARTURE_LIMIT,
-        help="Maximum number of departures to request per stop.",
+        help="Maximum departures the TRIAS API should return per stop (upper bound).",
+    )
+    parser.add_argument(
+        "--horizon-minutes",
+        type=int,
+        default=DEFAULT_DEPARTURE_HORIZON_MINUTES,
+        help="Time window in minutes for which departures should be retained.",
     )
     parser.add_argument(
         "--max-trips",
@@ -55,6 +62,7 @@ def build_trip_datasets(
     output_dir: Path,
     *,
     departure_limit: int,
+    horizon_minutes: int,
     max_trips: int | None,
 ) -> None:
     config_file = Path(config_path)
@@ -69,7 +77,11 @@ def build_trip_datasets(
     stops = trias.fetch_stops(center=center, radius_km=config["search_radius_km"])
     print(f"Fetched {len(stops)} stops within {config['search_radius_km']} km")
 
-    departures = trias.fetch_departures_for_stops(stops, limit_per_stop=departure_limit)
+    departures = trias.fetch_departures_for_stops(
+        stops,
+        max_results_per_stop=departure_limit,
+        horizon_minutes=horizon_minutes,
+    )
     departures = departures.dropna(subset=["stop_id"]).reset_index(drop=True)
 
     known_stop_ids = set(stops["trias_ref"].dropna().unique())
@@ -155,6 +167,7 @@ def main() -> None:
         config_path=args.config,
         output_dir=output_dir,
         departure_limit=args.departure_limit,
+        horizon_minutes=max(args.horizon_minutes, 0) if args.horizon_minutes is not None else DEFAULT_DEPARTURE_HORIZON_MINUTES,
         max_trips=max_trips,
     )
 

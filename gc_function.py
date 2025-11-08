@@ -21,8 +21,9 @@ from modules.weather import WeatherClient
 PROJECT_ID = "data-literacy-477519"
 DEFAULT_BUCKET_NAME = "departure_data"
 GCS_BUCKET_NAME = os.environ.get('GCS_BUCKET_NAME', DEFAULT_BUCKET_NAME)
-DEPARTURE_LIMIT = 10
-DEPARTURE_DISCOVERY_LIMIT = 100
+DEPARTURE_HORIZON_MINUTES = 60
+DEPARTURE_DISCOVERY_MAX_RESULTS = 200
+DEPARTURE_MAX_RESULTS_PER_STOP_POINT = 200
 CONFIG_PATH = "config.json"
 
 
@@ -50,7 +51,9 @@ def create_departure_data(request):
         print(f"Fetched {len(stops)} stops within {config['search_radius_km']} km")
         
         discovery_departures = trias.fetch_departures_for_stops(
-            stops, limit_per_stop=DEPARTURE_DISCOVERY_LIMIT
+            stops,
+            max_results_per_stop=DEPARTURE_DISCOVERY_MAX_RESULTS,
+            horizon_minutes=DEPARTURE_HORIZON_MINUTES,
         )
         discovery_departures = discovery_departures.dropna(subset=["stop_id"])
 
@@ -63,7 +66,9 @@ def create_departure_data(request):
         stops_with_platforms = expand_stops_with_platforms(stops, discovery_departures)
 
         departures = trias.fetch_departures_for_stop_points(
-            stops_with_platforms, limit_per_stop_point=DEPARTURE_LIMIT
+            stops_with_platforms,
+            max_results_per_stop_point=DEPARTURE_MAX_RESULTS_PER_STOP_POINT,
+            horizon_minutes=DEPARTURE_HORIZON_MINUTES,
         )
         if departures.empty:
             departures = discovery_departures.copy()

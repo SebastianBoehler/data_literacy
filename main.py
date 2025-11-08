@@ -20,8 +20,9 @@ from gc_function import create_departure_data, health_check
 
 CONFIG_PATH = "config.json"
 EXPORT_DIR = Path("exports")
-DEPARTURE_LIMIT = 10
-DEPARTURE_DISCOVERY_LIMIT = 100
+DEPARTURE_HORIZON_MINUTES = 60
+DEPARTURE_DISCOVERY_MAX_RESULTS = 200
+DEPARTURE_MAX_RESULTS_PER_STOP_POINT = 200
 
 
 def main() -> None:
@@ -35,7 +36,9 @@ def main() -> None:
     )
 
     discovery_departures = trias.fetch_departures_for_stops(
-        stops, limit_per_stop=DEPARTURE_DISCOVERY_LIMIT
+        stops,
+        max_results_per_stop=DEPARTURE_DISCOVERY_MAX_RESULTS,
+        horizon_minutes=DEPARTURE_HORIZON_MINUTES,
     )
     discovery_departures = discovery_departures.dropna(subset=["stop_id"])
 
@@ -47,7 +50,9 @@ def main() -> None:
     stops_with_platforms = expand_stops_with_platforms(stops, discovery_departures)
 
     departures = trias.fetch_departures_for_stop_points(
-        stops_with_platforms, limit_per_stop_point=DEPARTURE_LIMIT
+        stops_with_platforms,
+        max_results_per_stop_point=DEPARTURE_MAX_RESULTS_PER_STOP_POINT,
+        horizon_minutes=DEPARTURE_HORIZON_MINUTES,
     )
     if departures.empty:
         departures = discovery_departures.copy()
