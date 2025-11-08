@@ -1,0 +1,141 @@
+stop_id,stop_point_ref,stop_name,planned_time,estimated_time,line_name,destination,platform,delay_minutes,weather_timestamp,temperature,precipitation_mm,wind_speed_ms,wind_direction_deg,cloud_cover,pressure_hpa,relative_humidity,condition,icon
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 22:07,2025-11-07 22:07,6,Rappenberg,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 22:07,2025-11-07 22:07,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:4,Tübingen Neckarhalde,2025-11-07 22:13,2025-11-07 22:14,6,Hauptbahnhof,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:4,Tübingen Neckarhalde,2025-11-07 22:13,2025-11-07 22:13,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 22:37,2025-11-07 22:37,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 22:37,2025-11-07 22:37,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:4,Tübingen Neckarhalde,2025-11-07 22:43,2025-11-07 22:43,6,Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:4,Tübingen Neckarhalde,2025-11-07 22:43,2025-11-07 22:43,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 23:07,2025-11-07 23:07,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10044,de:08416:10044:0:1,Tübingen Neckarhalde,2025-11-07 23:07,2025-11-07 23:07,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:11:B,Tübingen Hauptbahnhof,2025-11-07 22:02,2025-11-07 22:02,5,Tübingen WHO Ahornweg,Bstg. B,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:12:F,Tübingen Hauptbahnhof,2025-11-07 22:02,2025-11-07 22:02,4,Tübingen Wennf. Garten,Bstg. F,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:14:I,Tübingen Hauptbahnhof,2025-11-07 22:02,2025-11-07 22:02,11,Tübingen Schwärzlocher Str. 45,Bstg. I,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:11:A,Tübingen Hauptbahnhof,2025-11-07 22:02,2025-11-07 22:02,2,Tübingen WHO Ulmenweg,Bstg. A,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:11:C,Tübingen Hauptbahnhof,2025-11-07 22:03,2025-11-07 22:03,1,Pfrondorf Lusstraße,Bstg. C,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:12:D,Tübingen Hauptbahnhof,2025-11-07 22:04,2025-11-07 22:04,10,Tübingen Schwabstraße,Bstg. D,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:13:K,Tübingen Hauptbahnhof,2025-11-07 22:04,2025-11-07 22:04,8,Hagelloch Dornäckerweg,Bstg. K,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:14:H,Tübingen Hauptbahnhof,2025-11-07 22:05,2025-11-07 22:05,6,Tübingen Hirschauer Straße,Bstg. H,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:14:H,Tübingen Hauptbahnhof,2025-11-07 22:05,2025-11-07 22:06,6,Rappenberg,Bstg. H,1.1,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:11000,de:08416:11000:4:5,Tübingen Hauptbahnhof,2025-11-07 22:05,2025-11-07 22:10,MEX12,Heilbronn Hauptbahnhof,5,5.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 22:08,2025-11-07 22:09,6,Rappenberg,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 22:08,2025-11-07 22:08,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:4,Tübingen Biesingerstraße,2025-11-07 22:13,2025-11-07 22:13,6,Hauptbahnhof,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:4,Tübingen Biesingerstraße,2025-11-07 22:13,2025-11-07 22:13,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 22:38,2025-11-07 22:38,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 22:38,2025-11-07 22:38,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:4,Tübingen Biesingerstraße,2025-11-07 22:43,2025-11-07 22:43,6,Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:4,Tübingen Biesingerstraße,2025-11-07 22:43,2025-11-07 22:43,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 23:08,2025-11-07 23:08,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10045,de:08416:10045:0:1,Tübingen Biesingerstraße,2025-11-07 23:08,2025-11-07 23:08,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-07 22:23,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:2:8,Tübingen Haagtor,2025-11-07 22:39,2025-11-07 22:39,9,Tübingen Bismarckturm,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-07 22:52,2025-11-07 22:52,9,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-07 23:23,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:2:8,Tübingen Haagtor,2025-11-07 23:39,,9,Tübingen Bismarckturm,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-07 23:52,2025-11-07 23:52,9,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:2:8,Tübingen Haagtor,2025-11-08 01:07,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-08 01:15,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:1:4,Tübingen Haagtor,2025-11-08 01:22,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10014,de:08416:10014:2:8,Tübingen Haagtor,2025-11-08 02:07,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:2,Tübingen Neckarbrücke,2025-11-07 22:03,2025-11-07 22:03,11,Tübingen Schwärzlocher Str. 45,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:3,Tübingen Neckarbrücke,2025-11-07 22:04,2025-11-07 22:04,5,Tübingen WHO Ahornweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:3,Tübingen Neckarbrücke,2025-11-07 22:04,2025-11-07 22:04,2,Tübingen WHO Ulmenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:2,Tübingen Neckarbrücke,2025-11-07 22:05,2025-11-07 22:05,10,Tübingen Schwabstraße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:2,Tübingen Neckarbrücke,2025-11-07 22:05,2025-11-07 22:05,1,Pfrondorf Lusstraße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:2,Tübingen Neckarbrücke,2025-11-07 22:06,2025-11-07 22:06,8,Hagelloch Dornäckerweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:4,Tübingen Neckarbrücke,2025-11-07 22:06,2025-11-07 22:07,5,Tübingen Hauptbahnhof,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:4,Tübingen Neckarbrücke,2025-11-07 22:07,2025-11-07 22:07,3,Tübingen Nelkenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:4,Tübingen Neckarbrücke,2025-11-07 22:15,2025-11-07 22:17,1,Tübingen Hauptbahnhof,,2.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10501,de:08416:10501:0:3,Tübingen Neckarbrücke,2025-11-07 22:18,2025-11-07 22:18,3,Tübingen WHO Ulmenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 22:08,2025-11-07 22:09,6,Rappenberg,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 22:08,2025-11-07 22:08,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,2025-11-07 22:12,2025-11-07 22:13,6,Hauptbahnhof,,0.7,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,2025-11-07 22:12,2025-11-07 22:12,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 22:38,2025-11-07 22:38,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 22:38,2025-11-07 22:38,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,2025-11-07 22:42,2025-11-07 22:42,6,Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,2025-11-07 22:42,2025-11-07 22:42,6,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 23:08,2025-11-07 23:08,6,Rappenberg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10046,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,2025-11-07 23:08,2025-11-07 23:08,6,Tübingen Hirschauer Straße,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-07 22:24,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:1,Tübingen Weberstraße,2025-11-07 22:39,2025-11-07 22:39,9,Tübingen Bismarckturm,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-07 22:52,2025-11-07 22:52,9,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-07 23:24,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:1,Tübingen Weberstraße,2025-11-07 23:39,,9,Tübingen Bismarckturm,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-07 23:52,2025-11-07 23:52,9,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:1,Tübingen Weberstraße,2025-11-08 01:06,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-08 01:15,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:4,Tübingen Weberstraße,2025-11-08 01:23,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10017,de:08416:10017:0:1,Tübingen Weberstraße,2025-11-08 02:06,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-07 22:24,2025-11-07 22:25,22,Tübingen Hauptbahnhof,,0.5,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-07 22:54,2025-11-07 22:54,22,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-07 23:24,2025-11-07 23:24,22,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-07 23:54,2025-11-07 23:54,22,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 06:25,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 06:55,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 07:25,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 07:55,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 08:25,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10499,de:08416:10499:0:4,Tübingen Mühlstraße,2025-11-08 08:55,,22,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:07,2025-11-07 22:07,1,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:12,2025-11-07 22:12,3,Tübingen WHO Ulmenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:19,2025-11-07 22:20,7625,Tübingen Hauptbahnhof,,1.1,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:22,,7611,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:22,2025-11-07 22:22,4,Tübingen WHO Ulmenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:25,,7611,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:28,2025-11-07 22:28,5,Tübingen WHO Ahornweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:37,2025-11-07 22:37,1,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:42,2025-11-07 22:42,3,Tübingen WHO Ulmenweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10518,de:08416:10518:0:4,Tübingen Poststraße,2025-11-07 22:49,2025-11-07 22:49,7625,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-07 22:22,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-07 23:22,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 01:21,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 02:21,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 03:21,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 04:21,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 06:22,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 07:22,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 08:22,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10052,de:08416:10052:0:4,Tübingen Schwärzlocher Str. 45,2025-11-08 09:34,,11,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-07 22:08,2025-11-07 22:08,11,Tübingen Schwärzlocher Str. 45,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-07 22:38,2025-11-07 22:38,9,Tübingen Bismarckturm,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-07 23:08,2025-11-07 23:08,11,Tübingen Schwärzlocher Str. 45,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-07 23:38,,9,Tübingen Bismarckturm,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 01:05,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 02:05,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 03:05,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 04:05,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 06:08,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10018,de:08416:10018:0:1,Tübingen Kelternplatz,2025-11-08 06:38,,9,Tübingen Bismarckturm,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-07 22:09,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-07 23:09,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 01:16,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 02:16,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 03:16,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 04:16,,N90,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 06:09,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 07:09,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 08:09,,11,Tübingen Schwärzlocher Str. 45,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10039,de:08416:10039:0:1,Tübingen Hermann Hepper Halle,2025-11-08 08:41,,12,Tübingen Weststadt,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-07 22:00,2025-11-07 22:01,5,Tübingen Derend. Käppele,,1.5,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:4,Tübingen Hegelstraße,2025-11-07 22:24,2025-11-07 22:24,5,Tübingen WHO Ahornweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-07 22:30,2025-11-07 22:30,5,Tübingen Derend. Käppele,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:4,Tübingen Hegelstraße,2025-11-07 22:54,2025-11-07 22:54,5,Tübingen WHO Ahornweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-07 23:00,2025-11-07 23:00,5,Tübingen Derend. Käppele,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:4,Tübingen Hegelstraße,2025-11-07 23:24,2025-11-07 23:24,5,Tübingen WHO Ahornweg,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-07 23:30,2025-11-07 23:30,5,Tübingen Derend. Käppele,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:4,Tübingen Hegelstraße,2025-11-07 23:54,,5,Tübingen WHO Ahornweg,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-08 00:00,2025-11-08 00:00,5,Tübingen Derend. Käppele,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10700,de:08416:10700:0:1,Tübingen Hegelstraße,2025-11-08 01:02,,N88,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 22:01,,19,Bühl Römerstraße,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 22:08,2025-11-07 22:11,18,Hirschau Rittweg West,,3.3,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:4,Tübingen Freibad,2025-11-07 22:20,2025-11-07 22:20,18,Tübingen Hauptbahnhof,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:4,Tübingen Freibad,2025-11-07 22:26,,19,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 22:31,,19,Bühl Römerstraße,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 22:38,,18,Rottenburg E.-Bolz-Platz,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:4,Tübingen Freibad,2025-11-07 22:50,,18,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:4,Tübingen Freibad,2025-11-07 22:56,,19,Tübingen Hauptbahnhof,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 23:01,,19,Bühl Römerstraße,,,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
+de:08416:10904,de:08416:10904:0:1,Tübingen Freibad,2025-11-07 23:08,2025-11-07 23:08,18,Hirschau Kirchplatz,,0.0,2025-11-07 21:30,3.1,0.0,5.0,140,100,1014.9,96,dry,cloudy
