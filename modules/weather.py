@@ -63,6 +63,17 @@ class WeatherClient:
 
         pressure = weather.get("pressure_msl")
 
+        source_id = weather.get("source_id")
+        station_name: Optional[str] = None
+        sources = payload.get("sources") or []
+        if source_id is not None:
+            for source in sources:
+                if source.get("id") == source_id:
+                    station_name = source.get("station_name") or source.get("dwd_station_id")
+                    break
+        if station_name is None and sources:
+            station_name = sources[0].get("station_name") or sources[0].get("dwd_station_id")
+
         return {
             "weather_timestamp": weather_timestamp,
             "temperature": weather.get("temperature"),
@@ -74,4 +85,6 @@ class WeatherClient:
             "relative_humidity": weather.get("relative_humidity"),
             "condition": weather.get("condition"),
             "icon": weather.get("icon"),
+            "weather_source_id": source_id,
+            "weather_station_name": station_name,
         }
