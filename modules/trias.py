@@ -1,10 +1,11 @@
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Optional
 
 import pandas as pd
 import requests
 import xml.etree.ElementTree as ET
+from zoneinfo import ZoneInfo
 
 TRIAS_BASE_URL = "https://efa-bw.de/trias"
 TRIAS_HEADERS = {
@@ -13,6 +14,7 @@ TRIAS_HEADERS = {
     "User-Agent": "PostmanRuntime/7.39.0",
 }
 TRIAS_NS = {"trias": "http://www.vdv.de/trias", "siri": "http://www.siri.org.uk/siri"}
+LOCAL_TZ = ZoneInfo("Europe/Berlin")
 
 
 def _utc_now() -> str:
@@ -124,7 +126,8 @@ class TriasClient:
         stop_id: str,
         *,
         stop_point_ref: Optional[str] = None,
-        limit: int = 20,
+        max_results: int = 200,
+        horizon_minutes: Optional[int] = None,
     ) -> pd.DataFrame:
         timestamp = _utc_now()
         target_ref = stop_point_ref or stop_id
@@ -137,7 +140,7 @@ class TriasClient:
     <DepArrTime>{timestamp}</DepArrTime>
   </Location>
   <Params>
-    <NumberOfResults>{limit}</NumberOfResults>
+    <NumberOfResults>{max_results}</NumberOfResults>
     <IncludeRealtimeData>true</IncludeRealtimeData>
     <StopEventType>departure</StopEventType>
   </Params>
@@ -216,26 +219,34 @@ class TriasClient:
             df = df[df["stop_point_ref"] == stop_point_ref].reset_index(drop=True)
             if df.empty:
                 return df
-        berlin = "Europe/Berlin"
         df["planned_time"] = (
             pd.to_datetime(df["planned_time"], errors="coerce", utc=True)
-            .dt.tz_convert(berlin)
+            .dt.tz_convert(LOCAL_TZ)
             .dt.tz_localize(None)
         )
         df["estimated_time"] = (
             pd.to_datetime(df["estimated_time"], errors="coerce", utc=True)
-            .dt.tz_convert(berlin)
+            .dt.tz_convert(LOCAL_TZ)
             .dt.tz_localize(None)
         )
         df["delay_minutes"] = (
             (df["estimated_time"] - df["planned_time"]).dt.total_seconds() / 60
         )
+
+        if horizon_minutes is not None and horizon_minutes > 0:
+            now_local = datetime.now(tz=LOCAL_TZ).replace(tzinfo=None)
+            cutoff = now_local + timedelta(minutes=horizon_minutes)
+            effective_time = df["estimated_time"].combine_first(df["planned_time"])
+            mask = effective_time.notna() & (effective_time >= now_local) & (effective_time <= cutoff)
+            df = df[mask].reset_index(drop=True)
+
         return df
 
     def fetch_departures_for_stop_points(
         self,
         stops: pd.DataFrame,
-        limit_per_stop_point: int = 100,
+        max_results_per_stop_point: int = 200,
+        horizon_minutes: Optional[int] = None,
     ) -> pd.DataFrame:
         if stops.empty or "stop_point_ref" not in stops.columns:
             return pd.DataFrame()
@@ -253,7 +264,10 @@ class TriasClient:
             if pd.isna(base_ref):
                 base_ref = row["stop_id"]
             frame = self.fetch_departures(
-                str(base_ref), stop_point_ref=str(stop_point_ref), limit=limit_per_stop_point
+                str(base_ref),
+                stop_point_ref=str(stop_point_ref),
+                max_results=max_results_per_stop_point,
+                horizon_minutes=horizon_minutes,
             )
             if not frame.empty:
                 frames.append(frame)
@@ -502,8 +516,9 @@ class TriasClient:
     def fetch_departures_for_stops(
         self,
         stops: pd.DataFrame,
-        limit_per_stop: int = 20,
+        max_results_per_stop: int = 200,
         max_stops: Optional[int] = None,
+        horizon_minutes: Optional[int] = None,
     ) -> pd.DataFrame:
         if stops.empty:
             return pd.DataFrame()
@@ -512,7 +527,11 @@ class TriasClient:
         if max_stops:
             stop_ids = stop_ids[:max_stops]
         for stop_id in stop_ids:
-            frame = self.fetch_departures(stop_id, limit=limit_per_stop)
+            frame = self.fetch_departures(
+                stop_id,
+                max_results=max_results_per_stop,
+                horizon_minutes=horizon_minutes,
+            )
             if not frame.empty:
                 frames.append(frame)
         return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
