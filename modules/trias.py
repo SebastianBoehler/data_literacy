@@ -1,7 +1,7 @@
 import uuid
 from collections import defaultdict
 from datetime import datetime, timezone
-from typing import Iterable, Optional
+from typing import Optional
 
 import pandas as pd
 import requests
@@ -168,6 +168,9 @@ class TriasClient:
             route_description = service.find("trias:RouteDescription/trias:Text", TRIAS_NS) if service is not None else None
             destination_elem = service.find("trias:DestinationText/trias:Text", TRIAS_NS) if service is not None else None
 
+            journey_ref_elem = service.find("trias:JourneyRef", TRIAS_NS) if service is not None else None
+            operating_day_elem = service.find("trias:OperatingDayRef", TRIAS_NS) if service is not None else None
+
             line_name = None
             if published_line_elem is not None and published_line_elem.text:
                 line_name = published_line_elem.text
@@ -200,6 +203,8 @@ class TriasClient:
                     "line_name": line_name,
                     "destination": destination,
                     "platform": platform,
+                    "journey_ref": journey_ref_elem.text if journey_ref_elem is not None else None,
+                    "operating_day_ref": operating_day_elem.text if operating_day_elem is not None else None,
                 }
             )
         df = pd.DataFrame(records)
@@ -220,6 +225,245 @@ class TriasClient:
             (df["estimated_time"] - df["planned_time"]).dt.total_seconds() / 60
         )
         return df
+
+    def fetch_trip_info(
+        self,
+        journey_ref: str,
+        operating_day_ref: Optional[str] = None,
+        *,
+        include_calls: bool = True,
+        include_estimated: bool = True,
+        include_position: bool = True,
+        include_track_sections: bool = False,
+    ) -> dict[str, object]:
+        params: list[str] = []
+        if include_calls:
+            params.append("<IncludeCalls>true</IncludeCalls>")
+        if include_estimated:
+            params.append("<IncludeEstimatedTimes>true</IncludeEstimatedTimes>")
+        if include_position:
+            params.append("<IncludePosition>true</IncludePosition>")
+        if include_track_sections:
+            params.append("<IncludeTrackSections>true</IncludeTrackSections>")
+
+        params_xml = "".join(params)
+        refs_xml = f"<JourneyRef>{journey_ref}</JourneyRef>"
+        if operating_day_ref:
+            refs_xml += f"<OperatingDayRef>{operating_day_ref}</OperatingDayRef>"
+
+        payload = (
+            "<TripInfoRequest>"
+            f"{refs_xml}"
+            f"<Params>{params_xml}</Params>"
+            "</TripInfoRequest>"
+        )
+
+        root = self._execute(payload)
+        result = root.find(".//trias:TripInfoResult", TRIAS_NS)
+        if result is None:
+            return {"calls": pd.DataFrame(), "service": None, "current_position": None}
+
+        service_elem = result.find("trias:Service", TRIAS_NS)
+        service_info = self._parse_service(service_elem) if service_elem is not None else None
+
+        position_elem = result.find("trias:CurrentPosition", TRIAS_NS)
+        current_position = self._parse_position(position_elem) if position_elem is not None else None
+
+        calls_df = self._parse_calls(result)
+
+        return {
+            "calls": calls_df,
+            "service": service_info,
+            "current_position": current_position,
+        }
+
+    def fetch_trip_infos_for_departures(
+        self,
+        departures: pd.DataFrame,
+        *,
+        max_trips: Optional[int] = None,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+        if departures.empty:
+            return pd.DataFrame(), pd.DataFrame()
+
+        unique = (
+            departures.dropna(subset=["journey_ref"])
+            .drop_duplicates(subset=["journey_ref", "operating_day_ref"])
+        )
+
+        if max_trips is not None:
+            unique = unique.head(max_trips)
+
+        call_frames: list[pd.DataFrame] = []
+        position_records: list[dict[str, object]] = []
+
+        for _, row in unique.iterrows():
+            journey_ref = row["journey_ref"]
+            operating_day_ref = row.get("operating_day_ref")
+            trip_info = self.fetch_trip_info(journey_ref, operating_day_ref)
+
+            service_meta = trip_info.get("service") or {}
+
+            calls = trip_info.get("calls")
+            if isinstance(calls, pd.DataFrame) and not calls.empty:
+                calls = calls.copy()
+                calls["journey_ref"] = service_meta.get("journey_ref") or journey_ref
+                calls["operating_day_ref"] = service_meta.get("operating_day_ref") or operating_day_ref
+                calls["line_name"] = service_meta.get("line_name") or row.get("line_name")
+                calls["destination"] = service_meta.get("destination") or row.get("destination")
+                call_frames.append(calls)
+
+            position_meta = trip_info.get("current_position")
+            if isinstance(position_meta, dict) and position_meta:
+                position_record = position_meta.copy()
+                position_record["journey_ref"] = journey_ref
+                position_record["operating_day_ref"] = operating_day_ref
+                position_record["line_name"] = service_meta.get("line_name") or row.get("line_name")
+                position_record["destination"] = service_meta.get("destination") or row.get("destination")
+                position_records.append(position_record)
+
+        call_df = pd.concat(call_frames, ignore_index=True) if call_frames else pd.DataFrame()
+        position_df = pd.DataFrame(position_records)
+        return call_df, position_df
+
+    def _parse_service(self, service_elem: ET.Element) -> dict[str, Optional[str]]:
+        def _text(elem: Optional[ET.Element]) -> Optional[str]:
+            if elem is None or elem.text is None:
+                return None
+            return elem.text
+
+        journey_ref = _text(service_elem.find("trias:JourneyRef", TRIAS_NS))
+        operating_day_ref = _text(service_elem.find("trias:OperatingDayRef", TRIAS_NS))
+
+        destination = None
+        destination_elem = service_elem.find("trias:DestinationText/trias:Text", TRIAS_NS)
+        if destination_elem is not None and destination_elem.text:
+            destination = destination_elem.text
+
+        published_line = None
+        for line_elem in service_elem.findall(
+            "trias:ServiceSection/trias:PublishedLineName/trias:Text", TRIAS_NS
+        ):
+            if line_elem.text:
+                published_line = line_elem.text
+                break
+
+        return {
+            "journey_ref": journey_ref,
+            "operating_day_ref": operating_day_ref,
+            "destination": destination,
+            "line_name": published_line,
+        }
+
+    def _parse_position(self, position_elem: ET.Element) -> dict[str, Optional[float]]:
+        latitude_elem = position_elem.find("trias:GeoPosition/trias:Latitude", TRIAS_NS)
+        longitude_elem = position_elem.find("trias:GeoPosition/trias:Longitude", TRIAS_NS)
+        bearing_elem = position_elem.find("trias:Bearing", TRIAS_NS)
+
+        def _float(elem: Optional[ET.Element]) -> Optional[float]:
+            if elem is None or not elem.text:
+                return None
+            try:
+                return float(elem.text)
+            except ValueError:
+                return None
+
+        return {
+            "latitude": _float(latitude_elem),
+            "longitude": _float(longitude_elem),
+            "bearing": _float(bearing_elem),
+        }
+
+    def _parse_calls(self, result_elem: ET.Element) -> pd.DataFrame:
+        records: list[dict[str, object]] = []
+
+        phase_map = {
+            "PreviousCall": "previous",
+            "OnwardCall": "onward",
+        }
+
+        for xml_phase, label in phase_map.items():
+            for call_container in result_elem.findall(f"trias:{xml_phase}", TRIAS_NS):
+                # Some TRIAS backends wrap calls in CallAtStop, others inline the elements.
+                call_elem = call_container.find("trias:CallAtStop", TRIAS_NS)
+                if call_elem is None:
+                    call_elem = call_container
+                records.append(self._call_record(call_elem, label))
+
+        calls_df = pd.DataFrame(records)
+        if calls_df.empty:
+            return calls_df
+
+        berlin = "Europe/Berlin"
+
+        arrival_planned = pd.to_datetime(calls_df["arrival_planned"], errors="coerce", utc=True)
+        arrival_estimated = pd.to_datetime(calls_df["arrival_estimated"], errors="coerce", utc=True)
+        departure_planned = pd.to_datetime(calls_df["departure_planned"], errors="coerce", utc=True)
+        departure_estimated = pd.to_datetime(calls_df["departure_estimated"], errors="coerce", utc=True)
+
+        calls_df["arrival_delay_minutes"] = (
+            (arrival_estimated - arrival_planned).dt.total_seconds() / 60
+        )
+        calls_df["departure_delay_minutes"] = (
+            (departure_estimated - departure_planned).dt.total_seconds() / 60
+        )
+
+        calls_df["arrival_planned"] = (
+            arrival_planned.dt.tz_convert(berlin).dt.tz_localize(None)
+        )
+        calls_df["arrival_estimated"] = (
+            arrival_estimated.dt.tz_convert(berlin).dt.tz_localize(None)
+        )
+        calls_df["departure_planned"] = (
+            departure_planned.dt.tz_convert(berlin).dt.tz_localize(None)
+        )
+        calls_df["departure_estimated"] = (
+            departure_estimated.dt.tz_convert(berlin).dt.tz_localize(None)
+        )
+
+        sort_columns = ["journey_ref", "stop_sequence", "phase"]
+        existing = [col for col in sort_columns if col in calls_df.columns]
+        return calls_df.sort_values(by=existing).reset_index(drop=True)
+
+    def _call_record(self, call_elem: ET.Element, phase: str) -> dict[str, object]:
+        def _text(elem_path: str) -> Optional[str]:
+            elem = call_elem.find(elem_path, TRIAS_NS)
+            if elem is None or elem.text is None:
+                return None
+            return elem.text
+
+        def _find_time(parent_tag: str) -> tuple[Optional[str], Optional[str]]:
+            parent = call_elem.find(parent_tag, TRIAS_NS)
+            if parent is None:
+                return None, None
+            planned = parent.find("trias:TimetabledTime", TRIAS_NS)
+            estimated = parent.find("trias:EstimatedTime", TRIAS_NS)
+            planned_text = planned.text if planned is not None else None
+            estimated_text = estimated.text if estimated is not None else None
+            return planned_text, estimated_text
+
+        sequence_text = _text("trias:StopSeqNumber")
+        try:
+            sequence = int(sequence_text) if sequence_text is not None else None
+        except ValueError:
+            sequence = None
+
+        arrival_planned, arrival_estimated = _find_time("trias:ServiceArrival")
+        departure_planned, departure_estimated = _find_time("trias:ServiceDeparture")
+
+        bay = _text("trias:PlannedBay/trias:Text") or _text("trias:ServiceDeparture/trias:Bay/trias:Text")
+
+        return {
+            "phase": phase,
+            "stop_point_ref": _text("trias:StopPointRef"),
+            "stop_name": _text("trias:StopPointName/trias:Text"),
+            "stop_sequence": sequence,
+            "platform": bay,
+            "arrival_planned": arrival_planned,
+            "arrival_estimated": arrival_estimated,
+            "departure_planned": departure_planned,
+            "departure_estimated": departure_estimated,
+        }
 
     def fetch_departures_for_stops(
         self,
