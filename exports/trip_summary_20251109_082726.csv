@@ -1,0 +1,51 @@
+journey_ref,operating_day_ref,line_name,destination,stops_observed,avg_arrival_delay,max_arrival_delay,avg_departure_delay,max_departure_delay
+tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof,21,0.18,0.7,0.18,0.7
+tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße,26,0.0,0.0,0.0,0.0
+tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg,13,0.0,0.0,0.0,0.0
+tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg,30,0.14,1.1,0.2,1.1
+tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg,30,0.0,0.0,0.0,0.0
+tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg,30,0.0,0.0,0.0,0.0
+tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg,30,0.0,0.0,0.0,0.0
+tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten,27,0.65,2.0,0.74,2.1
+tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten,27,0.0,0.0,0.0,0.0
+tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten,27,0.0,0.0,0.0,0.0
+tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten,27,0.0,0.0,0.0,0.0
+tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten,27,0.0,0.0,0.0,0.0
+tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg,27,0.9,3.2,1.02,3.5
+tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele,33,0.92,1.9,1.13,2.2
+tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele,33,0.0,0.0,0.0,0.0
+tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele,33,0.0,0.0,0.0,0.0
+tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele,33,0.0,0.0,0.0,0.0
+tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele,33,0.0,0.0,0.0,0.0
+tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg,33,0.03,0.7,0.09,0.9
+tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg,33,0.0,0.0,0.0,0.0
+tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße,7,0.0,0.0,0.0,0.0
+tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof,16,0.61,2.0,0.83,2.3
+tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof,7,0.0,0.0,0.0,0.0
+tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg,17,0.27,0.7,0.24,0.7
+tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm,12,0.0,0.0,0.0,0.0
+tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße,12,0.0,0.0,0.0,0.0
+tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz,13,0.0,0.0,0.0,0.0
+tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz,13,0.0,0.0,0.0,0.0
+tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz,13,0.0,0.0,0.0,0.0
+tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB,23,0.0,0.0,0.0,0.0
+tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB,22,0.0,0.0,0.0,0.0
+tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB,22,0.0,0.0,0.0,0.0
+vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB),33,0.0,0.0,0.0,0.0
+vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof,25,0.0,0.0,0.0,0.0
