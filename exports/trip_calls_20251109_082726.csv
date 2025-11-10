@@ -1,0 +1,1077 @@
+phase,stop_point_ref,stop_name,stop_sequence,platform,arrival_planned,arrival_estimated,departure_planned,departure_estimated,arrival_delay_minutes,departure_delay_minutes,journey_ref,operating_day_ref,line_name,destination
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 09:35,2025-11-09 09:35,,0.0,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,,0.0,,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 09:40,,2025-11-09 09:40,,,,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 09:41,,,,,,tub:09006::H:j25:266,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 09:40,2025-11-09 09:40,,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 09:47,2025-11-09 09:47,,,0.0,,tub:09006::R:j25:78,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 10:05,2025-11-09 10:05,,0.0,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,,0.0,,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 10:10,,2025-11-09 10:10,,,,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 10:11,,,,,,tub:09006::H:j25:267,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 10:10,2025-11-09 10:10,,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,0.0,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,0.0,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,0.0,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,0.0,0.0,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 10:17,2025-11-09 10:17,,,0.0,,tub:09006::R:j25:79,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 10:35,2025-11-09 10:35,,0.0,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,,0.0,,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 10:40,,2025-11-09 10:40,,,,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 10:41,,,,,,tub:09006::H:j25:268,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 10:40,2025-11-09 10:40,,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,0.0,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,0.0,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,0.0,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,0.0,0.0,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 10:47,2025-11-09 10:47,,,0.0,,tub:09006::R:j25:80,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 11:05,2025-11-09 11:05,,0.0,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,,0.0,,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 11:10,,2025-11-09 11:10,,,,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 11:11,,,,,,tub:09006::H:j25:269,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 11:10,2025-11-09 11:10,,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,0.0,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,0.0,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,0.0,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,0.0,0.0,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 11:17,2025-11-09 11:17,,,0.0,,tub:09006::R:j25:81,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 11:35,2025-11-09 11:35,,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 11:41,2025-11-09 11:41,,,0.0,,tub:09006::H:j25:270,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 11:40,2025-11-09 11:40,,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,0.0,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,0.0,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,0.0,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,0.0,0.0,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 11:47,2025-11-09 11:47,,,0.0,,tub:09006::R:j25:82,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:H,Tübingen Hauptbahnhof,1,Bstg. H,,,2025-11-09 12:05,2025-11-09 12:05,,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10044:0:1,Tübingen Neckarhalde,2,,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,0.0,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10045:0:1,Tübingen Biesingerstraße,3,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10046:0:1,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,5,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,0.0,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10016:0:4,Tübingen Rappenberg,6,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,0.0,0.0,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,7,,2025-11-09 12:11,2025-11-09 12:11,,,0.0,,tub:09006::H:j25:271,2025-11-09,6,Tübingen Hirschauer Straße
+onward,de:08416:10047:0:1,Tübingen Hennentalweg,1,,,,2025-11-09 12:10,2025-11-09 12:10,,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10016:0:4,Tübingen Rappenberg,2,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,0.0,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10048:0:4,Tübingen Hirschauer Straße,3,,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,0.0,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10046:0:4,Tübingen Ernst-Bloch-Straße,4,,2025-11-09 12:12,2025-11-09 12:12,2025-11-09 12:12,2025-11-09 12:12,0.0,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10045:0:4,Tübingen Biesingerstraße,5,,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,0.0,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10044:0:4,Tübingen Neckarhalde,6,,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,0.0,0.0,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,7,Bstg. N,2025-11-09 12:17,2025-11-09 12:17,,,0.0,,tub:09006::R:j25:83,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 09:00,2025-11-09 09:02,,2.1,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 09:01,2025-11-09 09:02,2025-11-09 09:01,2025-11-09 09:03,1.9,2.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 09:01,2025-11-09 09:03,2025-11-09 09:01,2025-11-09 09:03,1.8,1.9,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 09:03,2025-11-09 09:04,2025-11-09 09:03,2025-11-09 09:05,1.8,2.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 09:04,2025-11-09 09:06,2025-11-09 09:04,2025-11-09 09:06,1.6,1.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 09:05,2025-11-09 09:07,2025-11-09 09:05,2025-11-09 09:07,1.7,2.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 09:07,2025-11-09 09:08,2025-11-09 09:07,2025-11-09 09:09,1.6,2.2,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 09:08,2025-11-09 09:10,2025-11-09 09:08,2025-11-09 09:10,1.8,1.9,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 09:09,2025-11-09 09:11,2025-11-09 09:09,2025-11-09 09:11,1.6,1.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 09:10,2025-11-09 09:12,2025-11-09 09:10,2025-11-09 09:12,1.5,1.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 09:12,2025-11-09 09:13,2025-11-09 09:12,2025-11-09 09:13,1.1,1.3,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 09:12,2025-11-09 09:14,2025-11-09 09:12,2025-11-09 09:14,1.2,1.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 09:14,2025-11-09 09:15,2025-11-09 09:14,2025-11-09 09:16,1.3,1.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 09:15,2025-11-09 09:16,2025-11-09 09:15,2025-11-09 09:17,1.3,1.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 09:17,2025-11-09 09:18,2025-11-09 09:17,2025-11-09 09:18,1.0,1.2,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 09:18,2025-11-09 09:19,2025-11-09 09:18,2025-11-09 09:19,0.8,1.1,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 09:19,2025-11-09 09:20,2025-11-09 09:19,2025-11-09 09:20,1.1,1.1,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 09:20,2025-11-09 09:21,2025-11-09 09:20,2025-11-09 09:22,1.2,1.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 09:21,2025-11-09 09:23,2025-11-09 09:21,2025-11-09 09:23,1.1,1.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,0.6,0.9,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 09:26,2025-11-09 09:26,2025-11-09 09:26,2025-11-09 09:26,0.0,0.7,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 09:27,2025-11-09 09:27,2025-11-09 09:27,2025-11-09 09:27,0.2,0.2,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,0.0,0.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.0,0.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.6,0.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 09:33,2025-11-09 09:34,2025-11-09 09:33,2025-11-09 09:34,0.6,0.6,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.5,0.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.5,0.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 09:38,2025-11-09 09:39,2025-11-09 09:38,2025-11-09 09:39,0.5,0.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.5,0.5,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 09:40,2025-11-09 09:40,,,0.0,,tub:09005::H:j25:918,2025-11-09,5,Tübingen Derend. Käppele
+previous,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 09:14,2025-11-09 09:14,,0.9,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 09:14,2025-11-09 09:15,2025-11-09 09:14,2025-11-09 09:15,0.8,1.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 09:15,2025-11-09 09:16,2025-11-09 09:15,2025-11-09 09:16,0.7,0.7,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 09:17,2025-11-09 09:17,2025-11-09 09:17,2025-11-09 09:17,0.6,0.9,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10242:0:4,Tübingen Winkelwiese,5,,2025-11-09 09:17,2025-11-09 09:19,2025-11-09 09:17,2025-11-09 09:19,1.1,1.3,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10241:0:4,Tübingen Niethammerstraße,6,,2025-11-09 09:18,2025-11-09 09:19,2025-11-09 09:18,2025-11-09 09:19,1.0,1.1,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10240:0:4,Tübingen Corrensstraße,7,,2025-11-09 09:19,2025-11-09 09:20,2025-11-09 09:19,2025-11-09 09:20,1.0,1.1,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10243:0:4,Tübingen Schönblick,8,,2025-11-09 09:20,2025-11-09 09:21,2025-11-09 09:20,2025-11-09 09:21,1.0,1.2,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10222:0:4,Tübingen Engelfriedshalde,9,,2025-11-09 09:21,2025-11-09 09:22,2025-11-09 09:21,2025-11-09 09:22,1.2,1.2,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10221:0:4,Tübingen Im Rotbad,10,,2025-11-09 09:21,2025-11-09 09:23,2025-11-09 09:21,2025-11-09 09:23,1.5,1.7,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10235:0:4,Tübingen Brunsstraße,11,,2025-11-09 09:22,2025-11-09 09:24,2025-11-09 09:22,2025-11-09 09:25,2.0,2.1,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 09:24,2025-11-09 09:25,2025-11-09 09:24,2025-11-09 09:25,1.5,1.7,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 09:25,2025-11-09 09:27,2025-11-09 09:25,2025-11-09 09:27,1.6,1.6,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+previous,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 09:26,2025-11-09 09:27,2025-11-09 09:26,2025-11-09 09:27,1.6,1.6,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,0.6,0.6,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:12:F,Tübingen Hauptbahnhof,17,Bstg. F,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,18,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10800:0:1,Tübingen Landestheater,19,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10810:0:1,Tübingen Sternplatz,20,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10811:0:1,Tübingen Kiesäckerstraße,21,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10812:0:1,Tübingen Königsberger Straße,22,Bstg. 1,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10813:0:1,Tübingen Stadtwerke,23,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10808:0:1,Tübingen Aixer Straße,24,,2025-11-09 09:39,2025-11-09 09:40,2025-11-09 09:39,2025-11-09 09:40,0.6,0.6,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10814:0:1,Tübingen Görlitzer Weg,25,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10817:0:1,Tübingen Tilsiter Weg,26,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10815:0:1,Tübingen Wennf. Garten,27,,2025-11-09 09:42,2025-11-09 09:42,,,0.0,,tub:09004::H:j25:530,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,1,Bstg. N,,,2025-11-09 09:35,2025-11-09 09:35,,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10826:0:1,Tübingen Hügelschule,4,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4404:0:1,Wankheim Helleräcker,6,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4010:0:2,Wankheim Siedlung,7,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4402:0:2,Wankheim Walbenstraße,8,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4403:0:1,Wankheim Pfarrhaus,9,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4005:0:1,Mähringen Ortsmitte,10,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4008:0:1,Immenhausen Ochsen,11,,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4407:0:1,Stockach,12,,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4421:0:1,Gomaringen Hinterweiler Str.,13,,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4409:0:1,Gomaringen Ziegelgrubenstr.,14,,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:1,Gomaringen ZOB,15,Bstg. 1,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4419:0:0,Gomaringen Lindenstr.,16,,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4411:0:2,Gomaringen Friedhof,17,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4412:0:2,Gomaringen Öschinger Str.,18,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4422:0:2,Gomaringen Lubbachstr.,19,,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4415:0:1,Gomaringen Bachstraße,20,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4499:0:2,Gomaringen Bahnhofstraße 2,21,,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,0.0,0.0,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:3,Gomaringen ZOB,22,Bstg. 3,2025-11-09 10:12,2025-11-09 10:12,,,0.0,,tub:80625::H:j25:75,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:11000:13:L,Tübingen Hauptbahnhof,1,Bstg. L,,,2025-11-09 09:37,2025-11-09 09:37,,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10614:0:1,Tübingen Alter Güterbahnhof,4,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:806:0:0,Kusterdingen Abzw. B 28,6,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:2,Kusterd. Altes Rathaus,7,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:803:0:0,Kusterdingen Bannholz,8,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:809:0:0,Kusterdingen Liststraße,9,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:807:0:0,Kusterd. Schulzentrum,10,,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:804:0:0,Kusterdingen Mozartstr.,11,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:1,Kusterd. Altes Rathaus,12,,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,0.0,0.0,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:4004:0:0,Jettenburg Brunnenplatz,13,,2025-11-09 10:00,2025-11-09 10:00,,,0.0,,tub:34611::H:j25:134,2025-11-09,7611,Jettenburg Brunnenplatz
+previous,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 09:21,2025-11-09 09:21,,0.8,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+previous,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 09:21,2025-11-09 09:22,2025-11-09 09:21,2025-11-09 09:22,0.7,0.7,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+previous,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 09:22,2025-11-09 09:23,2025-11-09 09:22,2025-11-09 09:23,0.4,0.4,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+previous,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,0.2,0.9,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+previous,de:08416:10214:0:1,Tübingen Weißdornweg,5,,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:26,0.5,0.8,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+previous,de:08416:10234:0:4,Tübingen Waldhäuser Straße,6,,2025-11-09 09:26,2025-11-09 09:27,2025-11-09 09:26,2025-11-09 09:27,1.1,1.1,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10229:0:4,Tübingen Maria-von-Linden-Str.,7,,2025-11-09 09:27,2025-11-09 09:28,2025-11-09 09:27,2025-11-09 09:28,0.5,0.5,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10233:0:4,Tübingen Max-Planck-Institute,8,,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10231:0:4,Tübingen Sternwarte,9,,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10232:0:4,Tübingen Auf dem Kreuz,10,,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10230:0:4,"Tübingen, Robert-Gradmann-Weg",11,,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,12,,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,13,,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,14,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.6,0.6,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,15,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,16,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,17,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,18,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,19,Bstg. J,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,20,Bstg. E,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,21,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10901:0:1,Tübingen Hechinger Straße,22,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10920:0:1,Tübingen Loretto,23,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10921:0:2,Tübingen Hechinger Eck,24,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10729:0:1,Tübingen Memmingerstraße,25,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,26,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,27,ERSATZ FR Gartenstadt,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10706:0:1,Tübingen Paul-Dietz-Straße,28,Bstg. 1,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10722:0:1,Tübingen Fuchsstraße,29,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10723:0:4,Tübingen Nelkenweg,30,,2025-11-09 09:53,2025-11-09 09:53,,,0.0,,tub:09003::H:j25:882,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 09:30,2025-11-09 09:30,,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,0.0,0.0,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 10:10,2025-11-09 10:10,,,0.0,,tub:09005::H:j25:921,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 09:44,2025-11-09 09:44,,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10242:0:4,Tübingen Winkelwiese,5,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10241:0:4,Tübingen Niethammerstraße,6,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10240:0:4,Tübingen Corrensstraße,7,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10243:0:4,Tübingen Schönblick,8,,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,9,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,10,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,11,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:12:F,Tübingen Hauptbahnhof,17,Bstg. F,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,18,,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10800:0:1,Tübingen Landestheater,19,,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10810:0:1,Tübingen Sternplatz,20,,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10811:0:1,Tübingen Kiesäckerstraße,21,,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10812:0:1,Tübingen Königsberger Straße,22,Bstg. 1,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10813:0:1,Tübingen Stadtwerke,23,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10808:0:1,Tübingen Aixer Straße,24,,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10814:0:1,Tübingen Görlitzer Weg,25,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10817:0:1,Tübingen Tilsiter Weg,26,,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,0.0,0.0,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10815:0:1,Tübingen Wennf. Garten,27,,2025-11-09 10:12,2025-11-09 10:12,,,0.0,,tub:09004::H:j25:532,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 09:51,2025-11-09 09:51,,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10214:0:1,Tübingen Weißdornweg,5,,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10234:0:4,Tübingen Waldhäuser Straße,6,,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10229:0:4,Tübingen Maria-von-Linden-Str.,7,,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,2025-11-09 09:57,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10233:0:4,Tübingen Max-Planck-Institute,8,,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10231:0:4,Tübingen Sternwarte,9,,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10232:0:4,Tübingen Auf dem Kreuz,10,,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10230:0:4,"Tübingen, Robert-Gradmann-Weg",11,,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,2025-11-09 10:00,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,12,,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,13,,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,2025-11-09 10:02,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,14,,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,15,,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,16,,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,17,,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,18,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,19,Bstg. J,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,20,Bstg. E,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,21,,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10901:0:1,Tübingen Hechinger Straße,22,,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10920:0:1,Tübingen Loretto,23,,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10921:0:2,Tübingen Hechinger Eck,24,,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10729:0:1,Tübingen Memmingerstraße,25,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,26,,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,27,ERSATZ FR Gartenstadt,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10706:0:1,Tübingen Paul-Dietz-Straße,28,Bstg. 1,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10722:0:1,Tübingen Fuchsstraße,29,,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,0.0,0.0,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10723:0:4,Tübingen Nelkenweg,30,,2025-11-09 10:23,2025-11-09 10:23,,,0.0,,tub:09003::H:j25:886,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 10:00,2025-11-09 10:00,,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:01,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,0.0,0.0,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 10:40,2025-11-09 10:40,,,0.0,,tub:09005::H:j25:924,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 10:14,2025-11-09 10:14,,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10242:0:4,Tübingen Winkelwiese,5,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10241:0:4,Tübingen Niethammerstraße,6,,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10240:0:4,Tübingen Corrensstraße,7,,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10243:0:4,Tübingen Schönblick,8,,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,9,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,10,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,11,,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:12:F,Tübingen Hauptbahnhof,17,Bstg. F,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,18,,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10800:0:1,Tübingen Landestheater,19,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10810:0:1,Tübingen Sternplatz,20,,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10811:0:1,Tübingen Kiesäckerstraße,21,,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10812:0:1,Tübingen Königsberger Straße,22,Bstg. 1,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10813:0:1,Tübingen Stadtwerke,23,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10808:0:1,Tübingen Aixer Straße,24,,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10814:0:1,Tübingen Görlitzer Weg,25,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10817:0:1,Tübingen Tilsiter Weg,26,,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,0.0,0.0,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10815:0:1,Tübingen Wennf. Garten,27,,2025-11-09 10:42,2025-11-09 10:42,,,0.0,,tub:09004::H:j25:534,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,1,Bstg. N,,,2025-11-09 10:35,2025-11-09 10:35,,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10826:0:1,Tübingen Hügelschule,4,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4404:0:1,Wankheim Helleräcker,6,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4010:0:2,Wankheim Siedlung,7,,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4402:0:2,Wankheim Walbenstraße,8,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4403:0:1,Wankheim Pfarrhaus,9,,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4005:0:1,Mähringen Ortsmitte,10,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4405:0:1,Mähringen Bahnhofstraße,11,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4008:0:1,Immenhausen Ochsen,12,,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4407:0:1,Stockach,13,,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4421:0:1,Gomaringen Hinterweiler Str.,14,,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4409:0:1,Gomaringen Ziegelgrubenstr.,15,,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:1,Gomaringen ZOB,16,Bstg. 1,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4419:0:0,Gomaringen Lindenstr.,17,,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4411:0:2,Gomaringen Friedhof,18,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4412:0:2,Gomaringen Öschinger Str.,19,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4422:0:2,Gomaringen Lubbachstr.,20,,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4415:0:1,Gomaringen Bachstraße,21,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4499:0:2,Gomaringen Bahnhofstraße 2,22,,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,0.0,0.0,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:3,Gomaringen ZOB,23,Bstg. 3,2025-11-09 11:12,2025-11-09 11:12,,,0.0,,tub:80625::H:j25:143,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:11000:13:L,Tübingen Hauptbahnhof,1,Bstg. L,,,2025-11-09 10:37,2025-11-09 10:37,,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10614:0:1,Tübingen Alter Güterbahnhof,4,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:806:0:0,Kusterdingen Abzw. B 28,6,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:2,Kusterd. Altes Rathaus,7,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:803:0:0,Kusterdingen Bannholz,8,,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:809:0:0,Kusterdingen Liststraße,9,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:807:0:0,Kusterd. Schulzentrum,10,,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:804:0:0,Kusterdingen Mozartstr.,11,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:1,Kusterd. Altes Rathaus,12,,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,0.0,0.0,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:4004:0:0,Jettenburg Brunnenplatz,13,,2025-11-09 11:00,2025-11-09 11:00,,,0.0,,tub:34611::H:j25:135,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 10:21,2025-11-09 10:21,,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10214:0:1,Tübingen Weißdornweg,5,,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10234:0:4,Tübingen Waldhäuser Straße,6,,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10229:0:4,Tübingen Maria-von-Linden-Str.,7,,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10233:0:4,Tübingen Max-Planck-Institute,8,,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10231:0:4,Tübingen Sternwarte,9,,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10232:0:4,Tübingen Auf dem Kreuz,10,,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10230:0:4,"Tübingen, Robert-Gradmann-Weg",11,,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,2025-11-09 10:30,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,12,,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,13,,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,14,,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,15,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,16,,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,17,,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,2025-11-09 10:36,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,18,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,19,Bstg. J,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,20,Bstg. E,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,21,,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10901:0:1,Tübingen Hechinger Straße,22,,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10920:0:1,Tübingen Loretto,23,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10921:0:2,Tübingen Hechinger Eck,24,,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10729:0:1,Tübingen Memmingerstraße,25,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,26,,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,27,ERSATZ FR Gartenstadt,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10706:0:1,Tübingen Paul-Dietz-Straße,28,Bstg. 1,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10722:0:1,Tübingen Fuchsstraße,29,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10723:0:4,Tübingen Nelkenweg,30,,2025-11-09 10:53,2025-11-09 10:53,,,0.0,,tub:09003::H:j25:890,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 10:30,2025-11-09 10:30,,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:31,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,2025-11-09 10:33,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,2025-11-09 10:39,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,0.0,0.0,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 11:10,2025-11-09 11:10,,,0.0,,tub:09005::H:j25:927,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 10:44,2025-11-09 10:44,,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10242:0:4,Tübingen Winkelwiese,5,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10241:0:4,Tübingen Niethammerstraße,6,,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10240:0:4,Tübingen Corrensstraße,7,,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10243:0:4,Tübingen Schönblick,8,,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,9,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,10,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,11,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 10:55,2025-11-09 10:55,2025-11-09 10:55,2025-11-09 10:55,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:12:F,Tübingen Hauptbahnhof,17,Bstg. F,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,18,,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10800:0:1,Tübingen Landestheater,19,,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10810:0:1,Tübingen Sternplatz,20,,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10811:0:1,Tübingen Kiesäckerstraße,21,,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10812:0:1,Tübingen Königsberger Straße,22,Bstg. 1,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10813:0:1,Tübingen Stadtwerke,23,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10808:0:1,Tübingen Aixer Straße,24,,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10814:0:1,Tübingen Görlitzer Weg,25,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10817:0:1,Tübingen Tilsiter Weg,26,,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,0.0,0.0,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10815:0:1,Tübingen Wennf. Garten,27,,2025-11-09 11:12,2025-11-09 11:12,,,0.0,,tub:09004::H:j25:536,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 10:51,2025-11-09 10:51,,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10214:0:1,Tübingen Weißdornweg,5,,2025-11-09 10:55,2025-11-09 10:55,2025-11-09 10:55,2025-11-09 10:55,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10234:0:4,Tübingen Waldhäuser Straße,6,,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,2025-11-09 10:56,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10229:0:4,Tübingen Maria-von-Linden-Str.,7,,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,2025-11-09 10:57,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10233:0:4,Tübingen Max-Planck-Institute,8,,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10231:0:4,Tübingen Sternwarte,9,,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10232:0:4,Tübingen Auf dem Kreuz,10,,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10230:0:4,"Tübingen, Robert-Gradmann-Weg",11,,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,2025-11-09 11:00,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,12,,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,13,,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,14,,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,15,,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,16,,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,17,,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,2025-11-09 11:06,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,18,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,19,Bstg. J,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,20,Bstg. E,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,21,,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10901:0:1,Tübingen Hechinger Straße,22,,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10920:0:1,Tübingen Loretto,23,,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10921:0:2,Tübingen Hechinger Eck,24,,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10729:0:1,Tübingen Memmingerstraße,25,,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,26,,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,27,ERSATZ FR Gartenstadt,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10706:0:1,Tübingen Paul-Dietz-Straße,28,Bstg. 1,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10722:0:1,Tübingen Fuchsstraße,29,,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,0.0,0.0,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10723:0:4,Tübingen Nelkenweg,30,,2025-11-09 11:23,2025-11-09 11:23,,,0.0,,tub:09003::H:j25:894,2025-11-09,3,Tübingen Nelkenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 11:00,2025-11-09 11:00,,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:01,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,2025-11-09 11:03,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,2025-11-09 11:09,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 11:26,2025-11-09 11:26,2025-11-09 11:26,2025-11-09 11:26,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 11:27,2025-11-09 11:27,2025-11-09 11:27,2025-11-09 11:27,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 11:30,2025-11-09 11:30,2025-11-09 11:30,2025-11-09 11:30,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 11:40,2025-11-09 11:40,,,0.0,,tub:09005::H:j25:930,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,1,,,,2025-11-09 11:14,2025-11-09 11:14,,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,2,,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,3,,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,4,,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10242:0:4,Tübingen Winkelwiese,5,,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10241:0:4,Tübingen Niethammerstraße,6,,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10240:0:4,Tübingen Corrensstraße,7,,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10243:0:4,Tübingen Schönblick,8,,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10222:0:4,Tübingen Engelfriedshalde,9,,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10221:0:4,Tübingen Im Rotbad,10,,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10235:0:4,Tübingen Brunsstraße,11,,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 11:25,2025-11-09 11:25,2025-11-09 11:25,2025-11-09 11:25,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 11:26,2025-11-09 11:26,2025-11-09 11:26,2025-11-09 11:26,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 11:28,2025-11-09 11:28,2025-11-09 11:28,2025-11-09 11:28,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 11:30,2025-11-09 11:30,2025-11-09 11:30,2025-11-09 11:30,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:12:F,Tübingen Hauptbahnhof,17,Bstg. F,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,2025-11-09 11:32,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,18,,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10800:0:1,Tübingen Landestheater,19,,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10810:0:1,Tübingen Sternplatz,20,,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10811:0:1,Tübingen Kiesäckerstraße,21,,2025-11-09 11:36,2025-11-09 11:36,2025-11-09 11:36,2025-11-09 11:36,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10812:0:1,Tübingen Königsberger Straße,22,Bstg. 1,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10813:0:1,Tübingen Stadtwerke,23,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10808:0:1,Tübingen Aixer Straße,24,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10814:0:1,Tübingen Görlitzer Weg,25,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10817:0:1,Tübingen Tilsiter Weg,26,,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,0.0,0.0,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:10815:0:1,Tübingen Wennf. Garten,27,,2025-11-09 11:42,2025-11-09 11:42,,,0.0,,tub:09004::H:j25:538,2025-11-09,4,Tübingen Wennf. Garten
+onward,de:08416:11000:15:N,Tübingen Hauptbahnhof,1,Bstg. N,,,2025-11-09 11:35,2025-11-09 11:35,,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 11:36,2025-11-09 11:36,2025-11-09 11:36,2025-11-09 11:36,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10826:0:1,Tübingen Hügelschule,4,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4404:0:1,Wankheim Helleräcker,6,,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4010:0:2,Wankheim Siedlung,7,,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4402:0:2,Wankheim Walbenstraße,8,,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4403:0:1,Wankheim Pfarrhaus,9,,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4005:0:1,Mähringen Ortsmitte,10,,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4008:0:1,Immenhausen Ochsen,11,,2025-11-09 11:55,2025-11-09 11:55,2025-11-09 11:55,2025-11-09 11:55,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4407:0:1,Stockach,12,,2025-11-09 11:57,2025-11-09 11:57,2025-11-09 11:57,2025-11-09 11:57,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4421:0:1,Gomaringen Hinterweiler Str.,13,,2025-11-09 12:00,2025-11-09 12:00,2025-11-09 12:00,2025-11-09 12:00,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4409:0:1,Gomaringen Ziegelgrubenstr.,14,,2025-11-09 12:01,2025-11-09 12:01,2025-11-09 12:01,2025-11-09 12:01,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:1,Gomaringen ZOB,15,Bstg. 1,2025-11-09 12:03,2025-11-09 12:03,2025-11-09 12:05,2025-11-09 12:05,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4419:0:0,Gomaringen Lindenstr.,16,,2025-11-09 12:06,2025-11-09 12:06,2025-11-09 12:06,2025-11-09 12:06,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4411:0:2,Gomaringen Friedhof,17,,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4412:0:2,Gomaringen Öschinger Str.,18,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4422:0:2,Gomaringen Lubbachstr.,19,,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4415:0:1,Gomaringen Bachstraße,20,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4499:0:2,Gomaringen Bahnhofstraße 2,21,,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,0.0,0.0,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:4410:0:3,Gomaringen ZOB,22,Bstg. 3,2025-11-09 12:12,2025-11-09 12:12,,,0.0,,tub:80625::H:j25:77,2025-11-09,7625,Gomaringen ZOB
+onward,de:08416:11000:13:L,Tübingen Hauptbahnhof,1,Bstg. L,,,2025-11-09 11:37,2025-11-09 11:37,,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,2,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10800:0:1,Tübingen Landestheater,3,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10614:0:1,Tübingen Alter Güterbahnhof,4,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10801:0:1,Tübingen Reutlinger Str.,5,,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:806:0:0,Kusterdingen Abzw. B 28,6,,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:2,Kusterd. Altes Rathaus,7,,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:803:0:0,Kusterdingen Bannholz,8,,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:809:0:0,Kusterdingen Liststraße,9,,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:807:0:0,Kusterd. Schulzentrum,10,,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:804:0:0,Kusterdingen Mozartstr.,11,,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:802:0:1,Kusterd. Altes Rathaus,12,,2025-11-09 11:56,2025-11-09 11:56,2025-11-09 11:56,2025-11-09 11:56,0.0,0.0,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:4004:0:0,Jettenburg Brunnenplatz,13,,2025-11-09 12:00,2025-11-09 12:00,,,0.0,,tub:34611::H:j25:136,2025-11-09,7611,Jettenburg Brunnenplatz
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 09:38,,,,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 09:39,,2025-11-09 09:39,,,,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 09:40,,2025-11-09 09:43,2025-11-09 09:43,,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,2025-11-09 09:59,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 10:01,2025-11-09 10:01,2025-11-09 10:02,2025-11-09 10:02,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,2025-11-09 10:04,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,2025-11-09 10:08,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,2025-11-09 10:10,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,2025-11-09 10:12,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,2025-11-09 10:14,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 10:26,2025-11-09 10:26,,,0.0,,tub:09005::R:j25:390,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 10:08,,,,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 10:09,,2025-11-09 10:09,,,,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 10:10,,2025-11-09 10:13,2025-11-09 10:13,,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,2025-11-09 10:16,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,2025-11-09 10:18,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,2025-11-09 10:20,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,2025-11-09 10:22,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,2025-11-09 10:23,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,2025-11-09 10:28,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 10:31,2025-11-09 10:31,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,2025-11-09 10:38,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,2025-11-09 10:40,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,2025-11-09 10:41,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,2025-11-09 10:42,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,2025-11-09 10:43,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,2025-11-09 10:44,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,2025-11-09 10:47,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,2025-11-09 10:51,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 10:56,2025-11-09 10:56,,,0.0,,tub:09005::R:j25:393,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 10:38,,,,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 10:39,,2025-11-09 10:39,,,,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 10:40,,2025-11-09 10:43,2025-11-09 10:43,,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,2025-11-09 10:45,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,2025-11-09 10:46,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,2025-11-09 10:48,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,2025-11-09 10:49,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,2025-11-09 10:50,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,2025-11-09 10:52,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,2025-11-09 10:53,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,2025-11-09 10:54,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,2025-11-09 10:58,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,2025-11-09 10:59,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 11:01,2025-11-09 11:01,2025-11-09 11:02,2025-11-09 11:02,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,2025-11-09 11:04,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,2025-11-09 11:05,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,2025-11-09 11:07,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,2025-11-09 11:08,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,2025-11-09 11:10,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,2025-11-09 11:11,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,2025-11-09 11:12,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,2025-11-09 11:13,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,2025-11-09 11:14,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,2025-11-09 11:17,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,2025-11-09 11:21,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,0.0,0.0,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 11:26,2025-11-09 11:26,,,0.0,,tub:09005::R:j25:396,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 11:08,,,,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 11:09,,2025-11-09 11:09,,,,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 11:10,,2025-11-09 11:13,2025-11-09 11:13,,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,2025-11-09 11:15,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,2025-11-09 11:16,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,2025-11-09 11:18,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,2025-11-09 11:19,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,2025-11-09 11:20,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,2025-11-09 11:22,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,2025-11-09 11:23,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,2025-11-09 11:24,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 11:28,2025-11-09 11:28,2025-11-09 11:28,2025-11-09 11:28,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 11:29,2025-11-09 11:29,2025-11-09 11:29,2025-11-09 11:29,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 11:31,2025-11-09 11:31,2025-11-09 11:32,2025-11-09 11:32,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,2025-11-09 11:41,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,2025-11-09 11:43,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 11:44,2025-11-09 11:44,2025-11-09 11:44,2025-11-09 11:44,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,0.0,0.0,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 11:56,2025-11-09 11:56,,,0.0,,tub:09005::R:j25:399,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 11:38,2025-11-09 11:38,,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:43,2025-11-09 11:43,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,2025-11-09 11:46,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,2025-11-09 11:52,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,2025-11-09 11:53,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 11:58,2025-11-09 11:58,2025-11-09 11:58,2025-11-09 11:58,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 11:59,2025-11-09 11:59,2025-11-09 11:59,2025-11-09 11:59,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 12:01,2025-11-09 12:01,2025-11-09 12:02,2025-11-09 12:02,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 12:04,2025-11-09 12:04,2025-11-09 12:04,2025-11-09 12:04,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 12:05,2025-11-09 12:05,2025-11-09 12:05,2025-11-09 12:05,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:10,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,2025-11-09 12:11,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 12:12,2025-11-09 12:12,2025-11-09 12:12,2025-11-09 12:12,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,2025-11-09 12:13,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 12:14,2025-11-09 12:14,2025-11-09 12:14,2025-11-09 12:14,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 12:16,2025-11-09 12:16,2025-11-09 12:16,2025-11-09 12:16,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 12:17,2025-11-09 12:17,2025-11-09 12:17,2025-11-09 12:17,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 12:19,2025-11-09 12:19,2025-11-09 12:19,2025-11-09 12:19,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 12:20,2025-11-09 12:20,2025-11-09 12:20,2025-11-09 12:20,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 12:21,2025-11-09 12:21,2025-11-09 12:21,2025-11-09 12:21,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 12:22,2025-11-09 12:22,2025-11-09 12:22,2025-11-09 12:22,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 12:24,2025-11-09 12:24,2025-11-09 12:24,2025-11-09 12:24,0.0,0.0,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 12:26,2025-11-09 12:26,,,0.0,,tub:09005::R:j25:402,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,1,,,,2025-11-09 11:30,2025-11-09 11:30,,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,2,,2025-11-09 11:31,2025-11-09 11:31,2025-11-09 11:31,2025-11-09 11:31,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,3,,2025-11-09 11:31,2025-11-09 11:31,2025-11-09 11:31,2025-11-09 11:31,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,4,,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,2025-11-09 11:33,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10209:0:4,Tübingen Horemer,5,,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,2025-11-09 11:34,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10208:0:4,Tübingen Haydnweg,6,,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,2025-11-09 11:35,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10207:0:4,Tübingen Wanne Kunsthalle,7,,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,2025-11-09 11:37,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10206:0:4,Tübingen Beethovenweg,8,,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,2025-11-09 11:38,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10205:0:4,Tübingen Botanischer Garten,9,,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,2025-11-09 11:39,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10124:1:6,Tübingen Auf der Morgenstelle,10,,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,2025-11-09 11:40,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10204:0:5,Tübingen BG Unfallklinik,11,,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10203:0:4,Tübingen Uni-Kliniken Berg,12,,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,2025-11-09 11:42,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10202:0:4,Tübingen Frondsbergstraße,13,,2025-11-09 11:44,2025-11-09 11:44,2025-11-09 11:44,2025-11-09 11:44,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10201:0:4,Tübingen Quenstedtstraße,14,,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,2025-11-09 11:45,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10200:0:4,Tübingen Uni-Kliniken Tal,15,,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,2025-11-09 11:47,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,16,,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,2025-11-09 11:48,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,17,,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,2025-11-09 11:49,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,18,,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,2025-11-09 11:50,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,19,,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,2025-11-09 11:51,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,20,Bstg. J,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,2025-11-09 11:54,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:11000:12:E,Tübingen Hauptbahnhof,21,Bstg. E,2025-11-09 11:56,2025-11-09 11:56,2025-11-09 11:56,2025-11-09 11:56,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10517:0:1,Tübingen Blaue Brücke,22,,2025-11-09 11:57,2025-11-09 11:57,2025-11-09 11:57,2025-11-09 11:57,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10700:0:1,Tübingen Hegelstraße,23,,2025-11-09 12:00,2025-11-09 12:00,2025-11-09 12:00,2025-11-09 12:00,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10701:0:1,Tübingen Hauptbahnhof Süd,24,,2025-11-09 12:02,2025-11-09 12:02,2025-11-09 12:02,2025-11-09 12:02,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10702:0:1,Tübingen Moltkestraße,25,,2025-11-09 12:02,2025-11-09 12:02,2025-11-09 12:02,2025-11-09 12:02,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10703:0:1,Tübingen Windfeldstraße,26,,2025-11-09 12:03,2025-11-09 12:03,2025-11-09 12:03,2025-11-09 12:03,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10704:0:1,Tübingen Heinlenstraße,27,,2025-11-09 12:04,2025-11-09 12:04,2025-11-09 12:04,2025-11-09 12:04,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10705:0:2,Tübingen Feuerhägle,28,ERSATZ FR Gartenstadt,2025-11-09 12:05,2025-11-09 12:05,2025-11-09 12:05,2025-11-09 12:05,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10717:0:1,Tübingen Mühlenviertel,29,,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,2025-11-09 12:07,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:12101:1:1,Tübingen Derendingen Bhf,30,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,31,,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,2025-11-09 12:08,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,32,,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,0.0,0.0,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,33,,2025-11-09 12:10,2025-11-09 12:10,,,0.0,,tub:09005::H:j25:933,2025-11-09,5,Tübingen Derend. Käppele
+onward,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 12:08,2025-11-09 12:08,,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,2025-11-09 12:09,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 12:10,2025-11-09 12:10,2025-11-09 12:13,2025-11-09 12:13,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 12:15,2025-11-09 12:15,2025-11-09 12:15,2025-11-09 12:15,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 12:16,2025-11-09 12:16,2025-11-09 12:16,2025-11-09 12:16,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 12:18,2025-11-09 12:18,2025-11-09 12:18,2025-11-09 12:18,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 12:19,2025-11-09 12:19,2025-11-09 12:19,2025-11-09 12:19,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 12:20,2025-11-09 12:20,2025-11-09 12:20,2025-11-09 12:20,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 12:22,2025-11-09 12:22,2025-11-09 12:22,2025-11-09 12:22,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,2025-11-09 12:23,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 12:24,2025-11-09 12:24,2025-11-09 12:24,2025-11-09 12:24,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 12:28,2025-11-09 12:28,2025-11-09 12:28,2025-11-09 12:28,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 12:29,2025-11-09 12:29,2025-11-09 12:29,2025-11-09 12:29,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 12:31,2025-11-09 12:31,2025-11-09 12:32,2025-11-09 12:32,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 12:34,2025-11-09 12:34,2025-11-09 12:34,2025-11-09 12:34,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 12:35,2025-11-09 12:35,2025-11-09 12:35,2025-11-09 12:35,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 12:37,2025-11-09 12:37,2025-11-09 12:37,2025-11-09 12:37,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 12:38,2025-11-09 12:38,2025-11-09 12:38,2025-11-09 12:38,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 12:40,2025-11-09 12:40,2025-11-09 12:40,2025-11-09 12:40,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 12:41,2025-11-09 12:41,2025-11-09 12:41,2025-11-09 12:41,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 12:42,2025-11-09 12:42,2025-11-09 12:42,2025-11-09 12:42,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 12:43,2025-11-09 12:43,2025-11-09 12:43,2025-11-09 12:43,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 12:44,2025-11-09 12:44,2025-11-09 12:44,2025-11-09 12:44,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 12:46,2025-11-09 12:46,2025-11-09 12:46,2025-11-09 12:46,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 12:47,2025-11-09 12:47,2025-11-09 12:47,2025-11-09 12:47,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 12:49,2025-11-09 12:49,2025-11-09 12:49,2025-11-09 12:49,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 12:50,2025-11-09 12:50,2025-11-09 12:50,2025-11-09 12:50,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 12:51,2025-11-09 12:51,2025-11-09 12:51,2025-11-09 12:51,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 12:52,2025-11-09 12:52,2025-11-09 12:52,2025-11-09 12:52,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 12:53,2025-11-09 12:53,2025-11-09 12:53,2025-11-09 12:53,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 12:53,2025-11-09 12:53,2025-11-09 12:53,2025-11-09 12:53,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 12:54,2025-11-09 12:54,2025-11-09 12:54,2025-11-09 12:54,0.0,0.0,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 12:56,2025-11-09 12:56,,,0.0,,tub:09005::R:j25:406,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10252:0:4,Tübingen Sand Drosselweg,1,,,,2025-11-09 09:15,2025-11-09 09:17,,2.3,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10254:0:4,Tübingen Amselweg,2,,2025-11-09 09:15,2025-11-09 09:17,2025-11-09 09:15,2025-11-09 09:17,2.0,2.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10255:0:4,Tübingen Sperberweg,3,,2025-11-09 09:16,2025-11-09 09:18,2025-11-09 09:16,2025-11-09 09:18,1.5,1.5,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10256:0:4,Tübingen Bei den Römergräbern,4,,2025-11-09 09:17,2025-11-09 09:18,2025-11-09 09:17,2025-11-09 09:18,1.2,1.2,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10213:0:4,Tübingen WHO Ahornweg,5,,2025-11-09 09:19,2025-11-09 09:19,2025-11-09 09:19,2025-11-09 09:20,0.9,1.1,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10242:0:4,Tübingen Winkelwiese,6,,2025-11-09 09:19,2025-11-09 09:21,2025-11-09 09:19,2025-11-09 09:21,1.1,1.4,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10248:0:4,Tübingen Wolfgang-Stock-Str.,7,,2025-11-09 09:20,2025-11-09 09:21,2025-11-09 09:20,2025-11-09 09:21,1.0,1.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10247:0:4,Tübingen Haußerstraße,8,,2025-11-09 09:21,2025-11-09 09:22,2025-11-09 09:21,2025-11-09 09:22,0.7,1.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10245:0:4,Tübingen Im Winkelrain,9,,2025-11-09 09:23,2025-11-09 09:23,2025-11-09 09:23,2025-11-09 09:23,0.5,0.7,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10244:0:4,Tübingen Untere Heulandsteige,10,,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,0.2,0.2,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10506:0:4,Tübingen Mohlstraße,11,,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:25,0.0,0.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10507:0:8,Tübingen Hölderlinstraße,12,,2025-11-09 09:26,2025-11-09 09:26,2025-11-09 09:26,2025-11-09 09:26,0.0,0.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,13,,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,0.0,0.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,14,,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.0,0.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,15,,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,2025-11-09 09:30,0.0,0.0,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,16,Bstg. J,2025-11-09 09:33,2025-11-09 09:33,,,0.0,,tub:09006::H:j25:332,2025-11-09,6,Tübingen Hauptbahnhof
+previous,de:08416:10815:0:4,Tübingen Wennf. Garten,1,,,,2025-11-09 09:14,2025-11-09 09:14,,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10817:0:4,Tübingen Tilsiter Weg,2,,2025-11-09 09:14,2025-11-09 09:14,2025-11-09 09:14,2025-11-09 09:15,0.0,0.9,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10814:0:4,Tübingen Görlitzer Weg,3,,2025-11-09 09:15,2025-11-09 09:16,2025-11-09 09:15,2025-11-09 09:16,0.7,0.7,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10808:0:4,Tübingen Aixer Straße,4,,2025-11-09 09:16,2025-11-09 09:16,2025-11-09 09:16,2025-11-09 09:17,0.2,1.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10813:0:4,Tübingen Stadtwerke,5,,2025-11-09 09:17,2025-11-09 09:18,2025-11-09 09:17,2025-11-09 09:19,1.5,1.7,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10812:0:4,Tübingen Königsberger Straße,6,,2025-11-09 09:17,2025-11-09 09:19,2025-11-09 09:17,2025-11-09 09:20,1.8,2.3,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10811:0:4,Tübingen Kiesäckerstraße,7,,2025-11-09 09:18,2025-11-09 09:21,2025-11-09 09:18,2025-11-09 09:21,2.1,2.4,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10810:0:4,Tübingen Sternplatz,8,,2025-11-09 09:19,2025-11-09 09:22,2025-11-09 09:19,2025-11-09 09:22,2.2,2.5,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10800:0:4,Tübingen Landestheater,9,,2025-11-09 09:20,2025-11-09 09:24,2025-11-09 09:20,2025-11-09 09:24,3.1,3.3,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:10518:0:4,Tübingen Poststraße,10,,2025-11-09 09:22,2025-11-09 09:25,2025-11-09 09:22,2025-11-09 09:25,3.2,3.5,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:11000:14:J,Tübingen Hauptbahnhof,11,Bstg. J,2025-11-09 09:24,2025-11-09 09:26,2025-11-09 09:24,2025-11-09 09:26,2.7,2.7,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+previous,de:08416:11000:11:A,Tübingen Hauptbahnhof,12,Bstg. A,2025-11-09 09:25,2025-11-09 09:27,2025-11-09 09:26,2025-11-09 09:27,2.1,1.6,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,13,,2025-11-09 09:28,2025-11-09 09:29,2025-11-09 09:28,2025-11-09 09:29,1.4,1.4,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,14,,2025-11-09 09:29,2025-11-09 09:30,2025-11-09 09:29,2025-11-09 09:30,0.9,0.9,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10503:0:3,Tübingen Uni / Neue Aula,15,,2025-11-09 09:30,2025-11-09 09:31,2025-11-09 09:30,2025-11-09 09:31,0.6,0.6,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10235:0:1,Tübingen Brunsstraße,16,,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.5,0.5,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10220:0:1,Tübingen Goethestraße,17,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.5,0.5,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10221:0:1,Tübingen Im Rotbad,18,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10222:0:1,Tübingen Engelfriedshalde,19,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10243:0:1,Tübingen Schönblick,20,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10240:0:1,Tübingen Corrensstraße,21,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10241:0:1,Tübingen Niethammerstraße,22,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10242:0:1,Tübingen Winkelwiese,23,Bstg. 1,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,24,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,25,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,26,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,27,,2025-11-09 09:43,2025-11-09 09:43,,,0.0,,tub:09004::R:j25:237,2025-11-09,4,Tübingen WHO Ulmenweg
+onward,de:08416:11000:13:M,Tübingen Hauptbahnhof,1,Bstg. M,,,2025-11-09 09:32,2025-11-09 09:32,,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,2,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:10503:0:1,Tübingen Uni / Neue Aula,3,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:10505:0:1,Tübingen Pauline-Krone-Heim,4,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:10305:0:1,Tübingen Stuttgarter Str.,5,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:16350:0:1,Bebenhausen Waldhorn,6,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:7036:0:4,Weil i. S. Kälberstelle,7,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:6352:0:1,Dettenhausen Tübinger Straße,8,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:6348,Dettenhausen Torstraße (Bf),9,,2025-11-09 09:54,,2025-11-09 09:54,,,,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:6349:2:1,Dettenhausen Bahnhof,10,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:6349:2:1,Dettenhausen Bahnhof,11,,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,2025-11-09 09:55,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:6353:0:1,Dettenhausen Alte Post,12,,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,2025-11-09 09:58,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:2815:0:4,Waldenbuch Bonholz,13,,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,2025-11-09 10:03,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3119:1:4,Waldenbuch Schloss,14,,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,2025-11-09 10:05,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3129:0:4,Waldenbuch Altstadt,15,,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,2025-11-09 10:06,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3118:0:4,Waldenbuch Liebenau,16,,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,2025-11-09 10:07,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3122:0:4,Waldenbuch Hallenbad,17,,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,2025-11-09 10:09,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3130:0:4,Waldenbuch Stadion,18,,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,2025-11-09 10:11,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:3131:0:4,Waldenbuch Hasenhof,19,,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,2025-11-09 10:13,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:7106:1:4,Steinenbronn Kirche,20,,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,2025-11-09 10:15,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:7108:0:4,Steinenbronn Im Alten See,21,,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,2025-11-09 10:17,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08115:7111:1:4,Steinenbronn Goldäcker,22,,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,2025-11-09 10:19,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7104:1:4,Musberg Seebruckenmühle,23,,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,2025-11-09 10:21,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7177:0:4,Leinfelden Sportzentrum,24,,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,2025-11-09 10:24,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:2142:0:4,Echterdingen Kelterrain,25,,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,2025-11-09 10:25,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:3113:0:4,Echterdingen Tübinger Str.,26,,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,2025-11-09 10:26,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7179:0:3,Echterdingen Waldhornstraße,27,,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,2025-11-09 10:27,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7178:1:4,Echterdingen Hirschstr.,28,,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,2025-11-09 10:29,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7003:2:1,Echterdingen Bf,29,Bstg. 1,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,2025-11-09 10:32,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7180:1:4,Echterdingen Stadionstr.,30,,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,2025-11-09 10:34,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:2102:0:3,Echterdingen Friedhof,31,,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,2025-11-09 10:35,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:7182:0:4,Echterdingen Messe West,32,,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,2025-11-09 10:37,0.0,0.0,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08116:2103:3:2,Echterdingen Flughafen/Messe (SAB),33,Bstg. 2,2025-11-09 10:41,2025-11-09 10:41,,,0.0,,vvs:31828::R:j25:210,2025-11-09,828,Echterdingen Flughafen/Messe (SAB)
+onward,de:08416:11000:14:I,Tübingen Hauptbahnhof,1,Bstg. I,,,2025-11-09 09:32,2025-11-09 09:32,,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10501:0:2,Tübingen Neckarbrücke,2,,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,2025-11-09 09:33,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10520:0:2,Tübingen Wilhelmstraße,3,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,4,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10510:0:1,Tübingen Rümelinstraße,5,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10018:0:1,Tübingen Kelternplatz,6,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10017:0:1,Tübingen Weberstraße,7,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10014:2:8,Tübingen Haagtor,8,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10049:0:1,Tübingen Lichtenberger Weg,9,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10050:0:1,Tübingen Unteres Burgholz,10,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10051:0:1,Tübingen Burgholzweg,11,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+onward,de:08416:10013:0:1,Tübingen Bismarckturm,12,,2025-11-09 09:45,2025-11-09 09:45,,,0.0,,tub:09009::R:j25:41,2025-11-09,9,Tübingen Bismarckturm
+previous,de:08416:10709:0:1,Tübingen Marienstraße,1,,,,2025-11-09 09:08,,,,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10711:0:4,Tübingen Danziger Straße,2,,2025-11-09 09:09,,2025-11-09 09:09,,,,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10708:0:4,Tübingen Derend. Käppele,3,,2025-11-09 09:10,,2025-11-09 09:13,2025-11-09 09:13,,0.3,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:12101:1:4,Tübingen Derendingen Bhf,4,,2025-11-09 09:15,2025-11-09 09:15,2025-11-09 09:15,2025-11-09 09:15,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10717:0:4,Tübingen Mühlenviertel,5,,2025-11-09 09:16,2025-11-09 09:16,2025-11-09 09:16,2025-11-09 09:16,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10713:0:1,Tübingen Feuerhägle Schulen,6,,2025-11-09 09:18,2025-11-09 09:18,2025-11-09 09:18,2025-11-09 09:19,0.1,0.9,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10704:0:4,Tübingen Heinlenstraße,7,Bstg. 4,2025-11-09 09:19,2025-11-09 09:19,2025-11-09 09:19,2025-11-09 09:19,0.0,0.4,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10703:0:4,Tübingen Windfeldstraße,8,,2025-11-09 09:20,2025-11-09 09:20,2025-11-09 09:20,2025-11-09 09:21,0.0,0.2,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10702:0:4,Tübingen Moltkestraße,9,,2025-11-09 09:22,2025-11-09 09:22,2025-11-09 09:22,2025-11-09 09:22,0.0,0.2,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10701:0:4,Tübingen Hauptbahnhof Süd,10,,2025-11-09 09:23,2025-11-09 09:23,2025-11-09 09:23,2025-11-09 09:23,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+previous,de:08416:10700:0:4,Tübingen Hegelstraße,11,,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10518:0:4,Tübingen Poststraße,12,,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,13,Bstg. J,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.7,0.7,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:B,Tübingen Hauptbahnhof,14,Bstg. B,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:32,2025-11-09 09:32,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,15,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,16,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10509:0:1,Tübingen Gmelinstraße,17,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10200:0:1,Tübingen Uni-Kliniken Tal,18,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10201:0:1,Tübingen Quenstedtstraße,19,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10202:0:1,Tübingen Frondsbergstraße,20,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10203:0:1,Tübingen Uni-Kliniken Berg,21,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10204:0:3,Tübingen BG Unfallklinik,22,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10124:2:1,Tübingen Auf der Morgenstelle,23,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10205:0:1,Tübingen Botanischer Garten,24,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10206:0:1,Tübingen Beethovenweg,25,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10207:0:1,Tübingen Wanne Kunsthalle,26,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10208:0:1,Tübingen Haydnweg,27,,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10209:0:1,Tübingen Horemer,28,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10234:0:1,Tübingen Waldhäuser Straße,29,,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,2025-11-09 09:52,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10260:0:4,Tübingen WHO Ulmenweg,30,,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10211:0:4,Tübingen WHO Pappelweg,31,,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10212:0:4,Tübingen WHO Erlenweg,32,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:10213:0:4,Tübingen WHO Ahornweg,33,,2025-11-09 09:56,2025-11-09 09:56,,,0.0,,tub:09005::R:j25:387,2025-11-09,5,Tübingen WHO Ahornweg
+onward,de:08416:11000:11:A,Tübingen Hauptbahnhof,1,Bstg. A,,,2025-11-09 09:32,2025-11-09 09:32,,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10501:0:3,Tübingen Neckarbrücke,2,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10520:0:3,Tübingen Wilhelmstraße,3,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10503:0:3,Tübingen Uni / Neue Aula,4,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10504:0:1,Tübingen Lothar-Meyer-Bau,5,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10250:0:1,Tübingen Linsenbergstraße,6,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10252:0:4,Tübingen Sand Drosselweg,7,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10251:0:1,Tübingen Sand Nordring,8,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10253:0:1,Tübingen Falkenweg,9,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10213:0:1,Tübingen WHO Ahornweg,10,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10212:0:1,Tübingen WHO Erlenweg,11,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10211:0:1,Tübingen WHO Pappelweg,12,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:10260:0:1,Tübingen WHO Ulmenweg,13,,2025-11-09 09:47,2025-11-09 09:47,,,0.0,,tub:09002::R:j25:148,2025-11-09,2,Tübingen WHO Ulmenweg
+onward,de:08416:11000:12:D,Tübingen Hauptbahnhof,1,Bstg. D,,,2025-11-09 09:34,2025-11-09 09:34,,0.0,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10501:0:2,Tübingen Neckarbrücke,2,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10600:0:1,Tübingen Österbergstraße,3,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10608:0:1,Tübingen Doblerstraße,4,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10601:0:1,Tübingen Wielandshöhe,5,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10602:0:1,Tübingen Kleiststraße,6,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,,0.0,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10603:0:1,Tübingen Stauffenbergstraße,7,,2025-11-09 09:40,,2025-11-09 09:40,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10604:0:1,Tübingen Fritz-Bauer-Straße,8,,2025-11-09 09:41,,2025-11-09 09:41,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10607:0:4,Tübingen Österberg,9,,2025-11-09 09:43,,2025-11-09 09:43,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10604:0:4,Tübingen Fritz-Bauer-Straße,10,,2025-11-09 09:44,,2025-11-09 09:44,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10606:0:4,Tübingen Rechter Österberg,11,,2025-11-09 09:45,,2025-11-09 09:45,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:10605:0:4,Tübingen Schwabstraße,12,,2025-11-09 09:46,,,,,,tub:09010::R:j25:194,2025-11-09,10,Tübingen Schwabstraße
+onward,de:08416:11000:11:C,Tübingen Hauptbahnhof,1,Bstg. C,,,2025-11-09 09:33,2025-11-09 09:33,,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10501:0:2,Tübingen Neckarbrücke,2,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10520:0:2,Tübingen Wilhelmstraße,3,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10503:0:2,Tübingen Uni / Neue Aula,4,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10504:0:1,Tübingen Lothar-Meyer-Bau,5,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10505:0:1,Tübingen Pauline-Krone-Heim,6,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10300:0:1,Tübingen Landhausstraße,7,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10305:0:1,Tübingen Stuttgarter Str.,8,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10303:0:1,Tübingen Kreuzstraße,9,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10322:0:1,Tübingen Dorfackerschule,10,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10319:0:1,Tübingen Steige,11,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10320:0:1,Tübingen Wolfsbaumweg,12,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10325:0:1,Tübingen Gottfr.-Pressel-Weg,13,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10318:0:1,Tübingen B.-v.-Suttner-Straße,14,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10315:0:1,Tübingen Herrlesberg,15,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10317:0:1,Tübingen Käthe-Kollwitz-Str.,16,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10316:0:1,Tübingen Stauden,17,,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,2025-11-09 09:50,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10332:0:1,Tübingen Stäudach,18,,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,2025-11-09 09:51,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10333:0:1,Pfrondorf Zollernstraße,19,,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,2025-11-09 09:53,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10308:0:1,Pfrondorf Seestraße,20,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10337:0:1,Pfrondorf Steinbruchstraße,21,,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,2025-11-09 09:54,0.0,0.0,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10323:0:4,Pfrondorf Lindenstraße,22,,2025-11-09 09:56,2025-11-09 09:56,2025-11-09 09:56,,0.0,,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10327:0:4,Pfrondorf Schönbuchhalle,23,,2025-11-09 09:56,,2025-11-09 09:56,,,,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10326:0:4,Pfrondorf Maienfeldstraße,24,,2025-11-09 09:57,,2025-11-09 09:57,,,,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10338:0:1,Pfrondorf Bei der Kirche,25,,2025-11-09 09:58,,2025-11-09 09:58,,,,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:10310:0:4,Pfrondorf Lusstraße,26,,2025-11-09 09:59,,,,,,tub:09001::R:j25:806,2025-11-09,1,Pfrondorf Lusstraße
+onward,de:08416:11000:13:K,Tübingen Hauptbahnhof,1,Bstg. K,,,2025-11-09 09:34,2025-11-09 09:34,,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10501:0:2,Tübingen Neckarbrücke,2,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10520:0:2,Tübingen Wilhelmstraße,3,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,4,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.6,0.6,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10510:0:1,Tübingen Rümelinstraße,5,,2025-11-09 09:39,2025-11-09 09:40,2025-11-09 09:39,2025-11-09 09:40,0.6,0.6,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10192:0:3,Tübingen Parkhaus König,6,,2025-11-09 09:40,2025-11-09 09:41,2025-11-09 09:40,2025-11-09 09:41,0.6,0.6,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10100:0:1,Tübingen Rappstraße,7,,2025-11-09 09:41,2025-11-09 09:42,2025-11-09 09:41,2025-11-09 09:42,0.6,0.6,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10101:0:1,Tübingen Aischbachstraße,8,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10112:0:1,Tübingen Gösstraße,9,Bstg. 1,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10111:0:1,Tübingen F.-Dannenmann-Str.,10,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10113:0:1,Tübingen Stephanuskirche,11,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.7,0.7,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10103:0:1,Tübingen Hagellocher Weg,12,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.7,0.7,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10104:0:1,Tübingen Weilerhalde,13,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10105:0:1,Tübingen Kreuzberg,14,,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,2025-11-09 09:47,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10106:0:1,Tübingen Neuhalde,15,,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,2025-11-09 09:48,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10107:0:1,Hagelloch Rathaus,16,,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,2025-11-09 09:49,0.0,0.0,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+onward,de:08416:10108:0:4,Hagelloch Dornäckerweg,17,,2025-11-09 09:51,2025-11-09 09:51,,,0.6,,tub:09008::R:j25:483,2025-11-09,8,Hagelloch Dornäckerweg
+previous,de:08416:10323:0:4,Pfrondorf Lindenstraße,1,,,,2025-11-09 09:26,2025-11-09 09:26,,0.2,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+previous,de:08416:10327:0:4,Pfrondorf Schönbuchhalle,2,,2025-11-09 09:26,2025-11-09 09:27,2025-11-09 09:26,2025-11-09 09:27,0.5,0.5,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+previous,de:08416:10326:0:4,Pfrondorf Maienfeldstraße,3,,2025-11-09 09:27,2025-11-09 09:27,2025-11-09 09:27,2025-11-09 09:27,0.6,0.6,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10338:0:1,Pfrondorf Bei der Kirche,4,,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,2025-11-09 09:28,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10310:0:4,Pfrondorf Lusstraße,5,,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10309:0:4,Pfrondorf Rathaus,6,,2025-11-09 09:30,2025-11-09 09:31,2025-11-09 09:30,2025-11-09 09:31,0.6,0.6,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10337:0:4,Pfrondorf Steinbruchstraße,7,,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,2025-11-09 09:31,0.7,0.7,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10308:0:4,Pfrondorf Seestraße,8,,2025-11-09 09:31,2025-11-09 09:32,2025-11-09 09:31,2025-11-09 09:32,0.6,0.6,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10333:0:4,Pfrondorf Zollernstraße,9,,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,2025-11-09 09:32,0.5,0.5,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10307:0:4,Tübingen Eichhaldenstraße,10,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10302:0:4,Tübingen Neuhaldenstraße,11,,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,2025-11-09 09:35,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10306:0:4,Tübingen Jürgensenstraße,12,,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,2025-11-09 09:36,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10305:0:4,Tübingen Stuttgarter Str.,13,,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,2025-11-09 09:37,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10300:0:4,Tübingen Landhausstraße,14,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10505:0:4,Tübingen Pauline-Krone-Heim,15,,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,2025-11-09 09:39,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10506:0:4,Tübingen Mohlstraße,16,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,17,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,18,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,19,,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,2025-11-09 09:43,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,20,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+onward,de:08416:11000:14:J,Tübingen Hauptbahnhof,21,Bstg. J,2025-11-09 09:48,2025-11-09 09:48,,,0.0,,tub:09001::H:j25:244,2025-11-09,1,Tübingen Hauptbahnhof
+previous,de:08116:2103:3:2,Echterdingen Flughafen/Messe (SAB),1,Bstg. 2,,,2025-11-09 08:48,2025-11-09 08:48,,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7182:0:3,Echterdingen Messe West,2,,2025-11-09 08:51,2025-11-09 08:51,2025-11-09 08:51,2025-11-09 08:51,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7180:2:3,Echterdingen Stadionstr.,3,,2025-11-09 08:54,2025-11-09 08:54,2025-11-09 08:54,2025-11-09 08:54,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7003:2:3,Echterdingen Bf,4,Bstg. 3,2025-11-09 08:55,2025-11-09 08:55,2025-11-09 08:57,2025-11-09 08:57,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7178:2:3,Echterdingen Hirschstr.,5,,2025-11-09 08:59,2025-11-09 08:59,2025-11-09 08:59,2025-11-09 08:59,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7179:0:3,Echterdingen Waldhornstraße,6,,2025-11-09 09:00,2025-11-09 09:00,2025-11-09 09:00,2025-11-09 09:00,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:3113:0:3,Echterdingen Tübinger Str.,7,,2025-11-09 09:02,2025-11-09 09:02,2025-11-09 09:02,2025-11-09 09:02,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:2142:0:3,Echterdingen Kelterrain,8,,2025-11-09 09:03,2025-11-09 09:03,2025-11-09 09:03,2025-11-09 09:03,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7177:0:3,Leinfelden Sportzentrum,9,,2025-11-09 09:04,2025-11-09 09:04,2025-11-09 09:04,2025-11-09 09:04,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08116:7104:1:3,Musberg Seebruckenmühle,10,,2025-11-09 09:05,2025-11-09 09:05,2025-11-09 09:05,2025-11-09 09:05,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08115:7111:1:3,Steinenbronn Goldäcker,11,,2025-11-09 09:07,2025-11-09 09:07,2025-11-09 09:07,2025-11-09 09:07,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08115:3119:1:3,Waldenbuch Schloss,12,,2025-11-09 09:15,2025-11-09 09:15,2025-11-09 09:18,2025-11-09 09:18,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08115:2815:0:3,Waldenbuch Bonholz,13,,2025-11-09 09:20,2025-11-09 09:20,2025-11-09 09:20,2025-11-09 09:20,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08416:6353:0:4,Dettenhausen Alte Post,14,,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,2025-11-09 09:24,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+previous,de:08416:6352:0:4,Dettenhausen Tübinger Straße,15,,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:25,2025-11-09 09:25,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08115:7036:0:3,Weil i. S. Kälberstelle,16,,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,2025-11-09 09:29,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:16350:0:4,Bebenhausen Waldhorn,17,,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,2025-11-09 09:34,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10305:0:4,Tübingen Stuttgarter Str.,18,,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,2025-11-09 09:38,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10505:0:4,Tübingen Pauline-Krone-Heim,19,,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,2025-11-09 09:40,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10506:0:4,Tübingen Mohlstraße,20,,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,2025-11-09 09:41,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10507:0:8,Tübingen Hölderlinstraße,21,,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,2025-11-09 09:42,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10508:0:4,Tübingen Stadtgraben,22,,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,2025-11-09 09:44,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10502:0:5,Tübingen Nonnenhaus,23,,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,2025-11-09 09:45,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:10501:0:4,Tübingen Neckarbrücke,24,,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,2025-11-09 09:46,0.0,0.0,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof
+onward,de:08416:11000:13:M,Tübingen Hauptbahnhof,25,Bstg. M,2025-11-09 09:51,2025-11-09 09:51,,,0.0,,vvs:31X82::H:j25:77,2025-11-09,X82,Tübingen Hauptbahnhof

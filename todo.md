@@ -4,5 +4,6 @@
 
 [x] check if stops are parsed properly
 
-instead of next 10 stops,
-get next busses within the next 1h
+[x] instead of next 10 stops, get next busses within the next 1h
+
+include trip data in gc function
