@@ -2,6 +2,8 @@
 
 # Core data processing
 pandas>=2.0.0
+networkx>=3.4.1
+matplotlib>=3.8.0
 
 # HTTP requests and API interaction
 requests>=2.31.0

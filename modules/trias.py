@@ -219,15 +219,16 @@ class TriasClient:
             df = df[df["stop_point_ref"] == stop_point_ref].reset_index(drop=True)
             if df.empty:
                 return df
+        planned_series = pd.to_datetime(df["planned_time"], errors="coerce", utc=True)
+        estimated_series = pd.to_datetime(df["estimated_time"], errors="coerce", utc=True)
+
         df["planned_time"] = (
-            pd.to_datetime(df["planned_time"], errors="coerce", utc=True)
-            .dt.tz_convert(LOCAL_TZ)
-            .dt.tz_localize(None)
+            planned_series.dt.tz_convert(LOCAL_TZ).dt.tz_localize(None)
+            if hasattr(planned_series.dt, "tz_convert") else planned_series
         )
         df["estimated_time"] = (
-            pd.to_datetime(df["estimated_time"], errors="coerce", utc=True)
-            .dt.tz_convert(LOCAL_TZ)
-            .dt.tz_localize(None)
+            estimated_series.dt.tz_convert(LOCAL_TZ).dt.tz_localize(None)
+            if hasattr(estimated_series.dt, "tz_convert") else estimated_series
         )
         df["delay_minutes"] = (
             (df["estimated_time"] - df["planned_time"]).dt.total_seconds() / 60
@@ -458,15 +459,19 @@ class TriasClient:
 
         calls_df["arrival_planned"] = (
             arrival_planned.dt.tz_convert(berlin).dt.tz_localize(None)
+            if hasattr(arrival_planned.dt, "tz_convert") else arrival_planned
         )
         calls_df["arrival_estimated"] = (
             arrival_estimated.dt.tz_convert(berlin).dt.tz_localize(None)
+            if hasattr(arrival_estimated.dt, "tz_convert") else arrival_estimated
         )
         calls_df["departure_planned"] = (
             departure_planned.dt.tz_convert(berlin).dt.tz_localize(None)
+            if hasattr(departure_planned.dt, "tz_convert") else departure_planned
         )
         calls_df["departure_estimated"] = (
             departure_estimated.dt.tz_convert(berlin).dt.tz_localize(None)
+            if hasattr(departure_estimated.dt, "tz_convert") else departure_estimated
         )
 
         sort_columns = ["journey_ref", "stop_sequence", "phase"]

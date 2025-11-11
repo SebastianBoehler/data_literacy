@@ -110,7 +110,7 @@ def build_trip_datasets(
     calls_export = trip_calls.copy()
     for column in ["arrival_planned", "arrival_estimated", "departure_planned", "departure_estimated"]:
         if column in calls_export.columns and pd.api.types.is_datetime64_any_dtype(calls_export[column]):
-            calls_export[column] = calls_export[column].dt.strftime("%Y-%m-%d %H:%M")
+            calls_export[column] = calls_export[column].dt.strftime("%Y-%m-%d %H:%M:%S")
 
     calls_path = export_dir / f"trip_calls_{timestamp}.csv"
     calls_export.to_csv(calls_path, index=False)
