@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+from collections import Counter
 from collections.abc import Iterable
 from pathlib import Path
 from typing import Optional
@@ -29,6 +30,11 @@ MIN_SEGMENTS = 1
 FILE_PREFIX = "tuebingen_delay_graph"
 GENERATE_PLOT = True
 PLOT_FORMAT = "png"
+NODE_LABEL_THRESHOLD: Optional[int] = 5
+PLOT_FIG_SIZE = (14, 12)
+POSITION_SCALE = 1.4
+
+EARTH_RADIUS_KM = 6371.0
 
 REQUIRED_TRIP_COLUMNS = {"journey_ref", "stop_point_ref", "stop_sequence"}
 NUMERIC_TRIP_COLUMNS = (
@@ -36,6 +42,130 @@ NUMERIC_TRIP_COLUMNS = (
     "arrival_delay_minutes",
     "departure_delay_minutes",
 )
+
+
+def discover_trip_call_files() -> list[Path]:
+    files: list[Path] = []
+    for source in TRIP_CALLS_SOURCES:
+        path = Path(source)
+        if not path.exists():
+            continue
+        if path.is_file():
+            if path.match(TRIP_CALLS_GLOB):
+                files.append(path)
+            continue
+        files.extend(sorted(path.glob(TRIP_CALLS_GLOB)))
+    unique_files = []
+    seen: set[Path] = set()
+    for file_path in sorted(files):
+        resolved = file_path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        unique_files.append(file_path)
+    return unique_files
+
+
+def _base_stop_id(ref: Optional[str]) -> Optional[str]:
+    if not ref:
+        return None
+    parts = str(ref).split(":")
+    if len(parts) >= 3:
+        return ":".join(parts[:3])
+    return str(ref)
+
+
+def _collect_stop_references(trip_calls: pd.DataFrame) -> list[str]:
+    refs: set[str] = set()
+    if "stop_point_ref" in trip_calls.columns:
+        refs.update(
+            str(value)
+            for value in trip_calls["stop_point_ref"].dropna().astype(str).unique()
+        )
+    base_refs = {
+        base
+        for base in (
+            _base_stop_id(value)
+            for value in trip_calls.get(
+                "stop_point_ref", pd.Series(dtype=str, index=trip_calls.index)
+            )
+        )
+        if base is not None
+    }
+    refs.update(base_refs)
+    return sorted(refs)
+
+
+def _fetch_stops_from_trias(trip_calls: pd.DataFrame) -> pd.DataFrame:
+    config = load_config(TRIAS_CONFIG_PATH)
+    requestor_ref = config.get("trias_requestor_ref")
+    if not requestor_ref:
+        raise ValueError("TRIAS config missing 'trias_requestor_ref'.")
+
+    client = TriasClient(requestor_ref)
+    references = _collect_stop_references(trip_calls)
+    if not references:
+        return pd.DataFrame()
+
+    stops = client.fetch_stop_details(references)
+    if stops.empty:
+        return stops
+
+    stops = stops.copy()
+    if "stop_point_ref" not in stops.columns:
+        stops["stop_point_ref"] = pd.NA
+    stops["stop_point_ref"] = stops["stop_point_ref"].fillna(stops.get("trias_ref"))
+    stops["base_stop_id"] = stops.get("stop_id")
+    if stops["base_stop_id"].isna().any():
+        stops.loc[stops["base_stop_id"].isna(), "base_stop_id"] = stops.loc[
+            stops["base_stop_id"].isna(), "stop_point_ref"
+        ].map(_base_stop_id)
+
+    keep_columns = [
+        col
+        for col in (
+            "stop_point_ref",
+            "stop_id",
+            "base_stop_id",
+            "stop_name",
+            "latitude",
+            "longitude",
+        )
+        if col in stops.columns
+    ]
+    stops = (
+        stops[keep_columns]
+        .dropna(subset=["stop_point_ref"])
+        .drop_duplicates(subset=["stop_point_ref"], keep="first")
+        .reset_index(drop=True)
+    )
+    return stops
+
+
+def load_stop_metadata_for_graph(trip_calls: pd.DataFrame) -> pd.DataFrame:
+    stops = pd.DataFrame()
+    if FETCH_STOPS_FROM_TRIAS:
+        try:
+            stops = _fetch_stops_from_trias(trip_calls)
+        except Exception as exc:
+            print(f"Failed to fetch stop metadata from TRIAS: {exc}")
+            stops = pd.DataFrame()
+
+    if (stops.empty or "stop_point_ref" not in stops.columns) and STOPS_FALLBACK_CSV:
+        try:
+            stops = load_stop_metadata(STOPS_FALLBACK_CSV)
+            if "stop_point_ref" not in stops.columns:
+                stops["stop_point_ref"] = stops.get("stop_id")
+        except FileNotFoundError:
+            print(f"Stop fallback CSV not found at {STOPS_FALLBACK_CSV}")
+            stops = pd.DataFrame()
+
+    if stops.empty:
+        return stops
+
+    if "base_stop_id" not in stops.columns:
+        stops["base_stop_id"] = stops["stop_point_ref"].map(_base_stop_id)
+    return stops
 
 
 def load_trip_calls(csv_path: Path) -> pd.DataFrame:
@@ -85,6 +215,27 @@ def load_trip_calls(csv_path: Path) -> pd.DataFrame:
 
     trip_calls = trip_calls.sort_values(order_columns).reset_index(drop=True)
     return trip_calls
+
+
+def load_all_trip_calls() -> pd.DataFrame:
+    files = discover_trip_call_files()
+    if not files:
+        raise FileNotFoundError(
+            "No trip call CSV files found. Configure TRIP_CALLS_SOURCES to point to exports."
+        )
+
+    frames: list[pd.DataFrame] = []
+    for csv_path in files:
+        frame = load_trip_calls(csv_path)
+        frame["source_file"] = csv_path.name
+        frames.append(frame)
+        print(f"Loaded {len(frame)} trip call rows from {csv_path}")
+
+    combined = pd.concat(frames, ignore_index=True, sort=False)
+    combined.sort_values(["journey_id", "stop_sequence"], inplace=True)
+    combined.reset_index(drop=True, inplace=True)
+    print(f"Aggregated {len(combined)} trip call rows across {len(files)} files")
+    return combined
 
 
 def load_stop_metadata(csv_path: Path) -> pd.DataFrame:
@@ -341,7 +492,7 @@ def plot_graph(graph: nx.DiGraph, output_path: Path) -> None:
         min_delay -= 1.0
         max_delay += 1.0
 
-    cmap = plt.cm.get_cmap("RdYlGn_r")
+    cmap = plt.colormaps.get("RdYlGn_r")
     norm = plt.Normalize(vmin=min_delay, vmax=max_delay)
     node_colors = [cmap(norm(delay)) for delay in delays]
 
@@ -351,7 +502,7 @@ def plot_graph(graph: nx.DiGraph, output_path: Path) -> None:
     max_segment = max(edge_segment_counts) if edge_segment_counts else 1
     edge_widths = [0.5 + (count / max_segment) * 3 for count in edge_segment_counts]
 
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=PLOT_FIG_SIZE)
     nx.draw_networkx_edges(
         graph,
         positions,
@@ -371,13 +522,20 @@ def plot_graph(graph: nx.DiGraph, output_path: Path) -> None:
             200 + attr.get("call_count", 1) * 10 for _, attr in graph.nodes(data=True)
         ],
     )
-    nx.draw_networkx_labels(
-        graph,
-        positions,
-        labels={node: data.get("stop_name", node) for node, data in graph.nodes(data=True)},
-        font_size=8,
-        ax=ax,
-    )
+    label_candidates = {}
+    for node, data in graph.nodes(data=True):
+        call_count = data.get("call_count", 0)
+        if NODE_LABEL_THRESHOLD is None or call_count >= NODE_LABEL_THRESHOLD:
+            label_candidates[node] = data.get("stop_name", node)
+
+    if label_candidates:
+        nx.draw_networkx_labels(
+            graph,
+            positions,
+            labels=label_candidates,
+            font_size=8,
+            ax=ax,
+        )
 
     sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
     sm.set_array([])
@@ -394,17 +552,48 @@ def plot_graph(graph: nx.DiGraph, output_path: Path) -> None:
 
 def _resolve_positions(graph: nx.DiGraph) -> dict[str, tuple[float, float]]:
     coords: dict[str, tuple[float, float]] = {}
-    all_have_coords = True
+    valid_nodes: list[tuple[str, float, float]] = []
     for node, data in graph.nodes(data=True):
         lat = data.get("latitude")
         lon = data.get("longitude")
         if lat is None or lon is None or pd.isna(lat) or pd.isna(lon):
-            all_have_coords = False
-            break
-        coords[str(node)] = (float(lon), float(lat))
+            continue
+        valid_nodes.append((str(node), float(lat), float(lon)))
 
-    if all_have_coords and coords:
-        return coords
+    if valid_nodes:
+        lats = [lat for _, lat, _ in valid_nodes]
+        lons = [lon for _, _, lon in valid_nodes]
+        lat_mean = sum(lats) / len(lats)
+        lon_mean = sum(lons) / len(lons)
+        cos_lat = math.cos(math.radians(lat_mean)) or 1.0
+
+        raw_coords: dict[str, tuple[float, float]] = {}
+        for node, lat, lon in valid_nodes:
+            x = EARTH_RADIUS_KM * math.radians(lon - lon_mean) * cos_lat
+            y = EARTH_RADIUS_KM * math.radians(lat - lat_mean)
+            raw_coords[node] = (x, y)
+
+        buckets: dict[tuple[int, int], list[str]] = {}
+        for node, (x, y) in raw_coords.items():
+            x *= POSITION_SCALE
+            y *= POSITION_SCALE
+            key = (round(x, 3), round(y, 3))
+            buckets.setdefault(key, []).append(node)
+
+        jitter_radius = 0.05
+        for key, nodes in buckets.items():
+            base_x, base_y = key
+            if len(nodes) == 1:
+                coords[nodes[0]] = (base_x, base_y)
+                continue
+            for index, node in enumerate(nodes):
+                angle = 2 * math.pi * index / len(nodes)
+                jitter_x = base_x + jitter_radius * POSITION_SCALE * math.cos(angle)
+                jitter_y = base_y + jitter_radius * POSITION_SCALE * math.sin(angle)
+                coords[node] = (jitter_x, jitter_y)
+
+        if coords:
+            return coords
 
     return nx.spring_layout(graph, seed=42)
 
@@ -422,8 +611,8 @@ def main(argv: Optional[Iterable[str]] = None) -> None:
     if argv:
         raise ValueError("This script no longer accepts command-line arguments. Adjust constants instead.")
 
-    trip_calls = load_trip_calls(TRIP_CALLS_CSV)
-    stops = load_stop_metadata(STOPS_CSV) if STOPS_CSV else None
+    trip_calls = load_all_trip_calls()
+    stops = load_stop_metadata_for_graph(trip_calls)
 
     graph, nodes_df, edges_df = build_delay_graph(
         trip_calls,
