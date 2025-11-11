@@ -6,4 +6,10 @@
 
 [x] instead of next 10 stops, get next busses within the next 1h
 
-include trip data in gc function
+[x] include trip data in gc function
+
+[x] check delay calculations, include seconds in timestamps and verify why delays have decimals ?!
+
+weighted graph
+
+same font, size in graphs as in report

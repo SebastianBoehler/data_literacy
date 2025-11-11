@@ -121,8 +121,4 @@ def attach_weather_to_departures(
             weather_df[col] = default
     merged = pd.concat([enriched.reset_index(drop=True), weather_df], axis=1)
 
-    if "planned_time" in merged.columns:
-        merged["planned_time"] = merged["planned_time"].dt.strftime("%Y-%m-%d %H:%M")
-    if "estimated_time" in merged.columns:
-        merged["estimated_time"] = merged["estimated_time"].dt.strftime("%Y-%m-%d %H:%M")
     return merged
