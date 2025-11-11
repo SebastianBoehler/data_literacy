@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timezone, timedelta
-from typing import Optional
+from typing import Iterable, Optional
 
 import pandas as pd
 import requests
@@ -120,6 +120,102 @@ class TriasClient:
         if stops.empty:
             return stops
         return stops.sort_values(by="probability", ascending=False, na_position="last").reset_index(drop=True)
+
+    def fetch_stop_details(self, stop_refs: Iterable[str]) -> pd.DataFrame:
+        unique_refs = [str(ref) for ref in dict.fromkeys(stop_refs) if ref]
+        if not unique_refs:
+            return pd.DataFrame()
+
+        records: list[dict[str, object]] = []
+        seen: set[tuple[str, str]] = set()
+
+        for ref in unique_refs:
+            if ":" in ref and ref.count(":") >= 3:
+                ref_tag = "StopPointRef"
+            else:
+                ref_tag = "StopPlaceRef"
+
+            payload = f"""
+<LocationInformationRequest>
+  <InitialInput>
+    <LocationRef>
+      <{ref_tag}>{ref}</{ref_tag}>
+    </LocationRef>
+  </InitialInput>
+  <Restrictions>
+    <Type>stop</Type>
+    <NumberOfResults>5</NumberOfResults>
+  </Restrictions>
+</LocationInformationRequest>
+"""
+
+            root = self._execute(payload)
+            for node in root.findall(".//trias:LocationResult", TRIAS_NS):
+                location = node.find("trias:Location", TRIAS_NS)
+                if location is None:
+                    continue
+
+                stop_point_elem = location.find("trias:LocationRef/trias:StopPointRef", TRIAS_NS)
+                stop_place_elem = location.find("trias:StopPlace/trias:StopPlaceRef", TRIAS_NS)
+
+                stop_point_ref = (
+                    stop_point_elem.text if stop_point_elem is not None and stop_point_elem.text else None
+                )
+                stop_place_ref = (
+                    stop_place_elem.text if stop_place_elem is not None and stop_place_elem.text else None
+                )
+
+                base_ref = stop_point_ref or stop_place_ref
+                if not base_ref:
+                    continue
+
+                dedupe_key = (stop_point_ref or base_ref, stop_place_ref or "")
+                if dedupe_key in seen:
+                    continue
+                seen.add(dedupe_key)
+
+                primary_name = location.find("trias:LocationName/trias:Text", TRIAS_NS)
+                stop_place_name = location.find("trias:StopPlace/trias:StopPlaceName/trias:Text", TRIAS_NS)
+                stop_name = None
+                if stop_place_name is not None and stop_place_name.text:
+                    stop_name = stop_place_name.text
+                elif primary_name is not None and primary_name.text:
+                    stop_name = primary_name.text
+
+                pos = location.find("trias:GeoPosition", TRIAS_NS)
+                if pos is None:
+                    pos = location.find("trias:StopPlace/trias:GeoPosition", TRIAS_NS)
+                lat_elem = pos.find("trias:Latitude", TRIAS_NS) if pos is not None else None
+                lon_elem = pos.find("trias:Longitude", TRIAS_NS) if pos is not None else None
+
+                base_stop_id = None
+                if stop_point_ref:
+                    parts = stop_point_ref.split(":")
+                    if len(parts) >= 3:
+                        base_stop_id = ":".join(parts[:3])
+                if base_stop_id is None:
+                    base_stop_id = stop_place_ref or base_ref
+
+                records.append(
+                    {
+                        "stop_id": base_stop_id,
+                        "trias_ref": base_ref,
+                        "stop_point_ref": stop_point_ref,
+                        "stop_place_ref": stop_place_ref,
+                        "stop_name": stop_name,
+                        "latitude": float(lat_elem.text) if lat_elem is not None and lat_elem.text else None,
+                        "longitude": float(lon_elem.text) if lon_elem is not None and lon_elem.text else None,
+                    }
+                )
+
+        if not records:
+            return pd.DataFrame()
+
+        stops = pd.DataFrame(records)
+        subset = [col for col in ("stop_point_ref", "trias_ref") if col in stops.columns]
+        if subset:
+            stops = stops.drop_duplicates(subset=subset, keep="first")
+        return stops.reset_index(drop=True)
 
     def fetch_departures(
         self,
