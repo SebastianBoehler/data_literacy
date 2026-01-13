@@ -645,7 +645,21 @@ class TriasClient:
             timeout=30,
         )
         response.raise_for_status()
-        return ET.fromstring(response.content)
+
+        status = response.status_code
+        content = response.content or b""
+        content_len = len(content)
+        print(f"[TRIAS] HTTP {status}, content length={content_len}")
+        if content_len:
+            preview = content[:500]
+            print(f"[TRIAS] Body preview: {preview!r}")
+        else:
+            print("[TRIAS] Empty response body from TRIAS backend")
+
+        if not content_len:
+            raise RuntimeError(f"Empty TRIAS response (status={status})")
+
+        return ET.fromstring(content)
 
     def _wrap_payload(self, payload: str) -> str:
         timestamp = _utc_now()

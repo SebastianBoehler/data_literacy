@@ -1,0 +1,7 @@
+Hypothesis,Metric,Result,Interpretation
+H1: Buses are late more often than early,Late Rate,66.1%,Confirmed
+H2: Delays are larger in bad weather,Δ Median (rainy - dry),+0.00 min,Weak/No effect
+H3: Delays depend on stops,Range of median delays,0.00 to 0.00 min,Confirmed (substantial variation)
+H4: Delays change throughout the day,Peak vs Trough hour,0.10 min difference,Weak effect
+H5: Delays change throughout the week,Weekend vs Weekday,+0.00 min,Weak effect
+H6: Delays depend on bus line,Range of median delays,0.00 to 2.00 min,Confirmed (substantial variation)
