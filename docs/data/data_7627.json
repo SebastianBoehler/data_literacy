@@ -1,0 +1,1 @@
+{"edges": [{"from": "Rottenburg Bahnhof", "to": "Rottenburg Sprollstra\u00dfe", "delay_min": 0.0, "trips": 2}, {"from": "Rottenburg Sprollstra\u00dfe", "to": "Rottenburg E.-Bolz-Platz", "delay_min": 0.0, "trips": 2}], "summary": {"total_edges": 2, "total_trips": 4, "avg_delay": 0.0, "max_delay": 0.0}}

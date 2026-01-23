@@ -1,0 +1,1 @@
+{"edges": [{"from": "T\u00fcbingen Hauptbahnhof", "to": "T\u00fcbingen H\u00fcgelschule", "delay_min": 0.0, "trips": 1353}, {"from": "T\u00fcbingen H\u00fcgelschule", "to": "T\u00fcbingen Hauptbahnhof", "delay_min": 0.0, "trips": 1166}], "summary": {"total_edges": 2, "total_trips": 2519, "avg_delay": 0.0, "max_delay": 0.0}}
