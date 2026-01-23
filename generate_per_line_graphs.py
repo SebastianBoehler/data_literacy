@@ -548,9 +548,11 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
         num_trips=('delay_minutes', 'count'),
     ).reset_index()
     
-    # Round values and replace NaN with None (null in JSON)
+    # Filter out edges with 0 trips (no actual data)
+    edge_agg = edge_agg[edge_agg['num_trips'] > 0].copy()
+    
+    # Round values
     edge_agg['mean_delay'] = edge_agg['mean_delay'].round(2)
-    edge_agg = edge_agg.fillna({'mean_delay': 0, 'num_trips': 0})
     
     # Convert to list of dicts
     edges_list = edge_agg.rename(columns={
@@ -560,10 +562,8 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
         'num_trips': 'trips'
     }).to_dict(orient='records')
     
-    # Ensure all values are JSON-serializable (no NaN)
+    # Ensure all values are JSON-serializable
     for edge in edges_list:
-        if pd.isna(edge['delay_min']):
-            edge['delay_min'] = 0
         edge['trips'] = int(edge['trips'])
     
     avg_delay = edge_agg['mean_delay'].mean()
