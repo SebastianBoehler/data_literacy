@@ -61,3 +61,5 @@ logs/
 *.backup
 
 deploy.md
+
+departure-data-reader-key.json
