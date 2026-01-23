@@ -1,0 +1,65 @@
+line_name,count,destinations,stops
+5,800,"['Tübingen Derend. Käppele', 'Tübingen WHO Ahornweg', 'Tübingen Hauptbahnhof', 'WHO Ahornweg', 'Derend.Käppele']","['Tübingen Hegelstraße', 'Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+6,755,"['Rappenberg', 'Tübingen Hirschauer Straße', 'Hauptbahnhof', 'Tübingen Hauptbahnhof', 'Tübingen Sand Drosselweg']","['Tübingen Neckarhalde', 'Tübingen Hauptbahnhof', 'Tübingen Biesingerstraße']"
+3,529,"['Tübingen Nelkenweg', 'Tübingen WHO Ulmenweg', 'Tübingen Hauptbahnhof', 'WHO Ulmenweg', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+4,518,"['Tübingen WHO Ulmenweg', 'Tübingen Wennf. Garten', 'Tübingen Hauptbahnhof', 'WHO Ulmenweg']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+1,502,"['Tübingen Franz. Viertel', 'Tübingen Stauden', 'Tübingen Hauptbahnhof', 'Pfrondorf Lusstraße']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+2,458,"['Tübingen Mühlbachäcker', 'Tübingen WHO Ulmenweg', 'WHO Ulmenweg', 'Tübingen Hauptbahnhof', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Hegelstraße']"
+18,451,"['Hagelloch Dornäckerweg', 'Poltringen Ammerbrücke', 'Rottenburg E.-Bolz-Platz', 'Oberndorf Feuersee', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Freibad']"
+19,409,"['Tübingen BG Unfallklinik', 'Rottenburg Bahnhof', 'Bühl Römerstraße', 'Tübingen Hauptbahnhof', 'Rottenburg E.-Bolz-Platz']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Freibad']"
+11,372,"['Tübingen Schwärzlocher Str. 45', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Haagtor', 'Tübingen Neckarbrücke']"
+12,331,"['Tübingen Weststadt', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Kelternplatz']"
+22,330,"['Tübingen Carlo-Steeb-Str.', 'Tübingen Hauptbahnhof', 'Lustnau Nord', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Mühlstraße']"
+16,322,"['Tübingen Horn-Straße', 'Tübingen Hagellocher Weg', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+7,320,"['Pfrondorf Lindenstraße', 'Tübingen Hauptbahnhof', 'Hauptbahnhof', 'Pfrondorf']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Kelternplatz']"
+9,308,"['Tübingen Bismarckturm', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Haagtor', 'Tübingen Neckarbrücke']"
+10,284,"['Tübingen Schwabstraße', 'Reutlingen Hauptbahnhof', 'Tübingen Hauptbahnhof', 'Österberg', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+13,268,"['Tübingen BG Unfallklinik', 'Tübingen Aixer Straße', 'Tübingen Hauptbahnhof', 'Tübingen Wilhelmstraße']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+21,266,"['Tübingen Düsseldorfer Str.', 'Tübingen Egeriaplatz', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Poststraße']"
+8,228,"['Hagelloch Dornäckerweg', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+7625,193,"['Gomaringen ZOB', 'Tübingen Hauptbahnhof', 'Nehren SZ Höhnisch', 'Gomaringen Ziegelgrubenstr.']","['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+RB 63,174,"['Reutlingen Hauptbahnhof', 'Herrenberg', 'Entringen Bahnhof']",['Tübingen Hauptbahnhof']
+7611,130,"['Jettenburg Brunnenplatz', 'Betzingen Ferd.-Lassalle-Str.', 'Kusterd. Altes Rathaus', 'Tübingen Hauptbahnhof', 'Kusterdingen Mozartstr.']","['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+17,110,"['Tübingen Uni-Kliniken Berg', 'Tübingen Hauptbahnhof', 'Tübingen Wanne Kunsthalle']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke', 'Tübingen Kelternplatz']"
+34,88,"['Tübingen Bergfriedhof West', 'Tübingen Hauptbahnhof', 'Bergfriedhof', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+N90,80,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Haagtor', 'Tübingen Neckarbrücke']"
+32,67,"['Tübingen Ursrainer Ring', 'Tübingen Hauptbahnhof', 'Ursrainer Ring']","['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+X15,55,"['Tübingen Hauptbahnhof', 'Tübingen BG Unfallklinik']","['Tübingen Neckarbrücke', 'Tübingen Hauptbahnhof']"
+RB 74,53,"['Horb Bahnhof/ZOB', 'Rottenburg Bahnhof']",['Tübingen Hauptbahnhof']
+7613,52,"['Mössingen Bahnhof', 'Tübingen Hauptbahnhof', 'Mössingen Schulzentrum']","['Tübingen Hauptbahnhof', 'Tübingen Hegelstraße']"
+35,44,"['Tübingen Vor dem Großholz', 'Tübingen Hauptbahnhof', 'Vor dem Großholz', 'Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+RB 66,44,"['Hechingen Bf/ZOB', 'Ebingen Bahnhof']",['Tübingen Hauptbahnhof']
+X82,43,['Echterdingen Flughafen/Messe (SAB)'],['Tübingen Hauptbahnhof']
+X11,38,"['Tübingen Hauptbahnhof', 'Betzingen Justus-v.-Liebig-Str', 'Betzingen Knoten B28', 'Betzingen Ferd.-Lassalle-Str.']","['Tübingen Poststraße', 'Tübingen Hauptbahnhof']"
+MEX12,37,"['Heilbronn Hauptbahnhof', 'Stuttgart Hauptbahnhof (oben)']",['Tübingen Hauptbahnhof']
+828,36,['Echterdingen Flughafen/Messe (SAB)'],['Tübingen Hauptbahnhof']
+MEX18,36,['Heilbronn Hauptbahnhof'],['Tübingen Hauptbahnhof']
+N94,30,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+N96,30,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+7612,29,"['Gomaringen ZOB', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Hegelstraße']"
+N91,28,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+N92,25,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+N93,24,['Tübingen Hauptbahnhof'],"['Tübingen Neckarbrücke', 'Tübingen Hauptbahnhof']"
+826,24,['Leinfelden Bf'],['Tübingen Hauptbahnhof']
+827,24,"['Häslach Rathaus', 'Pfrondorf Sophienpflege']",['Tübingen Hauptbahnhof']
+N88,23,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Hegelstraße', 'Tübingen Freibad']"
+RB 6,20,"['Rottenburg Bahnhof', 'Stuttgart Hauptbahnhof (oben)']",['Tübingen Hauptbahnhof']
+N98,20,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Freibad']"
+N97,20,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Neckarbrücke']"
+N95,19,['Tübingen Hauptbahnhof'],"['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+RE 6,15,"['Stuttgart Hauptbahnhof (oben)', 'Aulendorf Bahnhof', 'Bad Urach']",['Tübingen Hauptbahnhof']
+101,9,"['Freiburg Hauptbahnhof', 'Reutlingen Hauptbahnhof', 'ZOB']",['Tübingen Hauptbahnhof']
+336,9,"['ZOB', 'Paris Bercy Seine']",['Tübingen Hauptbahnhof']
+N177,9,"[""Genova (I) Fanti d'Italia / Principe F.S."", 'D-Worringer Platz,W57']",['Tübingen Hauptbahnhof']
+826A,6,['Dettenhausen Altes Rathaus'],['Tübingen Hauptbahnhof']
+N87,4,['Tübingen Hauptbahnhof'],['Tübingen Hauptbahnhof']
+N84,4,['Tübingen Hauptbahnhof'],['Tübingen Hauptbahnhof']
+N82,4,"[""K'furt Südring Berg""]",['Tübingen Hauptbahnhof']
+N81,4,['Reutlingen Stadtmitte'],['Tübingen Hauptbahnhof']
+7601,4,"['Wannweil Albblick', 'Tübingen Hauptbahnhof']","['Tübingen Hauptbahnhof', 'Tübingen Poststraße']"
+008,4,"['Reutlingen Hauptbahnhof', 'Freiburg Hauptbahnhof']",['Tübingen Hauptbahnhof']
+E,3,['Tübingen Paul-Dietz-Straße'],['Tübingen Hauptbahnhof']
+RB63,3,['Tübingen Westbahnhof'],['Tübingen Hauptbahnhof']
+283,3,"['Zürich, Bus Station']",['Tübingen Hauptbahnhof']
+N80,2,['Herrenberg'],['Tübingen Hauptbahnhof']
+283A,2,"['Zürich, Bus Station']",['Tübingen Hauptbahnhof']
