@@ -16,3 +16,4 @@ icml2024
 https://tueplots.readthedocs.io/en/latest/getting_started/application_icml2022.html
 
 matplotlib colormaps
+https://matplotlib.org/stable/users/explain/colors/colormaps.html

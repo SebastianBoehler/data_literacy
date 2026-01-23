@@ -137,7 +137,7 @@ def download_and_combine_data(bucket, file_list: list, max_workers: int = 20, ma
                 dfs.append(df)
             except Exception as e:
                 print(f"Error processing {file_name}: {e}")
-            if i % 50 == 0 or i == total_files:
+            if i % 200 == 0 or i == total_files:
                 print(f"Processed {i}/{total_files} files...")
 
     if not dfs:
@@ -404,13 +404,49 @@ def build_network_graph(stop_meta: pd.DataFrame, edge_agg: pd.DataFrame) -> nx.D
 
 
 def create_plotly_visualization(G: nx.Graph, output_path: Path):
-    """Create an interactive Plotly visualization of the network."""
+    """Create interactive Plotly visualizations of the network with multiple styles."""
     import plotly.graph_objects as go
+    import matplotlib.pyplot as plt
+    import matplotlib.colors as mcolors
     
-    print(f"\nCreating Plotly visualization...")
+    print(f"\nCreating Plotly visualizations...")
     
     # Extract node positions (using longitude as x, latitude as y)
     pos = {node: (data["longitude"], data["latitude"]) for node, data in G.nodes(data=True)}
+    
+    # Get all delays and compute percentile-based normalization
+    all_delays = sorted([data.get("mean_delay", 0) for u, v, data in G.edges(data=True)])
+    delay_min = min(all_delays)
+    delay_max = max(all_delays)
+    print(f"  Delay range: {delay_min:.2f} to {delay_max:.2f} min")
+    print(f"  Median delay: {all_delays[len(all_delays)//2]:.2f} min")
+    
+    # Use RdYlGn_r colormap (Red-Yellow-Green reversed: green=low, red=high)
+    cmap = plt.cm.RdYlGn_r
+    
+    # Use YlOrRd colormap for delays (yellow -> orange -> red)
+    # Punctual (≤0.1 min) will be gray/neutral
+    cmap_delayed = plt.cm.YlOrRd
+    PUNCTUAL_THRESHOLD = 0.1  # minutes
+    NEUTRAL_COLOR = "#888888"  # Gray for punctual
+    
+    # Get only delayed edges for percentile normalization
+    delayed_values = sorted([d for d in all_delays if d > PUNCTUAL_THRESHOLD])
+    
+    def delay_to_color(delay):
+        """Convert delay to color: gray for punctual, yellow-red gradient for delayed."""
+        if delay <= PUNCTUAL_THRESHOLD:
+            return NEUTRAL_COLOR
+        
+        # Percentile-based normalization among delayed edges only
+        if delayed_values:
+            rank = sum(1 for d in delayed_values if d < delay)
+            delay_norm = rank / len(delayed_values)
+        else:
+            delay_norm = 0.5
+        
+        rgba = cmap_delayed(delay_norm)
+        return mcolors.rgb2hex(rgba[:3])
     
     # Create edge traces
     edge_traces = []
@@ -419,16 +455,8 @@ def create_plotly_visualization(G: nx.Graph, output_path: Path):
         x0, y0 = pos[u]
         x1, y1 = pos[v]
         
-        # Color based on delay
         delay = data.get("mean_delay", 0)
-        if delay <= 0:
-            color = "#00FF00"  # Green - on time or early
-        elif delay <= 2:
-            color = "#FFFF00"  # Yellow - slight delay
-        elif delay <= 5:
-            color = "#FFA500"  # Orange - moderate delay
-        else:
-            color = "#FF0000"  # Red - significant delay
+        color = delay_to_color(delay)
         
         edge_traces.append(
             go.Scattermapbox(
@@ -459,32 +487,76 @@ def create_plotly_visualization(G: nx.Graph, output_path: Path):
         ),
     )
     
-    # Create figure with mapbox
-    fig = go.Figure(
-        data=edge_traces + [node_trace],
-        layout=go.Layout(
-            title=dict(
-                text="Tübingen Bus Network (Geographic Coordinates)",
-                font=dict(size=20),
-            ),
-            showlegend=False,
-            hovermode="closest",
-            mapbox=dict(
-                style="open-street-map",
-                center=dict(
-                    lat=(TUEBINGEN_LAT_MIN + TUEBINGEN_LAT_MAX) / 2,
-                    lon=(TUEBINGEN_LON_MIN + TUEBINGEN_LON_MAX) / 2,
-                ),
-                zoom=12,
-            ),
-            width=1400,
-            height=900,
+    # Create legend traces (invisible points with labels)
+    legend_traces = [
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=NEUTRAL_COLOR),
+            name="Punctual (≤0.1 min)",
+            showlegend=True,
         ),
-    )
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(0.0)[:3])),
+            name="Slight delay",
+            showlegend=True,
+        ),
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(0.5)[:3])),
+            name="Moderate delay",
+            showlegend=True,
+        ),
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(1.0)[:3])),
+            name="Significant delay",
+            showlegend=True,
+        ),
+    ]
     
-    # Save to HTML
-    fig.write_html(str(output_path))
-    print(f"  Saved to {output_path}")
+    # Generate both OSM and Positron styles
+    styles = [
+        ("open-street-map", "osm", "OpenStreetMap"),
+        ("carto-positron", "positron", "Carto Positron"),
+    ]
+    
+    for style_id, suffix, style_name in styles:
+        fig = go.Figure(
+            data=edge_traces + [node_trace] + legend_traces,
+            layout=go.Layout(
+                title=dict(
+                    text=f"Tübingen Bus Network ({style_name})",
+                    font=dict(size=20),
+                ),
+                showlegend=True,
+                legend=dict(
+                    yanchor="top",
+                    y=0.99,
+                    xanchor="left",
+                    x=0.01,
+                    bgcolor="rgba(255,255,255,0.8)",
+                    font=dict(size=12),
+                ),
+                hovermode="closest",
+                mapbox=dict(
+                    style=style_id,
+                    center=dict(
+                        lat=(TUEBINGEN_LAT_MIN + TUEBINGEN_LAT_MAX) / 2,
+                        lon=(TUEBINGEN_LON_MIN + TUEBINGEN_LON_MAX) / 2,
+                    ),
+                    zoom=12,
+                ),
+                width=1400,
+                height=900,
+            ),
+        )
+        
+        # Save to outputs folder
+        style_output_path = output_path.parent / "outputs" / f"geo_network_{suffix}.html"
+        style_output_path.parent.mkdir(exist_ok=True)
+        fig.write_html(str(style_output_path))
+        print(f"  Saved to {style_output_path}")
     
     return fig
 
@@ -646,10 +718,9 @@ def main():
         print("\nERROR: No nodes in graph.")
         return
     
-    # Create visualizations
+    # Create visualizations (OSM and Positron styles)
     create_plotly_visualization(G, OUTPUT_HTML)
     create_matplotlib_visualization(G, OUTPUT_HTML)
-    create_sigma_visualization(G, OUTPUT_HTML)
     
     print("\n" + "=" * 70)
     print("Done! Geographic network graph created successfully.")
