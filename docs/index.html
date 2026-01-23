@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tübingen Bus Network - Delay Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }
+        .header {
+            background: #1a1a2e; color: white; padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 1.5rem; font-weight: 600; }
+        .controls { display: flex; align-items: center; gap: 1rem; }
+        .controls label { font-size: 0.9rem; opacity: 0.9; }
+        .controls select {
+            padding: 0.5rem 1rem; font-size: 1rem; border: none;
+            border-radius: 4px; background: white; cursor: pointer; min-width: 150px;
+        }
+        .map-container { width: 100%; height: calc(100vh - 60px); }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+        .info {
+            position: fixed; bottom: 1rem; right: 1rem;
+            background: rgba(255,255,255,0.95); padding: 0.75rem 1rem;
+            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 0.85rem; color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚌 Tübingen Bus Network - Delay Analysis</h1>
+        <div class="controls">
+            <label for="line-select">Select Line:</label>
+            <select id="line-select" onchange="loadLine(this.value)">
+                <option value="all" selected>All Lines</option>
+        <option value="008">Line 008</option>
+        <option value="1">Line 1</option>
+        <option value="10">Line 10</option>
+        <option value="101">Line 101</option>
+        <option value="11">Line 11</option>
+        <option value="111">Line 111</option>
+        <option value="12">Line 12</option>
+        <option value="13">Line 13</option>
+        <option value="16">Line 16</option>
+        <option value="17">Line 17</option>
+        <option value="18">Line 18</option>
+        <option value="19">Line 19</option>
+        <option value="2">Line 2</option>
+        <option value="21">Line 21</option>
+        <option value="22">Line 22</option>
+        <option value="283">Line 283</option>
+        <option value="283A">Line 283A</option>
+        <option value="3">Line 3</option>
+        <option value="31">Line 31</option>
+        <option value="32">Line 32</option>
+        <option value="33">Line 33</option>
+        <option value="336">Line 336</option>
+        <option value="34">Line 34</option>
+        <option value="35">Line 35</option>
+        <option value="4">Line 4</option>
+        <option value="5">Line 5</option>
+        <option value="6">Line 6</option>
+        <option value="7">Line 7</option>
+        <option value="7601">Line 7601</option>
+        <option value="7606">Line 7606</option>
+        <option value="7611">Line 7611</option>
+        <option value="7612">Line 7612</option>
+        <option value="7613">Line 7613</option>
+        <option value="7623">Line 7623</option>
+        <option value="7625">Line 7625</option>
+        <option value="7626">Line 7626</option>
+        <option value="7627">Line 7627</option>
+        <option value="7629">Line 7629</option>
+        <option value="7633">Line 7633</option>
+        <option value="8">Line 8</option>
+        <option value="826">Line 826</option>
+        <option value="826A">Line 826A</option>
+        <option value="827">Line 827</option>
+        <option value="828">Line 828</option>
+        <option value="9">Line 9</option>
+        <option value="E">Line E</option>
+        <option value="N116">Line N116</option>
+        <option value="N177">Line N177</option>
+        <option value="N42">Line N42</option>
+        <option value="N80">Line N80</option>
+        <option value="N81">Line N81</option>
+        <option value="N82">Line N82</option>
+        <option value="N84">Line N84</option>
+        <option value="N87">Line N87</option>
+        <option value="N88">Line N88</option>
+        <option value="N90">Line N90</option>
+        <option value="N91">Line N91</option>
+        <option value="N92">Line N92</option>
+        <option value="N93">Line N93</option>
+        <option value="N94">Line N94</option>
+        <option value="N95">Line N95</option>
+        <option value="N96">Line N96</option>
+        <option value="N97">Line N97</option>
+        <option value="N98">Line N98</option>
+        <option value="SEV">Line SEV</option>
+        <option value="X11">Line X11</option>
+        <option value="X15">Line X15</option>
+        <option value="X82">Line X82</option>
+
+            </select>
+        </div>
+    </div>
+    <div class="map-container">
+        <iframe id="map-frame" src="lines/network_all.html"></iframe>
+    </div>
+    <div class="info">Data: Nov 2025 - Jan 2026 | Source: TRIAS API</div>
+    <script>
+        function loadLine(value) {
+            document.getElementById('map-frame').src = 'lines/network_' + value + '.html';
+        }
+    </script>
+</body>
+</html>
