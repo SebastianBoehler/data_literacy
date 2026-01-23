@@ -548,22 +548,34 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
         num_trips=('delay_minutes', 'count'),
     ).reset_index()
     
-    # Round values
+    # Round values and replace NaN with None (null in JSON)
     edge_agg['mean_delay'] = edge_agg['mean_delay'].round(2)
+    edge_agg = edge_agg.fillna({'mean_delay': 0, 'num_trips': 0})
     
     # Convert to list of dicts
+    edges_list = edge_agg.rename(columns={
+        'stop_name': 'from',
+        'next_stop': 'to',
+        'mean_delay': 'delay_min',
+        'num_trips': 'trips'
+    }).to_dict(orient='records')
+    
+    # Ensure all values are JSON-serializable (no NaN)
+    for edge in edges_list:
+        if pd.isna(edge['delay_min']):
+            edge['delay_min'] = 0
+        edge['trips'] = int(edge['trips'])
+    
+    avg_delay = edge_agg['mean_delay'].mean()
+    max_delay = edge_agg['mean_delay'].max()
+    
     data = {
-        'edges': edge_agg.rename(columns={
-            'stop_name': 'from',
-            'next_stop': 'to',
-            'mean_delay': 'delay_min',
-            'num_trips': 'trips'
-        }).to_dict(orient='records'),
+        'edges': edges_list,
         'summary': {
             'total_edges': len(edge_agg),
             'total_trips': int(edge_agg['num_trips'].sum()),
-            'avg_delay': round(edge_agg['mean_delay'].mean(), 2) if len(edge_agg) > 0 else 0,
-            'max_delay': round(edge_agg['mean_delay'].max(), 2) if len(edge_agg) > 0 else 0,
+            'avg_delay': round(avg_delay, 2) if pd.notna(avg_delay) else 0,
+            'max_delay': round(max_delay, 2) if pd.notna(max_delay) else 0,
         }
     }
     
