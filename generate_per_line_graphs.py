@@ -54,6 +54,9 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     
     df = trip_df.copy()
     
+    # Filter out rows without valid coordinates FIRST
+    df = df[df['latitude'].notna() & df['longitude'].notna()]
+    
     # Use departure_delay_minutes as delay_minutes
     if 'delay_minutes' not in df.columns:
         if 'departure_delay_minutes' in df.columns:
@@ -67,7 +70,7 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     if line_filter:
         df = df[df['line_name'] == line_filter]
     
-    if df.empty:
+    if df.empty or len(df) < 2:
         return None
     
     # Create edges from consecutive stops in each journey
@@ -76,8 +79,8 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     df['next_lat'] = df.groupby('journey_ref')['latitude'].shift(-1)
     df['next_lon'] = df.groupby('journey_ref')['longitude'].shift(-1)
     
-    # Filter valid edges
-    edges = df.dropna(subset=['next_stop']).copy()
+    # Filter valid edges - must have valid coordinates for both stops
+    edges = df.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
     edges = edges[edges['stop_name'] != edges['next_stop']]
     
     # Aggregate edges
@@ -255,32 +258,59 @@ def generate_index_html(lines: list):
     <title>Tübingen Bus Network - Delay Analysis</title>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }}
+        body {{ 
+            font-family: 'Georgia', 'Times New Roman', serif; 
+            background: #ffffff; 
+            padding: 1.5rem;
+        }}
         .header {{
-            background: #1a1a2e; color: white; padding: 1rem 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #ffffff; 
+            color: #333; 
+            padding: 1rem 0 1.5rem 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
         }}
-        .header h1 {{ font-size: 1.5rem; font-weight: 600; }}
+        .header h1 {{ 
+            font-size: 1.4rem; 
+            font-weight: 400; 
+            letter-spacing: 0.02em;
+        }}
         .controls {{ display: flex; align-items: center; gap: 1rem; }}
-        .controls label {{ font-size: 0.9rem; opacity: 0.9; }}
+        .controls label {{ font-size: 0.9rem; color: #555; }}
         .controls select {{
-            padding: 0.5rem 1rem; font-size: 1rem; border: none;
-            border-radius: 4px; background: white; cursor: pointer; min-width: 150px;
+            padding: 0.4rem 0.8rem; 
+            font-size: 0.9rem; 
+            border: 1px solid #ccc;
+            border-radius: 3px; 
+            background: white; 
+            cursor: pointer; 
+            min-width: 140px;
+            font-family: inherit;
         }}
-        .map-container {{ width: 100%; height: calc(100vh - 60px); }}
+        .controls select:focus {{ outline: 1px solid #666; }}
+        .map-container {{ 
+            width: 100%; 
+            height: calc(100vh - 140px); 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }}
         .map-container iframe {{ width: 100%; height: 100%; border: none; }}
         .info {{
-            position: fixed; bottom: 1rem; right: 1rem;
-            background: rgba(255,255,255,0.95); padding: 0.75rem 1rem;
-            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            font-size: 0.85rem; color: #666;
+            text-align: center;
+            padding: 1rem 0 0 0;
+            font-size: 0.8rem; 
+            color: #888;
+            font-style: italic;
         }}
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🚌 Tübingen Bus Network - Delay Analysis</h1>
+        <h1>Tübingen Bus Network — Delay Analysis</h1>
         <div class="controls">
             <label for="line-select">Select Line:</label>
             <select id="line-select" onchange="loadLine(this.value)">
@@ -291,7 +321,7 @@ def generate_index_html(lines: list):
     <div class="map-container">
         <iframe id="map-frame" src="lines/network_all.html"></iframe>
     </div>
-    <div class="info">Data: Nov 2025 - Jan 2026 | Source: TRIAS API</div>
+    <div class="info">Data: Nov 2025 – Jan 2026 | Source: TRIAS API</div>
     <script>
         function loadLine(value) {{
             document.getElementById('map-frame').src = 'lines/network_' + value + '.html';
