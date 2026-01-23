@@ -263,25 +263,54 @@ def generate_index_html(lines: list):
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{ 
             font-family: 'Georgia', 'Times New Roman', serif; 
-            background: #ffffff; 
-            padding: 1.5rem;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.7;
+        }}
+        .container {{
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: #fff;
+            min-height: 100vh;
         }}
         .header {{
-            background: #ffffff; 
-            color: #333; 
-            padding: 1rem 0 1.5rem 0;
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1rem;
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
         }}
         .header h1 {{ 
-            font-size: 1.4rem; 
+            font-size: 1.8rem; 
             font-weight: 400; 
             letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
         }}
-        .controls {{ display: flex; align-items: center; gap: 1rem; }}
+        .header .subtitle {{
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }}
+        .section {{
+            margin-bottom: 2.5rem;
+        }}
+        .section h2 {{
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #222;
+        }}
+        .section p {{
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }}
+        .controls {{ 
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+            margin-bottom: 1rem;
+        }}
         .controls label {{ font-size: 0.9rem; color: #555; }}
         .controls select {{
             padding: 0.4rem 0.8rem; 
@@ -290,45 +319,193 @@ def generate_index_html(lines: list):
             border-radius: 3px; 
             background: white; 
             cursor: pointer; 
-            min-width: 140px;
+            min-width: 160px;
             font-family: inherit;
         }}
         .controls select:focus {{ outline: 1px solid #666; }}
         .map-container {{ 
             width: 100%; 
-            height: calc(100vh - 140px); 
+            height: 500px;
             border: 1px solid #ddd;
             border-radius: 4px;
             overflow: hidden;
+            margin-bottom: 1rem;
         }}
         .map-container iframe {{ width: 100%; height: 100%; border: none; }}
-        .info {{
+        .caption {{
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
             text-align: center;
-            padding: 1rem 0 0 0;
+        }}
+        .data-summary {{
+            margin: 1rem 0;
+            padding: 0.75rem 1rem;
+            background: #f8f8f8;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }}
+        .data-table-container {{
+            margin-top: 1rem;
+        }}
+        .data-table-container summary {{
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #555;
+            padding: 0.5rem 0;
+        }}
+        .table-wrapper {{
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }}
+        #edge-table {{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }}
+        #edge-table th, #edge-table td {{
+            padding: 0.5rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }}
+        #edge-table th {{
+            background: #f5f5f5;
+            position: sticky;
+            top: 0;
+            font-weight: 600;
+        }}
+        #edge-table tr:hover {{
+            background: #fafafa;
+        }}
+        .footer {{
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 2rem;
             font-size: 0.8rem; 
             color: #888;
-            font-style: italic;
         }}
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Tübingen Bus Network — Delay Analysis</h1>
-        <div class="controls">
-            <label for="line-select">Select Line:</label>
-            <select id="line-select" onchange="loadLine(this.value)">
-                {options_html}
-            </select>
+    <div class="container">
+        <div class="header">
+            <h1>Tübingen Bus Network</h1>
+            <p class="subtitle">Delay Analysis — Data Literacy Project</p>
+        </div>
+
+        <div class="section">
+            <h2>Overview</h2>
+            <p>
+                This project analyzes public transit delays in the Tübingen bus network using real-time data 
+                collected from the TRIAS API between November 2025 and January 2026. The visualization below 
+                shows the network topology with edges colored by average delay: gray indicates punctual service, 
+                while yellow to red indicates increasing delays.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Interactive Network Map</h2>
+            <div class="controls">
+                <label for="line-select">Select Line:</label>
+                <select id="line-select" onchange="loadLine(this.value)">
+                    {options_html}
+                </select>
+            </div>
+            <div class="map-container">
+                <iframe id="map-frame" src="lines/network_all.html"></iframe>
+            </div>
+            <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
+            
+            <div class="data-summary" id="data-summary">
+                <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
+            </div>
+            
+            <details class="data-table-container">
+                <summary>View Edge Data Table</summary>
+                <div class="table-wrapper">
+                    <table id="edge-table">
+                        <thead>
+                            <tr>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Avg Delay (min)</th>
+                                <th>Trips</th>
+                            </tr>
+                        </thead>
+                        <tbody id="edge-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+        <div class="section">
+            <h2>Methodology</h2>
+            <p>
+                Data was collected continuously from the TRIAS real-time transit API, capturing planned and 
+                estimated arrival/departure times for all bus stops in the Tübingen network. Delays are 
+                calculated as the difference between estimated and planned times. The network graph is 
+                constructed by connecting consecutive stops within each journey, with edge weights representing 
+                the mean delay observed on that segment.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Key Findings</h2>
+            <p>
+                The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), 
+                indicated by gray coloring in the network map. However, certain routes and time periods show 
+                consistently higher delays, particularly during peak hours and on routes passing through the 
+                city center. The interactive visualization allows exploration of delay patterns by individual 
+                bus line.
+            </p>
+        </div>
+
+        <div class="footer">
+            Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen
         </div>
     </div>
-    <div class="map-container">
-        <iframe id="map-frame" src="lines/network_all.html"></iframe>
-    </div>
-    <div class="info">Data: Nov 2025 – Jan 2026 | Source: TRIAS API</div>
+
     <script>
         function loadLine(value) {{
             document.getElementById('map-frame').src = 'lines/network_' + value + '.html';
+            loadData(value);
         }}
+        
+        function loadData(value) {{
+            const dataUrl = 'data/data_' + value + '.json';
+            fetch(dataUrl)
+                .then(response => response.json())
+                .then(data => {{
+                    const summary = data.summary;
+                    document.getElementById('summary-text').textContent = 
+                        `${{summary.total_edges}} segments, ${{summary.total_trips.toLocaleString()}} trips observed, ` +
+                        `avg delay: ${{summary.avg_delay}} min, max delay: ${{summary.max_delay}} min`;
+                    
+                    const tbody = document.getElementById('edge-table-body');
+                    tbody.innerHTML = '';
+                    data.edges.forEach(edge => {{
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${{edge.from}}</td>
+                            <td>${{edge.to}}</td>
+                            <td>${{edge.delay_min}}</td>
+                            <td>${{edge.trips.toLocaleString()}}</td>
+                        `;
+                        tbody.appendChild(row);
+                    }});
+                }})
+                .catch(err => {{
+                    document.getElementById('summary-text').textContent = 'Data not available';
+                    document.getElementById('edge-table-body').innerHTML = '';
+                }});
+        }}
+        
+        loadData('all');
     </script>
 </body>
 </html>
