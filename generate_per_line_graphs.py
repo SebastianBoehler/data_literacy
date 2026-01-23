@@ -16,14 +16,17 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from pathlib import Path
+import json
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
 DOCS_DIR = SCRIPT_DIR / "docs"
 LINES_DIR = DOCS_DIR / "lines"
+DATA_DIR = DOCS_DIR / "data"
 DOCS_DIR.mkdir(exist_ok=True)
 LINES_DIR.mkdir(exist_ok=True)
+DATA_DIR.mkdir(exist_ok=True)
 
 # Tübingen bounding box
 TUEBINGEN_LAT_MIN, TUEBINGEN_LAT_MAX = 48.47, 48.55
@@ -336,6 +339,61 @@ def generate_index_html(lines: list):
     print("  Saved: index.html")
 
 
+def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path):
+    """Export edge data for a line as JSON for client-side table display."""
+    
+    df = trip_df.copy()
+    df = df[df['latitude'].notna() & df['longitude'].notna()]
+    
+    if 'delay_minutes' not in df.columns:
+        if 'departure_delay_minutes' in df.columns:
+            df['delay_minutes'] = df['departure_delay_minutes']
+        elif 'arrival_delay_minutes' in df.columns:
+            df['delay_minutes'] = df['arrival_delay_minutes']
+        else:
+            df['delay_minutes'] = 0
+    
+    if line_filter:
+        df = df[df['line_name'] == line_filter]
+    
+    if df.empty:
+        return
+    
+    # Create edges
+    df = df.sort_values(['journey_ref', 'timestamp'])
+    df['next_stop'] = df.groupby('journey_ref')['stop_name'].shift(-1)
+    edges = df.dropna(subset=['next_stop']).copy()
+    edges = edges[edges['stop_name'] != edges['next_stop']]
+    
+    # Aggregate
+    edge_agg = edges.groupby(['stop_name', 'next_stop']).agg(
+        mean_delay=('delay_minutes', 'mean'),
+        num_trips=('delay_minutes', 'count'),
+    ).reset_index()
+    
+    # Round values
+    edge_agg['mean_delay'] = edge_agg['mean_delay'].round(2)
+    
+    # Convert to list of dicts
+    data = {
+        'edges': edge_agg.rename(columns={
+            'stop_name': 'from',
+            'next_stop': 'to',
+            'mean_delay': 'delay_min',
+            'num_trips': 'trips'
+        }).to_dict(orient='records'),
+        'summary': {
+            'total_edges': len(edge_agg),
+            'total_trips': int(edge_agg['num_trips'].sum()),
+            'avg_delay': round(edge_agg['mean_delay'].mean(), 2) if len(edge_agg) > 0 else 0,
+            'max_delay': round(edge_agg['mean_delay'].max(), 2) if len(edge_agg) > 0 else 0,
+        }
+    }
+    
+    with open(output_path, 'w') as f:
+        json.dump(data, f)
+
+
 def main():
     print("=" * 70)
     print("Generating Per-Line Network Graphs for GitHub Pages")
@@ -351,17 +409,19 @@ def main():
     print(f"\nFound {len(lines)} lines: {', '.join(lines[:10])}{'...' if len(lines) > 10 else ''}")
     
     # Generate full network graph
-    print("\nGenerating graphs...")
+    print("\nGenerating graphs and data...")
     G_full = build_network_graph(trip_df, line_filter=None)
     create_plotly_graph(G_full, "All Lines", LINES_DIR / "network_all.html")
+    export_line_data(trip_df, None, DATA_DIR / "data_all.json")
     
-    # Generate per-line graphs
+    # Generate per-line graphs and data
     generated_lines = []
     for line in lines:
         G_line = build_network_graph(trip_df, line_filter=line)
         if G_line and G_line.number_of_nodes() > 1:
             safe_name = line.replace("/", "_").replace(" ", "_")
             create_plotly_graph(G_line, f"Line {line}", LINES_DIR / f"network_{safe_name}.html")
+            export_line_data(trip_df, line, DATA_DIR / f"data_{safe_name}.json")
             generated_lines.append(line)
     
     # Generate index.html
@@ -369,7 +429,7 @@ def main():
     generate_index_html(generated_lines)
     
     print("\n" + "=" * 70)
-    print(f"Done! Generated {len(generated_lines) + 1} graphs in docs/")
+    print(f"Done! Generated {len(generated_lines) + 1} graphs + data files in docs/")
     print("To deploy: push docs/ to GitHub and enable GitHub Pages")
     print("=" * 70)
 

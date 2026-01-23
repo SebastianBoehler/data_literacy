@@ -1,0 +1,1 @@
+{"edges": [{"from": "Reutlingen Hauptbahnhof", "to": "T\u00fcbingen Hauptbahnhof", "delay_min": 0.0, "trips": 44}, {"from": "T\u00fcbingen Hauptbahnhof", "to": "Reutlingen Hauptbahnhof", "delay_min": 0.0, "trips": 79}], "summary": {"total_edges": 2, "total_trips": 123, "avg_delay": 0.0, "max_delay": 0.0}}
