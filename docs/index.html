@@ -155,15 +155,21 @@
         <div class="section">
             <h2>Interactive Network Map</h2>
             <div class="controls">
+                <label for="period-select">Time Period:</label>
+                <select id="period-select" onchange="updateView()">
+                            <option value="all" selected>All Data</option>
+        <option value="pre">Before Schedule Change</option>
+        <option value="post">After Schedule Change</option>
+
+                </select>
                 <label for="line-select">Select Line:</label>
-                <select id="line-select" onchange="loadLine(this.value)">
+                <select id="line-select" onchange="updateView()">
                     <option value="all" selected>All Lines</option>
         <option value="008">Line 008</option>
         <option value="1">Line 1</option>
         <option value="10">Line 10</option>
         <option value="101">Line 101</option>
         <option value="11">Line 11</option>
-        <option value="111">Line 111</option>
         <option value="12">Line 12</option>
         <option value="13">Line 13</option>
         <option value="16">Line 16</option>
@@ -173,10 +179,12 @@
         <option value="2">Line 2</option>
         <option value="21">Line 21</option>
         <option value="22">Line 22</option>
+        <option value="283">Line 283</option>
+        <option value="283A">Line 283A</option>
         <option value="3">Line 3</option>
         <option value="31">Line 31</option>
         <option value="32">Line 32</option>
-        <option value="33">Line 33</option>
+        <option value="336">Line 336</option>
         <option value="34">Line 34</option>
         <option value="35">Line 35</option>
         <option value="4">Line 4</option>
@@ -184,23 +192,17 @@
         <option value="6">Line 6</option>
         <option value="7">Line 7</option>
         <option value="7601">Line 7601</option>
-        <option value="7606">Line 7606</option>
         <option value="7611">Line 7611</option>
         <option value="7612">Line 7612</option>
         <option value="7613">Line 7613</option>
         <option value="7625">Line 7625</option>
-        <option value="7627">Line 7627</option>
         <option value="7633">Line 7633</option>
         <option value="8">Line 8</option>
         <option value="826">Line 826</option>
-        <option value="826A">Line 826A</option>
-        <option value="827">Line 827</option>
         <option value="828">Line 828</option>
         <option value="9">Line 9</option>
         <option value="E">Line E</option>
         <option value="N42">Line N42</option>
-        <option value="N80">Line N80</option>
-        <option value="N81">Line N81</option>
         <option value="N84">Line N84</option>
         <option value="N87">Line N87</option>
         <option value="N88">Line N88</option>
@@ -211,9 +213,6 @@
         <option value="N94">Line N94</option>
         <option value="N95">Line N95</option>
         <option value="N96">Line N96</option>
-        <option value="N97">Line N97</option>
-        <option value="N98">Line N98</option>
-        <option value="SEV">Line SEV</option>
         <option value="X11">Line X11</option>
         <option value="X15">Line X15</option>
         <option value="X82">Line X82</option>
@@ -221,7 +220,7 @@
                 </select>
             </div>
             <div class="map-container">
-                <iframe id="map-frame" src="lines/network_all.html"></iframe>
+                <iframe id="map-frame" src="lines/all/network_all.html"></iframe>
             </div>
             <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
             
@@ -276,13 +275,19 @@
     </div>
 
     <script>
-        function loadLine(value) {
-            document.getElementById('map-frame').src = 'lines/network_' + value + '.html';
-            loadData(value);
+        function updateView() {
+            const period = document.getElementById('period-select').value;
+            const line = document.getElementById('line-select').value;
+            
+            // Update iframe src with period-specific path
+            document.getElementById('map-frame').src = `lines/${period}/network_${line}.html`;
+            
+            // Load data from period-specific path
+            loadData(period, line);
         }
         
-        function loadData(value) {
-            const dataUrl = 'data/data_' + value + '.json';
+        function loadData(period, line) {
+            const dataUrl = `data/${period}/data_${line}.json`;
             fetch(dataUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -310,7 +315,8 @@
                 });
         }
         
-        loadData('all');
+        // Initial load
+        loadData('all', 'all');
     </script>
 </body>
 </html>
