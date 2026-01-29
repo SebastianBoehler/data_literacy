@@ -97,7 +97,11 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         return None
     
     # Create edges from consecutive stops in each journey
-    df = df.sort_values(['journey_ref', 'timestamp'])
+    # Use stop_sequence for ordering (timestamp is often identical for all stops in a journey snapshot)
+    if 'stop_sequence' in df.columns:
+        df = df.sort_values(['journey_ref', 'stop_sequence'])
+    else:
+        df = df.sort_values(['journey_ref', 'timestamp'])
     df['next_stop'] = df.groupby('journey_ref')['stop_name'].shift(-1)
     df['next_lat'] = df.groupby('journey_ref')['latitude'].shift(-1)
     df['next_lon'] = df.groupby('journey_ref')['longitude'].shift(-1)
@@ -116,10 +120,8 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         to_lon=('next_lon', 'first'),
     ).reset_index()
     
-    # Filter out edges with very few trips (likely data artifacts from missing intermediate stops)
-    # Minimum 3 trips required to show an edge
-    MIN_TRIPS_FOR_EDGE = 3
-    edge_agg = edge_agg[edge_agg['num_trips'] >= MIN_TRIPS_FOR_EDGE]
+    # Note: No minimum trip filter needed since we now use stop_sequence for proper ordering
+    # This correctly identifies consecutive stops in each direction
     
     # Build graph
     G = nx.DiGraph()
