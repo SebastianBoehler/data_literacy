@@ -116,6 +116,11 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         to_lon=('next_lon', 'first'),
     ).reset_index()
     
+    # Filter out edges with very few trips (likely data artifacts from missing intermediate stops)
+    # Minimum 3 trips required to show an edge
+    MIN_TRIPS_FOR_EDGE = 3
+    edge_agg = edge_agg[edge_agg['num_trips'] >= MIN_TRIPS_FOR_EDGE]
+    
     # Build graph
     G = nx.DiGraph()
     

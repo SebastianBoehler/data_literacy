@@ -326,7 +326,11 @@
           </select>
         </div>
         <div class="map-container">
-          <iframe id="map-frame" src="lines/all/network_all.html"></iframe>
+          <div id="map-placeholder" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; color: #666; flex-direction: column; text-align: center; padding: 2rem;">
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Select a specific line to view the network map</strong></p>
+            <p style="font-size: 0.9rem; color: #888;">The combined view of all lines (230 stops, 2,900+ edges) is too complex for interactive rendering.</p>
+          </div>
+          <iframe id="map-frame" src="" style="display: none;"></iframe>
         </div>
         <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
 
@@ -398,9 +402,18 @@
       function updateView() {
         const period = document.getElementById("period-select").value;
         const line = document.getElementById("line-select").value;
+        const mapFrame = document.getElementById("map-frame");
+        const placeholder = document.getElementById("map-placeholder");
 
-        // Update iframe src with period-specific path
-        document.getElementById("map-frame").src = `lines/${period}/network_${line}.html`;
+        // Show placeholder for "all lines" view (too many nodes/edges for smooth rendering)
+        if (line === "all") {
+          mapFrame.style.display = "none";
+          placeholder.style.display = "flex";
+        } else {
+          mapFrame.style.display = "block";
+          placeholder.style.display = "none";
+          mapFrame.src = `lines/${period}/network_${line}.html`;
+        }
 
         // Update combined plot image for selected period
         document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
@@ -438,8 +451,9 @@
           });
       }
 
-      // Initial load
+      // Initial load - show placeholder for "all lines" by default
       loadData("all", "all");
+      // Placeholder is shown by default, iframe hidden
     </script>
   </body>
 </html>
