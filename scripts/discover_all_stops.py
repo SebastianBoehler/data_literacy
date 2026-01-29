@@ -81,6 +81,18 @@ SEARCH_CENTERS = [
 
 SEARCH_RADIUS_KM = 5.0  # 5km radius per search for better coverage
 
+# NOTE: LIMITATION - Some Tübingen stops are not discoverable via TRIAS API
+# The following stops have records in our data but cannot be found via the API:
+# - Tübingen WHO Ahornweg (4,814 records)
+# - Tübingen WHO Ulmenweg (3,649 records)
+# - Tübingen Botanischer Garten (1,419 records)
+# - Tübingen BG Unfallklinik (2,036 records)
+# - Tübingen Uni-Kliniken Berg (2,034 records)
+# - Tübingen Neuhalde (32 records)
+# - Tübingen Nürtinger Straße (28 records)
+# These stops appear in trip data but TRIAS API returns them under different names
+# or doesn't include them in radius searches. This affects ~14,000 records (~10%).
+
 
 def discover_stops_from_centers(client, centers, all_stops, radius_km=SEARCH_RADIUS_KM):
     """Discover stops from a list of center points."""
