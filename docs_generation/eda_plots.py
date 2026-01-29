@@ -233,6 +233,107 @@ def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label:
     print(f"  Saved: {output_path.name}")
 
 
+def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
+    """Generate combined 2x2 EDA figure with subplots A, B, C, D."""
+    from matplotlib.colors import LinearSegmentedColormap
+    
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    
+    # --- Panel A: Delay Distribution Histogram ---
+    ax = axes[0, 0]
+    delays = df['delay_minutes'].dropna()
+    
+    ax.hist(delays, bins=50, range=(-5, 20), color='steelblue', edgecolor='white', alpha=0.8)
+    ax.axvline(0, color='darkred', linestyle='--', linewidth=1.5, label='On Time')
+    ax.axvline(delays.mean(), color='orange', linestyle='-', linewidth=1.5, label=f'Mean: {delays.mean():.2f} min')
+    ax.axvline(delays.median(), color='green', linestyle='-', linewidth=1.5, label=f'Median: {delays.median():.2f} min')
+    
+    ax.set_xlabel('Delay (minutes)')
+    ax.set_ylabel('Frequency')
+    ax.set_title('(A) Delay Distribution', fontweight='bold')
+    ax.legend(loc='upper right', fontsize=8)
+    ax.grid(alpha=0.3)
+    
+    stats_text = f'n = {len(delays):,}\nStd = {delays.std():.2f} min'
+    ax.text(0.98, 0.75, stats_text, transform=ax.transAxes, fontsize=8,
+            verticalalignment='top', horizontalalignment='right',
+            bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
+    
+    # --- Panel B: Hourly Delay Pattern ---
+    ax = axes[0, 1]
+    df_hourly = df.copy()
+    df_hourly['hour'] = pd.to_datetime(df_hourly['timestamp']).dt.hour
+    
+    hourly_stats = df_hourly.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+    hourly_stats['ci95'] = 1.96 * hourly_stats['std'] / np.sqrt(hourly_stats['count'])
+    
+    ax.fill_between(hourly_stats['hour'], 
+                    hourly_stats['mean'] - hourly_stats['ci95'],
+                    hourly_stats['mean'] + hourly_stats['ci95'],
+                    alpha=0.3, color='steelblue')
+    ax.plot(hourly_stats['hour'], hourly_stats['mean'], 'o-', color='steelblue', linewidth=2, markersize=5)
+    ax.axhline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
+    
+    ax.set_xlabel('Hour of Day')
+    ax.set_ylabel('Mean Delay (minutes)')
+    ax.set_title('(B) Delay by Hour of Day', fontweight='bold')
+    ax.set_xticks(range(0, 24, 2))
+    ax.grid(alpha=0.3)
+    
+    # --- Panel C: ECDF ---
+    ax = axes[1, 0]
+    delay_vals = delays.values
+    x_sorted = np.sort(delay_vals)
+    n = len(x_sorted)
+    ecdf_y = np.arange(1, n + 1) / n
+    
+    # DKW confidence bands (95%)
+    alpha_dkw = 0.05
+    epsilon = np.sqrt(np.log(2 / alpha_dkw) / (2 * n))
+    lower = np.clip(ecdf_y - epsilon, 0, 1)
+    upper = np.clip(ecdf_y + epsilon, 0, 1)
+    
+    ax.fill_between(x_sorted, lower, upper, alpha=0.3, color='steelblue', label='95% DKW Band')
+    ax.step(x_sorted, ecdf_y, where='post', color='steelblue', linewidth=1.5, label='ECDF')
+    ax.axvline(0, color='darkred', linestyle='--', linewidth=1.5, alpha=0.8, label='On Time')
+    
+    ax.set_xlabel('Delay (minutes)')
+    ax.set_ylabel('Cumulative Probability')
+    ax.set_title('(C) Empirical CDF', fontweight='bold')
+    ax.set_xlim(-5, 15)
+    ax.set_ylim(0, 1.0)
+    ax.legend(loc='lower right', fontsize=8, framealpha=0.9)
+    ax.grid(alpha=0.3)
+    
+    # --- Panel D: Top 15 Delayed Lines ---
+    ax = axes[1, 1]
+    line_stats = df.groupby('line_name')['delay_minutes'].agg(['mean', 'count']).reset_index()
+    line_stats = line_stats[line_stats['count'] >= 100]
+    line_stats = line_stats.sort_values('mean', ascending=False).head(15)
+    
+    cmap = LinearSegmentedColormap.from_list('delay_gradient', ['#2ecc71', '#f1c40f', '#e74c3c'])
+    delay_values = line_stats['mean'].values
+    norm = plt.Normalize(vmin=delay_values.min(), vmax=delay_values.max())
+    colors = [cmap(norm(val)) for val in delay_values]
+    
+    ax.barh(line_stats['line_name'], line_stats['mean'], color=colors, edgecolor='white')
+    ax.axvline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
+    ax.set_xlabel('Mean Delay (minutes)')
+    ax.set_ylabel('Line')
+    ax.set_title('(D) Top 15 Lines by Mean Delay', fontweight='bold')
+    ax.invert_yaxis()
+    ax.grid(axis='x', alpha=0.3)
+    
+    # Add overall title
+    fig.suptitle(f'Delay Analysis — {period_label}', fontsize=14, fontweight='bold', y=1.02)
+    
+    plt.tight_layout()
+    output_path = output_dir / "eda_combined.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
 def main():
     print("=" * 70)
     print("Generating EDA Plots for GitHub Pages")
@@ -262,11 +363,8 @@ def main():
             print(f"  WARNING: No data for period '{period}'")
             continue
         
-        # Generate plots
-        generate_delay_distribution_plot(period_df, period, config['label'], output_dir)
-        generate_hourly_delay_plot(period_df, period, config['label'], output_dir)
-        generate_delay_ecdf_plot(period_df, period, config['label'], output_dir)
-        generate_top_delayed_lines_plot(period_df, period, config['label'], output_dir)
+        # Generate combined figure with all 4 subplots
+        generate_combined_eda_figure(period_df, period, config['label'], output_dir)
     
     print("\n" + "=" * 70)
     print(f"Done! Generated plots for {len(PERIODS)} periods in docs/plots/")
