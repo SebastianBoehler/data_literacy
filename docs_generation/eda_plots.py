@@ -369,6 +369,179 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     print(f"  Saved: {output_path.name}")
 
 
+def generate_late_rate_hourly(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
+    """Generate late rate by hour with bootstrap CI."""
+    
+    LATE_THRESHOLD = 2  # minutes
+    N_BOOTSTRAP = 500
+    np.random.seed(42)
+    
+    df_valid = df.dropna(subset=['delay_minutes'])
+    df_valid = df_valid.copy()
+    df_valid['hour'] = pd.to_datetime(df_valid['timestamp']).dt.hour
+    
+    hourly_stats = []
+    for hour in range(24):
+        hour_data = df_valid[df_valid['hour'] == hour]['delay_minutes'].values
+        if len(hour_data) > 10:
+            late_rate = (hour_data > LATE_THRESHOLD).mean()
+            # Bootstrap CI
+            boot_rates = [np.mean(np.random.choice(hour_data, len(hour_data), replace=True) > LATE_THRESHOLD) 
+                          for _ in range(N_BOOTSTRAP)]
+            hourly_stats.append({
+                'hour': hour,
+                'late_rate': late_rate,
+                'ci_lower': np.percentile(boot_rates, 2.5),
+                'ci_upper': np.percentile(boot_rates, 97.5),
+            })
+    
+    hourly_df = pd.DataFrame(hourly_stats)
+    
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(hourly_df['hour'], hourly_df['late_rate'] * 100, 'o-', color='darkred', linewidth=2)
+    ax.fill_between(hourly_df['hour'], hourly_df['ci_lower'] * 100, hourly_df['ci_upper'] * 100,
+                    alpha=0.3, color='darkred', label='95% Bootstrap CI')
+    
+    ax.set_xlabel('Hour of Day')
+    ax.set_ylabel('Late Rate (%)')
+    ax.set_title(f'Late Rate P(delay > {LATE_THRESHOLD} min) by Hour ({period_label})', fontweight='bold')
+    ax.set_xticks(range(0, 24, 2))
+    ax.set_ylim(0, 60)
+    ax.legend()
+    ax.grid(alpha=0.3)
+    ax.text(0.02, 0.98, f'n = {len(df_valid):,}', transform=ax.transAxes, fontsize=9, va='top', color='gray')
+    
+    plt.tight_layout()
+    output_path = output_dir / "late_rate_hourly.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
+def generate_weather_effect(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
+    """Generate weather effect on late rate with bootstrap CI."""
+    
+    LATE_THRESHOLD = 2
+    N_BOOTSTRAP = 500
+    MIN_SAMPLES = 50
+    np.random.seed(42)
+    
+    df_valid = df.dropna(subset=['delay_minutes', 'temperature'])
+    
+    temp_bins = [(-10, 0), (0, 5), (5, 10), (10, 15), (15, 20)]
+    temp_labels = ['<0°C', '0-5°C', '5-10°C', '10-15°C', '15-20°C']
+    
+    weather_stats = []
+    for (low, high), label in zip(temp_bins, temp_labels):
+        mask = (df_valid['temperature'] >= low) & (df_valid['temperature'] < high)
+        temp_data = df_valid[mask]['delay_minutes'].values
+        
+        if len(temp_data) > MIN_SAMPLES:
+            late_rate = (temp_data > LATE_THRESHOLD).mean()
+            boot_rates = [np.mean(np.random.choice(temp_data, len(temp_data), replace=True) > LATE_THRESHOLD)
+                          for _ in range(N_BOOTSTRAP)]
+            weather_stats.append({
+                'temp_range': label,
+                'n': len(temp_data),
+                'late_rate': late_rate,
+                'ci_lower': np.percentile(boot_rates, 2.5),
+                'ci_upper': np.percentile(boot_rates, 97.5),
+            })
+    
+    if not weather_stats:
+        print(f"  Skipped weather_effect.png (no data)")
+        return
+    
+    weather_df = pd.DataFrame(weather_stats)
+    
+    fig, ax = plt.subplots(figsize=(8, 5))
+    x = range(len(weather_df))
+    ax.bar(x, weather_df['late_rate'] * 100, color='steelblue', alpha=0.7, edgecolor='black')
+    
+    yerr_lower = (weather_df['late_rate'] - weather_df['ci_lower']) * 100
+    yerr_upper = (weather_df['ci_upper'] - weather_df['late_rate']) * 100
+    ax.errorbar(x, weather_df['late_rate'] * 100, yerr=[yerr_lower, yerr_upper],
+                fmt='none', color='black', capsize=5, capthick=2, label='95% CI')
+    
+    ax.set_xticks(x)
+    ax.set_xticklabels(weather_df['temp_range'])
+    ax.set_xlabel('Temperature Range')
+    ax.set_ylabel('Late Rate (%)')
+    ax.set_title(f'Late Rate by Temperature ({period_label})', fontweight='bold')
+    
+    for i, row in weather_df.iterrows():
+        ax.text(i, row['late_rate'] * 100 + 2, f'n={row["n"]:,}', ha='center', fontsize=8, color='gray')
+    
+    ax.set_ylim(0, 45)
+    ax.grid(axis='y', alpha=0.3)
+    ax.legend()
+    
+    plt.tight_layout()
+    output_path = output_dir / "weather_effect.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
+def generate_schedule_change_ecdf(df_pre: pd.DataFrame, df_post: pd.DataFrame, output_dir: Path):
+    """Generate pre/post schedule change ECDF comparison."""
+    
+    LATE_THRESHOLD = 2
+    DKW_ALPHA = 0.05
+    
+    pre = df_pre['delay_minutes'].dropna()
+    post = df_post['delay_minutes'].dropna()
+    
+    if len(pre) < 100 or len(post) < 100:
+        print(f"  Skipped schedule_change_ecdf.png (insufficient data)")
+        return
+    
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Pre ECDF
+    pre_sorted = np.sort(pre)
+    pre_ecdf = np.arange(1, len(pre_sorted) + 1) / len(pre_sorted)
+    step_pre = max(1, len(pre_sorted) // 2000)
+    
+    # Post ECDF
+    post_sorted = np.sort(post)
+    post_ecdf = np.arange(1, len(post_sorted) + 1) / len(post_sorted)
+    step_post = max(1, len(post_sorted) // 2000)
+    
+    ax.plot(pre_sorted[::step_pre], pre_ecdf[::step_pre], color='steelblue', linewidth=2, 
+            label=f'Before (n={len(pre):,})')
+    ax.plot(post_sorted[::step_post], post_ecdf[::step_post], color='darkorange', linewidth=2,
+            label=f'After (n={len(post):,})')
+    
+    # DKW bands
+    eps_pre = np.sqrt(np.log(2/DKW_ALPHA) / (2*len(pre)))
+    eps_post = np.sqrt(np.log(2/DKW_ALPHA) / (2*len(post)))
+    
+    ax.fill_between(pre_sorted[::step_pre], 
+                    np.clip(pre_ecdf[::step_pre] - eps_pre, 0, 1),
+                    np.clip(pre_ecdf[::step_pre] + eps_pre, 0, 1),
+                    alpha=0.15, color='steelblue')
+    ax.fill_between(post_sorted[::step_post],
+                    np.clip(post_ecdf[::step_post] - eps_post, 0, 1),
+                    np.clip(post_ecdf[::step_post] + eps_post, 0, 1),
+                    alpha=0.15, color='darkorange')
+    
+    ax.axvline(0, color='gray', linestyle='--', alpha=0.5)
+    ax.axvline(LATE_THRESHOLD, color='red', linestyle=':', alpha=0.7, label=f'Late ({LATE_THRESHOLD} min)')
+    ax.set_xlabel('Delay (minutes)')
+    ax.set_ylabel('Cumulative Probability')
+    ax.set_title('Delay Distribution: Before vs After Schedule Change', fontweight='bold')
+    ax.set_xlim(-5, 20)
+    ax.legend(loc='lower right')
+    ax.grid(alpha=0.3)
+    
+    plt.tight_layout()
+    output_path = output_dir / "schedule_change_ecdf.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
 def main():
     print("=" * 70)
     print("Generating EDA Plots for GitHub Pages")
@@ -408,6 +581,15 @@ def main():
         # Pass pre/post data for comparison overlays in panels A and B
         generate_combined_eda_figure(period_df, period, config['label'], output_dir,
                                      df_pre=df_pre, df_post=df_post)
+        
+        # Generate additional uncertainty-aware plots
+        generate_late_rate_hourly(period_df, period, config['label'], output_dir)
+        generate_weather_effect(period_df, period, config['label'], output_dir)
+    
+    # Generate schedule change comparison (only once, in 'all' directory)
+    all_output_dir = PLOTS_DIR / "all"
+    all_output_dir.mkdir(parents=True, exist_ok=True)
+    generate_schedule_change_ecdf(df_pre, df_post, all_output_dir)
     
     print("\n" + "=" * 70)
     print(f"Done! Generated plots for {len(PERIODS)} periods in docs/plots/")

@@ -74,6 +74,73 @@
       .nav-sidebar select:focus {
         outline: 1px solid #666;
       }
+      /* Mobile menu toggle button */
+      .mobile-menu-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: #333;
+        color: white;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .mobile-menu-toggle:hover {
+        background: #555;
+      }
+      /* Mobile responsive styles */
+      @media (max-width: 768px) {
+        .page-wrapper {
+          flex-direction: column;
+        }
+        .mobile-menu-toggle {
+          display: block;
+        }
+        .nav-sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100vh;
+          background: #fff;
+          z-index: 1000;
+          margin-top: 0;
+          padding-top: 4rem;
+          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+          transition: left 0.3s ease;
+          overflow-y: auto;
+        }
+        .nav-sidebar.open {
+          left: 0;
+        }
+        .mobile-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.5);
+          z-index: 999;
+        }
+        .mobile-overlay.open {
+          display: block;
+        }
+        .container {
+          padding: 1rem;
+          padding-top: 4rem;
+        }
+        .map-container {
+          height: 300px;
+        }
+        .plot-item img {
+          max-width: 100%;
+        }
+      }
       .plot-description {
         font-size: 0.9rem;
         color: #555;
@@ -229,8 +296,10 @@
     </style>
   </head>
   <body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+    <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
     <div class="page-wrapper">
-      <nav class="nav-sidebar">
+      <nav class="nav-sidebar" id="nav-sidebar">
         <div class="sidebar-section">
           <div class="sidebar-title">Time Period</div>
           <select id="period-select" onchange="updateView()">
@@ -381,16 +450,116 @@
           after the schedule change.
         </p>
 
-        <div class="plot-item">
-          <p class="plot-description">
-            This combined figure presents four key aspects of the delay analysis:
-            <strong>(A)</strong> The delay distribution histogram shows most observations cluster around 0-2 minutes.
-            <strong>(B)</strong> Hourly patterns reveal peak delays during rush hours (7-9 AM, 4-6 PM).
-            <strong>(C)</strong> The empirical CDF with 95% DKW confidence bands shows cumulative delay probabilities.
-            <strong>(D)</strong> Top 15 delayed lines are colored by severity (green to red gradient).
-          </p>
-          <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
-          <p class="caption">Figure 2: Combined delay analysis showing distribution, hourly patterns, ECDF, and top delayed lines.</p>
+        <div class="plot-grid">
+          <div class="plot-item">
+            <h3>ECDF vs Histogram Comparison</h3>
+            <p class="plot-description">
+              Left: Traditional histogram showing delay counts. Right: Empirical CDF with 95% DKW confidence bands.
+              ECDFs allow direct probability readings (e.g., P(delay ≤ 0) = 34.6%) without arbitrary bin choices.
+            </p>
+            <img src="plots/all/ecdf_vs_histogram_comparison.png" alt="ECDF vs Histogram Comparison" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Combined Overview</h3>
+            <p class="plot-description">
+              <strong>(A)</strong> Delay distribution histogram.
+              <strong>(B)</strong> Hourly patterns with CI.
+              <strong>(C)</strong> Empirical CDF with 95% DKW bands.
+              <strong>(D)</strong> Top 15 delayed lines.
+            </p>
+            <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Late Rate vs Mean Delay Comparison</h3>
+            <p class="plot-description">
+              Left: Mean delay by hour (sensitive to outliers). Right: Late rate P(delay > 2 min) by hour.
+              Late rate is more interpretable and robust for skewed data. Both show 95% bootstrap CI.
+            </p>
+            <img src="plots/all/late_rate_vs_mean_comparison.png" alt="Late Rate vs Mean Comparison" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Late Rate by Hour (Bootstrap CI)</h3>
+            <p class="plot-description">
+              Probability of a bus being more than 2 minutes late, by hour of day. 
+              Shaded area shows 95% bootstrap confidence interval. More interpretable than mean delay for skewed data.
+            </p>
+            <img id="plot-late-rate" src="plots/all/late_rate_hourly.png" alt="Late Rate by Hour" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Weather Effect (Bootstrap CI)</h3>
+            <p class="plot-description">
+              Late rate by temperature range with 95% bootstrap confidence intervals.
+              Sample sizes shown above each bar. Colder temperatures appear associated with fewer delays.
+            </p>
+            <img id="plot-weather" src="plots/all/weather_effect.png" alt="Weather Effect on Delays" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Weather Effect (Full Version)</h3>
+            <p class="plot-description">
+              Extended weather effect analysis with more temperature bins and sample size annotations.
+            </p>
+            <img src="plots/all/weather_effect_with_ci.png" alt="Weather Effect Full" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Schedule Change Comparison (ECDF)</h3>
+            <p class="plot-description">
+              Empirical cumulative distribution functions comparing delay distributions before and after 
+              the Dec 14, 2025 schedule change. Shaded bands show 95% DKW confidence intervals.
+              Orange curve (after) shifted left indicates improvement.
+            </p>
+            <img id="plot-schedule-ecdf" src="plots/all/schedule_change_ecdf.png" alt="Schedule Change ECDF Comparison" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Schedule Change (Full Comparison)</h3>
+            <p class="plot-description">
+              Two-panel comparison: Left shows ECDF overlay, Right shows key metrics (on-time rate, late rate, median)
+              with bootstrap confidence intervals. Late rate dropped from 31.5% to 22.6% after schedule change.
+            </p>
+            <img src="plots/all/schedule_change_ecdf_comparison.png" alt="Schedule Change Full Comparison" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Quantile Analysis</h3>
+            <p class="plot-description">
+              Delay percentiles (50th, 75th, 90th, 95th, 99th) with 95% bootstrap CIs. More robust than means for skewed data.
+              Key insight: 90% of buses arrive within 5.1 min of schedule. 90th percentile improved from 7.3 to 4.1 min after schedule change.
+            </p>
+            <img src="plots/all/quantile_analysis.png" alt="Quantile Analysis" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Top Stops by Late Rate</h3>
+            <p class="plot-description">
+              Spatial heterogeneity: which stops have the highest probability of delays?
+              Tübingen Uni/Neue Aula has ~95% late rate. Sample sizes shown - some stops have wide CIs due to fewer observations.
+            </p>
+            <img src="plots/all/top_stops_late_rate.png" alt="Top Stops by Late Rate" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Day of Week Effect</h3>
+            <p class="plot-description">
+              Left: Late rate by day of week (blue=weekday, orange=weekend). Tuesday/Thursday have highest delays.
+              Right: Weekday vs weekend comparison shows weekdays are 1.9 percentage points more delayed than weekends.
+            </p>
+            <img src="plots/all/day_of_week_effect.png" alt="Day of Week Effect" />
+          </div>
+
+          <div class="plot-item">
+            <h3>Outlier Analysis</h3>
+            <p class="plot-description">
+              Documentation of extreme delays (>30 min). Only 0.85% of records are extreme outliers.
+              Jan 25, 2026 had the most disruptions (253 records). These outliers inflate mean statistics but not medians.
+            </p>
+            <img src="plots/all/outlier_analysis.png" alt="Outlier Analysis" />
+          </div>
         </div>
       </div>
 
@@ -415,8 +584,12 @@
           mapFrame.src = `lines/${period}/network_${line}.html`;
         }
 
-        // Update combined plot image for selected period
+        // Update all plot images for selected period
         document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
+        document.getElementById("plot-late-rate").src = `plots/${period}/late_rate_hourly.png`;
+        document.getElementById("plot-weather").src = `plots/${period}/weather_effect.png`;
+        // Schedule change ECDF is always from 'all' (it compares pre vs post)
+        document.getElementById("plot-schedule-ecdf").src = `plots/all/schedule_change_ecdf.png`;
 
         // Load data from period-specific path
         loadData(period, line);
@@ -454,6 +627,23 @@
       // Initial load - show placeholder for "all lines" by default
       loadData("all", "all");
       // Placeholder is shown by default, iframe hidden
+
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const sidebar = document.getElementById("nav-sidebar");
+        const overlay = document.querySelector(".mobile-overlay");
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("open");
+      }
+
+      // Close menu when clicking a nav link on mobile
+      document.querySelectorAll(".nav-sidebar a").forEach(link => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            toggleMobileMenu();
+          }
+        });
+      });
     </script>
   </body>
 </html>
