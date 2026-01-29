@@ -3,6 +3,11 @@
 Generate per-line network graphs for GitHub Pages visualization.
 Uses all_trip_data from the notebook (exported as parquet) for accurate results.
 
+Generates artifacts for three time periods:
+- all: All data
+- pre: Before schedule change (Dec 14, 2025)
+- post: After schedule change
+
 Usage:
 1. Run the notebook cells to generate all_trip_data
 2. Export it: all_trip_data.to_parquet('outputs/all_trip_data.parquet')
@@ -19,14 +24,20 @@ from pathlib import Path
 import json
 
 # Paths
-SCRIPT_DIR = Path(__file__).parent
+SCRIPT_DIR = Path(__file__).parent.parent  # docs_generation/ -> code/
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
 DOCS_DIR = SCRIPT_DIR / "docs"
-LINES_DIR = DOCS_DIR / "lines"
-DATA_DIR = DOCS_DIR / "data"
 DOCS_DIR.mkdir(exist_ok=True)
-LINES_DIR.mkdir(exist_ok=True)
-DATA_DIR.mkdir(exist_ok=True)
+
+# Schedule change date for period filtering
+SCHEDULE_CHANGE_DATE = pd.Timestamp("2025-12-14")
+
+# Period configurations
+PERIODS = {
+    "all": {"label": "All Data", "filter": None},
+    "pre": {"label": "Before Schedule Change", "filter": "pre"},
+    "post": {"label": "After Schedule Change", "filter": "post"},
+}
 
 # Tübingen bounding box
 TUEBINGEN_LAT_MIN, TUEBINGEN_LAT_MAX = 48.47, 48.55
@@ -50,6 +61,15 @@ def load_trip_data():
     print(f"Loaded {len(df):,} trip records")
     print(f"Columns: {df.columns.tolist()}")
     return df
+
+
+def filter_by_period(df: pd.DataFrame, period: str) -> pd.DataFrame:
+    """Filter dataframe by time period."""
+    if period == "pre":
+        return df[df['timestamp'] < SCHEDULE_CHANGE_DATE].copy()
+    elif period == "post":
+        return df[df['timestamp'] >= SCHEDULE_CHANGE_DATE].copy()
+    return df.copy()  # "all" - no filter
 
 
 def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
@@ -246,12 +266,19 @@ def create_plotly_graph(G: nx.Graph, title: str, output_path: Path):
 
 
 def generate_index_html(lines: list):
-    """Generate index.html with dropdown selector."""
+    """Generate index.html with dropdown selector and period toggle."""
     
-    options_html = '<option value="all" selected>All Lines</option>\n'
+    # Line options
+    line_options_html = '<option value="all" selected>All Lines</option>\n'
     for line in sorted(lines):
         safe_name = line.replace("/", "_").replace(" ", "_")
-        options_html += f'        <option value="{safe_name}">Line {line}</option>\n'
+        line_options_html += f'        <option value="{safe_name}">Line {line}</option>\n'
+    
+    # Period options
+    period_options_html = ''
+    for period, config in PERIODS.items():
+        selected = ' selected' if period == 'all' else ''
+        period_options_html += f'        <option value="{period}"{selected}>{config["label"]}</option>\n'
     
     html_content = f'''<!DOCTYPE html>
 <html lang="en">
@@ -410,13 +437,17 @@ def generate_index_html(lines: list):
         <div class="section">
             <h2>Interactive Network Map</h2>
             <div class="controls">
+                <label for="period-select">Time Period:</label>
+                <select id="period-select" onchange="updateView()">
+                    {period_options_html}
+                </select>
                 <label for="line-select">Select Line:</label>
-                <select id="line-select" onchange="loadLine(this.value)">
-                    {options_html}
+                <select id="line-select" onchange="updateView()">
+                    {line_options_html}
                 </select>
             </div>
             <div class="map-container">
-                <iframe id="map-frame" src="lines/network_all.html"></iframe>
+                <iframe id="map-frame" src="lines/all/network_all.html"></iframe>
             </div>
             <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
             
@@ -471,13 +502,19 @@ def generate_index_html(lines: list):
     </div>
 
     <script>
-        function loadLine(value) {{
-            document.getElementById('map-frame').src = 'lines/network_' + value + '.html';
-            loadData(value);
+        function updateView() {{
+            const period = document.getElementById('period-select').value;
+            const line = document.getElementById('line-select').value;
+            
+            // Update iframe src with period-specific path
+            document.getElementById('map-frame').src = `lines/${{period}}/network_${{line}}.html`;
+            
+            // Load data from period-specific path
+            loadData(period, line);
         }}
         
-        function loadData(value) {{
-            const dataUrl = 'data/data_' + value + '.json';
+        function loadData(period, line) {{
+            const dataUrl = `data/${{period}}/data_${{line}}.json`;
             fetch(dataUrl)
                 .then(response => response.json())
                 .then(data => {{
@@ -505,7 +542,8 @@ def generate_index_html(lines: list):
                 }});
         }}
         
-        loadData('all');
+        // Initial load
+        loadData('all', 'all');
     </script>
 </body>
 </html>
@@ -583,9 +621,48 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
         json.dump(data, f)
 
 
+def generate_period_artifacts(trip_df: pd.DataFrame, period: str, period_label: str):
+    """Generate all artifacts for a specific time period."""
+    
+    # Create period-specific directories
+    lines_dir = DOCS_DIR / "lines" / period
+    data_dir = DOCS_DIR / "data" / period
+    lines_dir.mkdir(parents=True, exist_ok=True)
+    data_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Filter data by period
+    df = filter_by_period(trip_df, period)
+    print(f"\n  {period_label}: {len(df):,} records")
+    
+    if df.empty:
+        print(f"  WARNING: No data for period '{period}'")
+        return []
+    
+    # Get unique lines
+    lines = sorted(df['line_name'].dropna().unique())
+    
+    # Generate full network graph
+    G_full = build_network_graph(df, line_filter=None)
+    create_plotly_graph(G_full, f"All Lines ({period_label})", lines_dir / "network_all.html")
+    export_line_data(df, None, data_dir / "data_all.json")
+    
+    # Generate per-line graphs and data
+    generated_lines = []
+    for line in lines:
+        G_line = build_network_graph(df, line_filter=line)
+        if G_line and G_line.number_of_nodes() > 1:
+            safe_name = line.replace("/", "_").replace(" ", "_")
+            create_plotly_graph(G_line, f"Line {line} ({period_label})", lines_dir / f"network_{safe_name}.html")
+            export_line_data(df, line, data_dir / f"data_{safe_name}.json")
+            generated_lines.append(line)
+    
+    return generated_lines
+
+
 def main():
     print("=" * 70)
     print("Generating Per-Line Network Graphs for GitHub Pages")
+    print("(with period filtering: all, pre, post)")
     print("=" * 70)
     
     # Load data
@@ -593,32 +670,25 @@ def main():
     if trip_df is None:
         return
     
-    # Get unique lines
-    lines = sorted(trip_df['line_name'].dropna().unique())
-    print(f"\nFound {len(lines)} lines: {', '.join(lines[:10])}{'...' if len(lines) > 10 else ''}")
+    # Get unique lines (for index.html)
+    all_lines = sorted(trip_df['line_name'].dropna().unique())
+    print(f"\nFound {len(all_lines)} lines: {', '.join(all_lines[:10])}{'...' if len(all_lines) > 10 else ''}")
     
-    # Generate full network graph
-    print("\nGenerating graphs and data...")
-    G_full = build_network_graph(trip_df, line_filter=None)
-    create_plotly_graph(G_full, "All Lines", LINES_DIR / "network_all.html")
-    export_line_data(trip_df, None, DATA_DIR / "data_all.json")
+    # Generate artifacts for each period
+    print("\nGenerating graphs and data for each period...")
+    for period, config in PERIODS.items():
+        print(f"\n{'='*50}")
+        print(f"Period: {period} ({config['label']})")
+        print(f"{'='*50}")
+        generate_period_artifacts(trip_df, period, config['label'])
     
-    # Generate per-line graphs and data
-    generated_lines = []
-    for line in lines:
-        G_line = build_network_graph(trip_df, line_filter=line)
-        if G_line and G_line.number_of_nodes() > 1:
-            safe_name = line.replace("/", "_").replace(" ", "_")
-            create_plotly_graph(G_line, f"Line {line}", LINES_DIR / f"network_{safe_name}.html")
-            export_line_data(trip_df, line, DATA_DIR / f"data_{safe_name}.json")
-            generated_lines.append(line)
-    
-    # Generate index.html
-    print("\nGenerating index.html...")
-    generate_index_html(generated_lines)
+    # Generate index.html with period toggle
+    print("\nGenerating index.html with period toggle...")
+    generate_index_html(all_lines)
     
     print("\n" + "=" * 70)
-    print(f"Done! Generated {len(generated_lines) + 1} graphs + data files in docs/")
+    print(f"Done! Generated artifacts for {len(PERIODS)} periods in docs/")
+    print("Structure: docs/lines/{all,pre,post}/, docs/data/{all,pre,post}/")
     print("To deploy: push docs/ to GitHub and enable GitHub Pages")
     print("=" * 70)
 

@@ -38,15 +38,23 @@ HOLIDAY_START = pd.Timestamp("2025-12-28")
 HOLIDAY_END = pd.Timestamp("2026-01-05")
 
 def load_data():
-    """Load departure data from GCS-synced parquet files."""
-    # Try trip data first (has more complete info)
+    """Load trip data with actual observed delays from parquet file.
+    
+    The exported parquet contains only phase=='previous' stops (actual observed delays),
+    deduplicated by journey/day/stop. The 'delay_minutes' column is already set.
+    """
     trip_file = OUTPUT_DIR / "all_trip_data.parquet"
     if trip_file.exists():
         print(f"Loading trip data from {trip_file}")
         df = pd.read_parquet(trip_file)
-        # Use arrival_delay_minutes if available
-        if 'arrival_delay_minutes' in df.columns:
-            df['delay_minutes'] = df['arrival_delay_minutes']
+        # delay_minutes should already be set in the exported data
+        if 'delay_minutes' not in df.columns:
+            # Fallback for older exports
+            if 'departure_delay_minutes' in df.columns:
+                df['delay_minutes'] = df['departure_delay_minutes']
+            elif 'arrival_delay_minutes' in df.columns:
+                df['delay_minutes'] = df['arrival_delay_minutes']
+        print(f"  Data contains ACTUAL OBSERVED DELAYS (phase='previous' only)")
         return df, 'trip'
     
     # Fallback to departure data

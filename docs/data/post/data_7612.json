@@ -1,0 +1,1 @@
+{"edges": [{"from": "T\u00fcbingen Hauptbahnhof", "to": "T\u00fcbingen Hegelstra\u00dfe", "delay_min": 12.26, "trips": 8}, {"from": "T\u00fcbingen Hegelstra\u00dfe", "to": "T\u00fcbingen Hauptbahnhof", "delay_min": 11.26, "trips": 7}], "summary": {"total_edges": 2, "total_trips": 15, "avg_delay": 11.76, "max_delay": 12.26}}

@@ -1,0 +1,1 @@
+{"edges": [{"from": "T\u00fcbingen Hauptbahnhof", "to": "T\u00fcbingen Neckarbr\u00fccke", "delay_min": 0.0, "trips": 1}, {"from": "T\u00fcbingen Neckarbr\u00fccke", "to": "T\u00fcbingen Hauptbahnhof", "delay_min": 0.4, "trips": 1}], "summary": {"total_edges": 2, "total_trips": 2, "avg_delay": 0.2, "max_delay": 0.4}}
