@@ -167,22 +167,25 @@ def create_plotly_graph(G: nx.Graph, title: str, output_path: Path):
     
     pos = {node: (data["longitude"], data["latitude"]) for node, data in G.nodes(data=True)}
     
-    # Get delays for normalization
-    all_delays = sorted([data.get("mean_delay", 0) for u, v, data in G.edges(data=True)])
-    if not all_delays:
-        all_delays = [0]
-    delayed_values = sorted([d for d in all_delays if d > PUNCTUAL_THRESHOLD])
+    # Absolute delay thresholds for consistent coloring across all lines
+    # Delays are mapped to fixed ranges for interpretability
+    DELAY_BINS = [0, 1, 2, 5, 10, 20, float('inf')]  # minutes
+    DELAY_LABELS = ['≤1 min', '1-2 min', '2-5 min', '5-10 min', '10-20 min', '>20 min']
+    DELAY_COLORS = [
+        NEUTRAL_COLOR,  # ≤1 min (gray - punctual)
+        mcolors.rgb2hex(cmap_delayed(0.1)[:3]),  # 1-2 min (light yellow)
+        mcolors.rgb2hex(cmap_delayed(0.3)[:3]),  # 2-5 min (yellow)
+        mcolors.rgb2hex(cmap_delayed(0.5)[:3]),  # 5-10 min (orange)
+        mcolors.rgb2hex(cmap_delayed(0.75)[:3]), # 10-20 min (red-orange)
+        mcolors.rgb2hex(cmap_delayed(1.0)[:3]),  # >20 min (dark red)
+    ]
     
     def delay_to_color(delay):
-        if delay <= PUNCTUAL_THRESHOLD:
-            return NEUTRAL_COLOR
-        if delayed_values:
-            rank = sum(1 for d in delayed_values if d < delay)
-            delay_norm = rank / len(delayed_values)
-        else:
-            delay_norm = 0.5
-        rgba = cmap_delayed(delay_norm)
-        return mcolors.rgb2hex(rgba[:3])
+        """Map delay to color based on absolute thresholds."""
+        for i, threshold in enumerate(DELAY_BINS[1:]):
+            if delay < threshold:
+                return DELAY_COLORS[i]
+        return DELAY_COLORS[-1]
     
     # Create edge traces
     edge_traces = []
@@ -219,27 +222,37 @@ def create_plotly_graph(G: nx.Graph, title: str, output_path: Path):
         showlegend=False,
     )
     
-    # Legend traces
+    # Legend traces with absolute delay ranges
     legend_traces = [
         go.Scattermapbox(
             lon=[None], lat=[None], mode="markers",
-            marker=dict(size=10, color=NEUTRAL_COLOR),
-            name="Punctual (≤0.1 min)", showlegend=True,
+            marker=dict(size=10, color=DELAY_COLORS[0]),
+            name="≤1 min (punctual)", showlegend=True,
         ),
         go.Scattermapbox(
             lon=[None], lat=[None], mode="markers",
-            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(0.0)[:3])),
-            name="Slight delay", showlegend=True,
+            marker=dict(size=10, color=DELAY_COLORS[1]),
+            name="1-2 min", showlegend=True,
         ),
         go.Scattermapbox(
             lon=[None], lat=[None], mode="markers",
-            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(0.5)[:3])),
-            name="Moderate delay", showlegend=True,
+            marker=dict(size=10, color=DELAY_COLORS[2]),
+            name="2-5 min", showlegend=True,
         ),
         go.Scattermapbox(
             lon=[None], lat=[None], mode="markers",
-            marker=dict(size=10, color=mcolors.rgb2hex(cmap_delayed(1.0)[:3])),
-            name="Significant delay", showlegend=True,
+            marker=dict(size=10, color=DELAY_COLORS[3]),
+            name="5-10 min", showlegend=True,
+        ),
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=DELAY_COLORS[4]),
+            name="10-20 min", showlegend=True,
+        ),
+        go.Scattermapbox(
+            lon=[None], lat=[None], mode="markers",
+            marker=dict(size=10, color=DELAY_COLORS[5]),
+            name=">20 min", showlegend=True,
         ),
     ]
     
