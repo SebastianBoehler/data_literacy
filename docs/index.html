@@ -377,43 +377,16 @@
           after the schedule change.
         </p>
 
-        <div class="plot-grid">
-          <div class="plot-item">
-            <p class="plot-description">
-              The empirical cumulative distribution function (ECDF) shows the proportion of observations 
-              at or below each delay value. The vertical dashed lines indicate key punctuality thresholds: 
-              early arrivals (< -1 min), on-time (-1 to +3 min), and late (> 3 min).
-            </p>
-            <img id="plot-ecdf" src="plots/all/delay_ecdf.png" alt="Delay ECDF" />
-            <p class="caption">Figure 2: Empirical CDF of delays with punctuality distribution.</p>
-          </div>
-          <div class="plot-item">
-            <p class="plot-description">
-              This plot reveals the temporal pattern of delays throughout the day. Peak hours 
-              (7-9 AM and 4-6 PM) typically show higher delays due to increased traffic and passenger 
-              volumes. The shaded area represents the 95% confidence interval.
-            </p>
-            <img id="plot-hourly" src="plots/all/hourly_delay.png" alt="Hourly Delay Pattern" />
-            <p class="caption">Figure 3: Mean delay by hour of day with 95% confidence intervals.</p>
-          </div>
-          <div class="plot-item">
-            <p class="plot-description">
-              The histogram shows the overall distribution of delays. Most observations cluster around 
-              0-2 minutes, with a long right tail indicating occasional significant delays. Negative 
-              values represent early arrivals.
-            </p>
-            <img id="plot-distribution" src="plots/all/delay_distribution.png" alt="Delay Distribution" />
-            <p class="caption">Figure 4: Histogram of delay distribution.</p>
-          </div>
-          <div class="plot-item">
-            <p class="plot-description">
-              This chart identifies the bus lines with the highest average delays. Lines are colored 
-              by delay severity using a gradient from green (lower delays) to red (higher delays), 
-              helping to quickly identify problematic routes.
-            </p>
-            <img id="plot-lines" src="plots/all/top_delayed_lines.png" alt="Top Delayed Lines" />
-            <p class="caption">Figure 5: Top 15 bus lines by mean delay.</p>
-          </div>
+        <div class="plot-item">
+          <p class="plot-description">
+            This combined figure presents four key aspects of the delay analysis:
+            <strong>(A)</strong> The delay distribution histogram shows most observations cluster around 0-2 minutes.
+            <strong>(B)</strong> Hourly patterns reveal peak delays during rush hours (7-9 AM, 4-6 PM).
+            <strong>(C)</strong> The empirical CDF with 95% DKW confidence bands shows cumulative delay probabilities.
+            <strong>(D)</strong> Top 15 delayed lines are colored by severity (green to red gradient).
+          </p>
+          <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
+          <p class="caption">Figure 2: Combined delay analysis showing distribution, hourly patterns, ECDF, and top delayed lines.</p>
         </div>
       </div>
 
@@ -429,11 +402,8 @@
         // Update iframe src with period-specific path
         document.getElementById("map-frame").src = `lines/${period}/network_${line}.html`;
 
-        // Update plot images for selected period
-        document.getElementById("plot-ecdf").src = `plots/${period}/delay_ecdf.png`;
-        document.getElementById("plot-hourly").src = `plots/${period}/hourly_delay.png`;
-        document.getElementById("plot-distribution").src = `plots/${period}/delay_distribution.png`;
-        document.getElementById("plot-lines").src = `plots/${period}/top_delayed_lines.png`;
+        // Update combined plot image for selected period
+        document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
 
         // Load data from period-specific path
         loadData(period, line);
