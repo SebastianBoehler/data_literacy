@@ -200,7 +200,7 @@ def generate_delay_ecdf_plot(df: pd.DataFrame, period: str, period_label: str, o
 
 
 def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
-    """Generate top delayed lines bar chart."""
+    """Generate top delayed lines bar chart with gradient coloring."""
     
     line_stats = df.groupby('line_name')['delay_minutes'].agg(['mean', 'count']).reset_index()
     line_stats = line_stats[line_stats['count'] >= 100]  # Filter small samples
@@ -208,7 +208,15 @@ def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label:
     
     fig, ax = plt.subplots(figsize=(10, 6))
     
-    colors = ['firebrick' if x > 3 else 'orange' if x > 2 else 'steelblue' for x in line_stats['mean']]
+    # Use gradient coloring based on delay values (green -> yellow -> red)
+    from matplotlib.colors import LinearSegmentedColormap
+    cmap = LinearSegmentedColormap.from_list('delay_gradient', ['#2ecc71', '#f1c40f', '#e74c3c'])
+    
+    # Normalize delays to 0-1 range for colormap
+    delay_values = line_stats['mean'].values
+    norm = plt.Normalize(vmin=delay_values.min(), vmax=delay_values.max())
+    colors = [cmap(norm(val)) for val in delay_values]
+    
     bars = ax.barh(line_stats['line_name'], line_stats['mean'], color=colors, edgecolor='white')
     
     ax.axvline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)

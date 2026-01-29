@@ -1,370 +1,475 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tübingen Bus Network - Delay Analysis</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Georgia', 'Times New Roman', serif; 
-            background: #fafafa;
-            color: #333;
-            line-height: 1.7;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            background: #fff;
-            min-height: 100vh;
-        }
-        .header {
-            text-align: center;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 2rem;
-        }
-        .header h1 { 
-            font-size: 1.8rem; 
-            font-weight: 400; 
-            letter-spacing: 0.02em;
-            margin-bottom: 0.5rem;
-        }
-        .header .subtitle {
-            font-size: 1rem;
-            color: #666;
-            font-style: italic;
-        }
-        .section {
-            margin-bottom: 2.5rem;
-        }
-        .section h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #222;
-        }
-        .section p {
-            font-size: 0.95rem;
-            color: #444;
-            margin-bottom: 1rem;
-        }
-        .controls { 
-            display: flex; 
-            align-items: center; 
-            gap: 1rem; 
-            margin-bottom: 1rem;
-        }
-        .controls label { font-size: 0.9rem; color: #555; }
-        .controls select {
-            padding: 0.4rem 0.8rem; 
-            font-size: 0.9rem; 
-            border: 1px solid #ccc;
-            border-radius: 3px; 
-            background: white; 
-            cursor: pointer; 
-            min-width: 160px;
-            font-family: inherit;
-        }
-        .controls select:focus { outline: 1px solid #666; }
-        .map-container { 
-            width: 100%; 
-            height: 500px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-        .map-container iframe { width: 100%; height: 100%; border: none; }
-        .caption {
-            font-size: 0.85rem;
-            color: #666;
-            font-style: italic;
-            text-align: center;
-        }
-        .data-summary {
-            margin: 1rem 0;
-            padding: 0.75rem 1rem;
-            background: #f8f8f8;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-        .data-table-container {
-            margin-top: 1rem;
-        }
-        .data-table-container summary {
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #555;
-            padding: 0.5rem 0;
-        }
-        .table-wrapper {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        #edge-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-        }
-        #edge-table th, #edge-table td {
-            padding: 0.5rem 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        #edge-table th {
-            background: #f5f5f5;
-            position: sticky;
-            top: 0;
-            font-weight: 600;
-        }
-        #edge-table tr:hover {
-            background: #fafafa;
-        }
-        .footer {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 2rem;
-            font-size: 0.8rem; 
-            color: #888;
-        }
-        .plot-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        .plot-item {
-            text-align: center;
-        }
-        .plot-item img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        background: #fafafa;
+        color: #333;
+        line-height: 1.7;
+      }
+      .page-wrapper {
+        display: flex;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .nav-sidebar {
+        width: 200px;
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+        padding: 1rem;
+        margin-top: 3rem;
+        font-size: 0.85rem;
+      }
+      .nav-sidebar .sidebar-section {
+        margin-bottom: 1.5rem;
+      }
+      .nav-sidebar .sidebar-title {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .nav-sidebar ul {
+        list-style: none;
+        border-left: 2px solid #e0e0e0;
+        padding-left: 1rem;
+      }
+      .nav-sidebar li {
+        margin-bottom: 0.5rem;
+      }
+      .nav-sidebar a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-sidebar a:hover {
+        color: #222;
+      }
+      .nav-sidebar select {
+        width: 100%;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background: white;
+        cursor: pointer;
+        font-family: inherit;
+        margin-top: 0.3rem;
+      }
+      .nav-sidebar select:focus {
+        outline: 1px solid #666;
+      }
+      .plot-description {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.75rem;
+        text-align: left;
+      }
+      .container {
+        flex: 1;
+        max-width: 900px;
+        padding: 3rem 2rem;
+        background: #fff;
+        min-height: 100vh;
+      }
+      .header {
+        text-align: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2rem;
+      }
+      .header h1 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .header .subtitle {
+        font-size: 1rem;
+        color: #666;
+        font-style: italic;
+      }
+      .section {
+        margin-bottom: 2.5rem;
+      }
+      .section h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #222;
+      }
+      .section p {
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 1rem;
+      }
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .controls label {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      .controls select {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background: white;
+        cursor: pointer;
+        min-width: 160px;
+        font-family: inherit;
+      }
+      .controls select:focus {
+        outline: 1px solid #666;
+      }
+      .map-container {
+        width: 100%;
+        height: 500px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+      .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .caption {
+        font-size: 0.85rem;
+        color: #666;
+        font-style: italic;
+        text-align: center;
+      }
+      .data-summary {
+        margin: 1rem 0;
+        padding: 0.75rem 1rem;
+        background: #f8f8f8;
+        border-radius: 4px;
+        font-size: 0.9rem;
+      }
+      .data-table-container {
+        margin-top: 1rem;
+      }
+      .data-table-container summary {
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: #555;
+        padding: 0.5rem 0;
+      }
+      .table-wrapper {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      #edge-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+      }
+      #edge-table th,
+      #edge-table td {
+        padding: 0.5rem 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      #edge-table th {
+        background: #f5f5f5;
+        position: sticky;
+        top: 0;
+        font-weight: 600;
+      }
+      #edge-table tr:hover {
+        background: #fafafa;
+      }
+      .footer {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        color: #888;
+      }
+      .plot-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+      .plot-item {
+        text-align: center;
+      }
+      .plot-item img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <nav class="nav-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Time Period</div>
+          <select id="period-select" onchange="updateView()">
+            <option value="all" selected>All Data</option>
+            <option value="pre">Before Schedule Change</option>
+            <option value="post">After Schedule Change</option>
+          </select>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">Navigation</div>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#network-map">Network Map</a></li>
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#findings">Key Findings</a></li>
+            <li><a href="#delay-analysis">Delay Analysis</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
         <div class="header">
-            <h1>Tübingen Bus Network</h1>
-            <p class="subtitle">Delay Analysis — Data Literacy Project</p>
+          <h1>Tübingen Bus Network</h1>
+          <p class="subtitle">Delay Analysis — Data Literacy Project</p>
         </div>
 
-        <div class="section">
-            <h2>Overview</h2>
-            <p>
-                This project analyzes public transit delays in the Tübingen bus network using real-time data 
-                collected from the TRIAS API between November 2025 and January 2026. The visualization below 
-                shows the network topology with edges colored by average delay: gray indicates punctual service, 
-                while yellow to red indicates increasing delays.
+        <div class="section" id="overview">
+          <h2>Overview</h2>
+          <p>
+            This project analyzes public transit delays in the Tübingen bus network using real-time data 
+            collected from the TRIAS API between November 2025 and January 2026. The visualization below 
+            shows the network topology with edges colored by average delay: gray indicates punctual service, 
+            while yellow to red indicates increasing delays.
+          </p>
+        </div>
+
+      <div class="section" id="network-map">
+        <h2>Interactive Network Map</h2>
+        <div class="controls">
+          <label for="line-select">Select Line:</label>
+          <select id="line-select" onchange="updateView()">
+            <option value="all" selected>All Lines</option>
+            <option value="008">Line 008</option>
+            <option value="1">Line 1</option>
+            <option value="10">Line 10</option>
+            <option value="101">Line 101</option>
+            <option value="11">Line 11</option>
+            <option value="12">Line 12</option>
+            <option value="13">Line 13</option>
+            <option value="16">Line 16</option>
+            <option value="17">Line 17</option>
+            <option value="18">Line 18</option>
+            <option value="19">Line 19</option>
+            <option value="2">Line 2</option>
+            <option value="21">Line 21</option>
+            <option value="22">Line 22</option>
+            <option value="283">Line 283</option>
+            <option value="283A">Line 283A</option>
+            <option value="3">Line 3</option>
+            <option value="31">Line 31</option>
+            <option value="32">Line 32</option>
+            <option value="336">Line 336</option>
+            <option value="34">Line 34</option>
+            <option value="35">Line 35</option>
+            <option value="4">Line 4</option>
+            <option value="5">Line 5</option>
+            <option value="6">Line 6</option>
+            <option value="7">Line 7</option>
+            <option value="7601">Line 7601</option>
+            <option value="7611">Line 7611</option>
+            <option value="7612">Line 7612</option>
+            <option value="7613">Line 7613</option>
+            <option value="7625">Line 7625</option>
+            <option value="7633">Line 7633</option>
+            <option value="8">Line 8</option>
+            <option value="826">Line 826</option>
+            <option value="828">Line 828</option>
+            <option value="9">Line 9</option>
+            <option value="E">Line E</option>
+            <option value="N42">Line N42</option>
+            <option value="N84">Line N84</option>
+            <option value="N87">Line N87</option>
+            <option value="N88">Line N88</option>
+            <option value="N90">Line N90</option>
+            <option value="N91">Line N91</option>
+            <option value="N92">Line N92</option>
+            <option value="N93">Line N93</option>
+            <option value="N94">Line N94</option>
+            <option value="N95">Line N95</option>
+            <option value="N96">Line N96</option>
+            <option value="X11">Line X11</option>
+            <option value="X15">Line X15</option>
+            <option value="X82">Line X82</option>
+          </select>
+        </div>
+        <div class="map-container">
+          <iframe id="map-frame" src="lines/all/network_all.html"></iframe>
+        </div>
+        <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
+
+        <div class="data-summary" id="data-summary">
+          <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
+        </div>
+
+        <details class="data-table-container">
+          <summary>View Edge Data Table</summary>
+          <div class="table-wrapper">
+            <table id="edge-table">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Avg Delay (min)</th>
+                  <th>Trips</th>
+                </tr>
+              </thead>
+              <tbody id="edge-table-body"></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+
+      <div class="section" id="methodology">
+        <h2>Methodology</h2>
+        <p>
+          Data was collected continuously from the TRIAS real-time transit API, capturing planned and estimated arrival/departure times for all bus stops in the
+          Tübingen network. Delays are calculated as the difference between estimated and planned times. The network graph is constructed by connecting
+          consecutive stops within each journey, with edge weights representing the mean delay observed on that segment.
+        </p>
+      </div>
+
+      <div class="section" id="findings">
+        <h2>Key Findings</h2>
+        <p>
+          The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), indicated by gray coloring in the network map.
+          However, certain routes and time periods show consistently higher delays, particularly during peak hours and on routes passing through the city
+          center. The interactive visualization allows exploration of delay patterns by individual bus line.
+        </p>
+      </div>
+
+      <div class="section" id="delay-analysis">
+        <h2>Delay Analysis</h2>
+        <p>
+          The following plots show the delay distribution and patterns for the selected time period. Use the Time Period selector above to compare before and
+          after the schedule change.
+        </p>
+
+        <div class="plot-grid">
+          <div class="plot-item">
+            <p class="plot-description">
+              The empirical cumulative distribution function (ECDF) shows the proportion of observations 
+              at or below each delay value. The vertical dashed lines indicate key punctuality thresholds: 
+              early arrivals (< -1 min), on-time (-1 to +3 min), and late (> 3 min).
             </p>
-        </div>
-
-        <div class="section">
-            <h2>Interactive Network Map</h2>
-            <div class="controls">
-                <label for="period-select">Time Period:</label>
-                <select id="period-select" onchange="updateView()">
-                            <option value="all" selected>All Data</option>
-        <option value="pre">Before Schedule Change</option>
-        <option value="post">After Schedule Change</option>
-
-                </select>
-                <label for="line-select">Select Line:</label>
-                <select id="line-select" onchange="updateView()">
-                    <option value="all" selected>All Lines</option>
-        <option value="008">Line 008</option>
-        <option value="1">Line 1</option>
-        <option value="10">Line 10</option>
-        <option value="101">Line 101</option>
-        <option value="11">Line 11</option>
-        <option value="12">Line 12</option>
-        <option value="13">Line 13</option>
-        <option value="16">Line 16</option>
-        <option value="17">Line 17</option>
-        <option value="18">Line 18</option>
-        <option value="19">Line 19</option>
-        <option value="2">Line 2</option>
-        <option value="21">Line 21</option>
-        <option value="22">Line 22</option>
-        <option value="283">Line 283</option>
-        <option value="283A">Line 283A</option>
-        <option value="3">Line 3</option>
-        <option value="31">Line 31</option>
-        <option value="32">Line 32</option>
-        <option value="336">Line 336</option>
-        <option value="34">Line 34</option>
-        <option value="35">Line 35</option>
-        <option value="4">Line 4</option>
-        <option value="5">Line 5</option>
-        <option value="6">Line 6</option>
-        <option value="7">Line 7</option>
-        <option value="7601">Line 7601</option>
-        <option value="7611">Line 7611</option>
-        <option value="7612">Line 7612</option>
-        <option value="7613">Line 7613</option>
-        <option value="7625">Line 7625</option>
-        <option value="7633">Line 7633</option>
-        <option value="8">Line 8</option>
-        <option value="826">Line 826</option>
-        <option value="828">Line 828</option>
-        <option value="9">Line 9</option>
-        <option value="E">Line E</option>
-        <option value="N42">Line N42</option>
-        <option value="N84">Line N84</option>
-        <option value="N87">Line N87</option>
-        <option value="N88">Line N88</option>
-        <option value="N90">Line N90</option>
-        <option value="N91">Line N91</option>
-        <option value="N92">Line N92</option>
-        <option value="N93">Line N93</option>
-        <option value="N94">Line N94</option>
-        <option value="N95">Line N95</option>
-        <option value="N96">Line N96</option>
-        <option value="X11">Line X11</option>
-        <option value="X15">Line X15</option>
-        <option value="X82">Line X82</option>
-
-                </select>
-            </div>
-            <div class="map-container">
-                <iframe id="map-frame" src="lines/all/network_all.html"></iframe>
-            </div>
-            <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
-            
-            <div class="data-summary" id="data-summary">
-                <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
-            </div>
-            
-            <details class="data-table-container">
-                <summary>View Edge Data Table</summary>
-                <div class="table-wrapper">
-                    <table id="edge-table">
-                        <thead>
-                            <tr>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>Avg Delay (min)</th>
-                                <th>Trips</th>
-                            </tr>
-                        </thead>
-                        <tbody id="edge-table-body">
-                        </tbody>
-                    </table>
-                </div>
-            </details>
-        </div>
-
-        <div class="section">
-            <h2>Methodology</h2>
-            <p>
-                Data was collected continuously from the TRIAS real-time transit API, capturing planned and 
-                estimated arrival/departure times for all bus stops in the Tübingen network. Delays are 
-                calculated as the difference between estimated and planned times. The network graph is 
-                constructed by connecting consecutive stops within each journey, with edge weights representing 
-                the mean delay observed on that segment.
+            <img id="plot-ecdf" src="plots/all/delay_ecdf.png" alt="Delay ECDF" />
+            <p class="caption">Figure 2: Empirical CDF of delays with punctuality distribution.</p>
+          </div>
+          <div class="plot-item">
+            <p class="plot-description">
+              This plot reveals the temporal pattern of delays throughout the day. Peak hours 
+              (7-9 AM and 4-6 PM) typically show higher delays due to increased traffic and passenger 
+              volumes. The shaded area represents the 95% confidence interval.
             </p>
-        </div>
-
-        <div class="section">
-            <h2>Key Findings</h2>
-            <p>
-                The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), 
-                indicated by gray coloring in the network map. However, certain routes and time periods show 
-                consistently higher delays, particularly during peak hours and on routes passing through the 
-                city center. The interactive visualization allows exploration of delay patterns by individual 
-                bus line.
+            <img id="plot-hourly" src="plots/all/hourly_delay.png" alt="Hourly Delay Pattern" />
+            <p class="caption">Figure 3: Mean delay by hour of day with 95% confidence intervals.</p>
+          </div>
+          <div class="plot-item">
+            <p class="plot-description">
+              The histogram shows the overall distribution of delays. Most observations cluster around 
+              0-2 minutes, with a long right tail indicating occasional significant delays. Negative 
+              values represent early arrivals.
             </p>
-        </div>
-
-        <div class="section">
-            <h2>Delay Analysis</h2>
-            <p>
-                The following plots show the delay distribution and patterns for the selected time period.
-                Use the Time Period selector above to compare before and after the schedule change.
+            <img id="plot-distribution" src="plots/all/delay_distribution.png" alt="Delay Distribution" />
+            <p class="caption">Figure 4: Histogram of delay distribution.</p>
+          </div>
+          <div class="plot-item">
+            <p class="plot-description">
+              This chart identifies the bus lines with the highest average delays. Lines are colored 
+              by delay severity using a gradient from green (lower delays) to red (higher delays), 
+              helping to quickly identify problematic routes.
             </p>
-            
-            <div class="plot-grid">
-                <div class="plot-item">
-                    <img id="plot-ecdf" src="plots/all/delay_ecdf.png" alt="Delay ECDF">
-                    <p class="caption">Figure 2: Empirical CDF of delays with punctuality distribution.</p>
-                </div>
-                <div class="plot-item">
-                    <img id="plot-hourly" src="plots/all/hourly_delay.png" alt="Hourly Delay Pattern">
-                    <p class="caption">Figure 3: Mean delay by hour of day with 95% confidence intervals.</p>
-                </div>
-                <div class="plot-item">
-                    <img id="plot-distribution" src="plots/all/delay_distribution.png" alt="Delay Distribution">
-                    <p class="caption">Figure 4: Histogram of delay distribution.</p>
-                </div>
-                <div class="plot-item">
-                    <img id="plot-lines" src="plots/all/top_delayed_lines.png" alt="Top Delayed Lines">
-                    <p class="caption">Figure 5: Top 15 bus lines by mean delay.</p>
-                </div>
-            </div>
+            <img id="plot-lines" src="plots/all/top_delayed_lines.png" alt="Top Delayed Lines" />
+            <p class="caption">Figure 5: Top 15 bus lines by mean delay.</p>
+          </div>
         </div>
+      </div>
 
-        <div class="footer">
-            Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen
-        </div>
+      <div class="footer">Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen</div>
+      </div>
     </div>
 
     <script>
-        function updateView() {
-            const period = document.getElementById('period-select').value;
-            const line = document.getElementById('line-select').value;
-            
-            // Update iframe src with period-specific path
-            document.getElementById('map-frame').src = `lines/${period}/network_${line}.html`;
-            
-            // Update plot images for selected period
-            document.getElementById('plot-ecdf').src = `plots/${period}/delay_ecdf.png`;
-            document.getElementById('plot-hourly').src = `plots/${period}/hourly_delay.png`;
-            document.getElementById('plot-distribution').src = `plots/${period}/delay_distribution.png`;
-            document.getElementById('plot-lines').src = `plots/${period}/top_delayed_lines.png`;
-            
-            // Load data from period-specific path
-            loadData(period, line);
-        }
-        
-        function loadData(period, line) {
-            const dataUrl = `data/${period}/data_${line}.json`;
-            fetch(dataUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const summary = data.summary;
-                    document.getElementById('summary-text').textContent = 
-                        `${summary.total_edges} segments, ${summary.total_trips.toLocaleString()} trips observed, ` +
-                        `avg delay: ${summary.avg_delay} min, max delay: ${summary.max_delay} min`;
-                    
-                    const tbody = document.getElementById('edge-table-body');
-                    tbody.innerHTML = '';
-                    data.edges.forEach(edge => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
+      function updateView() {
+        const period = document.getElementById("period-select").value;
+        const line = document.getElementById("line-select").value;
+
+        // Update iframe src with period-specific path
+        document.getElementById("map-frame").src = `lines/${period}/network_${line}.html`;
+
+        // Update plot images for selected period
+        document.getElementById("plot-ecdf").src = `plots/${period}/delay_ecdf.png`;
+        document.getElementById("plot-hourly").src = `plots/${period}/hourly_delay.png`;
+        document.getElementById("plot-distribution").src = `plots/${period}/delay_distribution.png`;
+        document.getElementById("plot-lines").src = `plots/${period}/top_delayed_lines.png`;
+
+        // Load data from period-specific path
+        loadData(period, line);
+      }
+
+      function loadData(period, line) {
+        const dataUrl = `data/${period}/data_${line}.json`;
+        fetch(dataUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            const summary = data.summary;
+            document.getElementById("summary-text").textContent =
+              `${summary.total_edges} segments, ${summary.total_trips.toLocaleString()} trips observed, ` +
+              `avg delay: ${summary.avg_delay} min, max delay: ${summary.max_delay} min`;
+
+            const tbody = document.getElementById("edge-table-body");
+            tbody.innerHTML = "";
+            data.edges.forEach((edge) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
                             <td>${edge.from}</td>
                             <td>${edge.to}</td>
                             <td>${edge.delay_min}</td>
                             <td>${edge.trips.toLocaleString()}</td>
                         `;
-                        tbody.appendChild(row);
-                    });
-                })
-                .catch(err => {
-                    document.getElementById('summary-text').textContent = 'Data not available';
-                    document.getElementById('edge-table-body').innerHTML = '';
-                });
-        }
-        
-        // Initial load
-        loadData('all', 'all');
+              tbody.appendChild(row);
+            });
+          })
+          .catch((err) => {
+            document.getElementById("summary-text").textContent = "Data not available";
+            document.getElementById("edge-table-body").innerHTML = "";
+          });
+      }
+
+      // Initial load
+      loadData("all", "all");
     </script>
-</body>
+  </body>
 </html>
