@@ -415,6 +415,21 @@ def generate_index_html(lines: list):
             font-size: 0.8rem; 
             color: #888;
         }}
+        .plot-grid {{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }}
+        .plot-item {{
+            text-align: center;
+        }}
+        .plot-item img {{
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }}
     </style>
 </head>
 <body>
@@ -496,6 +511,33 @@ def generate_index_html(lines: list):
             </p>
         </div>
 
+        <div class="section">
+            <h2>Delay Analysis</h2>
+            <p>
+                The following plots show the delay distribution and patterns for the selected time period.
+                Use the Time Period selector above to compare before and after the schedule change.
+            </p>
+            
+            <div class="plot-grid">
+                <div class="plot-item">
+                    <img id="plot-ecdf" src="plots/all/delay_ecdf.png" alt="Delay ECDF">
+                    <p class="caption">Figure 2: Empirical CDF of delays with punctuality distribution.</p>
+                </div>
+                <div class="plot-item">
+                    <img id="plot-hourly" src="plots/all/hourly_delay.png" alt="Hourly Delay Pattern">
+                    <p class="caption">Figure 3: Mean delay by hour of day with 95% confidence intervals.</p>
+                </div>
+                <div class="plot-item">
+                    <img id="plot-distribution" src="plots/all/delay_distribution.png" alt="Delay Distribution">
+                    <p class="caption">Figure 4: Histogram of delay distribution.</p>
+                </div>
+                <div class="plot-item">
+                    <img id="plot-lines" src="plots/all/top_delayed_lines.png" alt="Top Delayed Lines">
+                    <p class="caption">Figure 5: Top 15 bus lines by mean delay.</p>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen
         </div>
@@ -508,6 +550,12 @@ def generate_index_html(lines: list):
             
             // Update iframe src with period-specific path
             document.getElementById('map-frame').src = `lines/${{period}}/network_${{line}}.html`;
+            
+            // Update plot images for selected period
+            document.getElementById('plot-ecdf').src = `plots/${{period}}/delay_ecdf.png`;
+            document.getElementById('plot-hourly').src = `plots/${{period}}/hourly_delay.png`;
+            document.getElementById('plot-distribution').src = `plots/${{period}}/delay_distribution.png`;
+            document.getElementById('plot-lines').src = `plots/${{period}}/top_delayed_lines.png`;
             
             // Load data from period-specific path
             loadData(period, line);
