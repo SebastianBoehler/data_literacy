@@ -243,24 +243,45 @@ def main():
     ax.legend(fontsize=7, loc='upper right')
     ax.tick_params(axis='x', rotation=45)
     
-    # Plot 2: Bar chart by period - mean delay with CI (with legend instead of x-labels)
+    # Plot 2: Hourly delay pattern comparing pre/post schedule change
     ax = axes_arr[1]
-    periods = results_df['period'].str.replace(r'^\d_', '', regex=True)
-    # Legend labels
-    legend_labels = ['Pre-Change', 'Post-Change (Pre-Holiday)', 'Holiday', 'Post-Holiday']
     
-    # Create bars with labels for legend
-    for i, (mean, ci_low, ci_high, color, label) in enumerate(zip(
-            results_df['mean'], results_df['ci95_low'], results_df['ci95_high'], 
-            colors_periods, legend_labels)):
-        ax.bar(i, mean, color=color, alpha=0.8, edgecolor='black', linewidth=0.5, label=label)
-        ax.errorbar(i, mean, yerr=[[mean - ci_low], [ci_high - mean]], 
-                    fmt='none', color='black', capsize=4, linewidth=1)
+    # Split data by schedule change
+    df_pre = df[df['period'] == '1_Before_Schedule_Change'].copy()
+    df_post = df[df['period'].isin(['2_After_Change_Before_Holiday', '4_After_Holiday'])].copy()
     
-    ax.set_xticks([])  # Remove x-tick labels, use legend instead
-    ax.set_ylabel('Mean Delay (min)')
-    ax.set_title('(B) Mean Delay by Period (95% CI)')
+    # Compute hourly stats for each period
+    df_pre['hour'] = df_pre[ts_col].dt.hour
+    df_post['hour'] = df_post[ts_col].dt.hour
+    
+    pre_hourly = df_pre.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+    pre_hourly['ci95'] = 1.96 * pre_hourly['std'] / np.sqrt(pre_hourly['count'])
+    
+    post_hourly = df_post.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+    post_hourly['ci95'] = 1.96 * post_hourly['std'] / np.sqrt(post_hourly['count'])
+    
+    # Pre schedule change (squares, red)
+    ax.fill_between(pre_hourly['hour'], 
+                    pre_hourly['mean'] - pre_hourly['ci95'],
+                    pre_hourly['mean'] + pre_hourly['ci95'],
+                    alpha=0.15, color='#d65f5f')
+    ax.plot(pre_hourly['hour'], pre_hourly['mean'], 's--', color='#d65f5f', 
+            linewidth=1.5, markersize=5, alpha=0.8, label=f'Pre-Change (μ={df_pre["delay_minutes"].mean():.2f})')
+    
+    # Post schedule change (triangles, green)
+    ax.fill_between(post_hourly['hour'], 
+                    post_hourly['mean'] - post_hourly['ci95'],
+                    post_hourly['mean'] + post_hourly['ci95'],
+                    alpha=0.15, color='#6acc64')
+    ax.plot(post_hourly['hour'], post_hourly['mean'], '^-', color='#6acc64', 
+            linewidth=1.5, markersize=5, alpha=0.8, label=f'Post-Change (μ={df_post["delay_minutes"].mean():.2f})')
+    
     ax.axhline(0, color='gray', linestyle='-', alpha=0.3)
+    ax.set_xlabel('Hour of Day')
+    ax.set_ylabel('Mean Delay (min)')
+    ax.set_title('(B) Hourly Delay Pattern: Pre vs Post Schedule Change')
+    ax.set_xticks(range(0, 24, 2))
+    ax.grid(alpha=0.3)
     ax.legend(fontsize=7, loc='upper right')
     
     plt.tight_layout()

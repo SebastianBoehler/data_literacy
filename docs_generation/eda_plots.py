@@ -233,8 +233,12 @@ def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label:
     print(f"  Saved: {output_path.name}")
 
 
-def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
-    """Generate combined 2x2 EDA figure with subplots A, B, C, D."""
+def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: str, output_dir: Path,
+                                  df_pre: pd.DataFrame = None, df_post: pd.DataFrame = None):
+    """Generate combined 2x2 EDA figure with subplots A, B, C, D.
+    
+    For panels A and B, shows pre/post schedule change comparison with overlays.
+    """
     from matplotlib.colors import LinearSegmentedColormap
     
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -243,8 +247,9 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax = axes[0, 0]
     delays = df['delay_minutes'].dropna()
     
-    ax.hist(delays, bins=50, range=(-5, 20), color='steelblue', edgecolor='white', alpha=0.8)
-    ax.axvline(0, color='darkred', linestyle='--', linewidth=1.5, label='On Time')
+    # Main histogram (current period data only)
+    ax.hist(delays, bins=50, range=(-1, 20), color='steelblue', edgecolor='white', alpha=0.8)
+    
     ax.axvline(delays.mean(), color='orange', linestyle='-', linewidth=1.5, label=f'Mean: {delays.mean():.2f} min')
     ax.axvline(delays.median(), color='green', linestyle='-', linewidth=1.5, label=f'Median: {delays.median():.2f} min')
     
@@ -253,13 +258,15 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax.set_title('(A) Delay Distribution', fontweight='bold')
     ax.legend(loc='upper right', fontsize=8)
     ax.grid(alpha=0.3)
+    ax.set_yscale('log')
+    ax.set_xlim(-1, 20)
     
     stats_text = f'n = {len(delays):,}\nStd = {delays.std():.2f} min'
     ax.text(0.98, 0.75, stats_text, transform=ax.transAxes, fontsize=8,
             verticalalignment='top', horizontalalignment='right',
             bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
     
-    # --- Panel B: Hourly Delay Pattern ---
+    # --- Panel B: Hourly Delay Pattern with pre/post comparison ---
     ax = axes[0, 1]
     df_hourly = df.copy()
     df_hourly['hour'] = pd.to_datetime(df_hourly['timestamp']).dt.hour
@@ -267,18 +274,46 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     hourly_stats = df_hourly.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
     hourly_stats['ci95'] = 1.96 * hourly_stats['std'] / np.sqrt(hourly_stats['count'])
     
+    # Overlay pre/post if available
+    if df_pre is not None and df_post is not None:
+        df_pre_h = df_pre.copy()
+        df_pre_h['hour'] = pd.to_datetime(df_pre_h['timestamp']).dt.hour
+        pre_stats = df_pre_h.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+        pre_stats['ci95'] = 1.96 * pre_stats['std'] / np.sqrt(pre_stats['count'])
+        
+        df_post_h = df_post.copy()
+        df_post_h['hour'] = pd.to_datetime(df_post_h['timestamp']).dt.hour
+        post_stats = df_post_h.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+        post_stats['ci95'] = 1.96 * post_stats['std'] / np.sqrt(post_stats['count'])
+        
+        # Pre schedule change (red, lower opacity)
+        ax.fill_between(pre_stats['hour'], 
+                        pre_stats['mean'] - pre_stats['ci95'],
+                        pre_stats['mean'] + pre_stats['ci95'],
+                        alpha=0.15, color='#e74c3c')
+        ax.plot(pre_stats['hour'], pre_stats['mean'], 'o--', color='#e74c3c', linewidth=1.5, markersize=4, alpha=0.7, label='Pre')
+        
+        # Post schedule change (green, lower opacity)
+        ax.fill_between(post_stats['hour'], 
+                        post_stats['mean'] - post_stats['ci95'],
+                        post_stats['mean'] + post_stats['ci95'],
+                        alpha=0.15, color='#2ecc71')
+        ax.plot(post_stats['hour'], post_stats['mean'], 'o--', color='#2ecc71', linewidth=1.5, markersize=4, alpha=0.7, label='Post')
+    
+    # Main line (all data) - on top
     ax.fill_between(hourly_stats['hour'], 
                     hourly_stats['mean'] - hourly_stats['ci95'],
                     hourly_stats['mean'] + hourly_stats['ci95'],
                     alpha=0.3, color='steelblue')
-    ax.plot(hourly_stats['hour'], hourly_stats['mean'], 'o-', color='steelblue', linewidth=2, markersize=5)
-    ax.axhline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
+    ax.plot(hourly_stats['hour'], hourly_stats['mean'], 'o-', color='steelblue', linewidth=2, markersize=5, label='All')
+    ax.axhline(0, color='gray', linestyle='--', linewidth=1, alpha=0.5)
     
     ax.set_xlabel('Hour of Day')
     ax.set_ylabel('Mean Delay (minutes)')
     ax.set_title('(B) Delay by Hour of Day', fontweight='bold')
     ax.set_xticks(range(0, 24, 2))
     ax.grid(alpha=0.3)
+    ax.legend(loc='upper right', fontsize=8)
     
     # --- Panel C: ECDF ---
     ax = axes[1, 0]
@@ -345,6 +380,12 @@ def main():
     if df is None:
         return
     
+    # Pre-compute pre/post dataframes for comparison overlays
+    df_pre = filter_by_period(df, 'pre')
+    df_post = filter_by_period(df, 'post')
+    print(f"Pre-schedule records: {len(df_pre):,}")
+    print(f"Post-schedule records: {len(df_post):,}")
+    
     # Generate plots for each period
     for period, config in PERIODS.items():
         print(f"\n{'='*50}")
@@ -364,7 +405,9 @@ def main():
             continue
         
         # Generate combined figure with all 4 subplots
-        generate_combined_eda_figure(period_df, period, config['label'], output_dir)
+        # Pass pre/post data for comparison overlays in panels A and B
+        generate_combined_eda_figure(period_df, period, config['label'], output_dir,
+                                     df_pre=df_pre, df_post=df_post)
     
     print("\n" + "=" * 70)
     print(f"Done! Generated plots for {len(PERIODS)} periods in docs/plots/")
