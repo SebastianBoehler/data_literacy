@@ -110,7 +110,7 @@
           z-index: 1000;
           margin-top: 0;
           padding-top: 4rem;
-          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
           transition: left 0.3s ease;
           overflow-y: auto;
         }
@@ -124,7 +124,7 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,0.5);
+          background: rgba(0, 0, 0, 0.5);
           z-index: 999;
         }
         .mobile-overlay.open {
@@ -334,232 +334,250 @@
         <div class="section" id="overview">
           <h2>Overview</h2>
           <p>
-            This project analyzes public transit delays in the Tübingen bus network using real-time data 
-            collected from the TRIAS API between November 2025 and January 2026. The visualization below 
-            shows the network topology with edges colored by average delay: gray indicates punctual service, 
-            while yellow to red indicates increasing delays.
+            This project analyzes public transit delays in the Tübingen bus network using real-time data collected from the TRIAS API between November 2025 and
+            January 2026. The visualization below shows the network topology with edges colored by average delay: gray indicates punctual service, while yellow
+            to red indicates increasing delays.
           </p>
         </div>
 
-      <div class="section" id="network-map">
-        <h2>Interactive Network Map</h2>
-        <div class="controls">
-          <label for="line-select">Select Line:</label>
-          <select id="line-select" onchange="updateView()">
-            <option value="all" selected>All Lines</option>
-            <option value="1">Line 1</option>
-            <option value="2">Line 2</option>
-            <option value="3">Line 3</option>
-            <option value="4">Line 4</option>
-            <option value="5">Line 5</option>
-            <option value="6">Line 6</option>
-            <option value="7">Line 7</option>
-            <option value="8">Line 8</option>
-            <option value="9">Line 9</option>
-            <option value="10">Line 10</option>
-            <option value="11">Line 11</option>
-            <option value="12">Line 12</option>
-            <option value="13">Line 13</option>
-            <option value="16">Line 16</option>
-            <option value="17">Line 17</option>
-            <option value="18">Line 18</option>
-            <option value="19">Line 19</option>
-            <option value="21">Line 21</option>
-            <option value="22">Line 22</option>
-            <option value="31">Line 31</option>
-            <option value="32">Line 32</option>
-            <option value="34">Line 34</option>
-            <option value="35">Line 35</option>
-            <option value="826">Line 826</option>
-            <option value="828">Line 828</option>
-            <option value="7601">Line 7601</option>
-            <option value="7611">Line 7611</option>
-            <option value="7612">Line 7612</option>
-            <option value="7613">Line 7613</option>
-            <option value="7625">Line 7625</option>
-            <option value="N88">Line N88</option>
-            <option value="N91">Line N91</option>
-            <option value="N92">Line N92</option>
-            <option value="N93">Line N93</option>
-            <option value="N94">Line N94</option>
-            <option value="N96">Line N96</option>
-            <option value="X15">Line X15</option>
-          </select>
+        <div class="section" id="network-map">
+          <h2>Interactive Network Map</h2>
+          <div class="controls">
+            <label for="line-select">Select Line:</label>
+            <select id="line-select" onchange="updateView()">
+              <option value="all" selected>All Lines</option>
+              <option value="1">Line 1</option>
+              <option value="2">Line 2</option>
+              <option value="3">Line 3</option>
+              <option value="4">Line 4</option>
+              <option value="5">Line 5</option>
+              <option value="6">Line 6</option>
+              <option value="7">Line 7</option>
+              <option value="8">Line 8</option>
+              <option value="9">Line 9</option>
+              <option value="10">Line 10</option>
+              <option value="11">Line 11</option>
+              <option value="12">Line 12</option>
+              <option value="13">Line 13</option>
+              <option value="16">Line 16</option>
+              <option value="17">Line 17</option>
+              <option value="18">Line 18</option>
+              <option value="19">Line 19</option>
+              <option value="21">Line 21</option>
+              <option value="22">Line 22</option>
+              <option value="31">Line 31</option>
+              <option value="32">Line 32</option>
+              <option value="34">Line 34</option>
+              <option value="35">Line 35</option>
+              <option value="826">Line 826</option>
+              <option value="828">Line 828</option>
+              <option value="7601">Line 7601</option>
+              <option value="7611">Line 7611</option>
+              <option value="7612">Line 7612</option>
+              <option value="7613">Line 7613</option>
+              <option value="7625">Line 7625</option>
+              <option value="N88">Line N88</option>
+              <option value="N91">Line N91</option>
+              <option value="N92">Line N92</option>
+              <option value="N93">Line N93</option>
+              <option value="N94">Line N94</option>
+              <option value="N96">Line N96</option>
+              <option value="X15">Line X15</option>
+            </select>
+          </div>
+          <div class="map-container">
+            <div
+              id="map-placeholder"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                background: #f5f5f5;
+                color: #666;
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+              "
+            >
+              <p style="font-size: 1.1rem; margin-bottom: 0.5rem"><strong>Select a specific line to view the network map</strong></p>
+              <p style="font-size: 0.9rem; color: #888">The combined view of all lines (230 stops, 2,900+ edges) is too complex for interactive rendering.</p>
+            </div>
+            <iframe id="map-frame" src="" style="display: none"></iframe>
+          </div>
+          <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
+          <p class="plot-description" style="margin-top: 0.5rem; font-size: 0.85rem; color: #777">
+            <strong>Note:</strong> Some stops outside Tübingen (e.g., Betzingen, Jettenburg, parts of Reutlingen) may not be displayed as our data collection
+            focused on stops in and close to Tübingen.
+          </p>
+
+          <div class="data-summary" id="data-summary">
+            <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
+          </div>
+
+          <details class="data-table-container">
+            <summary>View Edge Data Table</summary>
+            <div class="table-wrapper">
+              <table id="edge-table">
+                <thead>
+                  <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Avg Delay (min)</th>
+                    <th>Trips</th>
+                  </tr>
+                </thead>
+                <tbody id="edge-table-body"></tbody>
+              </table>
+            </div>
+          </details>
         </div>
-        <div class="map-container">
-          <div id="map-placeholder" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; color: #666; flex-direction: column; text-align: center; padding: 2rem;">
-            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Select a specific line to view the network map</strong></p>
-            <p style="font-size: 0.9rem; color: #888;">The combined view of all lines (230 stops, 2,900+ edges) is too complex for interactive rendering.</p>
-          </div>
-          <iframe id="map-frame" src="" style="display: none;"></iframe>
-        </div>
-        <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
-        <p class="plot-description" style="margin-top: 0.5rem; font-size: 0.85rem; color: #777;">
-          <strong>Note:</strong> Some stops outside Tübingen (e.g., Betzingen, Jettenburg, parts of Reutlingen) may not be displayed 
-          as our data collection focused on stops in and close to Tübingen.
-        </p>
 
-        <div class="data-summary" id="data-summary">
-          <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
+        <div class="section" id="methodology">
+          <h2>Methodology</h2>
+          <p>
+            Data was collected continuously from the TRIAS real-time transit API, capturing planned and estimated arrival/departure times for all bus stops in
+            the Tübingen network. Delays are calculated as the difference between estimated and planned times. The network graph is constructed by connecting
+            consecutive stops within each journey, with edge weights representing the mean delay observed on that segment.
+          </p>
         </div>
 
-        <details class="data-table-container">
-          <summary>View Edge Data Table</summary>
-          <div class="table-wrapper">
-            <table id="edge-table">
-              <thead>
-                <tr>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Avg Delay (min)</th>
-                  <th>Trips</th>
-                </tr>
-              </thead>
-              <tbody id="edge-table-body"></tbody>
-            </table>
-          </div>
-        </details>
-      </div>
+        <div class="section" id="findings">
+          <h2>Key Findings</h2>
+          <p>
+            The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), indicated by gray coloring in the network map.
+            However, certain routes and time periods show consistently higher delays, particularly during peak hours and on routes passing through the city
+            center. The interactive visualization allows exploration of delay patterns by individual bus line.
+          </p>
+        </div>
 
-      <div class="section" id="methodology">
-        <h2>Methodology</h2>
-        <p>
-          Data was collected continuously from the TRIAS real-time transit API, capturing planned and estimated arrival/departure times for all bus stops in the
-          Tübingen network. Delays are calculated as the difference between estimated and planned times. The network graph is constructed by connecting
-          consecutive stops within each journey, with edge weights representing the mean delay observed on that segment.
-        </p>
-      </div>
+        <div class="section" id="delay-analysis">
+          <h2>Delay Analysis</h2>
+          <p>
+            The following plots show the delay distribution and patterns for the selected time period. Use the Time Period selector above to compare before and
+            after the schedule change.
+          </p>
 
-      <div class="section" id="findings">
-        <h2>Key Findings</h2>
-        <p>
-          The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), indicated by gray coloring in the network map.
-          However, certain routes and time periods show consistently higher delays, particularly during peak hours and on routes passing through the city
-          center. The interactive visualization allows exploration of delay patterns by individual bus line.
-        </p>
-      </div>
+          <div class="plot-grid">
+            <div class="plot-item">
+              <h3>ECDF vs Histogram Comparison</h3>
+              <p class="plot-description">
+                Left: Traditional histogram showing delay counts. Right: Empirical CDF with 95% DKW confidence bands. ECDFs allow direct probability readings
+                (e.g., P(delay ≤ 0) = 34.6%) without arbitrary bin choices.
+              </p>
+              <img src="plots/all/ecdf_vs_histogram_comparison.png" alt="ECDF vs Histogram Comparison" />
+            </div>
 
-      <div class="section" id="delay-analysis">
-        <h2>Delay Analysis</h2>
-        <p>
-          The following plots show the delay distribution and patterns for the selected time period. Use the Time Period selector above to compare before and
-          after the schedule change.
-        </p>
+            <div class="plot-item">
+              <h3>Combined Overview</h3>
+              <p class="plot-description">
+                <strong>(A)</strong> Delay distribution histogram. <strong>(B)</strong> Hourly patterns with CI. <strong>(C)</strong> Empirical CDF with 95% DKW
+                bands. <strong>(D)</strong> Top 15 delayed lines.
+              </p>
+              <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
+            </div>
 
-        <div class="plot-grid">
-          <div class="plot-item">
-            <h3>ECDF vs Histogram Comparison</h3>
-            <p class="plot-description">
-              Left: Traditional histogram showing delay counts. Right: Empirical CDF with 95% DKW confidence bands.
-              ECDFs allow direct probability readings (e.g., P(delay ≤ 0) = 34.6%) without arbitrary bin choices.
-            </p>
-            <img src="plots/all/ecdf_vs_histogram_comparison.png" alt="ECDF vs Histogram Comparison" />
-          </div>
+            <div class="plot-item">
+              <h3>Late Rate vs Mean Delay Comparison</h3>
+              <p class="plot-description">
+                Left: Mean delay by hour (sensitive to outliers). Right: Late rate P(delay > 2 min) by hour. Late rate is more interpretable and robust for
+                skewed data. Both show 95% bootstrap CI.
+              </p>
+              <img src="plots/all/late_rate_vs_mean_comparison.png" alt="Late Rate vs Mean Comparison" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Combined Overview</h3>
-            <p class="plot-description">
-              <strong>(A)</strong> Delay distribution histogram.
-              <strong>(B)</strong> Hourly patterns with CI.
-              <strong>(C)</strong> Empirical CDF with 95% DKW bands.
-              <strong>(D)</strong> Top 15 delayed lines.
-            </p>
-            <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
-          </div>
+            <div class="plot-item">
+              <h3>Late Rate by Hour (Bootstrap CI)</h3>
+              <p class="plot-description">
+                Probability of a bus being more than 2 minutes late, by hour of day. Shaded area shows 95% bootstrap confidence interval. More interpretable
+                than mean delay for skewed data.
+              </p>
+              <img id="plot-late-rate" src="plots/all/late_rate_hourly.png" alt="Late Rate by Hour" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Late Rate vs Mean Delay Comparison</h3>
-            <p class="plot-description">
-              Left: Mean delay by hour (sensitive to outliers). Right: Late rate P(delay > 2 min) by hour.
-              Late rate is more interpretable and robust for skewed data. Both show 95% bootstrap CI.
-            </p>
-            <img src="plots/all/late_rate_vs_mean_comparison.png" alt="Late Rate vs Mean Comparison" />
-          </div>
+            <div class="plot-item">
+              <h3>Weather Effect (Bootstrap CI)</h3>
+              <p class="plot-description">
+                Late rate by temperature range with 95% bootstrap confidence intervals. Sample sizes shown above each bar. Colder temperatures appear associated
+                with fewer delays.
+              </p>
+              <img id="plot-weather" src="plots/all/weather_effect.png" alt="Weather Effect on Delays" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Late Rate by Hour (Bootstrap CI)</h3>
-            <p class="plot-description">
-              Probability of a bus being more than 2 minutes late, by hour of day. 
-              Shaded area shows 95% bootstrap confidence interval. More interpretable than mean delay for skewed data.
-            </p>
-            <img id="plot-late-rate" src="plots/all/late_rate_hourly.png" alt="Late Rate by Hour" />
-          </div>
+            <div class="plot-item">
+              <h3>Weather Effect (Full Version)</h3>
+              <p class="plot-description">Extended weather effect analysis with more temperature bins and sample size annotations.</p>
+              <img src="plots/all/weather_effect_with_ci.png" alt="Weather Effect Full" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Weather Effect (Bootstrap CI)</h3>
-            <p class="plot-description">
-              Late rate by temperature range with 95% bootstrap confidence intervals.
-              Sample sizes shown above each bar. Colder temperatures appear associated with fewer delays.
-            </p>
-            <img id="plot-weather" src="plots/all/weather_effect.png" alt="Weather Effect on Delays" />
-          </div>
+            <div class="plot-item">
+              <h3>Schedule Change Comparison (ECDF)</h3>
+              <p class="plot-description">
+                Empirical cumulative distribution functions comparing delay distributions before and after the Dec 14, 2025 schedule change. Shaded bands show
+                95% DKW confidence intervals. Orange curve (after) shifted left indicates improvement.
+              </p>
+              <img id="plot-schedule-ecdf" src="plots/all/schedule_change_ecdf.png" alt="Schedule Change ECDF Comparison" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Weather Effect (Full Version)</h3>
-            <p class="plot-description">
-              Extended weather effect analysis with more temperature bins and sample size annotations.
-            </p>
-            <img src="plots/all/weather_effect_with_ci.png" alt="Weather Effect Full" />
-          </div>
+            <div class="plot-item">
+              <h3>Schedule Change (Full Comparison)</h3>
+              <p class="plot-description">
+                Two-panel comparison: Left shows ECDF overlay, Right shows key metrics (on-time rate, late rate, median) with bootstrap confidence intervals.
+                Late rate dropped from 31.5% to 22.6% after schedule change.
+              </p>
+              <img src="plots/all/schedule_change_ecdf_comparison.png" alt="Schedule Change Full Comparison" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Schedule Change Comparison (ECDF)</h3>
-            <p class="plot-description">
-              Empirical cumulative distribution functions comparing delay distributions before and after 
-              the Dec 14, 2025 schedule change. Shaded bands show 95% DKW confidence intervals.
-              Orange curve (after) shifted left indicates improvement.
-            </p>
-            <img id="plot-schedule-ecdf" src="plots/all/schedule_change_ecdf.png" alt="Schedule Change ECDF Comparison" />
-          </div>
+            <div class="plot-item">
+              <h3>Quantile Analysis</h3>
+              <p class="plot-description">
+                Delay percentiles (50th, 75th, 90th, 95th, 99th) with 95% bootstrap CIs. More robust than means for skewed data. Key insight: 90% of buses
+                arrive within 5.1 min of schedule. 90th percentile improved from 7.3 to 4.1 min after schedule change.
+              </p>
+              <img src="plots/all/quantile_analysis.png" alt="Quantile Analysis" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Schedule Change (Full Comparison)</h3>
-            <p class="plot-description">
-              Two-panel comparison: Left shows ECDF overlay, Right shows key metrics (on-time rate, late rate, median)
-              with bootstrap confidence intervals. Late rate dropped from 31.5% to 22.6% after schedule change.
-            </p>
-            <img src="plots/all/schedule_change_ecdf_comparison.png" alt="Schedule Change Full Comparison" />
-          </div>
+            <div class="plot-item">
+              <h3>Top Stops by Late Rate</h3>
+              <p class="plot-description">
+                Spatial heterogeneity: which stops have the highest probability of delays? Tübingen Uni/Neue Aula has ~95% late rate. Sample sizes shown - some
+                stops have wide CIs due to fewer observations.
+              </p>
+              <img src="plots/all/top_stops_late_rate.png" alt="Top Stops by Late Rate" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Quantile Analysis</h3>
-            <p class="plot-description">
-              Delay percentiles (50th, 75th, 90th, 95th, 99th) with 95% bootstrap CIs. More robust than means for skewed data.
-              Key insight: 90% of buses arrive within 5.1 min of schedule. 90th percentile improved from 7.3 to 4.1 min after schedule change.
-            </p>
-            <img src="plots/all/quantile_analysis.png" alt="Quantile Analysis" />
-          </div>
+            <div class="plot-item">
+              <h3>Day of Week Effect</h3>
+              <p class="plot-description">
+                Left: Late rate by day of week (blue=weekday, orange=weekend). Tuesday/Thursday have highest delays. Right: Weekday vs weekend comparison shows
+                weekdays are 1.9 percentage points more delayed than weekends.
+              </p>
+              <img src="plots/all/day_of_week_effect.png" alt="Day of Week Effect" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Top Stops by Late Rate</h3>
-            <p class="plot-description">
-              Spatial heterogeneity: which stops have the highest probability of delays?
-              Tübingen Uni/Neue Aula has ~95% late rate. Sample sizes shown - some stops have wide CIs due to fewer observations.
-            </p>
-            <img src="plots/all/top_stops_late_rate.png" alt="Top Stops by Late Rate" />
-          </div>
+            <div class="plot-item">
+              <h3>Outlier Analysis</h3>
+              <p class="plot-description">
+                Documentation of extreme delays (>30 min). Only 0.85% of records are extreme outliers. Jan 25, 2026 had the most disruptions (253 records).
+                These outliers inflate mean statistics but not medians.
+              </p>
+              <img src="plots/all/outlier_analysis.png" alt="Outlier Analysis" />
+            </div>
 
-          <div class="plot-item">
-            <h3>Day of Week Effect</h3>
-            <p class="plot-description">
-              Left: Late rate by day of week (blue=weekday, orange=weekend). Tuesday/Thursday have highest delays.
-              Right: Weekday vs weekend comparison shows weekdays are 1.9 percentage points more delayed than weekends.
-            </p>
-            <img src="plots/all/day_of_week_effect.png" alt="Day of Week Effect" />
-          </div>
-
-          <div class="plot-item">
-            <h3>Outlier Analysis</h3>
-            <p class="plot-description">
-              Documentation of extreme delays (>30 min). Only 0.85% of records are extreme outliers.
-              Jan 25, 2026 had the most disruptions (253 records). These outliers inflate mean statistics but not medians.
-            </p>
-            <img src="plots/all/outlier_analysis.png" alt="Outlier Analysis" />
+            <div class="plot-item">
+              <h3>Delay Accumulation Along Route</h3>
+              <p class="plot-description">
+                Analysis of whether delays accumulate as buses progress through their routes.
+                <strong>(A)</strong> Mean delay by stop position with 95% CI shows delays increase from ~1.4 min at stop 1 to ~2.5-3.2 min by stops 12-15.
+                <strong>(B)</strong> Scatter plot with linear regression (r = 0.16) confirms weak positive correlation between stop position and delay
+                magnitude.
+              </p>
+              <img id="plot-accumulation" src="plots/all/delay_accumulation.png" alt="Delay Accumulation Analysis" />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="footer">Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen</div>
+        <div class="footer">Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen</div>
       </div>
     </div>
 
@@ -584,6 +602,7 @@
         document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
         document.getElementById("plot-late-rate").src = `plots/${period}/late_rate_hourly.png`;
         document.getElementById("plot-weather").src = `plots/${period}/weather_effect.png`;
+        document.getElementById("plot-accumulation").src = `plots/${period}/delay_accumulation.png`;
         // Schedule change ECDF is always from 'all' (it compares pre vs post)
         document.getElementById("plot-schedule-ecdf").src = `plots/all/schedule_change_ecdf.png`;
 
@@ -619,8 +638,8 @@
           })
           .catch((err) => {
             console.error("Failed to load data:", err);
-            document.getElementById("summary-text").textContent = 
-              window.location.protocol === "file:" 
+            document.getElementById("summary-text").textContent =
+              window.location.protocol === "file:"
                 ? "Data loading requires a web server (use GitHub Pages or run: python -m http.server)"
                 : "Data not available";
             document.getElementById("edge-table-body").innerHTML = "";
@@ -640,7 +659,7 @@
       }
 
       // Close menu when clicking a nav link on mobile
-      document.querySelectorAll(".nav-sidebar a").forEach(link => {
+      document.querySelectorAll(".nav-sidebar a").forEach((link) => {
         link.addEventListener("click", () => {
           if (window.innerWidth <= 768) {
             toggleMobileMenu();

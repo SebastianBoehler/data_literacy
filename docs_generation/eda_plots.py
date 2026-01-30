@@ -483,6 +483,91 @@ def generate_weather_effect(df: pd.DataFrame, period: str, period_label: str, ou
     print(f"  Saved: {output_path.name}")
 
 
+def generate_delay_accumulation_plot(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
+    """Generate delay accumulation along route plot.
+    
+    Shows how delays increase as buses progress through their routes,
+    using stop_sequence as a proxy for route position.
+    """
+    
+    # Filter valid data
+    valid = df.dropna(subset=['stop_sequence', 'delay_minutes'])
+    valid = valid[valid['stop_sequence'] >= 1]
+    
+    if len(valid) < 100:
+        print(f"  Skipped delay_accumulation.png (insufficient data)")
+        return
+    
+    # Calculate stats by stop sequence
+    seq_stats = valid.groupby('stop_sequence')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+    seq_stats = seq_stats[seq_stats['count'] >= 50]  # filter small samples
+    seq_stats['ci95'] = 1.96 * seq_stats['std'] / np.sqrt(seq_stats['count'])
+    
+    # Calculate correlation
+    corr = valid['stop_sequence'].corr(valid['delay_minutes'])
+    
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    
+    # --- Panel A: Mean delay by stop position ---
+    ax = axes[0]
+    ax.fill_between(seq_stats['stop_sequence'], 
+                    seq_stats['mean'] - seq_stats['ci95'],
+                    seq_stats['mean'] + seq_stats['ci95'],
+                    alpha=0.3, color='steelblue', label='95% CI')
+    ax.plot(seq_stats['stop_sequence'], seq_stats['mean'], 'o-', 
+            color='steelblue', linewidth=2, markersize=5, label='Mean delay')
+    ax.axhline(0, color='gray', linestyle='--', linewidth=1, alpha=0.5)
+    
+    ax.set_xlabel('Stop Position in Route')
+    ax.set_ylabel('Mean Delay (minutes)')
+    ax.set_title('(A) Delay Accumulation Along Route', fontweight='bold')
+    ax.legend(loc='upper left', fontsize=9)
+    ax.grid(alpha=0.3)
+    
+    # Add correlation annotation
+    ax.text(0.98, 0.95, f'r = {corr:.3f}', transform=ax.transAxes, fontsize=10,
+            verticalalignment='top', horizontalalignment='right',
+            bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
+    
+    # --- Panel B: Scatter with regression line ---
+    ax = axes[1]
+    sample = valid.sample(min(5000, len(valid)), random_state=42)
+    ax.scatter(sample['stop_sequence'], sample['delay_minutes'],
+               alpha=0.1, s=8, color='steelblue')
+    
+    # Add regression line
+    z = np.polyfit(valid['stop_sequence'], valid['delay_minutes'], 1)
+    p = np.poly1d(z)
+    x_line = np.linspace(1, seq_stats['stop_sequence'].max(), 100)
+    ax.plot(x_line, p(x_line), 'r-', linewidth=2.5, label=f'Linear fit (r = {corr:.3f})')
+    ax.axhline(0, color='gray', linestyle='--', linewidth=1, alpha=0.5)
+    
+    ax.set_xlabel('Stop Position in Route')
+    ax.set_ylabel('Delay (minutes)')
+    ax.set_title('(B) Delay vs Stop Position (Sample)', fontweight='bold')
+    ax.set_ylim(-5, 30)
+    ax.legend(loc='upper left', fontsize=9)
+    ax.grid(alpha=0.3)
+    
+    # Add stats annotation
+    stats_text = (f'n = {len(valid):,}\n'
+                  f'Slope = {z[0]:.3f} min/stop\n'
+                  f'Mean at stop 1: {seq_stats[seq_stats["stop_sequence"]==1]["mean"].values[0]:.2f} min' 
+                  if 1 in seq_stats['stop_sequence'].values else f'n = {len(valid):,}')
+    ax.text(0.98, 0.95, stats_text, transform=ax.transAxes, fontsize=9,
+            verticalalignment='top', horizontalalignment='right',
+            bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
+    
+    # Add overall title
+    fig.suptitle(f'Delay Accumulation Analysis — {period_label}', fontsize=12, fontweight='bold', y=1.02)
+    
+    plt.tight_layout()
+    output_path = output_dir / "delay_accumulation.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
 def generate_schedule_change_ecdf(df_pre: pd.DataFrame, df_post: pd.DataFrame, output_dir: Path):
     """Generate pre/post schedule change ECDF comparison."""
     
@@ -585,6 +670,7 @@ def main():
         # Generate additional uncertainty-aware plots
         generate_late_rate_hourly(period_df, period, config['label'], output_dir)
         generate_weather_effect(period_df, period, config['label'], output_dir)
+        generate_delay_accumulation_plot(period_df, period, config['label'], output_dir)
     
     # Generate schedule change comparison (only once, in 'all' directory)
     all_output_dir = PLOTS_DIR / "all"
