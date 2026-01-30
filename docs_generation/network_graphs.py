@@ -120,8 +120,9 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         to_lon=('next_lon', 'first'),
     ).reset_index()
     
-    # Note: No minimum trip filter needed since we now use stop_sequence for proper ordering
-    # This correctly identifies consecutive stops in each direction
+    # Filter out edges with only 1 trip - these are likely spurious edges caused by
+    # missing coordinates creating "jumps" over intermediate stops
+    edge_agg = edge_agg[edge_agg['num_trips'] >= 2]
     
     # Build graph
     G = nx.DiGraph()
