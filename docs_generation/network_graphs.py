@@ -120,9 +120,24 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         to_lon=('next_lon', 'first'),
     ).reset_index()
     
-    # Filter out edges with only 1 trip - these are likely spurious edges caused by
-    # missing coordinates creating "jumps" over intermediate stops
-    edge_agg = edge_agg[edge_agg['num_trips'] >= 2]
+    # Calculate edge distance to filter spurious long-distance edges
+    def haversine(lat1, lon1, lat2, lon2):
+        R = 6371  # km
+        lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+        return 2 * R * np.arcsin(np.sqrt(a))
+    
+    edge_agg['distance_km'] = haversine(
+        edge_agg['from_lat'].values, edge_agg['from_lon'].values,
+        edge_agg['to_lat'].values, edge_agg['to_lon'].values
+    )
+    
+    # Filter out spurious edges: single-trip edges with distance > 1.5 km are likely
+    # caused by missing coordinates creating "jumps" over intermediate stops
+    # Keep all multi-trip edges, and single-trip edges only if they're short distance
+    edge_agg = edge_agg[~((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 1.5))]
     
     # Build graph
     G = nx.DiGraph()
