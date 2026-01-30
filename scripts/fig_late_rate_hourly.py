@@ -13,6 +13,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Increase font sizes for readability
+plt.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 14,
+    'axes.labelsize': 12,
+    'legend.fontsize': 11,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+})
+
 # Paths
 SCRIPT_DIR = Path(__file__).parent.parent
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
@@ -105,7 +115,9 @@ def main():
     ax2.set_ylabel('Late Rate (%)')
     ax2.set_title(f'Late Rate by Hour: P(delay > {LATE_THRESHOLD} min) with Bootstrap CI')
     ax2.set_xticks(range(0, 24, 2))
-    ax2.set_ylim(0, 50)
+    # Auto-scale Y-axis to fit all data with padding
+    y_max = max(hourly_df['late_upper'].max() * 100, hourly_df['late_rate'].max() * 100) * 1.1
+    ax2.set_ylim(0, max(y_max, 50))
     ax2.legend()
     ax2.grid(alpha=0.3)
 

@@ -460,6 +460,15 @@
 
           <div class="plot-grid">
             <div class="plot-item">
+              <h3>Delay Distribution with CDF</h3>
+              <p class="plot-description">
+                Combined histogram (percentage) with CDF overlay. Read directly: "X% of buses have delay ≤ Y minutes". 
+                Key thresholds annotated: on-time (0 min), ≤2 min, ≤3 min, ≤5 min.
+              </p>
+              <img id="plot-cdf-pdf" src="plots/all/delay_cdf_pdf_combo.png" alt="Delay Distribution with CDF" />
+            </div>
+
+            <div class="plot-item">
               <h3>ECDF vs Histogram Comparison</h3>
               <p class="plot-description">
                 Left: Traditional histogram showing delay counts. Right: Empirical CDF with 95% DKW confidence bands. ECDFs allow direct probability readings
@@ -599,6 +608,7 @@
         }
 
         // Update all plot images for selected period
+        document.getElementById("plot-cdf-pdf").src = `plots/${period}/delay_cdf_pdf_combo.png`;
         document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
         document.getElementById("plot-late-rate").src = `plots/${period}/late_rate_hourly.png`;
         document.getElementById("plot-weather").src = `plots/${period}/weather_effect.png`;

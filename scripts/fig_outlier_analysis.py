@@ -13,6 +13,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# Increase font sizes for readability
+plt.rcParams.update({
+    'font.size': 12,
+    'axes.titlesize': 14,
+    'axes.labelsize': 12,
+    'legend.fontsize': 11,
+    'xtick.labelsize': 11,
+    'ytick.labelsize': 11,
+})
+
 SCRIPT_DIR = Path(__file__).parent.parent
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
 OUTPUT_PATH = SCRIPT_DIR / "outputs" / "outlier_analysis.png"
