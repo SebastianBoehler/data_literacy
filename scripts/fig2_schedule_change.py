@@ -253,12 +253,25 @@ def main():
     # Compute hourly stats for each period
     df_pre['hour'] = df_pre[ts_col].dt.hour
     df_post['hour'] = df_post[ts_col].dt.hour
+    df['hour'] = df[ts_col].dt.hour
     
     pre_hourly = df_pre.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
     pre_hourly['ci95'] = 1.96 * pre_hourly['std'] / np.sqrt(pre_hourly['count'])
     
     post_hourly = df_post.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
     post_hourly['ci95'] = 1.96 * post_hourly['std'] / np.sqrt(post_hourly['count'])
+    
+    # Total hourly (all data)
+    total_hourly = df.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+    total_hourly['ci95'] = 1.96 * total_hourly['std'] / np.sqrt(total_hourly['count'])
+    
+    # Total (circles, blue) - plot first so it's in background
+    ax.fill_between(total_hourly['hour'], 
+                    total_hourly['mean'] - total_hourly['ci95'],
+                    total_hourly['mean'] + total_hourly['ci95'],
+                    alpha=0.1, color='#4878d0')
+    ax.plot(total_hourly['hour'], total_hourly['mean'], 'o-', color='#4878d0', 
+            linewidth=1.5, markersize=4, alpha=0.6, label=f'Total (μ={df["delay_minutes"].mean():.2f})')
     
     # Pre schedule change (squares, red)
     ax.fill_between(pre_hourly['hour'], 
