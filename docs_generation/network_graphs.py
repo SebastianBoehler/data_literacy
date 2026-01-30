@@ -134,10 +134,18 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         edge_agg['to_lat'].values, edge_agg['to_lon'].values
     )
     
-    # Filter out spurious edges: single-trip edges with distance > 1.5 km are likely
-    # caused by missing coordinates creating "jumps" over intermediate stops
-    # Keep all multi-trip edges, and single-trip edges only if they're short distance
-    edge_agg = edge_agg[~((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 1.5))]
+    # Filter out spurious edges caused by missing coordinates creating "jumps"
+    # Rules:
+    # - Single-trip edges (count=1): remove if distance > 0.8 km
+    # - Low-count edges (count 2-4): remove if distance > 1.2 km  
+    # - Low-count edges with extreme delays (>20 min, count<5): likely spurious jumps
+    # - Higher-count edges (count >= 5): keep all (reliable data)
+    spurious = (
+        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 0.8)) |
+        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 4) & (edge_agg['distance_km'] > 1.2)) |
+        ((edge_agg['num_trips'] < 5) & (edge_agg['mean_delay'] > 20))
+    )
+    edge_agg = edge_agg[~spurious]
     
     # Build graph
     G = nx.DiGraph()
@@ -321,17 +329,48 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
     if df.empty:
         return
     
-    # Create edges
-    df = df.sort_values(['journey_ref', 'timestamp'])
+    # Create edges - use stop_sequence for proper ordering
+    if 'stop_sequence' in df.columns:
+        df = df.sort_values(['journey_ref', 'stop_sequence'])
+    else:
+        df = df.sort_values(['journey_ref', 'timestamp'])
     df['next_stop'] = df.groupby('journey_ref')['stop_name'].shift(-1)
-    edges = df.dropna(subset=['next_stop']).copy()
+    df['next_lat'] = df.groupby('journey_ref')['latitude'].shift(-1)
+    df['next_lon'] = df.groupby('journey_ref')['longitude'].shift(-1)
+    edges = df.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
     edges = edges[edges['stop_name'] != edges['next_stop']]
     
     # Aggregate
     edge_agg = edges.groupby(['stop_name', 'next_stop']).agg(
         mean_delay=('delay_minutes', 'mean'),
         num_trips=('delay_minutes', 'count'),
+        from_lat=('latitude', 'first'),
+        from_lon=('longitude', 'first'),
+        to_lat=('next_lat', 'first'),
+        to_lon=('next_lon', 'first'),
     ).reset_index()
+    
+    # Calculate distance for filtering
+    def haversine(lat1, lon1, lat2, lon2):
+        R = 6371
+        lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+        return 2 * R * np.arcsin(np.sqrt(a))
+    
+    edge_agg['distance_km'] = haversine(
+        edge_agg['from_lat'].values, edge_agg['from_lon'].values,
+        edge_agg['to_lat'].values, edge_agg['to_lon'].values
+    )
+    
+    # Filter spurious edges (same rules as network graph)
+    spurious = (
+        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 0.8)) |
+        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 4) & (edge_agg['distance_km'] > 1.2)) |
+        ((edge_agg['num_trips'] < 5) & (edge_agg['mean_delay'] > 20))
+    )
+    edge_agg = edge_agg[~spurious]
     
     # Filter out edges with 0 trips (no actual data)
     edge_agg = edge_agg[edge_agg['num_trips'] > 0].copy()
