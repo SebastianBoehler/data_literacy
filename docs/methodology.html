@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Pipeline & API Documentation - Tübingen Bus Network</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Georgia", "Times New Roman", serif;
+        background: #fafafa;
+        color: #333;
+        line-height: 1.7;
+      }
+      .page-wrapper {
+        display: flex;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .nav-sidebar {
+        width: 220px;
+        position: sticky;
+        top: 2rem;
+        height: fit-content;
+        padding: 1rem;
+        margin-top: 3rem;
+        font-size: 0.85rem;
+      }
+      .nav-sidebar .sidebar-section {
+        margin-bottom: 1.5rem;
+      }
+      .nav-sidebar .sidebar-title {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .nav-sidebar ul {
+        list-style: none;
+        border-left: 2px solid #e0e0e0;
+        padding-left: 1rem;
+      }
+      .nav-sidebar li {
+        margin-bottom: 0.5rem;
+      }
+      .nav-sidebar a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-sidebar a:hover {
+        color: #222;
+      }
+      /* Mobile menu toggle button */
+      .mobile-menu-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: #333;
+        color: white;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .mobile-menu-toggle:hover {
+        background: #555;
+      }
+      /* Mobile responsive styles */
+      @media (max-width: 768px) {
+        .page-wrapper {
+          flex-direction: column;
+        }
+        .mobile-menu-toggle {
+          display: block;
+        }
+        .nav-sidebar {
+          position: fixed;
+          top: 0;
+          left: -270px;
+          width: 270px;
+          height: 100vh;
+          background: #fff;
+          z-index: 1000;
+          margin-top: 0;
+          padding-top: 4rem;
+          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+          transition: left 0.3s ease;
+          overflow-y: auto;
+        }
+        .nav-sidebar.open {
+          left: 0;
+        }
+        .mobile-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.5);
+          z-index: 999;
+        }
+        .mobile-overlay.open {
+          display: block;
+        }
+        .container {
+          padding: 1rem;
+          padding-top: 4rem;
+        }
+      }
+      .container {
+        flex: 1;
+        max-width: 900px;
+        padding: 3rem 2rem;
+        background: #fff;
+        min-height: 100vh;
+      }
+      .header {
+        text-align: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2rem;
+      }
+      .header h1 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .header .subtitle {
+        font-size: 1rem;
+        color: #666;
+        font-style: italic;
+      }
+      .section {
+        margin-bottom: 2.5rem;
+      }
+      .section h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #222;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+      }
+      .section h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 1.5rem 0 0.75rem 0;
+        color: #333;
+      }
+      .section h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 1rem 0 0.5rem 0;
+        color: #444;
+      }
+      .section p {
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 1rem;
+      }
+      .section ul, .section ol {
+        margin-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .section li {
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        color: #444;
+      }
+      code {
+        font-family: "SF Mono", "Monaco", "Consolas", monospace;
+        background: #f4f4f4;
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85em;
+        color: #c7254e;
+      }
+      pre {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 1rem 1.25rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1rem 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      pre code {
+        background: none;
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+      }
+      .comment { color: #6a9955; }
+      .keyword { color: #569cd6; }
+      .string { color: #ce9178; }
+      .function { color: #dcdcaa; }
+      .class { color: #4ec9b0; }
+      .number { color: #b5cea8; }
+      .diagram-box {
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+      .diagram-box svg {
+        max-width: 100%;
+        height: auto;
+      }
+      .api-method {
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        padding: 1rem 1.25rem;
+        margin: 1rem 0;
+      }
+      .api-method .method-signature {
+        font-family: "SF Mono", "Monaco", "Consolas", monospace;
+        font-size: 0.9rem;
+        color: #333;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+      .api-method .method-desc {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+      }
+      .api-method .params {
+        font-size: 0.85rem;
+        color: #666;
+      }
+      .api-method .params dt {
+        font-weight: 600;
+        color: #444;
+        margin-top: 0.5rem;
+      }
+      .api-method .params dd {
+        margin-left: 1rem;
+        margin-bottom: 0.25rem;
+      }
+      .returns {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+      }
+      .returns strong {
+        color: #444;
+      }
+      .info-box {
+        background: #e7f3ff;
+        border-left: 4px solid #2196f3;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0 4px 4px 0;
+      }
+      .info-box p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #1565c0;
+      }
+      .warning-box {
+        background: #fff3e0;
+        border-left: 4px solid #ff9800;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0 4px 4px 0;
+      }
+      .warning-box p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #e65100;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+      th, td {
+        padding: 0.6rem 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      th {
+        background: #f5f5f5;
+        font-weight: 600;
+        color: #333;
+      }
+      tr:hover {
+        background: #fafafa;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: #666;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .back-link:hover {
+        color: #333;
+      }
+      .footer {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #e0e0e0;
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+    <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
+    <div class="page-wrapper">
+      <nav class="nav-sidebar" id="nav-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">Pages</div>
+          <ul>
+            <li><a href="index.html">← Back to Analysis</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">On This Page</div>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#data-collection">Data Collection</a></li>
+            <li><a href="#cloud-function">Cloud Function</a></li>
+            <li><a href="#data-storage">Data Storage</a></li>
+            <li><a href="#trias-api">TRIAS API Module</a></li>
+            <li><a href="#weather-api">Weather API</a></li>
+            <li><a href="#data-schema">Data Schema</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <a href="index.html" class="back-link">← Back to Delay Analysis</a>
+        
+        <div class="header">
+          <h1>Data Pipeline & API Documentation</h1>
+          <p class="subtitle">Technical Documentation — Data Literacy Project</p>
+        </div>
+
+        <div class="section" id="overview">
+          <h2>Overview</h2>
+          <p>
+            This document describes the data collection infrastructure for the Tübingen Bus Network delay analysis project.
+            The system continuously collects real-time transit data from the TRIAS API, enriches it with weather information,
+            and stores it in Google Cloud Storage for subsequent analysis.
+          </p>
+          <p>
+            <strong>Key Design Principles:</strong>
+          </p>
+          <ul>
+            <li><strong>Automated Collection</strong> — Cloud Function runs on a schedule (every 15 minutes) to capture real-time data</li>
+            <li><strong>Dynamic Data Pull</strong> — Analysis scripts always pull the latest data from cloud storage</li>
+            <li><strong>Weather Enrichment</strong> — Each observation is tagged with current weather conditions</li>
+            <li><strong>Reproducibility</strong> — All raw data is preserved with timestamps for full reproducibility</li>
+          </ul>
+        </div>
+
+        <div class="section" id="architecture">
+          <h2>System Architecture</h2>
+          <div class="diagram-box">
+            <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
+              <!-- TRIAS API Box -->
+              <rect x="20" y="120" width="120" height="60" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+              <text x="80" y="145" text-anchor="middle" font-size="12" font-weight="600" fill="#1565c0">TRIAS API</text>
+              <text x="80" y="162" text-anchor="middle" font-size="10" fill="#1976d2">efa-bw.de</text>
+              
+              <!-- Weather API Box -->
+              <rect x="20" y="200" width="120" height="60" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+              <text x="80" y="225" text-anchor="middle" font-size="12" font-weight="600" fill="#2e7d32">Weather API</text>
+              <text x="80" y="242" text-anchor="middle" font-size="10" fill="#388e3c">Open-Meteo</text>
+              
+              <!-- Cloud Function Box -->
+              <rect x="220" y="140" width="140" height="80" rx="8" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+              <text x="290" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#e65100">Cloud Function</text>
+              <text x="290" y="188" text-anchor="middle" font-size="10" fill="#f57c00">gc_function.py</text>
+              <text x="290" y="205" text-anchor="middle" font-size="9" fill="#ff9800">Scheduled: 15 min</text>
+              
+              <!-- GCS Bucket Box -->
+              <rect x="440" y="140" width="140" height="80" rx="8" fill="#fce4ec" stroke="#c2185b" stroke-width="2"/>
+              <text x="510" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#ad1457">GCS Bucket</text>
+              <text x="510" y="188" text-anchor="middle" font-size="10" fill="#c2185b">departure_data</text>
+              <text x="510" y="205" text-anchor="middle" font-size="9" fill="#e91e63">CSV + JSON</text>
+              
+              <!-- Analysis Box -->
+              <rect x="660" y="140" width="120" height="80" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+              <text x="720" y="170" text-anchor="middle" font-size="12" font-weight="600" fill="#6a1b9a">Analysis</text>
+              <text x="720" y="188" text-anchor="middle" font-size="10" fill="#7b1fa2">Notebook</text>
+              <text x="720" y="205" text-anchor="middle" font-size="9" fill="#9c27b0">Dynamic Pull</text>
+              
+              <!-- Arrows -->
+              <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                </marker>
+              </defs>
+              
+              <!-- TRIAS to Cloud Function -->
+              <line x1="140" y1="150" x2="215" y2="165" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+              
+              <!-- Weather to Cloud Function -->
+              <line x1="140" y1="230" x2="215" y2="195" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+              
+              <!-- Cloud Function to GCS -->
+              <line x1="360" y1="180" x2="435" y2="180" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+              
+              <!-- GCS to Analysis -->
+              <line x1="580" y1="180" x2="655" y2="180" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+              
+              <!-- Labels -->
+              <text x="400" y="50" text-anchor="middle" font-size="14" font-weight="600" fill="#333">Data Collection Pipeline</text>
+              <text x="175" y="135" text-anchor="middle" font-size="9" fill="#666">Stops, Departures</text>
+              <text x="175" y="245" text-anchor="middle" font-size="9" fill="#666">Temperature, Precip</text>
+              <text x="400" y="165" text-anchor="middle" font-size="9" fill="#666">Upload</text>
+              <text x="620" y="165" text-anchor="middle" font-size="9" fill="#666">Pull Latest</text>
+              
+              <!-- Schedule indicator -->
+              <rect x="220" y="240" width="140" height="30" rx="4" fill="#fff8e1" stroke="#ffc107" stroke-width="1"/>
+              <text x="290" y="260" text-anchor="middle" font-size="10" fill="#f57f17">Cloud Scheduler Trigger</text>
+            </svg>
+          </div>
+          <p>
+            The pipeline operates as follows:
+          </p>
+          <ol>
+            <li><strong>Scheduled Trigger</strong> — Google Cloud Scheduler invokes the Cloud Function every 15 minutes</li>
+            <li><strong>Data Fetch</strong> — The function queries the TRIAS API for all stops and departures within a configurable radius</li>
+            <li><strong>Weather Enrichment</strong> — Current weather data is fetched for each stop location</li>
+            <li><strong>Storage</strong> — All data is uploaded to GCS with timestamps for versioning</li>
+            <li><strong>Analysis</strong> — Jupyter notebooks pull the latest data dynamically for analysis</li>
+          </ol>
+        </div>
+
+        <div class="section" id="data-collection">
+          <h2>Data Collection Strategy</h2>
+          <h3>Geographic Scope</h3>
+          <p>
+            Data collection is centered on Tübingen with a configurable search radius (default: 10 km).
+            This captures the core urban bus network while including connections to surrounding areas.
+          </p>
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>center_lat</code></td>
+              <td>48.5216</td>
+              <td>Latitude of Tübingen city center</td>
+            </tr>
+            <tr>
+              <td><code>center_lon</code></td>
+              <td>9.0576</td>
+              <td>Longitude of Tübingen city center</td>
+            </tr>
+            <tr>
+              <td><code>search_radius_km</code></td>
+              <td>10</td>
+              <td>Radius for stop discovery</td>
+            </tr>
+          </table>
+
+          <h3>Temporal Coverage</h3>
+          <p>
+            The system captures departures within a 60-minute horizon from each collection timestamp.
+            With 15-minute collection intervals, this provides overlapping coverage to ensure no departures are missed.
+          </p>
+          <div class="info-box">
+            <p><strong>Collection Period:</strong> November 2025 – January 2026 (ongoing)</p>
+          </div>
+        </div>
+
+        <div class="section" id="cloud-function">
+          <h2>Cloud Function Implementation</h2>
+          <p>
+            The data collection is implemented as a Google Cloud Function (<code>gc_function.py</code>).
+            This serverless approach ensures reliable, scheduled execution without infrastructure management.
+          </p>
+          
+          <h3>Configuration</h3>
+          <pre><code><span class="comment"># Key configuration constants</span>
+<span class="keyword">PROJECT_ID</span> = <span class="string">"data-literacy-477519"</span>
+<span class="keyword">GCS_BUCKET_NAME</span> = <span class="string">"departure_data"</span>
+<span class="keyword">DEPARTURE_HORIZON_MINUTES</span> = <span class="number">60</span>
+<span class="keyword">DEPARTURE_MAX_RESULTS_PER_STOP_POINT</span> = <span class="number">200</span>
+<span class="keyword">TRIP_MAX_TRIPS</span> = <span class="number">100</span></code></pre>
+
+          <h3>Execution Flow</h3>
+          <pre><code><span class="comment"># Simplified execution flow</span>
+<span class="keyword">def</span> <span class="function">create_departure_data</span>(request):
+    <span class="comment"># 1. Initialize clients</span>
+    trias = <span class="class">TriasClient</span>(config[<span class="string">"trias_requestor_ref"</span>])
+    weather_client = <span class="class">WeatherClient</span>()
+    
+    <span class="comment"># 2. Fetch stops within radius</span>
+    stops = trias.<span class="function">fetch_stops</span>(center=center, radius_km=<span class="number">10</span>)
+    
+    <span class="comment"># 3. Fetch departures for all stops</span>
+    departures = trias.<span class="function">fetch_departures_for_stop_points</span>(stops)
+    
+    <span class="comment"># 4. Fetch trip details (calls at each stop)</span>
+    trip_calls, trip_positions = trias.<span class="function">fetch_trip_infos_for_departures</span>(departures)
+    
+    <span class="comment"># 5. Enrich with weather data</span>
+    departures = <span class="function">attach_weather_to_departures</span>(departures, weather_by_stop)
+    
+    <span class="comment"># 6. Upload to GCS</span>
+    bucket.blob(<span class="string">f"departures_{timestamp}.csv"</span>).upload_from_string(csv_data)</code></pre>
+
+          <h3>Output Files</h3>
+          <p>Each execution produces the following files in GCS:</p>
+          <table>
+            <tr>
+              <th>File Pattern</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>stops_{timestamp}.csv</code></td>
+              <td>All discovered stops with coordinates and weather</td>
+            </tr>
+            <tr>
+              <td><code>departures_{timestamp}.csv</code></td>
+              <td>Departure records with planned/estimated times and delays</td>
+            </tr>
+            <tr>
+              <td><code>trip_calls_{timestamp}.csv</code></td>
+              <td>Detailed stop-by-stop journey information</td>
+            </tr>
+            <tr>
+              <td><code>trip_summary_{timestamp}.csv</code></td>
+              <td>Aggregated journey statistics</td>
+            </tr>
+            <tr>
+              <td><code>metadata_{timestamp}.json</code></td>
+              <td>Collection metadata and file manifest</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="section" id="data-storage">
+          <h2>Data Storage & Access</h2>
+          <h3>Google Cloud Storage Structure</h3>
+          <pre><code>gs://departure_data/
+├── stops_20251115_143000.csv
+├── departures_20251115_143000.csv
+├── trip_calls_20251115_143000.csv
+├── trip_summary_20251115_143000.csv
+├── metadata_20251115_143000.json
+├── stops_20251115_144500.csv
+├── departures_20251115_144500.csv
+└── ...</code></pre>
+
+          <h3>Dynamic Data Pull</h3>
+          <p>
+            Analysis scripts pull the latest data dynamically, ensuring reproducibility while always working with current data:
+          </p>
+          <pre><code><span class="keyword">from</span> google.cloud <span class="keyword">import</span> storage
+
+<span class="keyword">def</span> <span class="function">load_latest_departures</span>():
+    client = storage.<span class="class">Client</span>()
+    bucket = client.bucket(<span class="string">"departure_data"</span>)
+    
+    <span class="comment"># List all departure files, sorted by timestamp</span>
+    blobs = list(bucket.list_blobs(prefix=<span class="string">"departures_"</span>))
+    blobs.sort(key=<span class="keyword">lambda</span> b: b.name, reverse=<span class="keyword">True</span>)
+    
+    <span class="comment"># Load and concatenate all files</span>
+    frames = []
+    <span class="keyword">for</span> blob <span class="keyword">in</span> blobs:
+        csv_data = blob.download_as_text()
+        df = pd.<span class="function">read_csv</span>(StringIO(csv_data))
+        frames.append(df)
+    
+    <span class="keyword">return</span> pd.<span class="function">concat</span>(frames, ignore_index=<span class="keyword">True</span>)</code></pre>
+        </div>
+
+        <div class="section" id="trias-api">
+          <h2>TRIAS API Module</h2>
+          <p>
+            The <code>modules/trias.py</code> module provides a Python client for the TRIAS (Traveller Realtime Information and Advisory Standard) API.
+            TRIAS is a European standard for real-time public transport information.
+          </p>
+
+          <h3>Initialization</h3>
+          <pre><code><span class="keyword">from</span> modules.trias <span class="keyword">import</span> <span class="class">TriasClient</span>
+
+<span class="comment"># Initialize with your requestor reference</span>
+client = <span class="class">TriasClient</span>(requestor_ref=<span class="string">"your-api-key"</span>)</code></pre>
+
+          <div class="warning-box">
+            <p><strong>API Key Required:</strong> You need a valid requestor reference from the TRIAS provider (efa-bw.de) to use this module.</p>
+          </div>
+
+          <h3>API Methods</h3>
+
+          <div class="api-method">
+            <div class="method-signature">fetch_stops(center, radius_km, max_results=200) → DataFrame</div>
+            <div class="method-desc">Discover all transit stops within a geographic radius.</div>
+            <dl class="params">
+              <dt>center</dt>
+              <dd><code>tuple[float, float]</code> — Latitude and longitude of search center</dd>
+              <dt>radius_km</dt>
+              <dd><code>float</code> — Search radius in kilometers</dd>
+              <dt>max_results</dt>
+              <dd><code>int</code> — Maximum number of stops to return (default: 200)</dd>
+            </dl>
+            <div class="returns"><strong>Returns:</strong> DataFrame with columns: <code>stop_id</code>, <code>trias_ref</code>, <code>stop_name</code>, <code>latitude</code>, <code>longitude</code>, <code>probability</code></div>
+          </div>
+
+          <div class="api-method">
+            <div class="method-signature">fetch_departures(stop_id, *, stop_point_ref=None, max_results=200, horizon_minutes=None) → DataFrame</div>
+            <div class="method-desc">Fetch upcoming departures from a specific stop.</div>
+            <dl class="params">
+              <dt>stop_id</dt>
+              <dd><code>str</code> — The stop identifier</dd>
+              <dt>stop_point_ref</dt>
+              <dd><code>str</code> — Optional specific platform/stop point reference</dd>
+              <dt>max_results</dt>
+              <dd><code>int</code> — Maximum departures to return</dd>
+              <dt>horizon_minutes</dt>
+              <dd><code>int</code> — Only return departures within this time window</dd>
+            </dl>
+            <div class="returns"><strong>Returns:</strong> DataFrame with columns: <code>stop_id</code>, <code>stop_point_ref</code>, <code>stop_name</code>, <code>planned_time</code>, <code>estimated_time</code>, <code>line_name</code>, <code>destination</code>, <code>platform</code>, <code>journey_ref</code>, <code>operating_day_ref</code>, <code>delay_minutes</code></div>
+          </div>
+
+          <div class="api-method">
+            <div class="method-signature">fetch_departures_for_stops(stops, max_results_per_stop=200, max_stops=None, horizon_minutes=None) → DataFrame</div>
+            <div class="method-desc">Batch fetch departures for multiple stops.</div>
+            <dl class="params">
+              <dt>stops</dt>
+              <dd><code>DataFrame</code> — DataFrame of stops (from <code>fetch_stops</code>)</dd>
+              <dt>max_results_per_stop</dt>
+              <dd><code>int</code> — Maximum departures per stop</dd>
+              <dt>max_stops</dt>
+              <dd><code>int</code> — Limit number of stops to query</dd>
+              <dt>horizon_minutes</dt>
+              <dd><code>int</code> — Time window filter</dd>
+            </dl>
+            <div class="returns"><strong>Returns:</strong> Combined DataFrame of all departures</div>
+          </div>
+
+          <div class="api-method">
+            <div class="method-signature">fetch_trip_info(journey_ref, operating_day_ref=None, **options) → dict</div>
+            <div class="method-desc">Fetch detailed information about a specific journey/trip.</div>
+            <dl class="params">
+              <dt>journey_ref</dt>
+              <dd><code>str</code> — Journey reference identifier</dd>
+              <dt>operating_day_ref</dt>
+              <dd><code>str</code> — Operating day reference</dd>
+              <dt>include_calls</dt>
+              <dd><code>bool</code> — Include stop-by-stop call information (default: True)</dd>
+              <dt>include_estimated</dt>
+              <dd><code>bool</code> — Include estimated times (default: True)</dd>
+              <dt>include_position</dt>
+              <dd><code>bool</code> — Include current vehicle position (default: True)</dd>
+            </dl>
+            <div class="returns"><strong>Returns:</strong> Dictionary with keys: <code>calls</code> (DataFrame), <code>service</code> (dict), <code>current_position</code> (dict)</div>
+          </div>
+
+          <div class="api-method">
+            <div class="method-signature">fetch_trip_infos_for_departures(departures, *, max_trips=None) → tuple[DataFrame, DataFrame]</div>
+            <div class="method-desc">Batch fetch trip information for multiple departures.</div>
+            <dl class="params">
+              <dt>departures</dt>
+              <dd><code>DataFrame</code> — DataFrame of departures</dd>
+              <dt>max_trips</dt>
+              <dd><code>int</code> — Limit number of trips to fetch</dd>
+            </dl>
+            <div class="returns"><strong>Returns:</strong> Tuple of (calls_df, positions_df)</div>
+          </div>
+
+          <h3>Usage Example</h3>
+          <pre><code><span class="keyword">from</span> modules.trias <span class="keyword">import</span> <span class="class">TriasClient</span>
+
+<span class="comment"># Initialize client</span>
+client = <span class="class">TriasClient</span>(<span class="string">"your-requestor-ref"</span>)
+
+<span class="comment"># Find stops near Tübingen Hbf</span>
+stops = client.<span class="function">fetch_stops</span>(
+    center=(<span class="number">48.5156</span>, <span class="number">9.0576</span>),
+    radius_km=<span class="number">2</span>
+)
+<span class="keyword">print</span>(<span class="string">f"Found {len(stops)} stops"</span>)
+
+<span class="comment"># Get departures for the next hour</span>
+departures = client.<span class="function">fetch_departures_for_stops</span>(
+    stops,
+    horizon_minutes=<span class="number">60</span>
+)
+
+<span class="comment"># Calculate delay statistics</span>
+avg_delay = departures[<span class="string">"delay_minutes"</span>].mean()
+late_rate = (departures[<span class="string">"delay_minutes"</span>] > <span class="number">2</span>).mean()
+<span class="keyword">print</span>(<span class="string">f"Average delay: {avg_delay:.1f} min"</span>)
+<span class="keyword">print</span>(<span class="string">f"Late rate (>2 min): {late_rate:.1%}"</span>)</code></pre>
+        </div>
+
+        <div class="section" id="weather-api">
+          <h2>Weather API Integration</h2>
+          <p>
+            Weather data is fetched from the Open-Meteo API, which provides free access to historical and current weather data.
+            The <code>modules/weather.py</code> module handles weather data retrieval.
+          </p>
+
+          <h3>Weather Variables Collected</h3>
+          <table>
+            <tr>
+              <th>Variable</th>
+              <th>Unit</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>temperature_2m</code></td>
+              <td>°C</td>
+              <td>Air temperature at 2 meters height</td>
+            </tr>
+            <tr>
+              <td><code>precipitation</code></td>
+              <td>mm</td>
+              <td>Total precipitation (rain, snow, etc.)</td>
+            </tr>
+            <tr>
+              <td><code>rain</code></td>
+              <td>mm</td>
+              <td>Rain amount</td>
+            </tr>
+            <tr>
+              <td><code>snowfall</code></td>
+              <td>cm</td>
+              <td>Snowfall amount</td>
+            </tr>
+            <tr>
+              <td><code>wind_speed_10m</code></td>
+              <td>km/h</td>
+              <td>Wind speed at 10 meters height</td>
+            </tr>
+            <tr>
+              <td><code>weather_code</code></td>
+              <td>WMO code</td>
+              <td>Weather condition code</td>
+            </tr>
+          </table>
+
+          <h3>Weather Enrichment</h3>
+          <p>
+            Each departure record is enriched with weather data from the nearest stop location at collection time.
+            This enables analysis of weather effects on delays.
+          </p>
+          <pre><code><span class="comment"># Weather is attached to each departure record</span>
+departures_with_weather = <span class="function">attach_weather_to_departures</span>(
+    departures, 
+    weather_by_stop  <span class="comment"># Dict mapping stop_id to weather data</span>
+)
+
+<span class="comment"># Resulting columns include:</span>
+<span class="comment"># - temperature_2m</span>
+<span class="comment"># - precipitation</span>
+<span class="comment"># - rain</span>
+<span class="comment"># - snowfall</span>
+<span class="comment"># - wind_speed_10m</span>
+<span class="comment"># - weather_code</span></code></pre>
+        </div>
+
+        <div class="section" id="data-schema">
+          <h2>Data Schema Reference</h2>
+          
+          <h3>Departures Table</h3>
+          <p>Primary table for delay analysis. Each row represents one scheduled departure.</p>
+          <table>
+            <tr>
+              <th>Column</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>stop_id</code></td>
+              <td>string</td>
+              <td>Base stop identifier</td>
+            </tr>
+            <tr>
+              <td><code>stop_point_ref</code></td>
+              <td>string</td>
+              <td>Specific platform/stop point reference</td>
+            </tr>
+            <tr>
+              <td><code>stop_name</code></td>
+              <td>string</td>
+              <td>Human-readable stop name</td>
+            </tr>
+            <tr>
+              <td><code>planned_time</code></td>
+              <td>datetime</td>
+              <td>Scheduled departure time</td>
+            </tr>
+            <tr>
+              <td><code>estimated_time</code></td>
+              <td>datetime</td>
+              <td>Real-time estimated departure time</td>
+            </tr>
+            <tr>
+              <td><code>delay_minutes</code></td>
+              <td>float</td>
+              <td>Delay = estimated - planned (in minutes)</td>
+            </tr>
+            <tr>
+              <td><code>line_name</code></td>
+              <td>string</td>
+              <td>Bus line number/name</td>
+            </tr>
+            <tr>
+              <td><code>destination</code></td>
+              <td>string</td>
+              <td>Final destination of the trip</td>
+            </tr>
+            <tr>
+              <td><code>journey_ref</code></td>
+              <td>string</td>
+              <td>Unique journey identifier</td>
+            </tr>
+            <tr>
+              <td><code>operating_day_ref</code></td>
+              <td>string</td>
+              <td>Operating day reference</td>
+            </tr>
+            <tr>
+              <td><code>latitude</code></td>
+              <td>float</td>
+              <td>Stop latitude</td>
+            </tr>
+            <tr>
+              <td><code>longitude</code></td>
+              <td>float</td>
+              <td>Stop longitude</td>
+            </tr>
+            <tr>
+              <td><code>temperature_2m</code></td>
+              <td>float</td>
+              <td>Temperature at collection time (°C)</td>
+            </tr>
+            <tr>
+              <td><code>precipitation</code></td>
+              <td>float</td>
+              <td>Precipitation at collection time (mm)</td>
+            </tr>
+          </table>
+
+          <h3>Trip Calls Table</h3>
+          <p>Detailed stop-by-stop information for each journey. Enables analysis of delay propagation along routes.</p>
+          <table>
+            <tr>
+              <th>Column</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>journey_ref</code></td>
+              <td>string</td>
+              <td>Journey identifier (links to departures)</td>
+            </tr>
+            <tr>
+              <td><code>stop_sequence</code></td>
+              <td>int</td>
+              <td>Order of stop in the journey</td>
+            </tr>
+            <tr>
+              <td><code>stop_point_ref</code></td>
+              <td>string</td>
+              <td>Stop point reference</td>
+            </tr>
+            <tr>
+              <td><code>stop_name</code></td>
+              <td>string</td>
+              <td>Stop name</td>
+            </tr>
+            <tr>
+              <td><code>arrival_planned</code></td>
+              <td>datetime</td>
+              <td>Scheduled arrival time</td>
+            </tr>
+            <tr>
+              <td><code>arrival_estimated</code></td>
+              <td>datetime</td>
+              <td>Estimated arrival time</td>
+            </tr>
+            <tr>
+              <td><code>arrival_delay_minutes</code></td>
+              <td>float</td>
+              <td>Arrival delay in minutes</td>
+            </tr>
+            <tr>
+              <td><code>departure_planned</code></td>
+              <td>datetime</td>
+              <td>Scheduled departure time</td>
+            </tr>
+            <tr>
+              <td><code>departure_estimated</code></td>
+              <td>datetime</td>
+              <td>Estimated departure time</td>
+            </tr>
+            <tr>
+              <td><code>departure_delay_minutes</code></td>
+              <td>float</td>
+              <td>Departure delay in minutes</td>
+            </tr>
+            <tr>
+              <td><code>phase</code></td>
+              <td>string</td>
+              <td>"previous" or "onward" (relative to query point)</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="footer">
+          Data Literacy Project — University of Tübingen — 2025/2026
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleMobileMenu() {
+        const sidebar = document.getElementById("nav-sidebar");
+        const overlay = document.querySelector(".mobile-overlay");
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("open");
+      }
+
+      document.querySelectorAll(".nav-sidebar a").forEach(link => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            toggleMobileMenu();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
