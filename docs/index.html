@@ -341,10 +341,16 @@
           <label for="line-select">Select Line:</label>
           <select id="line-select" onchange="updateView()">
             <option value="all" selected>All Lines</option>
-            <option value="008">Line 008</option>
             <option value="1">Line 1</option>
+            <option value="2">Line 2</option>
+            <option value="3">Line 3</option>
+            <option value="4">Line 4</option>
+            <option value="5">Line 5</option>
+            <option value="6">Line 6</option>
+            <option value="7">Line 7</option>
+            <option value="8">Line 8</option>
+            <option value="9">Line 9</option>
             <option value="10">Line 10</option>
-            <option value="101">Line 101</option>
             <option value="11">Line 11</option>
             <option value="12">Line 12</option>
             <option value="13">Line 13</option>
@@ -352,46 +358,26 @@
             <option value="17">Line 17</option>
             <option value="18">Line 18</option>
             <option value="19">Line 19</option>
-            <option value="2">Line 2</option>
             <option value="21">Line 21</option>
             <option value="22">Line 22</option>
-            <option value="283">Line 283</option>
-            <option value="283A">Line 283A</option>
-            <option value="3">Line 3</option>
             <option value="31">Line 31</option>
             <option value="32">Line 32</option>
-            <option value="336">Line 336</option>
             <option value="34">Line 34</option>
             <option value="35">Line 35</option>
-            <option value="4">Line 4</option>
-            <option value="5">Line 5</option>
-            <option value="6">Line 6</option>
-            <option value="7">Line 7</option>
+            <option value="826">Line 826</option>
+            <option value="828">Line 828</option>
             <option value="7601">Line 7601</option>
             <option value="7611">Line 7611</option>
             <option value="7612">Line 7612</option>
             <option value="7613">Line 7613</option>
             <option value="7625">Line 7625</option>
-            <option value="7633">Line 7633</option>
-            <option value="8">Line 8</option>
-            <option value="826">Line 826</option>
-            <option value="828">Line 828</option>
-            <option value="9">Line 9</option>
-            <option value="E">Line E</option>
-            <option value="N42">Line N42</option>
-            <option value="N84">Line N84</option>
-            <option value="N87">Line N87</option>
             <option value="N88">Line N88</option>
-            <option value="N90">Line N90</option>
             <option value="N91">Line N91</option>
             <option value="N92">Line N92</option>
             <option value="N93">Line N93</option>
             <option value="N94">Line N94</option>
-            <option value="N95">Line N95</option>
             <option value="N96">Line N96</option>
-            <option value="X11">Line X11</option>
             <option value="X15">Line X15</option>
-            <option value="X82">Line X82</option>
           </select>
         </div>
         <div class="map-container">
@@ -402,6 +388,10 @@
           <iframe id="map-frame" src="" style="display: none;"></iframe>
         </div>
         <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
+        <p class="plot-description" style="margin-top: 0.5rem; font-size: 0.85rem; color: #777;">
+          <strong>Note:</strong> Some stops outside Tübingen (e.g., Betzingen, Jettenburg, parts of Reutlingen) may not be displayed 
+          as our data collection focused on stops in and close to Tübingen.
+        </p>
 
         <div class="data-summary" id="data-summary">
           <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
@@ -598,7 +588,10 @@
       function loadData(period, line) {
         const dataUrl = `data/${period}/data_${line}.json`;
         fetch(dataUrl)
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          })
           .then((data) => {
             const summary = data.summary;
             document.getElementById("summary-text").textContent =
@@ -619,7 +612,11 @@
             });
           })
           .catch((err) => {
-            document.getElementById("summary-text").textContent = "Data not available";
+            console.error("Failed to load data:", err);
+            document.getElementById("summary-text").textContent = 
+              window.location.protocol === "file:" 
+                ? "Data loading requires a web server (use GitHub Pages or run: python -m http.server)"
+                : "Data not available";
             document.getElementById("edge-table-body").innerHTML = "";
           });
       }
