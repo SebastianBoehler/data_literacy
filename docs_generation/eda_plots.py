@@ -20,14 +20,23 @@ try:
         **bundles.icml2024(usetex=False, family="serif"),
         **axes.lines(),
         "figure.dpi": 150,
+        "font.size": 12,
+        "axes.titlesize": 14,
+        "axes.labelsize": 12,
+        "legend.fontsize": 11,
+        "xtick.labelsize": 11,
+        "ytick.labelsize": 11,
     })
     print("Using tueplots styling")
 except ImportError:
     plt.rcParams.update({
         'font.family': 'serif',
-        'font.size': 10,
-        'axes.titlesize': 12,
-        'axes.labelsize': 11,
+        'font.size': 12,
+        'axes.titlesize': 14,
+        'axes.labelsize': 12,
+        'legend.fontsize': 11,
+        'xtick.labelsize': 11,
+        'ytick.labelsize': 11,
         'figure.dpi': 150,
     })
     print("tueplots not available, using default styling")
@@ -96,6 +105,103 @@ def generate_delay_distribution_plot(df: pd.DataFrame, period: str, period_label
     
     plt.tight_layout()
     output_path = output_dir / "delay_distribution.png"
+    plt.savefig(output_path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"  Saved: {output_path.name}")
+
+
+def generate_cdf_pdf_combo_plot(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
+    """Generate combined CDF + PDF plot with percentage readouts.
+    
+    Addresses feedback requesting:
+    - Percentage-based visualization instead of absolute counts
+    - CDF overlay for reading "X% have delay ≤ Y min"
+    """
+    delays = df['delay_minutes'].dropna().values
+    delay_range = (-5, 20)
+    key_thresholds = [0, 2, 3, 5]
+    
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+    
+    # --- PDF (Histogram as percentage) ---
+    counts, bins, patches = ax1.hist(
+        delays, bins=50, range=delay_range, 
+        color='steelblue', alpha=0.6, edgecolor='white',
+        label='Distribution'
+    )
+    
+    # Convert to percentage
+    total = len(delays)
+    for patch, count in zip(patches, counts):
+        patch.set_height(count / total * 100)
+    
+    ax1.set_ylim(0, max(counts) / total * 100 * 1.1)
+    ax1.set_ylabel('Percentage of Buses (%)', color='steelblue')
+    ax1.tick_params(axis='y', labelcolor='steelblue')
+    
+    # --- CDF (on secondary axis) ---
+    ax2 = ax1.twinx()
+    
+    sorted_delays = np.sort(delays)
+    n = len(sorted_delays)
+    ecdf_y = np.arange(1, n + 1) / n
+    
+    # Subsample for smooth plotting
+    step = max(1, n // 2000)
+    ax2.plot(sorted_delays[::step], ecdf_y[::step] * 100, 
+             color='darkred', linewidth=2.5, label='Cumulative %')
+    
+    ax2.set_ylabel('Cumulative Percentage (%)', color='darkred')
+    ax2.tick_params(axis='y', labelcolor='darkred')
+    ax2.set_ylim(0, 100)
+    
+    # --- Add key threshold annotations ---
+    for threshold in key_thresholds:
+        pct = (delays <= threshold).mean() * 100
+        
+        # Vertical line at threshold
+        ax1.axvline(threshold, color='gray', linestyle=':', alpha=0.5, linewidth=1)
+        
+        # Horizontal line from CDF to y-axis
+        ax2.hlines(pct, delay_range[0], threshold, colors='darkred', 
+                   linestyles='--', alpha=0.4, linewidth=1)
+        
+        # Annotation
+        label = 'On time' if threshold == 0 else f'≤{threshold} min'
+        ax2.annotate(
+            f'{label}: {pct:.1f}%',
+            xy=(threshold, pct),
+            xytext=(threshold + 1.5, pct + 3),
+            fontsize=9,
+            color='darkred',
+            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8, edgecolor='none'),
+            arrowprops=dict(arrowstyle='->', color='darkred', alpha=0.6)
+        )
+    
+    # --- Styling ---
+    ax1.set_xlabel('Delay (minutes)')
+    ax1.set_title(f'Delay Distribution with CDF ({period_label})', fontweight='bold', fontsize=12)
+    ax1.set_xlim(delay_range)
+    ax1.grid(axis='y', alpha=0.3)
+    
+    # Stats box
+    stats_text = (
+        f'n = {len(delays):,}\n'
+        f'Mean = {np.mean(delays):.2f} min\n'
+        f'Median = {np.median(delays):.2f} min\n'
+        f'Late (>2 min) = {(delays > 2).mean():.1%}'
+    )
+    ax1.text(0.98, 0.98, stats_text, transform=ax1.transAxes, fontsize=9,
+             verticalalignment='top', horizontalalignment='right',
+             bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.9))
+    
+    # Combined legend
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=9)
+    
+    plt.tight_layout()
+    output_path = output_dir / "delay_cdf_pdf_combo.png"
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
     plt.close()
     print(f"  Saved: {output_path.name}")
@@ -200,7 +306,7 @@ def generate_delay_ecdf_plot(df: pd.DataFrame, period: str, period_label: str, o
 
 
 def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
-    """Generate top delayed lines bar chart with gradient coloring."""
+    """Generate top delayed lines bar chart with uniform coloring (no misleading gradient)."""
     
     line_stats = df.groupby('line_name')['delay_minutes'].agg(['mean', 'count']).reset_index()
     line_stats = line_stats[line_stats['count'] >= 100]  # Filter small samples
@@ -208,16 +314,13 @@ def generate_top_delayed_lines_plot(df: pd.DataFrame, period: str, period_label:
     
     fig, ax = plt.subplots(figsize=(10, 6))
     
-    # Use gradient coloring based on delay values (green -> yellow -> red)
-    from matplotlib.colors import LinearSegmentedColormap
-    cmap = LinearSegmentedColormap.from_list('delay_gradient', ['#2ecc71', '#f1c40f', '#e74c3c'])
+    # Use uniform color - no misleading red-green gradient
+    bars = ax.barh(line_stats['line_name'], line_stats['mean'], color='steelblue', edgecolor='white')
     
-    # Normalize delays to 0-1 range for colormap
-    delay_values = line_stats['mean'].values
-    norm = plt.Normalize(vmin=delay_values.min(), vmax=delay_values.max())
-    colors = [cmap(norm(val)) for val in delay_values]
-    
-    bars = ax.barh(line_stats['line_name'], line_stats['mean'], color=colors, edgecolor='white')
+    # Add value labels at end of bars
+    for bar, val in zip(bars, line_stats['mean']):
+        ax.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2, 
+                f'{val:.1f}', va='center', fontsize=8)
     
     ax.axvline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
     ax.set_xlabel('Mean Delay (minutes)')
@@ -239,8 +342,6 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     
     For panels A and B, shows pre/post schedule change comparison with overlays.
     """
-    from matplotlib.colors import LinearSegmentedColormap
-    
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     
     # --- Panel A: Delay Distribution Histogram ---
@@ -346,12 +447,14 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     line_stats = line_stats[line_stats['count'] >= 100]
     line_stats = line_stats.sort_values('mean', ascending=False).head(15)
     
-    cmap = LinearSegmentedColormap.from_list('delay_gradient', ['#2ecc71', '#f1c40f', '#e74c3c'])
-    delay_values = line_stats['mean'].values
-    norm = plt.Normalize(vmin=delay_values.min(), vmax=delay_values.max())
-    colors = [cmap(norm(val)) for val in delay_values]
+    # Use uniform color - no misleading red-green gradient
+    bars = ax.barh(line_stats['line_name'], line_stats['mean'], color='steelblue', edgecolor='white')
     
-    ax.barh(line_stats['line_name'], line_stats['mean'], color=colors, edgecolor='white')
+    # Add value labels
+    for bar, val in zip(bars, line_stats['mean']):
+        ax.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2, 
+                f'{val:.1f}', va='center', fontsize=7)
+    
     ax.axvline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
     ax.set_xlabel('Mean Delay (minutes)')
     ax.set_ylabel('Line')
@@ -406,7 +509,9 @@ def generate_late_rate_hourly(df: pd.DataFrame, period: str, period_label: str, 
     ax.set_ylabel('Late Rate (%)')
     ax.set_title(f'Late Rate P(delay > {LATE_THRESHOLD} min) by Hour ({period_label})', fontweight='bold')
     ax.set_xticks(range(0, 24, 2))
-    ax.set_ylim(0, 60)
+    # Auto-scale Y-axis to fit all data with padding
+    y_max = max(hourly_df['ci_upper'].max() * 100, hourly_df['late_rate'].max() * 100) * 1.1
+    ax.set_ylim(0, max(y_max, 50))
     ax.legend()
     ax.grid(alpha=0.3)
     ax.text(0.02, 0.98, f'n = {len(df_valid):,}', transform=ax.transAxes, fontsize=9, va='top', color='gray')
@@ -671,6 +776,7 @@ def main():
         generate_late_rate_hourly(period_df, period, config['label'], output_dir)
         generate_weather_effect(period_df, period, config['label'], output_dir)
         generate_delay_accumulation_plot(period_df, period, config['label'], output_dir)
+        generate_cdf_pdf_combo_plot(period_df, period, config['label'], output_dir)
     
     # Generate schedule change comparison (only once, in 'all' directory)
     all_output_dir = PLOTS_DIR / "all"
