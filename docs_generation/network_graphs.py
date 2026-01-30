@@ -97,6 +97,10 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
         return None
     
     # Create edges from consecutive stops in each journey
+    # Extract direction from journey_ref (H=Hin/outbound, R=Rück/return) if available
+    # This prevents spurious edges between stops that are only consecutive in one direction
+    df['direction'] = df['journey_ref'].str.extract(r'::([HR]):')[0].fillna('X')
+    
     # Use stop_sequence for ordering (timestamp is often identical for all stops in a journey snapshot)
     if 'stop_sequence' in df.columns:
         df = df.sort_values(['journey_ref', 'stop_sequence'])
@@ -110,15 +114,17 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     edges = df.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
     edges = edges[edges['stop_name'] != edges['next_stop']]
     
-    # Aggregate edges
+    # Aggregate edges - use 'size' for count to include rows with NaN delays
     edge_agg = edges.groupby(['stop_name', 'next_stop']).agg(
         mean_delay=('delay_minutes', 'mean'),
-        num_trips=('delay_minutes', 'count'),
         from_lat=('latitude', 'first'),
         from_lon=('longitude', 'first'),
         to_lat=('next_lat', 'first'),
         to_lon=('next_lon', 'first'),
     ).reset_index()
+    # Count actual rows (not just non-NaN delay values)
+    edge_counts = edges.groupby(['stop_name', 'next_stop']).size().reset_index(name='num_trips')
+    edge_agg = edge_agg.merge(edge_counts, on=['stop_name', 'next_stop'])
     
     # Calculate edge distance to filter spurious long-distance edges
     def haversine(lat1, lon1, lat2, lon2):
@@ -135,15 +141,14 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     )
     
     # Filter out spurious edges caused by missing coordinates creating "jumps"
-    # Rules:
-    # - Single-trip edges (count=1): remove if distance > 0.8 km
-    # - Low-count edges (count 2-4): remove if distance > 1.2 km  
-    # - Low-count edges with extreme delays (>20 min, count<5): likely spurious jumps
-    # - Higher-count edges (count >= 5): keep all (reliable data)
+    # Rules based on trip count and distance:
+    # - Single-trip edges (count=1): remove if distance > 1.0 km
+    # - Low-count edges (count 2-3): remove if distance > 1.5 km  
+    # - Higher-count edges (count >= 4): keep all (reliable data)
+    # Note: We don't filter by delay since some lines genuinely have high delays
     spurious = (
-        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 0.8)) |
-        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 4) & (edge_agg['distance_km'] > 1.2)) |
-        ((edge_agg['num_trips'] < 5) & (edge_agg['mean_delay'] > 20))
+        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 1.0)) |
+        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 3) & (edge_agg['distance_km'] > 1.5))
     )
     edge_agg = edge_agg[~spurious]
     
@@ -340,15 +345,17 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
     edges = df.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
     edges = edges[edges['stop_name'] != edges['next_stop']]
     
-    # Aggregate
+    # Aggregate - use 'size' for count to include rows with NaN delays
     edge_agg = edges.groupby(['stop_name', 'next_stop']).agg(
         mean_delay=('delay_minutes', 'mean'),
-        num_trips=('delay_minutes', 'count'),
         from_lat=('latitude', 'first'),
         from_lon=('longitude', 'first'),
         to_lat=('next_lat', 'first'),
         to_lon=('next_lon', 'first'),
     ).reset_index()
+    # Count actual rows (not just non-NaN delay values)
+    edge_counts = edges.groupby(['stop_name', 'next_stop']).size().reset_index(name='num_trips')
+    edge_agg = edge_agg.merge(edge_counts, on=['stop_name', 'next_stop'])
     
     # Calculate distance for filtering
     def haversine(lat1, lon1, lat2, lon2):
@@ -366,9 +373,8 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
     
     # Filter spurious edges (same rules as network graph)
     spurious = (
-        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 0.8)) |
-        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 4) & (edge_agg['distance_km'] > 1.2)) |
-        ((edge_agg['num_trips'] < 5) & (edge_agg['mean_delay'] > 20))
+        ((edge_agg['num_trips'] == 1) & (edge_agg['distance_km'] > 1.0)) |
+        ((edge_agg['num_trips'] >= 2) & (edge_agg['num_trips'] <= 3) & (edge_agg['distance_km'] > 1.5))
     )
     edge_agg = edge_agg[~spurious]
     

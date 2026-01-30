@@ -24,30 +24,31 @@ This document records data cleaning and filtering decisions made during the anal
 
 **Root Cause:** When intermediate stops lack coordinates, the edge generation algorithm creates edges between non-adjacent stops that happen to be consecutive in the coordinate-filtered data.
 
-**Solution:** Filter edges using combined distance and delay rules:
+**Solution:** Filter edges using distance-based rules:
 
-- Single-trip edges (count = 1): remove if distance > 0.8 km
-- Low-count edges (count 2-4): remove if distance > 1.2 km
-- Low-count edges with extreme delays (count < 5, delay > 20 min): remove (likely spurious jumps)
-- Higher-count edges (count ≥ 5): keep all (reliable data)
+- Single-trip edges (count = 1): remove if distance > 1.0 km
+- Low-count edges (count 2-3): remove if distance > 1.5 km
+- Higher-count edges (count ≥ 4): keep all (reliable data)
 
 **Rationale:**
 
-- Legitimate bus stop connections are typically < 0.8 km apart
+- Legitimate bus stop connections are typically < 1 km apart
 - Multi-trip edges are more reliable
-- Extreme delays with low trip counts often indicate "jumps" over missing intermediate stops
-- The combination of distance AND delay catches edges that slip through distance-only filters
+- We don't filter by delay since some lines (e.g., Line 7625) genuinely have high delays
+- Some imperfect edges may remain, but this is preferable to over-filtering
 
-**Statistics (Line 5 pre-schedule example):**
+**Trade-offs:**
 
-- Spurious edges (count=1): median distance 2.51 km, max 3.35 km
-- Valid edges (count≥2): median distance 0.39 km, max 2.61 km
-- Edges like "Morgenstelle → Beethovenweg" (2 trips, 47 min delay) removed by delay rule
+- Lines with sparse data (few trips) may still have some spurious edges
+- Lines with genuinely high delays are preserved (previous delay-based filter removed them)
+- Direction info (H/R in journey_ref) could help but adds complexity
+
+**Bug fix:** Edge count now uses `size()` instead of `count()` to properly count rows with NaN delay values. Previously, edges where all records had NaN delays showed count=0.
 
 **Removed edges examples:**
 
 - Tübingen Freibad → Rottenburg Bahnhof: 8.90 km (distance rule)
-- Tübingen Auf der Morgenstelle → Tübingen Beethovenweg: 0.74 km, 47 min delay (delay rule)
+- Tübingen Hauptbahnhof Süd → Tübingen Auf der Morgenstelle: 3.35 km (distance rule)
 
 ---
 
