@@ -417,26 +417,46 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax.legend(loc='lower right', fontsize=11, framealpha=0.9)
     ax.grid(alpha=0.3)
     
-    # --- Panel D: Top 15 Delayed Lines ---
+    # --- Panel D: Mean Delay by Weather Condition (vertical bars) ---
     ax = axes[1, 1]
-    line_stats = df.groupby('line_name')['delay_minutes'].agg(['mean', 'count']).reset_index()
-    line_stats = line_stats[line_stats['count'] >= 100]
-    line_stats = line_stats.sort_values('mean', ascending=False).head(15)
     
-    # Use uniform color - no misleading red-green gradient
-    bars = ax.barh(line_stats['line_name'], line_stats['mean'], color='steelblue', edgecolor='white')
+    # Check for weather column - 'condition' contains dry/rain/snow/fog/hail/sleet
+    weather_col = None
+    for col in ['condition', 'weather_condition', 'weather', 'precipitation']:
+        if col in df.columns:
+            weather_col = col
+            break
     
-    # Add value labels
-    for bar, val in zip(bars, line_stats['mean']):
-        ax.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2, 
-                f'{val:.1f}', va='center', fontsize=7)
-    
-    ax.axvline(0, color='darkred', linestyle='--', linewidth=1, alpha=0.7)
-    ax.set_xlabel('Mean Delay (minutes)')
-    ax.set_ylabel('Line')
-    ax.set_title('(D) Top 15 Lines by Mean Delay', fontweight='bold')
-    ax.invert_yaxis()
-    ax.grid(axis='x', alpha=0.3)
+    if weather_col is not None:
+        weather_stats = df.groupby(weather_col)['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
+        weather_stats = weather_stats[weather_stats['count'] >= 50]  # filter small samples
+        weather_stats['ci95'] = 1.96 * weather_stats['std'] / np.sqrt(weather_stats['count'])
+        weather_stats = weather_stats.sort_values('mean', ascending=False)
+        
+        x = range(len(weather_stats))
+        bars = ax.bar(x, weather_stats['mean'], color='steelblue', alpha=0.7, edgecolor='black')
+        
+        # Error bars
+        ax.errorbar(x, weather_stats['mean'], yerr=weather_stats['ci95'],
+                    fmt='none', color='black', capsize=4, capthick=1.5)
+        
+        ax.set_xticks(x)
+        ax.set_xticklabels(weather_stats[weather_col], rotation=45, ha='right', fontsize=9)
+        
+        # Add sample size annotations
+        for i, row in weather_stats.reset_index().iterrows():
+            ax.text(i, row['mean'] + row['ci95'] + 0.3, f'n={row["count"]:,}', 
+                    ha='center', fontsize=7, color='gray')
+        
+        ax.set_xlabel('Weather Condition')
+        ax.set_ylabel('Mean Delay (minutes)')
+        ax.set_title('(D) Mean Delay by Weather Condition', fontweight='bold')
+        ax.grid(axis='y', alpha=0.3)
+    else:
+        # Fallback: show message if no weather data
+        ax.text(0.5, 0.5, 'Weather data not available', transform=ax.transAxes,
+                ha='center', va='center', fontsize=12, color='gray')
+        ax.set_title('(D) Mean Delay by Weather Condition', fontweight='bold')
     
     # Add overall title
     fig.suptitle(f'Delay Analysis — {period_label}', fontsize=14, fontweight='bold', y=1.02)
