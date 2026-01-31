@@ -135,7 +135,7 @@ def generate_cdf_pdf_combo_plot(df: pd.DataFrame, period: str, period_label: str
     for patch, count in zip(patches, counts):
         patch.set_height(count / total * 100)
     
-    ax1.set_ylim(0, max(counts) / total * 100 * 1.1)
+    ax1.set_ylim(0, 100)
     ax1.set_ylabel('Percentage of Buses (%)', color='steelblue')
     ax1.tick_params(axis='y', labelcolor='steelblue')
     
