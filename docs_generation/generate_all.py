@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Generate all documentation artifacts for GitHub Pages.
 

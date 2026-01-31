@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Geographic Network Graph Visualization for Tübingen Bus Network
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Generate EDA plots for GitHub Pages visualization.
 Generates plots for three time periods: all, pre, post.

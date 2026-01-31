@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 ECDF vs Histogram Comparison Plot
 

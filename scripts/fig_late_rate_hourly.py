@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Late Rate by Hour with Bootstrap Confidence Intervals
 

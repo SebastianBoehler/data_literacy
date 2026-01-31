@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Generate per-line network graphs for GitHub Pages visualization.
 Uses all_trip_data from the notebook (exported as parquet) for accurate results.

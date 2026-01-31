@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Pre/Post Schedule Change ECDF Comparison
 

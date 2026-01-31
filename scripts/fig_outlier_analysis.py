@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Outlier Analysis - Extreme Delay Documentation
 
