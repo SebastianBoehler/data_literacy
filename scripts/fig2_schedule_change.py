@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Figure 2: Schedule Change vs Holiday Effect Analysis
 

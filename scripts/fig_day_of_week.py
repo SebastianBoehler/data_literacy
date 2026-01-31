@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Day of Week Effect on Late Rate
 

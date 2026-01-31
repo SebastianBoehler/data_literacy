@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Top Stops by Late Rate with Bootstrap CI and Mean Delay Color
 

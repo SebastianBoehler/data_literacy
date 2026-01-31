@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Weather Effect on Late Rate with Bootstrap Confidence Intervals
 

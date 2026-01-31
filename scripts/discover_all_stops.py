@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Discover all bus stops in Tübingen area using TRIAS API.
 Uses multiple center points to ensure full coverage.

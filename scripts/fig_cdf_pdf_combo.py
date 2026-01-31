@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 CDF + PDF Combo Plot for Delay Distribution
 
