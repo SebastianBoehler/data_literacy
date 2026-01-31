@@ -87,12 +87,26 @@ STYLE = {
 # =============================================================================
 # TUEPLOTS INTEGRATION (optional academic styling)
 # =============================================================================
-def _get_tueplots_style():
-    """Try to load tueplots styling for academic papers."""
+def _get_tueplots_style(column_mode: str = "half"):
+    """
+    Try to load tueplots styling for academic papers.
+    
+    Args:
+        column_mode: "half" for single-column figures in 2-col layout (default),
+                     "full" for full-width figures spanning both columns.
+    """
     try:
-        from tueplots import bundles, axes
+        from tueplots import bundles, axes, figsizes
+        
+        # Use half-width for 2-column layout (fits in one column)
+        if column_mode == "half":
+            figsize_style = figsizes.icml2024_half()
+        else:
+            figsize_style = figsizes.icml2024_full()
+        
         return {
             **bundles.icml2024(usetex=False, family="serif"),
+            **figsize_style,
             **axes.lines(),
         }
     except ImportError:
@@ -101,21 +115,24 @@ def _get_tueplots_style():
 # =============================================================================
 # MAIN FUNCTION
 # =============================================================================
-def apply_style(use_tueplots: bool = True):
+def apply_style(use_tueplots: bool = True, column_mode: str = "half"):
     """
     Apply the unified plot style.
     
     Args:
         use_tueplots: If True, try to use tueplots for academic styling.
                       Falls back gracefully if not installed.
+        column_mode: "half" for single-column figures in 2-col layout (default),
+                     "full" for full-width figures spanning both columns.
     
     Usage:
         from modules.plot_config import apply_style
-        apply_style()
+        apply_style()  # Default: half-width for 2-column papers
+        apply_style(column_mode="full")  # Full-width spanning both columns
     """
     # Start with tueplots if available and requested
     if use_tueplots:
-        tueplots_style = _get_tueplots_style()
+        tueplots_style = _get_tueplots_style(column_mode=column_mode)
         if tueplots_style:
             plt.rcParams.update(tueplots_style)
     
