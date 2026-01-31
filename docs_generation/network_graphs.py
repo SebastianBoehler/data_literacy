@@ -71,8 +71,40 @@ def filter_by_period(df: pd.DataFrame, period: str) -> pd.DataFrame:
     return df.copy()  # "all" - no filter
 
 
+def _build_edges_for_period(data: pd.DataFrame):
+    """Build edges from a single period's data (pre or post schedule change).
+    
+    This helper prevents spurious edges when combining data from different schedule periods.
+    """
+    if data.empty or len(data) < 2:
+        return pd.DataFrame()
+    
+    data = data.copy()
+    
+    # Use stop_sequence for ordering
+    if 'stop_sequence' in data.columns:
+        data = data.sort_values(['journey_ref', 'stop_sequence'])
+    else:
+        data = data.sort_values(['journey_ref', 'timestamp'])
+    
+    # Create edges from consecutive stops within each journey
+    data['next_stop'] = data.groupby('journey_ref')['stop_name'].shift(-1)
+    data['next_lat'] = data.groupby('journey_ref')['latitude'].shift(-1)
+    data['next_lon'] = data.groupby('journey_ref')['longitude'].shift(-1)
+    
+    # Filter valid edges
+    edges = data.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
+    edges = edges[edges['stop_name'] != edges['next_stop']]
+    
+    return edges
+
+
 def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
-    """Build network graph from trip data, optionally filtered by line."""
+    """Build network graph from trip data, optionally filtered by line.
+    
+    Processes pre and post schedule change data separately to avoid spurious edges
+    from route changes, then merges the edge statistics.
+    """
     
     df = trip_df.copy()
     
@@ -95,23 +127,22 @@ def build_network_graph(trip_df: pd.DataFrame, line_filter: str = None):
     if df.empty or len(df) < 2:
         return None
     
-    # Create edges from consecutive stops in each journey
     # Extract direction from journey_ref (H=Hin/outbound, R=Rück/return) if available
-    # This prevents spurious edges between stops that are only consecutive in one direction
     df['direction'] = df['journey_ref'].str.extract(r'::([HR]):')[0].fillna('X')
     
-    # Use stop_sequence for ordering (timestamp is often identical for all stops in a journey snapshot)
-    if 'stop_sequence' in df.columns:
-        df = df.sort_values(['journey_ref', 'stop_sequence'])
-    else:
-        df = df.sort_values(['journey_ref', 'timestamp'])
-    df['next_stop'] = df.groupby('journey_ref')['stop_name'].shift(-1)
-    df['next_lat'] = df.groupby('journey_ref')['latitude'].shift(-1)
-    df['next_lon'] = df.groupby('journey_ref')['longitude'].shift(-1)
+    # Split data by schedule change and build edges separately
+    # This prevents spurious edges from route changes when combining all data
+    df_pre = df[df['timestamp'] < SCHEDULE_CHANGE_DATE]
+    df_post = df[df['timestamp'] >= SCHEDULE_CHANGE_DATE]
     
-    # Filter valid edges - must have valid coordinates for both stops
-    edges = df.dropna(subset=['next_stop', 'next_lat', 'next_lon']).copy()
-    edges = edges[edges['stop_name'] != edges['next_stop']]
+    edges_pre = _build_edges_for_period(df_pre)
+    edges_post = _build_edges_for_period(df_post)
+    
+    # Combine edges from both periods
+    edges = pd.concat([edges_pre, edges_post], ignore_index=True)
+    
+    if edges.empty:
+        return None
     
     # Aggregate edges - use 'size' for count to include rows with NaN delays
     edge_agg = edges.groupby(['stop_name', 'next_stop']).agg(

@@ -116,4 +116,80 @@ This document records data cleaning and filtering decisions made during the anal
 
 ---
 
-_Last updated: January 30, 2026_
+## 7. Line-Specific Data Coverage Issues
+
+**Finding:** Some lines have sparse stop-sequence coverage due to TRIAS API snapshot timing.
+
+**Example - Line 21:**
+
+- Total records: 1,144 across 106 journeys
+- Median stops per journey: **4** (vs 30+ for well-covered lines)
+- 50% of records at stop_sequence=1 (first stop only)
+- This is a **data collection artifact**, not a real schedule issue
+
+**Well-covered lines for comparison:**
+| Line | Records | Journeys | Avg Stops/Journey | % at stop_seq=1 |
+|------|---------|----------|-------------------|-----------------|
+| 5 | 33,602 | 1,061 | 31.7 | 10.4% |
+| 3 | 22,767 | 789 | 28.9 | 9.9% |
+| 1 | 19,053 | 554 | 34.4 | 10.6% |
+| 21 | 1,144 | 106 | 10.8 | **50.1%** |
+
+**Impact on analysis:**
+
+- Network graphs for sparse lines show incomplete routes
+- Edge counts are unreliable for lines with low stop coverage
+- Pre/post schedule change comparisons should use well-covered lines
+
+**Recommendation:** For network visualizations comparing pre/post periods, use lines with:
+
+- At least 50 journeys in both periods
+- Average 15+ stops per journey
+- Consistent stop coverage across periods
+
+---
+
+## 8. Schedule Change Edge Artifacts
+
+**Finding:** Combining pre and post schedule change data creates spurious edges when routes changed.
+
+**Root Cause:** The December 14, 2025 schedule change altered some bus routes. When building network edges from consecutive stops (using stop_sequence), the same stop_sequence number may refer to different stops before vs after the change.
+
+**Example - Line 5:**
+
+- Pre-change: stop_seq 2 = "Neckarbrücke", stop_seq 3 = "Wilhelmstraße"
+- Post-change: stop_seq 2 = "Danziger Straße", stop_seq 3 = "Derend. Käppele"
+- Combining both creates spurious edge: "Derend. Käppele → Wilhelmstraße"
+
+**Solution:** Process pre and post schedule change data **separately** when building edges, then merge the edge statistics. This ensures edges are only created between stops that are actually consecutive within the same schedule period.
+
+**Implementation:**
+
+```python
+# Split by schedule change
+edges_pre = build_edges_for_period(data_pre)
+edges_post = build_edges_for_period(data_post)
+# Merge edge statistics
+edges = pd.concat([edges_pre, edges_post])
+```
+
+**Impact:** Reduces spurious long-distance edges that don't represent real route segments.
+
+---
+
+## 9. Regional Line Geographic Scope
+
+**Finding:** Regional lines (e.g., Line 18) extend beyond Tübingen city center.
+
+**Example - Line 18:**
+
+- Serves: Tübingen → Hagelloch → Poltringen → Rottenburg
+- Poltringen coordinates: 48.53°N, 8.95°E (outside Tübingen bounding box 9.03-9.09°E)
+
+**Decision:** Do not apply geographic bounding box filter for line-specific visualizations.
+
+**Rationale:** Filtering to Tübingen city center would exclude legitimate route segments for regional lines.
+
+---
+
+_Last updated: January 31, 2026_

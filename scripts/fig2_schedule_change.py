@@ -24,6 +24,9 @@ from modules.plot_config import apply_style, STYLE
 apply_style()
 OUTPUT_DIR = SCRIPT_DIR / "outputs"
 PLOT_DIR = SCRIPT_DIR / "plots"
+PAPER_DIR = SCRIPT_DIR / "paper" / "images"
+
+PAPER_DIR.mkdir(exist_ok=True)
 
 # Key dates
 SCHEDULE_CHANGE_DATE = pd.Timestamp("2025-12-14")
@@ -299,6 +302,11 @@ def main():
     plt.savefig(out_pdf, dpi=300, bbox_inches='tight')
     print(f"Saved: {out_png}")
     print(f"Saved: {out_pdf}")
+    
+    # Also save to paper/images/ for LaTeX
+    paper_pdf = PAPER_DIR / "fig2_schedule_change.pdf"
+    plt.savefig(paper_pdf, dpi=300, bbox_inches='tight')
+    print(f"Saved: {paper_pdf}")
     
     # Save CSV with same name
     csv_out = OUTPUT_DIR / "fig2_schedule_change.csv"
