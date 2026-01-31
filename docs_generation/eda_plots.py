@@ -12,37 +12,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-
-# Try to use tueplots if available
-try:
-    from tueplots import bundles, axes
-    plt.rcParams.update({
-        **bundles.icml2024(usetex=False, family="serif"),
-        **axes.lines(),
-        "figure.dpi": 150,
-        "font.size": 12,
-        "axes.titlesize": 14,
-        "axes.labelsize": 12,
-        "legend.fontsize": 11,
-        "xtick.labelsize": 11,
-        "ytick.labelsize": 11,
-    })
-    print("Using tueplots styling")
-except ImportError:
-    plt.rcParams.update({
-        'font.family': 'serif',
-        'font.size': 12,
-        'axes.titlesize': 14,
-        'axes.labelsize': 12,
-        'legend.fontsize': 11,
-        'xtick.labelsize': 11,
-        'ytick.labelsize': 11,
-        'figure.dpi': 150,
-    })
-    print("tueplots not available, using default styling")
+import sys
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent.parent  # docs_generation/ -> code/
+sys.path.insert(0, str(SCRIPT_DIR))
+from modules.plot_config import apply_style, STYLE
+
+apply_style()
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
 DOCS_DIR = SCRIPT_DIR / "docs"
 PLOTS_DIR = DOCS_DIR / "plots"
@@ -198,7 +175,7 @@ def generate_cdf_pdf_combo_plot(df: pd.DataFrame, period: str, period_label: str
     # Combined legend
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=9)
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=11)
     
     plt.tight_layout()
     output_path = output_dir / "delay_cdf_pdf_combo.png"
@@ -357,7 +334,7 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax.set_xlabel('Delay (minutes)')
     ax.set_ylabel('Frequency')
     ax.set_title('(A) Delay Distribution', fontweight='bold')
-    ax.legend(loc='upper right', fontsize=8)
+    ax.legend(loc='upper right', fontsize=11)
     ax.grid(alpha=0.3)
     ax.set_yscale('log')
     ax.set_xlim(-1, 20)
@@ -414,7 +391,7 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax.set_title('(B) Delay by Hour of Day', fontweight='bold')
     ax.set_xticks(range(0, 24, 2))
     ax.grid(alpha=0.3)
-    ax.legend(loc='upper right', fontsize=8)
+    ax.legend(loc='upper right', fontsize=11)
     
     # --- Panel C: ECDF ---
     ax = axes[1, 0]
@@ -438,7 +415,7 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     ax.set_title('(C) Empirical CDF', fontweight='bold')
     ax.set_xlim(-5, 15)
     ax.set_ylim(0, 1.0)
-    ax.legend(loc='lower right', fontsize=8, framealpha=0.9)
+    ax.legend(loc='lower right', fontsize=11, framealpha=0.9)
     ax.grid(alpha=0.3)
     
     # --- Panel D: Top 15 Delayed Lines ---
@@ -626,7 +603,7 @@ def generate_delay_accumulation_plot(df: pd.DataFrame, period: str, period_label
     ax.set_xlabel('Stop Position in Route')
     ax.set_ylabel('Mean Delay (minutes)')
     ax.set_title('(A) Delay Accumulation Along Route', fontweight='bold')
-    ax.legend(loc='upper left', fontsize=9)
+    ax.legend(loc='upper left', fontsize=11)
     ax.grid(alpha=0.3)
     
     # Add correlation annotation
@@ -651,7 +628,7 @@ def generate_delay_accumulation_plot(df: pd.DataFrame, period: str, period_label
     ax.set_ylabel('Delay (minutes)')
     ax.set_title('(B) Delay vs Stop Position (Sample)', fontweight='bold')
     ax.set_ylim(-5, 30)
-    ax.legend(loc='upper left', fontsize=9)
+    ax.legend(loc='upper left', fontsize=11)
     ax.grid(alpha=0.3)
     
     # Add stats annotation

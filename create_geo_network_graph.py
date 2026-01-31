@@ -672,7 +672,7 @@ def create_matplotlib_visualization(G: nx.Graph, output_path: Path):
         Line2D([0], [0], color="#FF8800", linewidth=2, label="Moderate delay (≤5 min)"),
         Line2D([0], [0], color="#FF0000", linewidth=2, label="Significant delay (>5 min)"),
     ]
-    ax.legend(handles=legend_elements, loc="upper left", fontsize=8)
+    ax.legend(handles=legend_elements, loc="upper left", fontsize=11)
     
     # Save
     png_path = str(output_path).replace(".html", ".png")

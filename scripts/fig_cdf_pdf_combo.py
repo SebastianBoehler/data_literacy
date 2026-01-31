@@ -19,16 +19,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+import sys
 
-# Increase font sizes for readability
-plt.rcParams.update({
-    'font.size': 12,
-    'axes.titlesize': 14,
-    'axes.labelsize': 12,
-    'legend.fontsize': 11,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-})
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from modules.plot_config import apply_style, STYLE
+
+apply_style()
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent.parent
@@ -124,7 +121,7 @@ def create_cdf_pdf_combo(delays: np.ndarray, title: str, output_path: Path):
     # Combined legend
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=9)
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left', fontsize=11)
     
     plt.tight_layout()
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
