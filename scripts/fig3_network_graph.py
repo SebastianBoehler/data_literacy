@@ -34,9 +34,9 @@ PAPER_DIR = SCRIPT_DIR / "paper" / "images"
 PLOT_DIR.mkdir(exist_ok=True)
 PAPER_DIR.mkdir(exist_ok=True)
 
-# Line to show (best data quality - lowest duplicate stop_sequence rate)
-# Line 5: 2.19 → 1.48 min (33% reduction), 24% duplicate rate vs 50%+ for others
-FOCUS_LINE = '5'
+# Line to show - Line 4 has good direction balance (46%) and reasonable data quality
+# Line 4: 16,038 records, 52% duplicate rate, H:10,965 R:5,073
+FOCUS_LINE = '4'
 SCHEDULE_CHANGE_DATE = pd.Timestamp("2025-12-14")
 
 # Delay color thresholds (same as docs network graphs)
@@ -84,11 +84,16 @@ def build_edges_for_period(data: pd.DataFrame):
     return edges
 
 
-def build_network_graph(df: pd.DataFrame, line_filter: str = None):
-    """Build network graph from trip data, optionally filtered by line.
+def build_network_graph(df: pd.DataFrame, line_filter: str = None, direction_filter: str = None):
+    """Build network graph from trip data, optionally filtered by line and direction.
     
     Processes pre and post schedule change data separately to avoid spurious edges
     from route changes, then merges the edge statistics.
+    
+    Args:
+        df: Trip data DataFrame
+        line_filter: Filter to specific line (e.g., '5')
+        direction_filter: Filter to specific direction ('H' for outbound, 'R' for return)
     """
     
     data = df.copy()
@@ -108,6 +113,11 @@ def build_network_graph(df: pd.DataFrame, line_filter: str = None):
     # Filter by line if specified
     if line_filter:
         data = data[data['line_name'] == line_filter]
+    
+    # Extract and filter by direction if specified
+    if direction_filter:
+        data['direction'] = data['journey_ref'].str.extract(r'::([HR]):')[0].fillna('X')
+        data = data[data['direction'] == direction_filter]
     
     if data.empty or len(data) < 2:
         return None
@@ -153,7 +163,7 @@ def build_network_graph(df: pd.DataFrame, line_filter: str = None):
         edge_agg['to_lat'].values, edge_agg['to_lon'].values
     )
     
-    # Filter out spurious edges:
+    # Filter out spurious edges caused by duplicate stop_sequence data:
     # - Single-trip edges (count=1): remove if distance > 1.0 km
     # - Low-count edges (count 2-3): remove if distance > 1.5 km  
     # - Higher-count edges (count >= 4): keep all (reliable data)
@@ -313,29 +323,45 @@ def create_single_line_map_traces(G, subplot_name="map"):
     return traces
 
 
-def create_single_panel_figure(G, line_name, stats):
-    """Create single panel figure showing delay hotspots for one line."""
+def create_direction_comparison_figure(G_h, G_r, stats_h, stats_r):
+    """Create 2-panel figure comparing directions (H=outbound, R=return)."""
     
-    if G is None or G.number_of_nodes() == 0:
-        return None
+    # Get positions from both graphs
+    pos_h = {node: (data["longitude"], data["latitude"]) 
+             for node, data in G_h.nodes(data=True)} if G_h else {}
+    pos_r = {node: (data["longitude"], data["latitude"]) 
+             for node, data in G_r.nodes(data=True)} if G_r else {}
     
-    # Get positions
-    pos = {node: (data["longitude"], data["latitude"]) 
-           for node, data in G.nodes(data=True)}
+    # Calculate center from combined positions
+    all_pos = {**pos_h, **pos_r}
+    if all_pos:
+        center_lat = np.mean([p[1] for p in all_pos.values()])
+        center_lon = np.mean([p[0] for p in all_pos.values()])
+    else:
+        center_lat, center_lon = 48.52, 9.05
     
-    # Calculate center
-    center_lat = np.mean([p[1] for p in pos.values()])
-    center_lon = np.mean([p[0] for p in pos.values()])
+    # Create subplots with map
+    fig = make_subplots(
+        rows=1, cols=2,
+        subplot_titles=[
+            "(A) Direction H (Outbound)",
+            "(B) Direction R (Return)"
+        ],
+        specs=[[{"type": "scattermap"}, {"type": "scattermap"}]],
+        horizontal_spacing=0.02,
+    )
     
-    # Create figure
-    fig = go.Figure()
-    
-    # Add traces for the line
-    traces = create_single_line_map_traces(G, subplot_name="map")
-    for trace in traces:
+    # Add traces for direction H (left panel) - uses "map"
+    h_traces = create_single_line_map_traces(G_h, subplot_name="map")
+    for trace in h_traces:
         fig.add_trace(trace)
     
-    # Add legend traces for delay levels
+    # Add traces for direction R (right panel) - uses "map2"
+    r_traces = create_single_line_map_traces(G_r, subplot_name="map2")
+    for trace in r_traces:
+        fig.add_trace(trace)
+    
+    # Add legend traces (only once) - assign to first map
     DELAY_COLORS = [
         NEUTRAL_COLOR,
         mcolors.rgb2hex(cmap_delayed(0.1)[:3]),
@@ -356,22 +382,31 @@ def create_single_panel_figure(G, line_name, stats):
             )
         )
     
-    # Update layout
+    # Update layout with explicit map configurations for each subplot
     fig.update_layout(
         title=None,
         showlegend=True,
         legend=dict(
-            yanchor="bottom", y=0.08, xanchor="right", x=0.99,
-            bgcolor="rgba(255,255,255,0.9)", font=dict(size=11),
+            yanchor="top", y=0.98, xanchor="right", x=0.99,
+            bgcolor="rgba(255,255,255,0.9)", font=dict(size=10),
             title="Mean Delay",
         ),
-        margin=dict(l=10, r=10, t=10, b=10),
-        width=1000,
-        height=800,
+        margin=dict(l=10, r=10, t=40, b=10),
+        width=1400,
+        height=700,
+        # Configure first map (left panel)
         map=dict(
             style="carto-positron",
             center=dict(lat=center_lat, lon=center_lon),
             zoom=12.5,
+            domain=dict(x=[0, 0.48], y=[0, 1]),
+        ),
+        # Configure second map (right panel)
+        map2=dict(
+            style="carto-positron",
+            center=dict(lat=center_lat, lon=center_lon),
+            zoom=12.5,
+            domain=dict(x=[0.52, 1], y=[0, 1]),
         ),
     )
     
@@ -380,34 +415,47 @@ def create_single_panel_figure(G, line_name, stats):
 
 def main():
     print("=" * 60)
-    print("FIGURE 3: Line-Specific Delay Variation")
+    print("FIGURE 3: Line-Specific Delay Variation by Direction")
     print("=" * 60)
     
     df = load_data()
     
-    # Build graph for the focus line using ALL data
-    # (build_network_graph now processes pre/post separately to avoid spurious edges)
-    print(f"\nBuilding graph for Line {FOCUS_LINE}...")
+    # Extract direction for statistics
+    df['direction'] = df['journey_ref'].str.extract(r'::([HR]):')[0].fillna('X')
     
-    G = build_network_graph(df, line_filter=FOCUS_LINE)
+    # Build graphs for each direction
+    print(f"\nBuilding graphs for Line {FOCUS_LINE} by direction...")
     
-    if G:
-        print(f"  Nodes: {G.number_of_nodes()}, Edges: {G.number_of_edges()}")
+    G_h = build_network_graph(df, line_filter=FOCUS_LINE, direction_filter='H')
+    G_r = build_network_graph(df, line_filter=FOCUS_LINE, direction_filter='R')
+    
+    if G_h:
+        print(f"  Direction H: {G_h.number_of_nodes()} nodes, {G_h.number_of_edges()} edges")
     else:
-        print("  ERROR: Could not build graph")
+        print("  Direction H: No data")
+    
+    if G_r:
+        print(f"  Direction R: {G_r.number_of_nodes()} nodes, {G_r.number_of_edges()} edges")
+    else:
+        print("  Direction R: No data")
+    
+    if not G_h and not G_r:
+        print("  ERROR: No data for either direction")
         return
     
-    # Calculate statistics
-    line_data = df[df['line_name'] == FOCUS_LINE]['delay_minutes'].dropna()
-    stats = {'mean': line_data.mean(), 'median': line_data.median(), 'count': len(line_data)}
+    # Calculate statistics per direction
+    line_h = df[(df['line_name'] == FOCUS_LINE) & (df['direction'] == 'H')]['delay_minutes'].dropna()
+    line_r = df[(df['line_name'] == FOCUS_LINE) & (df['direction'] == 'R')]['delay_minutes'].dropna()
     
-    print(f"  Mean delay: {stats['mean']:.2f} min")
-    print(f"  Median delay: {stats['median']:.2f} min")
-    print(f"  Records: {stats['count']:,}")
+    stats_h = {'mean': line_h.mean(), 'median': line_h.median(), 'count': len(line_h)}
+    stats_r = {'mean': line_r.mean(), 'median': line_r.median(), 'count': len(line_r)}
     
-    # Create single panel figure
+    print(f"\n  Direction H: mean={stats_h['mean']:.2f} min, n={stats_h['count']:,}")
+    print(f"  Direction R: mean={stats_r['mean']:.2f} min, n={stats_r['count']:,}")
+    
+    # Create direction comparison figure
     print("\nCreating visualization...")
-    fig = create_single_panel_figure(G, FOCUS_LINE, stats)
+    fig = create_direction_comparison_figure(G_h, G_r, stats_h, stats_r)
     
     if fig is None:
         print("ERROR: Could not create figure")
@@ -442,10 +490,9 @@ def main():
     print("\n" + "=" * 60)
     print("SUMMARY")
     print("=" * 60)
-    print(f"Line {FOCUS_LINE} delay hotspots:")
-    print(f"  Mean delay: {stats['mean']:.2f} min")
-    print(f"  Median delay: {stats['median']:.2f} min")
-    print(f"  Total records: {stats['count']:,}")
+    print(f"Line {FOCUS_LINE} delay by direction:")
+    print(f"  Direction H (Outbound): mean={stats_h['mean']:.2f} min, n={stats_h['count']:,}")
+    print(f"  Direction R (Return):   mean={stats_r['mean']:.2f} min, n={stats_r['count']:,}")
 
 
 if __name__ == "__main__":

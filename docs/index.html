@@ -520,6 +520,15 @@
             </div>
 
             <div class="plot-item">
+              <h3>Weather vs Time of Day Interaction</h3>
+              <p class="plot-description">
+                <strong>(A)</strong> Heatmap showing late rate by weather condition and hour of day. Green = fewer delays, red = more delays.
+                <strong>(B)</strong> Line plot comparing delay trends across weather conditions throughout the day. Shows how weather effects vary by time.
+              </p>
+              <img id="plot-weather-time" src="plots/all/weather_vs_time.png" alt="Weather vs Time of Day" />
+            </div>
+
+            <div class="plot-item">
               <h3>Schedule Change Comparison (ECDF)</h3>
               <p class="plot-description">
                 Empirical cumulative distribution functions comparing delay distributions before and after the Dec 14, 2025 schedule change. Shaded bands show
@@ -612,6 +621,7 @@
         document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
         document.getElementById("plot-late-rate").src = `plots/${period}/late_rate_hourly.png`;
         document.getElementById("plot-weather").src = `plots/${period}/weather_effect.png`;
+        document.getElementById("plot-weather-time").src = `plots/${period}/weather_vs_time.png`;
         document.getElementById("plot-accumulation").src = `plots/${period}/delay_accumulation.png`;
         // Schedule change ECDF is always from 'all' (it compares pre vs post)
         document.getElementById("plot-schedule-ecdf").src = `plots/all/schedule_change_ecdf.png`;
