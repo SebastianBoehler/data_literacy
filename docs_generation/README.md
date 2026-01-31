@@ -21,13 +21,25 @@ python generate_all.py
 1. Run the Jupyter notebook to export `outputs/all_trip_data.parquet`
 2. Ensure required packages are installed: `pandas`, `numpy`, `networkx`, `plotly`, `matplotlib`
 
+## Plot Styling
+
+All plots use the central configuration from `modules/plot_config.py`:
+
+```python
+from modules.plot_config import apply_style, STYLE
+
+apply_style()  # Applies unified styling (font sizes, colors, etc.)
+```
+
+To modify plot styling globally, edit `modules/plot_config.py`.
+
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `generate_all.py` | Main entry point - runs all generation scripts |
-| `network_graphs.py` | Generates per-line network maps with delay coloring |
-| `eda_plots.py` | Generates EDA plots (distributions, hourly patterns, etc.) |
+| Script              | Description                                                |
+| ------------------- | ---------------------------------------------------------- |
+| `generate_all.py`   | Main entry point - runs all generation scripts             |
+| `network_graphs.py` | Generates per-line network maps with delay coloring        |
+| `eda_plots.py`      | Generates EDA plots (distributions, hourly patterns, etc.) |
 
 ## Output Structure
 
@@ -52,11 +64,11 @@ docs/
 
 ## Time Periods
 
-| Period | Description | Date Filter |
-|--------|-------------|-------------|
-| `all` | All data | None |
-| `pre` | Before schedule change | < 2025-12-14 |
-| `post` | After schedule change | >= 2025-12-14 |
+| Period | Description            | Date Filter   |
+| ------ | ---------------------- | ------------- |
+| `all`  | All data               | None          |
+| `pre`  | Before schedule change | < 2025-12-14  |
+| `post` | After schedule change  | >= 2025-12-14 |
 
 ## Adding New Plots
 

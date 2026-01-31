@@ -50,14 +50,51 @@ Execution prints the number of stops discovered and departures gathered. Fresh C
 
 ```
 code/
-├── main.py               # Orchestrates stop discovery, departures, weather, and export
+├── main.py                    # Orchestrates stop discovery, departures, weather, and export
+├── Data_Literacy_Notebook.ipynb  # Main analysis notebook
+├── config.json                # Runtime configuration
+│
 ├── modules/
-│   ├── trias.py          # TRIAS 1.2 SOAP client (LocationInformation & StopEvent requests)
-│   ├── weather.py        # Bright Sky current weather client
-│   └── utils.py          # Config loading, timestamp helpers, weather join utilities
-├── exports/              # Generated CSV snapshots (timestamped)
-└── config.json           # Runtime configuration
+│   ├── trias.py               # TRIAS 1.2 SOAP client (LocationInformation & StopEvent requests)
+│   ├── weather.py             # Bright Sky current weather client
+│   ├── utils.py               # Config loading, timestamp helpers, weather join utilities
+│   └── plot_config.py         # Central plot styling configuration (single source of truth)
+│
+├── scripts/                   # Standalone figure generation scripts
+│   ├── fig2_schedule_change.py
+│   ├── fig_cdf_pdf_combo.py
+│   ├── fig_late_rate_hourly.py
+│   ├── fig_weather_effect.py
+│   ├── fig_ecdf_comparison.py
+│   ├── fig_schedule_change_ecdf.py
+│   ├── fig_quantile_analysis.py
+│   ├── fig_day_of_week.py
+│   ├── fig_top_stops_late_rate.py
+│   └── fig_outlier_analysis.py
+│
+├── docs_generation/           # GitHub Pages documentation generation
+│   ├── generate_all.py        # Main entry point for docs generation
+│   ├── eda_plots.py           # EDA plot generation
+│   └── network_graphs.py      # Network visualization generation
+│
+├── docs/                      # Generated GitHub Pages site
+├── outputs/                   # Generated data files (parquet, CSV)
+├── plots/                     # Generated plot images
+├── paper/                     # LaTeX paper and related files
+└── exports/                   # Legacy CSV snapshots (timestamped)
 ```
+
+## Plot Configuration
+
+All plots use a central configuration file (`modules/plot_config.py`) for consistent styling:
+
+```python
+from modules.plot_config import apply_style, STYLE, COLORS
+
+apply_style()  # Apply unified matplotlib styling
+```
+
+This ensures consistent font sizes, colors, and styling across all visualizations.
 
 ## TRIAS Module Documentation
 
