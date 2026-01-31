@@ -390,10 +390,12 @@ def export_line_data(trip_df: pd.DataFrame, line_filter: str, output_path: Path)
         'mean_delay': 'delay_min',
         'num_trips': 'trips'
     }).to_dict(orient='records')
-    
-    # Ensure all values are JSON-serializable
+
+    # Ensure all values are JSON-serializable (NaN -> None for valid JSON)
     for edge in edges_list:
         edge['trips'] = int(edge['trips'])
+        if pd.isna(edge.get('delay_min')):
+            edge['delay_min'] = None
     
     avg_delay = edge_agg['mean_delay'].mean()
     max_delay = edge_agg['mean_delay'].max()
