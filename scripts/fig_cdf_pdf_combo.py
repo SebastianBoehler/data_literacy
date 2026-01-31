@@ -42,12 +42,15 @@ KEY_THRESHOLDS = [0, 2, 3, 5]  # Minutes to annotate
 
 
 def create_cdf_pdf_combo(delays: np.ndarray, title: str, output_path: Path):
-    """Create combined CDF + PDF plot with percentage readouts."""
+    """Generate combined CDF + PDF plot with percentage readouts.
     
+    Addresses feedback requesting:
+    - Percentage-based visualization instead of absolute counts
+    - CDF overlay for reading "X% have delay ≤ Y min"
+    """
     fig, ax1 = plt.subplots(figsize=(10, 6))
     
     # --- PDF (Histogram as percentage) ---
-    # Use density=False but normalize manually to get percentages
     counts, bins, patches = ax1.hist(
         delays, bins=50, range=DELAY_RANGE, 
         color='steelblue', alpha=0.6, edgecolor='white',
@@ -59,7 +62,7 @@ def create_cdf_pdf_combo(delays: np.ndarray, title: str, output_path: Path):
     for patch, count in zip(patches, counts):
         patch.set_height(count / total * 100)
     
-    ax1.set_ylim(0, max(counts) / total * 100 * 1.1)
+    ax1.set_ylim(0, 100)
     ax1.set_ylabel('Percentage of Buses (%)', color='steelblue')
     ax1.tick_params(axis='y', labelcolor='steelblue')
     
@@ -108,7 +111,6 @@ def create_cdf_pdf_combo(delays: np.ndarray, title: str, output_path: Path):
     ax1.set_xlim(DELAY_RANGE)
     ax1.grid(axis='y', alpha=0.3)
     
-    # Stats box
     stats_text = (
         f'n = {len(delays):,}\n'
         f'Mean = {np.mean(delays):.2f} min\n'
