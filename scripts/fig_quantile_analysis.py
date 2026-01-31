@@ -14,16 +14,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
+import sys
 
-# Increase font sizes for readability
-plt.rcParams.update({
-    'font.size': 12,
-    'axes.titlesize': 14,
-    'axes.labelsize': 12,
-    'legend.fontsize': 11,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-})
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from modules.plot_config import apply_style, STYLE
+
+apply_style()
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent.parent

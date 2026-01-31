@@ -14,16 +14,13 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 from matplotlib.cm import ScalarMappable
 from pathlib import Path
+import sys
 
-# Increase font sizes for readability
-plt.rcParams.update({
-    'font.size': 12,
-    'axes.titlesize': 14,
-    'axes.labelsize': 12,
-    'legend.fontsize': 11,
-    'xtick.labelsize': 11,
-    'ytick.labelsize': 11,
-})
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from modules.plot_config import apply_style, STYLE
+
+apply_style()
 
 SCRIPT_DIR = Path(__file__).parent.parent
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
