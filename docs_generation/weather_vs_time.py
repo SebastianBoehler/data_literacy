@@ -55,100 +55,87 @@ def filter_by_period(df: pd.DataFrame, period: str) -> pd.DataFrame:
     return df.copy()
 
 
-def generate_weather_vs_time_heatmap(df: pd.DataFrame, period: str, period_label: str, output_dir: Path):
-    """Generate heatmap showing weather condition vs time of day effect on delays.
+def compute_variance_explained(df: pd.DataFrame) -> dict:
+    """Compute R² for time of day and weather condition on delay variance."""
+    from sklearn.preprocessing import LabelEncoder
+    from sklearn.linear_model import LinearRegression
     
-    Shows late rate (P(delay > 2 min)) as a function of both hour of day and weather condition.
+    df_clean = df.dropna(subset=['delay_minutes', 'condition', 'hour']).copy()
+    df_clean['hour_int'] = df_clean['hour'].astype(int)
+    
+    le = LabelEncoder()
+    df_clean['condition_enc'] = le.fit_transform(df_clean['condition'])
+    
+    y = df_clean['delay_minutes'].values
+    
+    # R² for hour only
+    X_hour = df_clean[['hour_int']].values
+    r2_hour = LinearRegression().fit(X_hour, y).score(X_hour, y)
+    
+    # R² for condition only
+    X_cond = df_clean[['condition_enc']].values
+    r2_cond = LinearRegression().fit(X_cond, y).score(X_cond, y)
+    
+    return {
+        'r2_hour': r2_hour,
+        'r2_weather': r2_cond,
+        'ratio': r2_cond / r2_hour if r2_hour > 0 else float('inf'),
+    }
+
+
+def generate_weather_vs_time_plot(df: pd.DataFrame, period: str, period_label: str, output_dir: Path,
+                                   snow_note: str = None):
+    """Generate bar chart comparing variance explained by weather vs time of day.
+    
+    Simple visualization showing which factor explains more delay variance.
     """
-    LATE_THRESHOLD = 2
-    MIN_SAMPLES = 30
-    
-    # Filter valid data with weather and time info
+    # Filter valid data
     df_valid = df.dropna(subset=['delay_minutes', 'condition', 'hour']).copy()
-    df_valid['hour'] = df_valid['hour'].astype(int)
-    df_valid['is_late'] = df_valid['delay_minutes'] > LATE_THRESHOLD
     
     if len(df_valid) < 100:
         print(f"  Skipped weather_vs_time.png (insufficient data)")
         return
     
-    # Get weather conditions with enough samples
-    condition_counts = df_valid['condition'].value_counts()
-    valid_conditions = condition_counts[condition_counts >= MIN_SAMPLES * 5].index.tolist()
+    # Compute variance explained
+    var_stats = compute_variance_explained(df_valid)
     
-    if len(valid_conditions) < 2:
-        print(f"  Skipped weather_vs_time.png (not enough weather conditions)")
-        return
+    fig, ax = plt.subplots(figsize=(8, 5))
     
-    df_valid = df_valid[df_valid['condition'].isin(valid_conditions)]
+    # Data for bar chart
+    factors = ['Weather\nCondition', 'Time of\nDay']
+    r2_values = [var_stats['r2_weather'] * 100, var_stats['r2_hour'] * 100]
+    colors = ['steelblue', 'darkorange']
     
-    # Create pivot table: late rate by hour and condition
-    pivot = df_valid.groupby(['condition', 'hour']).agg(
-        late_rate=('is_late', 'mean'),
-        count=('is_late', 'count')
-    ).reset_index()
+    # Create bars
+    bars = ax.bar(factors, r2_values, color=colors, edgecolor='black', linewidth=1.5, width=0.6)
     
-    # Filter cells with minimum samples
-    pivot = pivot[pivot['count'] >= MIN_SAMPLES]
+    # Add value labels on bars
+    for bar, val in zip(bars, r2_values):
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
+                f'{val:.2f}%', ha='center', va='bottom', fontsize=12, fontweight='bold')
     
-    # Create heatmap matrix
-    conditions = sorted(df_valid['condition'].unique())
-    hours = list(range(5, 24))  # Focus on 5am-11pm
+    # Styling
+    ax.set_ylabel('Variance Explained (R²)', fontsize=12)
+    ax.set_title(f'Weather vs Time of Day: Effect on Delays\n{period_label}', fontweight='bold', fontsize=13)
+    ax.set_ylim(0, max(r2_values) * 1.4)
+    ax.grid(axis='y', alpha=0.3)
     
-    heatmap_data = np.full((len(conditions), len(hours)), np.nan)
-    count_data = np.full((len(conditions), len(hours)), 0)
+    # Add ratio annotation
+    ratio_text = f"Weather explains {var_stats['ratio']:.1f}× more variance than time of day"
+    ax.text(0.5, 0.92, ratio_text, transform=ax.transAxes, fontsize=11,
+            ha='center', va='top',
+            bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.9, edgecolor='gray'))
     
-    for _, row in pivot.iterrows():
-        if row['hour'] in hours:
-            i = conditions.index(row['condition'])
-            j = hours.index(row['hour'])
-            heatmap_data[i, j] = row['late_rate'] * 100
-            count_data[i, j] = row['count']
+    # Add snow note if provided
+    if snow_note:
+        ax.text(0.5, 0.02, snow_note, transform=ax.transAxes, fontsize=9,
+                ha='center', va='bottom', color='gray', style='italic')
     
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    # Add sample size
+    ax.text(0.98, 0.98, f'n = {len(df_valid):,}', transform=ax.transAxes, fontsize=9,
+            ha='right', va='top', color='gray')
     
-    # --- Panel A: Heatmap ---
-    ax = axes[0]
-    im = ax.imshow(heatmap_data, cmap='RdYlGn_r', aspect='auto', vmin=0, vmax=50)
-    
-    ax.set_xticks(range(len(hours)))
-    ax.set_xticklabels([f'{h}' for h in hours], fontsize=9)
-    ax.set_yticks(range(len(conditions)))
-    ax.set_yticklabels([c.capitalize() for c in conditions], fontsize=10)
-    
-    ax.set_xlabel('Hour of Day')
-    ax.set_ylabel('Weather Condition')
-    ax.set_title('(A) Late Rate by Weather & Time of Day', fontweight='bold')
-    
-    cbar = plt.colorbar(im, ax=ax, shrink=0.8)
-    cbar.set_label('Late Rate (%)', fontsize=10)
-    
-    # --- Panel B: Line plot comparison ---
-    ax = axes[1]
-    
-    colors = plt.cm.tab10(np.linspace(0, 1, len(conditions)))
-    
-    for idx, condition in enumerate(conditions):
-        cond_data = pivot[pivot['condition'] == condition].sort_values('hour')
-        if len(cond_data) >= 3:
-            ax.plot(cond_data['hour'], cond_data['late_rate'] * 100, 
-                    'o-', color=colors[idx], linewidth=2, markersize=5,
-                    label=f'{condition.capitalize()} (n={df_valid[df_valid["condition"]==condition].shape[0]:,})')
-    
-    ax.set_xlabel('Hour of Day')
-    ax.set_ylabel('Late Rate (%)')
-    ax.set_title('(B) Late Rate Trends by Weather Condition', fontweight='bold')
-    ax.set_xlim(4.5, 23.5)
-    ax.set_ylim(0, 50)
-    ax.legend(loc='upper right', fontsize=9)
-    ax.grid(alpha=0.3)
-    
-    # Add overall stats
-    overall_late = df_valid['is_late'].mean() * 100
-    ax.axhline(overall_late, color='gray', linestyle='--', alpha=0.7)
-    
-    fig.suptitle(f'Weather vs Time of Day Effect on Delays — {period_label}', fontsize=12, fontweight='bold', y=1.02)
-    
+    plt.tight_layout()
     output_path = output_dir / "weather_vs_time.png"
     plt.savefig(output_path, dpi=150, bbox_inches='tight')
     plt.close()
@@ -164,6 +151,15 @@ def main():
     df = load_data()
     if df is None:
         return
+    
+    # Check snow distribution across periods
+    df_pre = filter_by_period(df, 'pre')
+    df_post = filter_by_period(df, 'post')
+    
+    snow_pre = (df_pre['condition'] == 'snow').sum() if 'condition' in df_pre.columns else 0
+    snow_post = (df_post['condition'] == 'snow').sum() if 'condition' in df_post.columns else 0
+    
+    print(f"\nSnow observations: pre={snow_pre}, post={snow_post}")
     
     # Generate plots for each period
     for period, config in PERIODS.items():
@@ -181,7 +177,14 @@ def main():
             print(f"  WARNING: No data for period '{period}'")
             continue
         
-        generate_weather_vs_time_heatmap(period_df, period, config['label'], output_dir)
+        # Add snow note for pre-change period
+        snow_note = None
+        if period == "pre":
+            snow_note = "Note: No snow observations in pre-change period"
+        elif period == "all":
+            snow_note = f"Note: Snow data only from post-change\n(n={snow_post:,} obs, 0 pre-change)"
+        
+        generate_weather_vs_time_plot(period_df, period, config['label'], output_dir, snow_note=snow_note)
     
     print("\n" + "=" * 70)
     print("Done! Generated weather_vs_time.png for all periods")
