@@ -316,111 +316,129 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
                                   df_pre: pd.DataFrame = None, df_post: pd.DataFrame = None):
     """Generate combined 2x2 EDA figure with subplots A, B, C, D.
     
-    For panels A and B, shows pre/post schedule change comparison with overlays.
+    Matches the paper's fig1_eda_4panel layout:
+    (A) Delay Distribution with Histogram + CDF
+    (B) Top 10 Most Delayed Lines by average delay
+    (C) Top 10 Busiest Stops by departure count
+    (D) Mean delay by weather condition with sample sizes
     """
+    # Consistent color
+    MAIN_BLUE = '#6baed6'
+    CDF_COLOR = '#8b0000'
+    
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     
-    # --- Panel A: Delay Distribution Histogram ---
-    ax = axes[0, 0]
     delays = df['delay_minutes'].dropna()
     
-    # Main histogram (current period data only)
-    ax.hist(delays, bins=50, range=(-1, 20), color='steelblue', edgecolor='white', alpha=0.8)
+    # =========================================================================
+    # Panel A: Delay Distribution with Histogram + CDF
+    # =========================================================================
+    ax = axes[0, 0]
+    ax2 = ax.twinx()
     
-    ax.axvline(delays.mean(), color='orange', linestyle='-', linewidth=1.5, label=f'Mean: {delays.mean():.2f} min')
-    ax.axvline(delays.median(), color='green', linestyle='-', linewidth=1.5, label=f'Median: {delays.median():.2f} min')
+    delay_range = (-2, 20)
+    delays_filtered = delays[(delays >= delay_range[0]) & (delays <= delay_range[1])]
+    
+    # Histogram as percentage per bin
+    bins = np.arange(delay_range[0], delay_range[1] + 1, 1)
+    counts, bin_edges = np.histogram(delays_filtered, bins=bins)
+    percentages = counts / len(delays) * 100
+    
+    ax.bar(bin_edges[:-1] + 0.5, percentages, width=0.9, color=MAIN_BLUE, 
+           edgecolor='white', alpha=0.8, label='% per bin')
+    
+    # CDF calculation
+    sorted_delays = np.sort(delays)
+    cdf = np.arange(1, len(sorted_delays) + 1) / len(sorted_delays) * 100
+    
+    mask = (sorted_delays >= delay_range[0]) & (sorted_delays <= delay_range[1])
+    ax2.plot(sorted_delays[mask], cdf[mask], '-', color=CDF_COLOR, 
+             linewidth=2, marker='o', markersize=2, label='Cumulative %')
+    
+    # Add key percentile annotations
+    for threshold, label_offset in [(0, (0.5, -8)), (2, (0.5, -5)), (3, (0.5, -5)), (5, (0.5, -5))]:
+        pct = (delays <= threshold).mean() * 100
+        ax2.axhline(pct, color='gray', linestyle='--', alpha=0.4, linewidth=0.8)
+        if threshold == 0:
+            ax2.annotate(f'On time (≤0): {pct:.1f}%', xy=(threshold, pct), 
+                        xytext=(threshold + label_offset[0], pct + label_offset[1]),
+                        fontsize=7, color=CDF_COLOR)
+        else:
+            ax2.annotate(f'≤{threshold} min: {pct:.1f}%', xy=(threshold, pct), 
+                        xytext=(threshold + label_offset[0], pct + label_offset[1]),
+                        fontsize=7, color=CDF_COLOR)
     
     ax.set_xlabel('Delay (minutes)')
-    ax.set_ylabel('Frequency')
-    ax.set_title('(A) Delay Distribution', fontweight='bold')
-    ax.legend(loc='upper right', fontsize=11)
+    ax.set_ylabel('Percentage of Buses per Bin (%)', color=MAIN_BLUE)
+    ax2.set_ylabel('Cumulative Percentage (%)', color=CDF_COLOR)
+    ax.set_title('(A) Delay Distribution with CDF', fontweight='bold')
+    ax.set_xlim(delay_range)
+    ax.set_ylim(0, 100)
+    ax2.set_ylim(0, 100)
+    ax.tick_params(axis='y', labelcolor=MAIN_BLUE)
+    ax2.tick_params(axis='y', labelcolor=CDF_COLOR)
     ax.grid(alpha=0.3)
-    ax.set_yscale('log')
-    ax.set_xlim(-1, 20)
     
-    stats_text = f'n = {len(delays):,}\nStd = {delays.std():.2f} min'
-    ax.text(0.98, 0.75, stats_text, transform=ax.transAxes, fontsize=8,
-            verticalalignment='top', horizontalalignment='right',
+    # Stats annotation - bottom right
+    late_2min = (delays > 2).mean() * 100
+    stats_text = f'n = {len(delays):,}\nMean = {delays.mean():.2f} min\nMedian = {delays.median():.2f} min\nLate (>2 min) = {late_2min:.1f}%'
+    ax.text(0.97, 0.03, stats_text, transform=ax.transAxes, fontsize=7,
+            verticalalignment='bottom', horizontalalignment='right',
             bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
     
-    # --- Panel B: Hourly Delay Pattern with pre/post comparison ---
+    # =========================================================================
+    # Panel B: Top 10 Most Delayed Lines by Average Delay
+    # =========================================================================
     ax = axes[0, 1]
-    df_hourly = df.copy()
-    df_hourly['hour'] = pd.to_datetime(df_hourly['timestamp']).dt.hour
     
-    hourly_stats = df_hourly.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
-    hourly_stats['ci95'] = 1.96 * hourly_stats['std'] / np.sqrt(hourly_stats['count'])
+    line_stats = df.groupby('line_name')['delay_minutes'].agg(['mean', 'count']).reset_index()
+    line_stats = line_stats[line_stats['count'] >= 100]
+    line_stats = line_stats.sort_values('mean', ascending=False).head(10)
     
-    # Overlay pre/post if available
-    if df_pre is not None and df_post is not None:
-        df_pre_h = df_pre.copy()
-        df_pre_h['hour'] = pd.to_datetime(df_pre_h['timestamp']).dt.hour
-        pre_stats = df_pre_h.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
-        pre_stats['ci95'] = 1.96 * pre_stats['std'] / np.sqrt(pre_stats['count'])
-        
-        df_post_h = df_post.copy()
-        df_post_h['hour'] = pd.to_datetime(df_post_h['timestamp']).dt.hour
-        post_stats = df_post_h.groupby('hour')['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
-        post_stats['ci95'] = 1.96 * post_stats['std'] / np.sqrt(post_stats['count'])
-        
-        # Pre schedule change (red, lower opacity)
-        ax.fill_between(pre_stats['hour'], 
-                        pre_stats['mean'] - pre_stats['ci95'],
-                        pre_stats['mean'] + pre_stats['ci95'],
-                        alpha=0.15, color='#e74c3c')
-        ax.plot(pre_stats['hour'], pre_stats['mean'], 'o--', color='#e74c3c', linewidth=1.5, markersize=4, alpha=0.7, label='Pre')
-        
-        # Post schedule change (green, lower opacity)
-        ax.fill_between(post_stats['hour'], 
-                        post_stats['mean'] - post_stats['ci95'],
-                        post_stats['mean'] + post_stats['ci95'],
-                        alpha=0.15, color='#2ecc71')
-        ax.plot(post_stats['hour'], post_stats['mean'], 'o--', color='#2ecc71', linewidth=1.5, markersize=4, alpha=0.7, label='Post')
+    bars = ax.barh(line_stats['line_name'].astype(str), line_stats['mean'], 
+                   color=MAIN_BLUE, edgecolor='white')
     
-    # Main line (all data) - on top
-    ax.fill_between(hourly_stats['hour'], 
-                    hourly_stats['mean'] - hourly_stats['ci95'],
-                    hourly_stats['mean'] + hourly_stats['ci95'],
-                    alpha=0.3, color='steelblue')
-    ax.plot(hourly_stats['hour'], hourly_stats['mean'], 'o-', color='steelblue', linewidth=2, markersize=5, label='All')
-    ax.axhline(0, color='gray', linestyle='--', linewidth=1, alpha=0.5)
+    for bar, (_, row) in zip(bars, line_stats.iterrows()):
+        ax.text(bar.get_width() + 0.05, bar.get_y() + bar.get_height()/2, 
+                f'{row["mean"]:.1f} min (n={row["count"]:,})', va='center', fontsize=7, color='black')
     
-    ax.set_xlabel('Hour of Day')
-    ax.set_ylabel('Mean Delay (minutes)')
-    ax.set_title('(B) Delay by Hour of Day', fontweight='bold')
-    ax.set_xticks(range(0, 24, 2))
-    ax.grid(alpha=0.3)
-    ax.legend(loc='upper right', fontsize=11)
+    ax.set_xlabel('Mean Delay (minutes)')
+    ax.set_ylabel('Line')
+    ax.set_title('(B) Top 10 Most Delayed Lines', fontweight='bold')
+    ax.invert_yaxis()
+    ax.grid(axis='x', alpha=0.3)
+    ax.set_xlim(0, line_stats['mean'].max() * 1.5)
     
-    # --- Panel C: ECDF ---
+    # =========================================================================
+    # Panel C: Top 10 Busiest Stops by Departure Count
+    # =========================================================================
     ax = axes[1, 0]
-    delay_vals = delays.values
-    x_sorted = np.sort(delay_vals)
-    n = len(x_sorted)
-    ecdf_y = np.arange(1, n + 1) / n
     
-    # DKW confidence bands (95%)
-    alpha_dkw = 0.05
-    epsilon = np.sqrt(np.log(2 / alpha_dkw) / (2 * n))
-    lower = np.clip(ecdf_y - epsilon, 0, 1)
-    upper = np.clip(ecdf_y + epsilon, 0, 1)
+    stop_counts = df.groupby('stop_name').size().reset_index(name='count')
+    stop_counts = stop_counts.sort_values('count', ascending=False).head(10)
     
-    ax.fill_between(x_sorted, lower, upper, alpha=0.3, color='steelblue', label='95% DKW Band')
-    ax.step(x_sorted, ecdf_y, where='post', color='steelblue', linewidth=1.5, label='ECDF')
-    ax.axvline(0, color='darkred', linestyle='--', linewidth=1.5, alpha=0.8, label='On Time')
+    stop_counts['display_name'] = stop_counts['stop_name'].str.replace('Tübingen ', '', regex=False)
+    stop_counts['display_name'] = stop_counts['display_name'].str[:25]
     
-    ax.set_xlabel('Delay (minutes)')
-    ax.set_ylabel('Cumulative Probability')
-    ax.set_title('(C) Empirical CDF', fontweight='bold')
-    ax.set_xlim(-5, 15)
-    ax.set_ylim(0, 1.0)
-    ax.legend(loc='lower right', fontsize=11, framealpha=0.9)
-    ax.grid(alpha=0.3)
+    bars = ax.barh(stop_counts['display_name'], stop_counts['count'], 
+                   color=MAIN_BLUE, edgecolor='white')
     
-    # --- Panel D: Mean Delay by Weather Condition (vertical bars) ---
+    for bar, count in zip(bars, stop_counts['count']):
+        ax.text(bar.get_width() + 50, bar.get_y() + bar.get_height()/2, 
+                f'{count:,}', va='center', fontsize=7, color='black')
+    
+    ax.set_xlabel('Number of Departures')
+    ax.set_ylabel('')
+    ax.set_title('(C) Top 10 Busiest Stops', fontweight='bold')
+    ax.invert_yaxis()
+    ax.grid(axis='x', alpha=0.3)
+    ax.set_xlim(0, stop_counts['count'].max() * 1.25)
+    
+    # =========================================================================
+    # Panel D: Mean Delay by Weather Condition
+    # =========================================================================
     ax = axes[1, 1]
     
-    # Check for weather column - 'condition' contains dry/rain/snow/fog/hail/sleet
     weather_col = None
     for col in ['condition', 'weather_condition', 'weather', 'precipitation']:
         if col in df.columns:
@@ -429,36 +447,34 @@ def generate_combined_eda_figure(df: pd.DataFrame, period: str, period_label: st
     
     if weather_col is not None:
         weather_stats = df.groupby(weather_col)['delay_minutes'].agg(['mean', 'std', 'count']).reset_index()
-        weather_stats = weather_stats[weather_stats['count'] >= 50]  # filter small samples
+        weather_stats = weather_stats[weather_stats['count'] >= 50]
         weather_stats['ci95'] = 1.96 * weather_stats['std'] / np.sqrt(weather_stats['count'])
         weather_stats = weather_stats.sort_values('mean', ascending=False)
         
         x = range(len(weather_stats))
-        bars = ax.bar(x, weather_stats['mean'], color='steelblue', alpha=0.7, edgecolor='black')
+        bars = ax.bar(x, weather_stats['mean'], color=MAIN_BLUE, alpha=0.8, edgecolor='white')
         
-        # Error bars
         ax.errorbar(x, weather_stats['mean'], yerr=weather_stats['ci95'],
                     fmt='none', color='black', capsize=4, capthick=1.5)
         
         ax.set_xticks(x)
         ax.set_xticklabels(weather_stats[weather_col], rotation=45, ha='right', fontsize=9)
         
-        # Add sample size annotations
         for i, row in weather_stats.reset_index().iterrows():
             ax.text(i, row['mean'] + row['ci95'] + 0.3, f'n={row["count"]:,}', 
-                    ha='center', fontsize=7, color='gray')
+                    ha='center', fontsize=7, color='black')
         
         ax.set_xlabel('Weather Condition')
         ax.set_ylabel('Mean Delay (minutes)')
         ax.set_title('(D) Mean Delay by Weather Condition', fontweight='bold')
         ax.grid(axis='y', alpha=0.3)
+        max_y = (weather_stats['mean'] + weather_stats['ci95']).max()
+        ax.set_ylim(0, max_y * 1.25)
     else:
-        # Fallback: show message if no weather data
         ax.text(0.5, 0.5, 'Weather data not available', transform=ax.transAxes,
                 ha='center', va='center', fontsize=12, color='gray')
         ax.set_title('(D) Mean Delay by Weather Condition', fontweight='bold')
     
-    # Add overall title
     fig.suptitle(f'Delay Analysis — {period_label}', fontsize=14, fontweight='bold', y=1.02)
     
     plt.tight_layout()
