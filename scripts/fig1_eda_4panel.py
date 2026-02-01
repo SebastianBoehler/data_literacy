@@ -100,13 +100,25 @@ def main():
         pct = (delays <= threshold).mean() * 100
         ax2.axhline(pct, color='gray', linestyle='--', alpha=0.4, linewidth=0.8)
         if threshold == 0:
-            ax2.annotate(f'On time (≤0): {pct:.1f}%', xy=(threshold, pct), 
-                        xytext=(threshold + label_offset[0], pct + label_offset[1]),
-                        fontsize=8, color=CDF_COLOR)
+            ax2.annotate(
+                f'On time (≤0): {pct:.1f}%',
+                xy=(threshold, pct),
+                xytext=(threshold + label_offset[0], pct + label_offset[1]),
+                fontsize=8,
+                color=CDF_COLOR,
+                bbox=dict(boxstyle='round,pad=0.2', facecolor='white', alpha=0.75, edgecolor='none'),
+                arrowprops=dict(arrowstyle='->', color=CDF_COLOR, alpha=0.6, linewidth=0.8),
+            )
         else:
-            ax2.annotate(f'≤{threshold} min: {pct:.1f}%', xy=(threshold, pct), 
-                        xytext=(threshold + label_offset[0], pct + label_offset[1]),
-                        fontsize=8, color=CDF_COLOR)
+            ax2.annotate(
+                f'≤{threshold} min: {pct:.1f}%',
+                xy=(threshold, pct),
+                xytext=(threshold + label_offset[0], pct + label_offset[1]),
+                fontsize=8,
+                color=CDF_COLOR,
+                bbox=dict(boxstyle='round,pad=0.2', facecolor='white', alpha=0.75, edgecolor='none'),
+                arrowprops=dict(arrowstyle='->', color=CDF_COLOR, alpha=0.6, linewidth=0.8),
+            )
     
     ax.set_xlabel('Delay (minutes)')
     ax.set_ylabel('Percentage of Buses per Bin (%)', color=MAIN_BLUE)

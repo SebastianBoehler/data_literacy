@@ -236,7 +236,7 @@ def main():
     ax.set_xlabel('Date')
     ax.set_ylabel('Mean Delay (min)')
     ax.set_title('(A) Daily Mean Delay')
-    ax.legend(loc='upper right')
+    ax.legend(fontsize=7, loc='upper right')
     ax.tick_params(axis='x', rotation=45)
     
     # Plot 2: Hourly delay pattern comparing pre/post schedule change
@@ -291,7 +291,8 @@ def main():
     ax.set_title('(B) Hourly Delay Pattern: Pre vs Post Schedule Change')
     ax.set_xticks(range(0, 24, 2))
     ax.grid(alpha=0.3)
-    ax.legend(loc='upper right')
+
+    ax.legend(fontsize=7, loc='upper right')
     
     plt.tight_layout()
     
