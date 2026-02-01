@@ -344,8 +344,8 @@ def create_direction_comparison_figure(G_h, G_r, stats_h, stats_r):
     fig = make_subplots(
         rows=1, cols=2,
         subplot_titles=[
-            "(A) Direction H (Outbound)",
-            "(B) Direction R (Return)"
+            "(A) → Wennfelder Garten",
+            "(B) → WHO Ulmenweg"
         ],
         specs=[[{"type": "scattermap"}, {"type": "scattermap"}]],
         horizontal_spacing=0.02,
@@ -491,8 +491,8 @@ def main():
     print("SUMMARY")
     print("=" * 60)
     print(f"Line {FOCUS_LINE} delay by direction:")
-    print(f"  Direction H (Outbound): mean={stats_h['mean']:.2f} min, n={stats_h['count']:,}")
-    print(f"  Direction R (Return):   mean={stats_r['mean']:.2f} min, n={stats_r['count']:,}")
+    print(f"  → Wennfelder Garten: mean={stats_h['mean']:.2f} min, n={stats_h['count']:,}")
+    print(f"  → WHO Ulmenweg:      mean={stats_r['mean']:.2f} min, n={stats_r['count']:,}")
 
 
 if __name__ == "__main__":
