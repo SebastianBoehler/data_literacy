@@ -80,6 +80,9 @@ def main():
     ax.set_title(f'Top 15 Stops by Late Rate P(delay > {LATE_THRESHOLD} min)\nColor = Mean Delay (minutes)', fontweight='bold')
     ax.invert_yaxis()
     ax.grid(axis='x', alpha=0.3)
+    
+    # Extend x-axis to make room for annotations
+    ax.set_xlim(0, 130)
 
     # Add sample size and mean delay annotations
     for i, (_, row) in enumerate(stop_df.iterrows()):
@@ -94,7 +97,6 @@ def main():
     cbar.set_label('Mean Delay (minutes)', fontsize=12)
     cbar.ax.tick_params(labelsize=11)
 
-    plt.tight_layout()
     plt.savefig(OUTPUT_PATH, dpi=150, bbox_inches='tight')
     print(f"Saved: {OUTPUT_PATH}")
 
