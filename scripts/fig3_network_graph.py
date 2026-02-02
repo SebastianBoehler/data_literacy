@@ -382,8 +382,8 @@ def create_direction_comparison_figure(G_h, G_r, stats_h, stats_r):
             )
         )
     
-    # Update subplot title font size to match fig1/fig2
-    fig.update_annotations(font_size=12)
+    # Update subplot title font to match fig1/fig2 (uses serif per plot_config.py, axes.titlesize=14)
+    fig.update_annotations(font=dict(size=14, family="Times New Roman, Times, serif"))
     
     # Update layout with explicit map configurations for each subplot
     fig.update_layout(
