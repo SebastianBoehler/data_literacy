@@ -327,16 +327,18 @@
       </nav>
       <div class="container">
         <div class="header">
-          <h1>Tübingen Bus Network</h1>
-          <p class="subtitle">Delay Analysis — Data Literacy Project</p>
+          <h1>Long Overdue: A Bus Delay Analysis</h1>
+          <p class="subtitle">Data Literacy Project — University of Tübingen, Winter 2025/26</p>
+          <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">Sebastian Böhler, Alexandra Keller, Marcel Ndrecaj, Ella Rumohr, Timurhan Sariarslan</p>
         </div>
 
         <div class="section" id="overview">
           <h2>Overview</h2>
           <p>
-            This project analyzes public transit delays in the Tübingen bus network using real-time data collected from the TRIAS API between November 2025 and
-            January 2026. The visualization below shows the network topology with edges colored by average delay: gray indicates punctual service, while yellow
-            to red indicates increasing delays.
+            By 2025, the common opinion among students and clinicians in Tübingen is that buses are frequently delayed. This interactive companion to our research paper allows you to explore the real-time bus arrival data we collected via the TRIAS public transport interface over an 11-week period (Nov 2025 – Jan 2026).
+          </p>
+          <p style="margin-top: 0.75rem;">
+            <strong>Key findings:</strong> 82.2% of buses arrive within 3 minutes of schedule, but ~10% experience delays >5 minutes. The December 2025 schedule change reduced mean delays by 34%. Delay variability is primarily driven by time-of-day effects and network structure, while weather plays a secondary role (snow: mean 7.5 min delay vs dry: 2.1 min).
           </p>
         </div>
 
@@ -434,20 +436,25 @@
         </div>
 
         <div class="section" id="methodology">
-          <h2>Methodology</h2>
+          <h2>Data Collection</h2>
           <p>
-            Data was collected continuously from the TRIAS real-time transit API, capturing planned and estimated arrival/departure times for all bus stops in
-            the Tübingen network. Delays are calculated as the difference between estimated and planned times. The network graph is constructed by connecting
-            consecutive stops within each journey, with edge weights representing the mean delay observed on that segment.
+            We collected <strong>140,363 trip observations</strong> from <strong>366 stops</strong> across <strong>51 bus lines</strong> using the TRIAS 1.2 SOAP API (MobiData BW). Arrival times were measured via GPS when buses entered stop areas. Weather data was joined from the German Meteorological Service (DWD) via Bright Sky. Delays are calculated as the difference between estimated and scheduled arrival times.
+          </p>
+          <p style="margin-top: 0.75rem;">
+            The network graph connects consecutive stops within each journey, with edge colors representing mean delay: <span style="color: #888;">■</span> gray (≤1 min), <span style="color: #ffd700;">■</span> yellow (1-3 min), <span style="color: #ff8c00;">■</span> orange (3-5 min), <span style="color: #ff0000;">■</span> red (>5 min).
           </p>
         </div>
 
         <div class="section" id="findings">
           <h2>Key Findings</h2>
           <p>
-            The analysis reveals that most bus segments operate with minimal delays (under 1 minute on average), indicated by gray coloring in the network map.
-            However, certain routes and time periods show consistently higher delays, particularly during peak hours and on routes passing through the city
-            center. The interactive visualization allows exploration of delay patterns by individual bus line.
+            <strong>Most delayed lines:</strong> Line 34 (17.8 min avg), Line 32 (11.9 min), Line 21 (9.6 min). Night lines N96 and N88 also show elevated delays.
+          </p>
+          <p style="margin-top: 0.5rem;">
+            <strong>Busiest stops:</strong> Hauptbahnhof (4.5% of observations) and WHO/university clinic area (15.6%) handle the most traffic but maintain relatively low median delays.
+          </p>
+          <p style="margin-top: 0.5rem;">
+            <strong>Delay accumulation:</strong> Each additional stop adds ~6 seconds of delay on average (r<sub>s</sub> = 0.16, p < 0.001). Delays increase from 1.4 min at stop 1 to 2.5-3.2 min by stops 12-15.
           </p>
         </div>
 
