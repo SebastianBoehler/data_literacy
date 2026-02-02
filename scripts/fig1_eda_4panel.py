@@ -24,7 +24,7 @@ SCRIPT_DIR = Path(__file__).parent.parent  # scripts/ -> code/
 sys.path.insert(0, str(SCRIPT_DIR))
 from modules.plot_config import apply_style, STYLE
 
-apply_style()
+apply_style(column_mode="full")  # Full-width figure spanning both columns
 
 DATA_PATH = SCRIPT_DIR / "outputs" / "all_trip_data.parquet"
 PLOT_DIR = SCRIPT_DIR / "plots"
