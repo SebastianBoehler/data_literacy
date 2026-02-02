@@ -236,6 +236,7 @@ def main():
     ax.set_xlabel('Date')
     ax.set_ylabel('Mean Delay (min)')
     ax.set_title('(A) Daily Mean Delay')
+    ax.set_xlim(daily_filtered['date'].min(), daily_filtered['date'].max())
     ax.legend(fontsize=7, loc='upper right')
     ax.tick_params(axis='x', rotation=45)
     
@@ -289,6 +290,7 @@ def main():
     ax.set_xlabel('Hour of Day')
     ax.set_ylabel('Mean Delay (min)')
     ax.set_title('(B) Hourly Delay Pattern: Pre vs Post Schedule Change')
+    ax.set_xlim(total_hourly['hour'].min(), total_hourly['hour'].max())
     ax.set_xticks(range(0, 24, 2))
     ax.grid(alpha=0.3)
 
