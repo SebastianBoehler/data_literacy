@@ -1,263 +1,63 @@
-# Data Literacy – Realtime Stops & Weather Snapshot
+# Long Overdue: A Bus Delay Analysis
 
-## Overview
+**Data Literacy Project — University of Tübingen, Winter 2025/26**
 
-This repository builds a live snapshot of public transport departures in the Tübingen region and enriches each stop/bay with the current weather conditions. It combines the TRIAS 1.2 SOAP interface (MobiData BW) with Bright Sky’s current DWD observations.
+## Abstract
 
-The workflow is intentionally lightweight: a single script (`main.py`) orchestrates stop discovery, realtime departure collection, weather lookups, and CSV export.
+By 2025, the common opinion among students and clinicians in Tübingen is that buses are frequently delayed. In order to evaluate this claim, we analyze real-time bus arrival data collected via the TRIAS public transport interface over an 11-week period in winter 2025/26. Results show that delay variability is primarily driven by temporal effects and network structure, with systematic delay accumulation along routes, while weather plays only a secondary role. The schedule change implemented in December 2025 coincides with a sustained reduction in delays.
 
-## Features
+## 🔗 Links
 
-- **Stop discovery with bays** – Enumerates every stop place and bay returned by TRIAS within a configurable radius.
-- **Realtime departures** – Collects planned vs. estimated departure times, line identifiers, destinations, and platforms for each bay.
-- **Current weather join** – Retrieves Bright Sky measurements (temperature, precipitation, wind, cloud cover, pressure, humidity, condition) for the stop coordinates at runtime.
-- **CSV exports** – Generates timestamped datasets under `exports/` for further analysis.
+- **[Interactive Data Exploration](https://sebastianboehler.github.io/data_literacy/)** — Explore delay patterns by line, time period, and weather
+- **Paper** — See `paper/` directory for the full report
 
-## Quick Start
+## Key Findings
 
-### 1. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Configure TRIAS access and search radius
-
-Edit `config.json`:
-
-```json
-{
-  "trias_requestor_ref": "YOUR_REQUESTOR_REF",
-  "center_lat": 48.516667,
-  "center_lon": 9.05,
-  "search_radius_km": 7.0
-}
-```
-
-- `trias_requestor_ref` – Provided by MobiData BW after access approval.
-- `center_lat`, `center_lon` – Coordinates used as the search origin (default: Tübingen city centre).
-- `search_radius_km` – Radius in kilometres for stop discovery.
-
-### 3. Run the snapshot
-
-```bash
-python main.py
-```
-
-Execution prints the number of stops discovered and departures gathered. Fresh CSVs are written to `exports/` (e.g., `stops_YYYYMMDD_HHMMSS.csv`, `departures_YYYYMMDD_HHMMSS.csv`).
+- **82.2%** of buses arrive within 3 minutes of schedule
+- **~10%** of buses experience delays >5 minutes
+- **Schedule change** (Dec 14, 2025) reduced mean delays by **34%**
+- **Snow** causes the highest delays (mean 7.5 min vs 2.1 min dry)
+- **Delay accumulation**: Each stop adds ~6 seconds of delay on average
 
 ## Project Structure
 
 ```
-code/
-├── main.py                    # Orchestrates stop discovery, departures, weather, and export
-├── Data_Literacy_Notebook.ipynb  # Main analysis notebook
-├── config.json                # Runtime configuration
-│
-├── modules/
-│   ├── trias.py               # TRIAS 1.2 SOAP client (LocationInformation & StopEvent requests)
-│   ├── weather.py             # Bright Sky current weather client
-│   ├── utils.py               # Config loading, timestamp helpers, weather join utilities
-│   └── plot_config.py         # Central plot styling configuration (single source of truth)
-│
-├── scripts/                   # Standalone figure generation scripts
-│   ├── fig2_schedule_change.py
-│   ├── fig_cdf_pdf_combo.py
-│   ├── fig_late_rate_hourly.py
-│   ├── fig_weather_effect.py
-│   ├── fig_ecdf_comparison.py
-│   ├── fig_schedule_change_ecdf.py
-│   ├── fig_quantile_analysis.py
-│   ├── fig_day_of_week.py
-│   ├── fig_top_stops_late_rate.py
-│   └── fig_outlier_analysis.py
-│
-├── docs_generation/           # GitHub Pages documentation generation
-│   ├── generate_all.py        # Main entry point for docs generation
-│   ├── eda_plots.py           # EDA plot generation
-│   └── network_graphs.py      # Network visualization generation
-│
-├── docs/                      # Generated GitHub Pages site
-├── outputs/                   # Generated data files (parquet, CSV)
-├── plots/                     # Generated plot images
-├── paper/                     # LaTeX paper and related files
-└── exports/                   # Legacy CSV snapshots (timestamped)
+├── docs/                      # Interactive GitHub Pages site
+├── paper/                     # LaTeX report and figures
+├── scripts/                   # Figure generation (fig1, fig2, fig3)
+├── modules/                   # TRIAS client, weather API, plot config
+├── outputs/                   # Processed data (parquet)
+└── docs_generation/           # Scripts to regenerate docs site
 ```
 
-## Plot Configuration
+## Data Collection
 
-All plots use a central configuration file (`modules/plot_config.py`) for consistent styling:
+Data was collected via the **TRIAS 1.2 SOAP API** (MobiData BW) from November 11, 2025 to January 30, 2026:
 
-```python
-from modules.plot_config import apply_style, STYLE, COLORS
+- **140,363** trip observations (actual arrivals)
+- **366** unique stops, **51** bus lines
+- Weather data from **Bright Sky** (DWD observations)
 
-apply_style()  # Apply unified matplotlib styling
+## Reproducing the Analysis
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Generate paper figures
+python scripts/fig1_eda_4panel.py
+python scripts/fig2_schedule_change.py
+python scripts/fig3_network_graph.py
+
+# Regenerate interactive docs
+python docs_generation/generate_all.py
 ```
-
-This ensures consistent font sizes, colors, and styling across all visualizations.
-
-## TRIAS Module Documentation
-
-The `modules/trias.py` module provides a Python client for the TRIAS 1.2 SOAP interface (MobiData BW). It handles XML request/response parsing and returns pandas DataFrames for easy analysis.
-
-### Initialization
-
-```python
-from modules.trias import TriasClient
-
-client = TriasClient(requestor_ref="YOUR_REQUESTOR_REF")
-```
-
-| Parameter       | Type                          | Description                           |
-| --------------- | ----------------------------- | ------------------------------------- |
-| `requestor_ref` | `str`                         | API key provided by MobiData BW       |
-| `session`       | `requests.Session` (optional) | Custom session for connection pooling |
-
-### Methods
-
-#### `fetch_stops(center, radius_km, max_results=200)`
-
-Discovers all stops within a geographic radius.
-
-```python
-stops = client.fetch_stops(
-    center=(48.516667, 9.05),  # (lat, lon)
-    radius_km=7.0,
-    max_results=200
-)
-```
-
-**Returns:** DataFrame with columns:
-
-- `stop_id` – Base stop identifier (e.g., `de:08416:11000`)
-- `trias_ref` – Full TRIAS reference
-- `stop_name` – Human-readable stop name
-- `latitude`, `longitude` – Geographic coordinates
-- `probability` – TRIAS match probability score
-
-#### `fetch_stop_details(stop_refs)`
-
-Retrieves detailed information for specific stop references.
-
-```python
-details = client.fetch_stop_details(["de:08416:11000", "de:08416:11001"])
-```
-
-**Returns:** DataFrame with columns:
-
-- `stop_id`, `trias_ref`, `stop_point_ref`, `stop_place_ref`
-- `stop_name`, `latitude`, `longitude`
-
-#### `fetch_departures(stop_id, stop_point_ref=None, max_results=200, horizon_minutes=None)`
-
-Fetches real-time departures for a single stop.
-
-```python
-departures = client.fetch_departures(
-    stop_id="de:08416:11000",
-    stop_point_ref="de:08416:11000:11:C",  # Optional: specific platform
-    max_results=50,
-    horizon_minutes=60  # Optional: filter to next 60 minutes
-)
-```
-
-**Returns:** DataFrame with columns:
-
-- `stop_id`, `stop_point_ref`, `stop_name`
-- `planned_time`, `estimated_time` – Scheduled vs. real-time departure
-- `delay_minutes` – Calculated delay (estimated - planned)
-- `line_name` – Bus/train line identifier (e.g., "1", "N91")
-- `destination` – Final destination of the service
-- `platform` – Platform/bay identifier
-- `journey_ref`, `operating_day_ref` – Unique trip identifiers
-
-#### `fetch_departures_for_stop_points(stops, max_results_per_stop_point=200, horizon_minutes=None)`
-
-Batch fetches departures for multiple stop points from a stops DataFrame.
-
-```python
-all_departures = client.fetch_departures_for_stop_points(
-    stops=stops_df,  # Must contain 'stop_point_ref' column
-    max_results_per_stop_point=100,
-    horizon_minutes=120
-)
-```
-
-#### `fetch_departures_for_stops(stops, max_results_per_stop=200, max_stops=None, horizon_minutes=None)`
-
-Batch fetches departures for multiple stops (by stop_id).
-
-```python
-all_departures = client.fetch_departures_for_stops(
-    stops=stops_df,  # Must contain 'stop_id' column
-    max_results_per_stop=100,
-    max_stops=50  # Optional: limit number of stops
-)
-```
-
-#### `fetch_trip_info(journey_ref, operating_day_ref=None, **options)`
-
-Retrieves detailed trip information including all stops along the route.
-
-```python
-trip = client.fetch_trip_info(
-    journey_ref="tub:09001::H:j25:1",
-    operating_day_ref="2025-11-15",
-    include_calls=True,
-    include_estimated=True,
-    include_position=True
-)
-```
-
-**Returns:** Dictionary with:
-
-- `calls` – DataFrame of all stops on the trip with arrival/departure times
-- `service` – Service metadata (line_name, destination, journey_ref)
-- `current_position` – Current vehicle position (lat, lon, bearing) if available
-
-**Calls DataFrame columns:**
-
-- `phase` – "previous" (already passed) or "onward" (upcoming)
-- `stop_point_ref`, `stop_name`, `stop_sequence`, `platform`
-- `arrival_planned`, `arrival_estimated`, `arrival_delay_minutes`
-- `departure_planned`, `departure_estimated`, `departure_delay_minutes`
-
-#### `fetch_trip_infos_for_departures(departures, max_trips=None)`
-
-Batch fetches trip info for all unique journeys in a departures DataFrame.
-
-```python
-calls_df, positions_df = client.fetch_trip_infos_for_departures(
-    departures=departures_df,
-    max_trips=100  # Optional: limit API calls
-)
-```
-
-**Returns:** Tuple of (calls_df, positions_df)
-
-### Time Handling
-
-All timestamps are automatically converted from UTC to Europe/Berlin timezone and returned as timezone-naive datetime objects for compatibility with pandas operations.
-
-### Error Handling
-
-The client raises `RuntimeError` for empty TRIAS responses and `requests.HTTPError` for HTTP failures. API responses are logged to stdout with status codes and body previews for debugging.
-
-## Exports
-
-- **`stops_*.csv`** – One row per stop/bay returned by TRIAS within the configured radius. Includes unique `stop_id`, original TRIAS reference, coordinates, and probability.
-- **`departures_*.csv`** – Realtime departures per stop/bay with line, destination, platform, delay (minutes), and attached weather measurements (temperature, precipitation, wind, cloud cover, pressure, humidity, condition).
-
-## Notes on weather metrics
-
-Bright Sky provides precipitation and wind values across several trailing intervals (10 / 30 / 60 minutes). The code surfaces the most recent available measurement to represent current conditions while keeping the original interval columns in the CSV for scientific interpretation.
 
 ## Data Sources
 
-1. **TRIAS 1.2 SOAP (MobiData BW)** – Stop discovery (`LocationInformationRequest`) and realtime departures (`StopEventRequest`).
-2. **Bright Sky (DWD)** – Current weather observations via `https://api.brightsky.dev/current_weather`.
+- **[TRIAS API](https://mobidata-bw.de/dataset/trias)** — Real-time public transport data (MobiData BW)
+- **[Bright Sky](https://brightsky.dev/)** — DWD weather observations
 
-## License & Usage
+## License
 
-- Built for academic use within the University of Tübingen Data Literacy course.
-- Respect MobiData BW’s API terms, Bright Sky usage guidelines, and any applicable rate limits.
+Built for academic use within the University of Tübingen Data Literacy course (Winter 2025/26).
