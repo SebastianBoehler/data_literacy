@@ -84,9 +84,11 @@ def main():
     # Extend x-axis to make room for annotations
     ax.set_xlim(0, 130)
 
-    # Add sample size and mean delay annotations
+    # Add sample size and mean delay annotations (position after error bar)
     for i, (_, row) in enumerate(stop_df.iterrows()):
-        ax.text(row['late_rate'] * 100 + 1, i, 
+        # Position label after the upper CI bound
+        label_x = row['ci_high'] * 100 + 2
+        ax.text(label_x, i, 
                 f'n={row["n"]:,} | μ={row["mean_delay"]:.1f}min', 
                 va='center', fontsize=8, color='gray')
 
