@@ -391,8 +391,9 @@ def create_direction_comparison_figure(G_h, G_r, stats_h, stats_r):
         showlegend=True,
         legend=dict(
             yanchor="top", y=0.98, xanchor="right", x=0.99,
-            bgcolor="rgba(255,255,255,0.9)", font=dict(size=10),
-            title="Mean Delay",
+            bgcolor="rgba(255,255,255,0.9)", 
+            font=dict(size=12, family="Times New Roman, Times, serif"),
+            title=dict(text="Mean Delay", font=dict(size=14, family="Times New Roman, Times, serif")),
         ),
         margin=dict(l=10, r=10, t=40, b=10),
         width=1400,

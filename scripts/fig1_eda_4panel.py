@@ -121,13 +121,13 @@ def main():
             )
     
     ax.set_xlabel('Delay (minutes)')
-    ax.set_ylabel('Percentage of Buses per Bin (%)', color=MAIN_BLUE)
+    ax.set_ylabel('Percentage of Buses per Bin (%)', color='#2171b5')  # Darker blue for readability
     ax2.set_ylabel('Cumulative Percentage (%)', color=CDF_COLOR)
     ax.set_title('(A) Delay Distribution with CDF')
     ax.set_xlim(delay_range)
     ax.set_ylim(0, 100)
     ax2.set_ylim(0, 100)
-    ax.tick_params(axis='y', labelcolor=MAIN_BLUE)
+    ax.tick_params(axis='y', labelcolor='#2171b5')  # Darker blue for readability
     ax2.tick_params(axis='y', labelcolor=CDF_COLOR)
     ax.grid(alpha=0.3)
     
