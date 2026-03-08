@@ -3,689 +3,478 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tübingen Bus Network - Delay Analysis</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Georgia", "Times New Roman", serif;
-        background: #fafafa;
-        color: #333;
-        line-height: 1.7;
-      }
-      .page-wrapper {
-        display: flex;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .nav-sidebar {
-        width: 200px;
-        position: sticky;
-        top: 2rem;
-        height: fit-content;
-        padding: 1rem;
-        margin-top: 3rem;
-        font-size: 0.85rem;
-      }
-      .nav-sidebar .sidebar-section {
-        margin-bottom: 1.5rem;
-      }
-      .nav-sidebar .sidebar-title {
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 0.5rem;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .nav-sidebar ul {
-        list-style: none;
-        border-left: 2px solid #e0e0e0;
-        padding-left: 1rem;
-      }
-      .nav-sidebar li {
-        margin-bottom: 0.5rem;
-      }
-      .nav-sidebar a {
-        color: #666;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .nav-sidebar a:hover {
-        color: #222;
-      }
-      .nav-sidebar select {
-        width: 100%;
-        padding: 0.4rem 0.6rem;
-        font-size: 0.85rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        background: white;
-        cursor: pointer;
-        font-family: inherit;
-        margin-top: 0.3rem;
-      }
-      .nav-sidebar select:focus {
-        outline: 1px solid #666;
-      }
-      /* Mobile menu toggle button */
-      .mobile-menu-toggle {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1001;
-        background: #333;
-        color: white;
-        border: none;
-        padding: 0.5rem 0.75rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-      }
-      .mobile-menu-toggle:hover {
-        background: #555;
-      }
-      /* Mobile responsive styles */
-      @media (max-width: 768px) {
-        .page-wrapper {
-          flex-direction: column;
-        }
-        .mobile-menu-toggle {
-          display: block;
-        }
-        .nav-sidebar {
-          position: fixed;
-          top: 0;
-          left: -250px;
-          width: 250px;
-          height: 100vh;
-          background: #fff;
-          z-index: 1000;
-          margin-top: 0;
-          padding-top: 4rem;
-          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-          transition: left 0.3s ease;
-          overflow-y: auto;
-        }
-        .nav-sidebar.open {
-          left: 0;
-        }
-        .mobile-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 999;
-        }
-        .mobile-overlay.open {
-          display: block;
-        }
-        .container {
-          padding: 1rem;
-          padding-top: 4rem;
-        }
-        .map-container {
-          height: 300px;
-        }
-        .plot-item img {
-          max-width: 100%;
-        }
-      }
-      .plot-description {
-        font-size: 0.9rem;
-        color: #555;
-        margin-bottom: 0.75rem;
-        text-align: left;
-      }
-      .container {
-        flex: 1;
-        max-width: 900px;
-        padding: 3rem 2rem;
-        background: #fff;
-        min-height: 100vh;
-      }
-      .header {
-        text-align: center;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 2rem;
-      }
-      .header h1 {
-        font-size: 1.8rem;
-        font-weight: 400;
-        letter-spacing: 0.02em;
-        margin-bottom: 0.5rem;
-      }
-      .header .subtitle {
-        font-size: 1rem;
-        color: #666;
-        font-style: italic;
-      }
-      .section {
-        margin-bottom: 2.5rem;
-      }
-      .section h2 {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #222;
-      }
-      .section p {
-        font-size: 0.95rem;
-        color: #444;
-        margin-bottom: 1rem;
-      }
-      .controls {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-      .controls label {
-        font-size: 0.9rem;
-        color: #555;
-      }
-      .controls select {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        background: white;
-        cursor: pointer;
-        min-width: 160px;
-        font-family: inherit;
-      }
-      .controls select:focus {
-        outline: 1px solid #666;
-      }
-      .map-container {
-        width: 100%;
-        height: 500px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 1rem;
-      }
-      .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-      .caption {
-        font-size: 0.85rem;
-        color: #666;
-        font-style: italic;
-        text-align: center;
-      }
-      .data-summary {
-        margin: 1rem 0;
-        padding: 0.75rem 1rem;
-        background: #f8f8f8;
-        border-radius: 4px;
-        font-size: 0.9rem;
-      }
-      .data-table-container {
-        margin-top: 1rem;
-      }
-      .data-table-container summary {
-        cursor: pointer;
-        font-size: 0.9rem;
-        color: #555;
-        padding: 0.5rem 0;
-      }
-      .table-wrapper {
-        max-height: 300px;
-        overflow-y: auto;
-        margin-top: 0.5rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-      #edge-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.85rem;
-      }
-      #edge-table th,
-      #edge-table td {
-        padding: 0.5rem 0.75rem;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-      }
-      #edge-table th {
-        background: #f5f5f5;
-        position: sticky;
-        top: 0;
-        font-weight: 600;
-      }
-      #edge-table tr:hover {
-        background: #fafafa;
-      }
-      .footer {
-        text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid #e0e0e0;
-        margin-top: 2rem;
-        font-size: 0.8rem;
-        color: #888;
-      }
-      .plot-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        margin-top: 1.5rem;
-      }
-      .plot-item {
-        text-align: center;
-      }
-      .plot-item img {
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-    </style>
+    <title>Long Overdue | Tübingen Bus Delay Analysis</title>
+    <meta
+      name="description"
+      content="Interactive companion to a University of Tübingen Data Literacy paper on bus delays, network structure, schedule changes, and current departures."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="assets/css/index.css" />
   </head>
   <body>
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-    <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
-    <div class="page-wrapper">
-      <nav class="nav-sidebar" id="nav-sidebar">
-        <div class="sidebar-section">
-          <div class="sidebar-title">Time Period</div>
-          <select id="period-select" onchange="updateView()">
-            <option value="all" selected>All Data</option>
-            <option value="pre">Before Schedule Change</option>
-            <option value="post">After Schedule Change</option>
-          </select>
+    <div class="shell">
+      <header class="topbar">
+        <div class="site-heading">
+          <h1>Long Overdue</h1>
+          <p>Tübingen bus delay analysis</p>
         </div>
-        <div class="sidebar-section">
-          <div class="sidebar-title">Navigation</div>
-          <ul>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#network-map">Network Map</a></li>
-            <li><a href="#methodology">Methodology</a></li>
-            <li><a href="#findings">Key Findings</a></li>
-            <li><a href="#delay-analysis">Delay Analysis</a></li>
-          </ul>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-title">Documentation</div>
-          <ul>
-            <li><a href="methodology.html">Data Pipeline & API</a></li>
-          </ul>
+      </header>
+
+      <nav class="section-nav panel" aria-label="Sections">
+        <div class="section-nav-inner">
+          <div class="section-nav-scroll">
+            <a href="#overview"><span>01</span>Overview</a>
+            <a href="#network-map"><span>02</span>Explore</a>
+            <a href="#methodology"><span>03</span>Method</a>
+            <a href="#findings"><span>04</span>Findings</a>
+            <a href="#delay-analysis"><span>05</span>Figures</a>
+          </div>
         </div>
       </nav>
-      <div class="container">
-        <div class="header">
-          <h1>Long Overdue: A Bus Delay Analysis</h1>
-          <p class="subtitle">Data Literacy Project — University of Tübingen, Winter 2025/26</p>
-        </div>
 
-        <div class="section" id="overview">
-          <h2>Overview</h2>
-          <p>
-            By 2025, the common opinion among students and clinicians in Tübingen is that buses are frequently delayed. This interactive companion to our research paper allows you to explore the real-time bus arrival data we collected via the TRIAS public transport interface over an 11-week period (Nov 2025 – Jan 2026).
-          </p>
-          <p style="margin-top: 0.75rem;">
-            <strong>Key findings:</strong> 82.2% of buses arrive within 3 minutes of schedule, but ~10% experience delays >5 minutes. The December 2025 schedule change reduced mean delays by 34%. Delay variability is primarily driven by time-of-day effects and network structure, while weather plays a secondary role (snow: mean 7.5 min delay vs dry: 2.1 min).
-          </p>
-        </div>
-
-        <div class="section" id="network-map">
-          <h2>Interactive Network Map</h2>
-          <div class="controls">
-            <label for="line-select">Select Line:</label>
-            <select id="line-select" onchange="updateView()">
-              <option value="all" selected>All Lines</option>
-              <option value="1">Line 1</option>
-              <option value="2">Line 2</option>
-              <option value="3">Line 3</option>
-              <option value="4">Line 4</option>
-              <option value="5">Line 5</option>
-              <option value="6">Line 6</option>
-              <option value="7">Line 7</option>
-              <option value="8">Line 8</option>
-              <option value="9">Line 9</option>
-              <option value="10">Line 10</option>
-              <option value="11">Line 11</option>
-              <option value="12">Line 12</option>
-              <option value="13">Line 13</option>
-              <option value="16">Line 16</option>
-              <option value="17">Line 17</option>
-              <option value="18">Line 18</option>
-              <option value="19">Line 19</option>
-              <option value="21">Line 21</option>
-              <option value="22">Line 22</option>
-              <option value="31">Line 31</option>
-              <option value="32">Line 32</option>
-              <option value="34">Line 34</option>
-              <option value="35">Line 35</option>
-              <option value="826">Line 826</option>
-              <option value="828">Line 828</option>
-              <option value="7601">Line 7601</option>
-              <option value="7611">Line 7611</option>
-              <option value="7612">Line 7612</option>
-              <option value="7613">Line 7613</option>
-              <option value="7625">Line 7625</option>
-              <option value="N88">Line N88</option>
-              <option value="N91">Line N91</option>
-              <option value="N92">Line N92</option>
-              <option value="N93">Line N93</option>
-              <option value="N94">Line N94</option>
-              <option value="N96">Line N96</option>
-              <option value="X15">Line X15</option>
-            </select>
-          </div>
-          <div class="map-container">
-            <div
-              id="map-placeholder"
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                background: #f5f5f5;
-                color: #666;
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-              "
-            >
-              <p style="font-size: 1.1rem; margin-bottom: 0.5rem"><strong>Select a specific line to view the network map</strong></p>
-              <p style="font-size: 0.9rem; color: #888">The combined view of all lines (230 stops, 2,900+ edges) is too complex for interactive rendering.</p>
-            </div>
-            <iframe id="map-frame" src="" style="display: none"></iframe>
-          </div>
-          <p class="caption">Figure 1: Interactive network map showing bus routes and average delays per segment.</p>
-          <p class="plot-description" style="margin-top: 0.5rem; font-size: 0.85rem; color: #777">
-            <strong>Note:</strong> Some stops outside Tübingen (e.g., Betzingen, Jettenburg, parts of Reutlingen) may not be displayed as our data collection
-            focused on stops in and close to Tübingen.
-          </p>
-
-          <div class="data-summary" id="data-summary">
-            <p><strong>Summary:</strong> <span id="summary-text">Loading...</span></p>
-          </div>
-
-          <details class="data-table-container">
-            <summary>View Edge Data Table</summary>
-            <div class="table-wrapper">
-              <table id="edge-table">
-                <thead>
-                  <tr>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Avg Delay (min)</th>
-                    <th>Trips</th>
-                  </tr>
-                </thead>
-                <tbody id="edge-table-body"></tbody>
-              </table>
-            </div>
-          </details>
-        </div>
-
-        <div class="section" id="methodology">
-          <h2>Data Collection</h2>
-          <p>
-            We collected <strong>140,363 trip observations</strong> from <strong>366 stops</strong> across <strong>51 bus lines</strong> using the TRIAS 1.2 SOAP API (MobiData BW). Arrival times were measured via GPS when buses entered stop areas. Weather data was joined from the German Meteorological Service (DWD) via Bright Sky. Delays are calculated as the difference between estimated and scheduled arrival times.
-          </p>
-          <p style="margin-top: 0.75rem;">
-            The network graph connects consecutive stops within each journey, with edge colors representing mean delay: <span style="color: #888;">■</span> gray (≤1 min), <span style="color: #ffd700;">■</span> yellow (1-3 min), <span style="color: #ff8c00;">■</span> orange (3-5 min), <span style="color: #ff0000;">■</span> red (>5 min).
-          </p>
-        </div>
-
-        <div class="section" id="findings">
-          <h2>Key Findings</h2>
-          <p>
-            <strong>Most delayed lines:</strong> Line 34 (17.8 min avg), Line 32 (11.9 min), Line 21 (9.6 min). Night lines N96 and N88 also show elevated delays.
-          </p>
-          <p style="margin-top: 0.5rem;">
-            <strong>Busiest stops:</strong> Hauptbahnhof (4.5% of observations) and WHO/university clinic area (15.6%) handle the most traffic but maintain relatively low median delays.
-          </p>
-          <p style="margin-top: 0.5rem;">
-            <strong>Delay accumulation:</strong> Each additional stop adds ~6 seconds of delay on average (r<sub>s</sub> = 0.16, p < 0.001). Delays increase from 1.4 min at stop 1 to 2.5-3.2 min by stops 12-15.
-          </p>
-        </div>
-
-        <div class="section" id="delay-analysis">
-          <h2>Delay Analysis</h2>
-          <p>
-            The following plots show the delay distribution and patterns for the selected time period. Use the Time Period selector above to compare before and
-            after the schedule change.
-          </p>
-
-          <div class="plot-grid">
-            <div class="plot-item">
-              <h3>Delay Distribution with CDF</h3>
-              <p class="plot-description">
-                Blue bars (left axis): % of buses in each delay bin. Red line (right axis): cumulative % up to that delay. Read CDF annotations: "X% of buses
-                have delay ≤ Y minutes".
+      <main class="content">
+          <section class="hero">
+            <div class="hero-copy panel" id="overview">
+              <span class="eyebrow">Data Literacy Project • University of Tübingen • Winter 2025/26</span>
+              <h1>Long Overdue: Bus Delay Patterns in Tübingen</h1>
+              <p>
+                This site is a compact companion to the paper. It keeps the historical analysis central and presents the main evidence in one readable order:
+                overview, interactive exploration, interpretation, and figures.
               </p>
-              <img id="plot-cdf-pdf" src="plots/all/delay_cdf_pdf_combo.png" alt="Delay Distribution with CDF" />
+              <div class="hero-actions">
+                <a class="primary-button" href="#network-map">Open the data explorer</a>
+              </div>
+              <div class="hero-abstract">
+                <div class="minor-label">Abstract</div>
+                <p>
+                  Most buses remain close to schedule, but distinct corridors, times of day, and route positions produce recurring pockets of unreliability
+                  around the city and university infrastructure.
+                </p>
+              </div>
+              <div class="hero-meta">
+                <span>Study period: Nov 11, 2025 to Jan 30, 2026</span>
+                <span>140,363 observations</span>
+                <span>366 stops • 51 lines</span>
+              </div>
             </div>
+          </section>
 
-            <div class="plot-item">
-              <h3>ECDF vs Histogram Comparison</h3>
-              <p class="plot-description">
-                Left: Traditional histogram showing delay counts. Right: Empirical CDF with 95% DKW confidence bands. ECDFs allow direct probability readings
-                (e.g., P(delay ≤ 0) = 34.6%) without arbitrary bin choices.
+          <section class="stat-grid">
+            <article class="stat-card panel surface-teal">
+              <span class="value">82.2%</span>
+              <span class="label">within 3 minutes</span>
+            </article>
+            <article class="stat-card panel surface-amber">
+              <span class="value">34%</span>
+              <span class="label">mean delay reduction</span>
+            </article>
+            <article class="stat-card panel surface-rose">
+              <span class="value">~10%</span>
+              <span class="label">delays above 5 min</span>
+            </article>
+            <article class="stat-card panel surface-sky">
+              <span class="value">+6 sec</span>
+              <span class="label">per additional stop</span>
+            </article>
+          </section>
+
+          <section class="section panel" id="network-map">
+            <div class="section-header">
+              <div>
+                <div class="section-kicker">Interactive Atlas</div>
+                <h2>Data explorer</h2>
+              </div>
+              <p class="section-lead">
+                Start with one period or route, then inspect the map, summary statistics, and segment table. The explorer is designed to support the paper, not
+                replace it.
               </p>
-              <img src="plots/all/ecdf_vs_histogram_comparison.png" alt="ECDF vs Histogram Comparison" />
             </div>
 
-            <div class="plot-item">
-              <h3>Combined Overview</h3>
-              <p class="plot-description">
-                <strong>(A)</strong> Delay distribution histogram. <strong>(B)</strong> Hourly patterns with CI. <strong>(C)</strong> Empirical CDF with 95% DKW
-                bands. <strong>(D)</strong> Top 15 delayed lines.
+            <div class="explorer-steps" aria-label="How to use the explorer">
+              <div class="explorer-step"><strong>1</strong><span>Choose a period</span></div>
+              <div class="explorer-step"><strong>2</strong><span>Select a line</span></div>
+              <div class="explorer-step"><strong>3</strong><span>Inspect the map</span></div>
+              <div class="explorer-step"><strong>4</strong><span>Check the summary</span></div>
+            </div>
+
+            <div class="control-deck">
+              <div class="control-card">
+                <div class="minor-label">Historical filters</div>
+                <div class="control-grid">
+                  <div class="control-field">
+                    <label for="period-select">Time period</label>
+                    <select class="control-select" id="period-select">
+                      <option value="all" selected>All data</option>
+                      <option value="pre">Before schedule change</option>
+                      <option value="post">After schedule change</option>
+                    </select>
+                  </div>
+                  <div class="control-field">
+                    <label for="line-select">Bus line</label>
+                    <select class="control-select" id="line-select">
+                      <option value="all" selected>All lines</option>
+                      <option value="1">Line 1</option>
+                      <option value="2">Line 2</option>
+                      <option value="3">Line 3</option>
+                      <option value="4">Line 4</option>
+                      <option value="5">Line 5</option>
+                      <option value="6">Line 6</option>
+                      <option value="7">Line 7</option>
+                      <option value="8">Line 8</option>
+                      <option value="9">Line 9</option>
+                      <option value="10">Line 10</option>
+                      <option value="11">Line 11</option>
+                      <option value="12">Line 12</option>
+                      <option value="13">Line 13</option>
+                      <option value="16">Line 16</option>
+                      <option value="17">Line 17</option>
+                      <option value="18">Line 18</option>
+                      <option value="19">Line 19</option>
+                      <option value="21">Line 21</option>
+                      <option value="22">Line 22</option>
+                      <option value="31">Line 31</option>
+                      <option value="32">Line 32</option>
+                      <option value="34">Line 34</option>
+                      <option value="35">Line 35</option>
+                      <option value="826">Line 826</option>
+                      <option value="828">Line 828</option>
+                      <option value="7601">Line 7601</option>
+                      <option value="7611">Line 7611</option>
+                      <option value="7612">Line 7612</option>
+                      <option value="7613">Line 7613</option>
+                      <option value="7625">Line 7625</option>
+                      <option value="N88">Line N88</option>
+                      <option value="N91">Line N91</option>
+                      <option value="N92">Line N92</option>
+                      <option value="N93">Line N93</option>
+                      <option value="N94">Line N94</option>
+                      <option value="N96">Line N96</option>
+                      <option value="X15">Line X15</option>
+                    </select>
+                  </div>
+                </div>
+                <p class="control-hint" id="selection-summary">
+                  Viewing all lines across the full collection window. Choose a specific line to reveal the route-level interactive map.
+                </p>
+              </div>
+
+              <div class="spotlight-card">
+                <div class="minor-label">Current selection</div>
+                <h3 class="panel-title" id="spotlight-title">Whole-network view</h3>
+                <p id="spotlight-copy">
+                  The combined network is best for structural context. Route-specific exploration becomes readable only once the graph is narrowed to a single
+                  line.
+                </p>
+                <div class="spotlight-grid">
+                  <div class="mini-stat">
+                    <strong id="summary-edges">502</strong>
+                    <span>segments in current slice</span>
+                  </div>
+                  <div class="mini-stat">
+                    <strong id="summary-trips">31,776</strong>
+                    <span>observed trips</span>
+                  </div>
+                  <div class="mini-stat">
+                    <strong id="summary-delay">15.28 min</strong>
+                    <span>mean segment delay</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-shell">
+              <div class="map-container">
+                <div class="map-placeholder" id="map-placeholder">
+                  <div class="placeholder-card">
+                    <div class="minor-label">All lines selected</div>
+                    <h3>Start with the full network, then narrow to a route.</h3>
+                    <p>
+                      The complete graph is useful for structural context but visually dense. Select a single line when you want readable stop sequences and
+                      route-specific delay patterns.
+                    </p>
+                  </div>
+                </div>
+                <iframe id="map-frame" src="" loading="lazy" title="Interactive Tübingen bus network map"></iframe>
+              </div>
+
+              <div class="map-footer">
+                <p class="caption">
+                  Historical map edges are colored by average segment delay. The current site focuses on stops close to the Tübingen study area, so some
+                  peripheral stops outside the city core may be absent.
+                </p>
+                <a class="inline-link" href="methodology.html">See data pipeline and API details</a>
+              </div>
+            </div>
+
+            <div class="summary-card summary-card-block">
+              <div class="minor-label">Selection summary</div>
+              <div class="summary-grid">
+                <div class="mini-stat">
+                  <strong id="summary-max-delay">65.9 min</strong>
+                  <span>maximum observed segment delay</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="summary-busiest">Loading...</strong>
+                  <span>busiest segment in this slice</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="summary-critical">Loading...</strong>
+                  <span>highest-delay segment in this slice</span>
+                </div>
+              </div>
+            </div>
+
+            <details class="table-shell">
+              <summary>Inspect segment-level table</summary>
+              <p class="table-note">
+                Rows are ordered by descending mean delay so the most problematic links appear first. Trip counts help separate structural issues from sparse
+                outliers.
               </p>
-              <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined EDA Analysis" />
+              <div class="table-wrapper">
+                <table id="edge-table">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Avg delay</th>
+                      <th>Trips</th>
+                    </tr>
+                  </thead>
+                  <tbody id="edge-table-body"></tbody>
+                </table>
+              </div>
+            </details>
+          </section>
+
+          <section class="section panel" id="methodology">
+            <div class="section-header">
+              <div>
+                <div class="section-kicker">Method Summary</div>
+                <h2>Methodology in brief</h2>
+              </div>
+              <a class="inline-link" href="methodology.html">Open full pipeline documentation</a>
             </div>
 
-            <div class="plot-item">
-              <h3>Late Rate vs Mean Delay Comparison</h3>
-              <p class="plot-description">
-                Left: Mean delay by hour (sensitive to outliers). Right: Late rate P(delay > 2 min) by hour. Late rate is more interpretable and robust for
-                skewed data. Both show 95% bootstrap CI.
+            <div class="grid-two">
+              <article class="method-card">
+                <div class="minor-label">Collection</div>
+                <h3>TRIAS stop events paired with weather observations</h3>
+                <p>
+                  We collected 140,363 observations from 366 stops through the TRIAS 1.2 interface (MobiData BW) and matched them with DWD-based weather via
+                  Bright Sky. Delay is defined as estimated minus scheduled arrival time.
+                </p>
+              </article>
+              <article class="method-card">
+                <div class="minor-label">Representation</div>
+                <h3>Routes become segment graphs instead of isolated stop snapshots</h3>
+                <p>
+                  Consecutive stops within a journey are linked into edges so the analysis can study where delay accumulates, not just whether a single stop was
+                  late in isolation.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="section panel" id="live-monitor">
+            <div class="section-header">
+              <div>
+                <div class="section-kicker">Appendix</div>
+                <h2>Optional live departures</h2>
+              </div>
+              <p class="section-lead">
+                This present-day view is separate from the study period and appears only as contextual reference after the historical material.
               </p>
-              <img src="plots/all/late_rate_vs_mean_comparison.png" alt="Late Rate vs Mean Comparison" />
             </div>
+            <details class="live-details" id="live-details">
+              <summary>Open live departure board</summary>
+              <div class="live-grid">
+                <div class="live-shell live-shell-compact">
+                  <div class="live-copy">
+                    <div class="minor-label">Choose a stop</div>
+                    <p>The board below is not part of the historical inference. It is included only as a current operational snapshot for selected central stops.</p>
+                  </div>
+                  <div class="live-controls">
+                    <div class="control-field">
+                      <label for="live-stop-select">Live monitor stop</label>
+                      <select class="control-select" id="live-stop-select">
+                        <option value="de:08416:11000_Parent" selected>Tübingen Hauptbahnhof</option>
+                        <option value="de:08416:10503:0:3">Tübingen Uni / Neue Aula</option>
+                        <option value="de:08416:10200:0:4">Tübingen Uni-Kliniken Tal</option>
+                        <option value="de:08416:10212:0:4">Tübingen WHO Erlenweg</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="live-meta-inline">
+                    <p><strong id="live-stop-title">Tübingen Hauptbahnhof</strong></p>
+                    <p id="live-stop-focus">Historic role: central transfer node and one of the busiest observed stops.</p>
+                    <p id="live-stop-note">It anchors multiple high-volume lines in the collected network and links the bus layer to rail access.</p>
+                    <p><a class="inline-link" id="live-source-link" href="#" target="_blank" rel="noreferrer">Open official MobiData BW monitor</a></p>
+                  </div>
+                </div>
 
-            <div class="plot-item">
-              <h3>Late Rate by Hour (Bootstrap CI)</h3>
-              <p class="plot-description">
-                Probability of a bus being more than 2 minutes late, by hour of day. Shaded area shows 95% bootstrap confidence interval. More interpretable
-                than mean delay for skewed data.
+                <div class="live-shell">
+                  <div class="minor-label">Official real-time departure board</div>
+                  <div class="monitor-frame-wrap">
+                    <iframe id="live-monitor-frame" src="" loading="lazy" title="Official MobiData BW live departures"></iframe>
+                  </div>
+                  <p class="monitor-note" id="live-monitor-note">
+                    Live data source: MobiData BW real-time departure monitor. Because it reflects the current day, it is kept separate from the historical paper period.
+                  </p>
+                </div>
+              </div>
+            </details>
+          </section>
+
+          <section class="section panel" id="findings">
+            <div class="section-header">
+              <div>
+                <div class="section-kicker">Result Summary</div>
+                <h2>Key findings</h2>
+              </div>
+              <p class="section-lead">
+                The strongest signals are structural. Route length, time-of-day rhythm, and schedule design matter more consistently than weather alone.
               </p>
-              <img id="plot-late-rate" src="plots/all/late_rate_hourly.png" alt="Late Rate by Hour" />
             </div>
 
-            <div class="plot-item">
-              <h3>Weather Effect (Bootstrap CI)</h3>
-              <p class="plot-description">
-                Late rate by temperature range with 95% bootstrap confidence intervals. Sample sizes shown above each bar. Colder temperatures appear associated
-                with fewer delays.
+            <div class="grid-two">
+              <article class="finding-card">
+                <div class="minor-label">Lines and places</div>
+                <h3>Delay concentrates on specific routes and campus corridors</h3>
+                <p>
+                  The heaviest delays are not evenly spread. Line 34, line 32, line 21, and several night services stand out, while major stops such as
+                  Hauptbahnhof and the university-clinic axis dominate traffic volume.
+                </p>
+              </article>
+              <article class="finding-card">
+                <div class="minor-label">Temporal pattern</div>
+                <h3>Schedule change and route progression both matter</h3>
+                <p>
+                  The December 14, 2025 change corresponds to a marked improvement, yet delays still accumulate along longer sequences. Mean delay rises as a
+                  vehicle moves deeper into its route.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="section panel" id="delay-analysis">
+            <div class="section-header">
+              <div>
+                <div class="section-kicker">Figures</div>
+                <h2>Delay analysis</h2>
+              </div>
+              <p class="section-lead">
+                All figures remain period-sensitive where appropriate. Use the period selector above to switch the historical slice while keeping the schedule
+                comparison view on the combined dataset.
               </p>
-              <img id="plot-weather" src="plots/all/weather_effect.png" alt="Weather Effect on Delays" />
             </div>
 
-            <div class="plot-item">
-              <h3>Weather vs Time of Day: Variance Explained</h3>
-              <p class="plot-description">
-                Comparison of how much delay variance is explained by weather condition vs time of day (R²). Weather explains ~3× more variance than time of
-                day.
-              </p>
-              <img id="plot-weather-time" src="plots/all/weather_vs_time.png" alt="Weather vs Time of Day" />
-            </div>
+            <div class="plot-grid">
+              <article class="plot-card">
+                <div class="plot-meta">Distribution</div>
+                <h3>Delay distribution with CDF</h3>
+                <p>Bars show the empirical distribution while the red curve lets readers directly read cumulative reliability.</p>
+                <img id="plot-cdf-pdf" src="plots/all/delay_cdf_pdf_combo.png" alt="Delay distribution with cumulative distribution function" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Schedule Change Comparison (ECDF)</h3>
-              <p class="plot-description">
-                Empirical cumulative distribution functions comparing delay distributions before and after the Dec 14, 2025 schedule change. Shaded bands show
-                95% DKW confidence intervals. Orange curve (after) shifted left indicates improvement.
-              </p>
-              <img id="plot-schedule-ecdf" src="plots/all/schedule_change_ecdf.png" alt="Schedule Change ECDF Comparison" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Comparison</div>
+                <h3>ECDF versus histogram</h3>
+                <p>The ECDF view avoids arbitrary binning and makes probability statements about delay much easier to read.</p>
+                <img src="plots/all/ecdf_vs_histogram_comparison.png" alt="Comparison of histogram and empirical cumulative distribution function" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Schedule Change (Full Comparison)</h3>
-              <p class="plot-description">
-                Two-panel comparison: Left shows ECDF overlay, Right shows key metrics (on-time rate, late rate, median) with bootstrap confidence intervals.
-                Late rate dropped from 31.5% to 22.6% after schedule change.
-              </p>
-              <img src="plots/all/schedule_change_ecdf_comparison.png" alt="Schedule Change Full Comparison" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Overview</div>
+                <h3>Combined exploratory dashboard</h3>
+                <p>A compact four-panel summary of distribution, hourly pattern, ECDF, and the worst-performing lines.</p>
+                <img id="plot-combined" src="plots/all/eda_combined.png" alt="Combined exploratory data analysis figure" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Quantile Analysis</h3>
-              <p class="plot-description">
-                Delay percentiles (50th, 75th, 90th, 95th, 99th) with 95% bootstrap CIs. More robust than means for skewed data. Key insight: 90% of buses
-                arrive within 5.1 min of schedule. 90th percentile improved from 7.3 to 4.1 min after schedule change.
-              </p>
-              <img src="plots/all/quantile_analysis.png" alt="Quantile Analysis" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Robustness</div>
+                <h3>Late rate versus mean delay</h3>
+                <p>Late rate is often more interpretable than the mean because it is less distorted by the long tail of extreme events.</p>
+                <img src="plots/all/late_rate_vs_mean_comparison.png" alt="Comparison of mean delay and late rate by hour" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Top Stops by Late Rate</h3>
-              <p class="plot-description">
-                Spatial heterogeneity: which stops have the highest probability of delays? Tübingen Uni/Neue Aula has ~95% late rate. Sample sizes shown - some
-                stops have wide CIs due to fewer observations.
-              </p>
-              <img src="plots/all/top_stops_late_rate.png" alt="Top Stops by Late Rate" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Time of day</div>
+                <h3>Late rate by hour</h3>
+                <p>Bootstrap intervals show where delay risk systematically rises through the day.</p>
+                <img id="plot-late-rate" src="plots/all/late_rate_hourly.png" alt="Late rate by hour of day with confidence interval" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Day of Week Effect</h3>
-              <p class="plot-description">
-                Left: Late rate by day of week (blue=weekday, orange=weekend). Tuesday/Thursday have highest delays. Right: Weekday vs weekend comparison shows
-                weekdays are 1.9 percentage points more delayed than weekends.
-              </p>
-              <img src="plots/all/day_of_week_effect.png" alt="Day of Week Effect" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Weather</div>
+                <h3>Weather effect with confidence intervals</h3>
+                <p>Weather matters, but it explains less variance than route structure and scheduling patterns.</p>
+                <img id="plot-weather" src="plots/all/weather_effect.png" alt="Weather effect on delay with bootstrap confidence intervals" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Outlier Analysis</h3>
-              <p class="plot-description">
-                Documentation of extreme delays (>30 min). Only 0.85% of records are extreme outliers. Jan 25, 2026 had the most disruptions (253 records).
-                These outliers inflate mean statistics but not medians.
-              </p>
-              <img src="plots/all/outlier_analysis.png" alt="Outlier Analysis" />
-            </div>
+              <article class="plot-card">
+                <div class="plot-meta">Variance explained</div>
+                <h3>Weather versus time of day</h3>
+                <p>This figure compares the explanatory power of environmental conditions and temporal rhythms.</p>
+                <img id="plot-weather-time" src="plots/all/weather_vs_time.png" alt="Comparison of variance explained by weather and time of day" />
+              </article>
 
-            <div class="plot-item">
-              <h3>Delay Accumulation Along Route</h3>
-              <p class="plot-description">
-                Analysis of whether delays accumulate as buses progress through their routes.
-                <strong>(A)</strong> Mean delay by stop position with 95% CI shows delays increase from ~1.4 min at stop 1 to ~2.5-3.2 min by stops 12-15.
-                <strong>(B)</strong> Scatter plot with linear regression (r = 0.16) confirms weak positive correlation between stop position and delay
-                magnitude.
-              </p>
-              <img id="plot-accumulation" src="plots/all/delay_accumulation.png" alt="Delay Accumulation Analysis" />
-            </div>
-          </div>
-        </div>
+              <article class="plot-card">
+                <div class="plot-meta">Schedule change</div>
+                <h3>ECDF before and after the intervention</h3>
+                <p>The after-schedule curve shifts left, indicating better reliability after the timetable change.</p>
+                <img id="plot-schedule-ecdf" src="plots/all/schedule_change_ecdf.png" alt="Schedule change empirical cumulative distribution comparison" />
+              </article>
 
-        <div class="footer">Data: November 2025 – January 2026 | Source: TRIAS API | University of Tübingen</div>
-      </div>
+              <article class="plot-card">
+                <div class="plot-meta">Intervention summary</div>
+                <h3>Full schedule change comparison</h3>
+                <p>On-time rate, late rate, and distribution shifts are shown together to make the intervention legible at a glance.</p>
+                <img src="plots/all/schedule_change_ecdf_comparison.png" alt="Full schedule change comparison figure" />
+              </article>
+
+              <article class="plot-card">
+                <div class="plot-meta">Tail behavior</div>
+                <h3>Quantile analysis</h3>
+                <p>Quantiles communicate reliability far better than raw means in a strongly skewed delay distribution.</p>
+                <img src="plots/all/quantile_analysis.png" alt="Delay quantile analysis with confidence intervals" />
+              </article>
+
+              <article class="plot-card">
+                <div class="plot-meta">Spatial heterogeneity</div>
+                <h3>Top stops by late rate</h3>
+                <p>Delay risk varies substantially across the network, and some campus stops exhibit very high late rates.</p>
+                <img src="plots/all/top_stops_late_rate.png" alt="Top stops by late rate" />
+              </article>
+
+              <article class="plot-card">
+                <div class="plot-meta">Weekly rhythm</div>
+                <h3>Day-of-week effect</h3>
+                <p>Weekday and weekend dynamics differ, with specific weekdays showing the heaviest late rates.</p>
+                <img src="plots/all/day_of_week_effect.png" alt="Day-of-week effect on late rates" />
+              </article>
+
+              <article class="plot-card">
+                <div class="plot-meta">Outliers</div>
+                <h3>Extreme disruption analysis</h3>
+                <p>A small fraction of trips creates a large share of the distortion in mean-based statistics.</p>
+                <img src="plots/all/outlier_analysis.png" alt="Outlier analysis of extreme delays" />
+              </article>
+
+              <article class="plot-card">
+                <div class="plot-meta">Route progression</div>
+                <h3>Delay accumulation along the route</h3>
+                <p>This is the clearest structural result: later stops tend to inherit and amplify earlier delay.</p>
+                <img id="plot-accumulation" src="plots/all/delay_accumulation.png" alt="Delay accumulation along route figure" />
+              </article>
+            </div>
+          </section>
+
+          <footer class="footer">
+            Historical data: November 2025 to January 2026 | Live departures: current official MobiData BW monitor | University of Tübingen Data Literacy
+          </footer>
+      </main>
     </div>
 
-    <script>
-      function updateView() {
-        const period = document.getElementById("period-select").value;
-        const line = document.getElementById("line-select").value;
-        const mapFrame = document.getElementById("map-frame");
-        const placeholder = document.getElementById("map-placeholder");
-
-        // Show placeholder for "all lines" view (too many nodes/edges for smooth rendering)
-        if (line === "all") {
-          mapFrame.style.display = "none";
-          placeholder.style.display = "flex";
-        } else {
-          mapFrame.style.display = "block";
-          placeholder.style.display = "none";
-          mapFrame.src = `lines/${period}/network_${line}.html`;
-        }
-
-        // Update all plot images for selected period
-        document.getElementById("plot-cdf-pdf").src = `plots/${period}/delay_cdf_pdf_combo.png`;
-        document.getElementById("plot-combined").src = `plots/${period}/eda_combined.png`;
-        document.getElementById("plot-late-rate").src = `plots/${period}/late_rate_hourly.png`;
-        document.getElementById("plot-weather").src = `plots/${period}/weather_effect.png`;
-        document.getElementById("plot-weather-time").src = `plots/${period}/weather_vs_time.png`;
-        document.getElementById("plot-accumulation").src = `plots/${period}/delay_accumulation.png`;
-        // Schedule change ECDF is always from 'all' (it compares pre vs post)
-        document.getElementById("plot-schedule-ecdf").src = `plots/all/schedule_change_ecdf.png`;
-
-        // Load data from period-specific path
-        loadData(period, line);
-      }
-
-      function loadData(period, line) {
-        const dataUrl = `data/${period}/data_${line}.json`;
-        fetch(dataUrl)
-          .then((response) => {
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            return response.json();
-          })
-          .then((data) => {
-            const summary = data.summary;
-            document.getElementById("summary-text").textContent =
-              `${summary.total_edges} segments, ${summary.total_trips.toLocaleString()} trips observed, ` +
-              `avg delay: ${summary.avg_delay} min, max delay: ${summary.max_delay} min`;
-
-            const tbody = document.getElementById("edge-table-body");
-            tbody.innerHTML = "";
-            data.edges.forEach((edge) => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                            <td>${edge.from}</td>
-                            <td>${edge.to}</td>
-                            <td>${edge.delay_min}</td>
-                            <td>${edge.trips.toLocaleString()}</td>
-                        `;
-              tbody.appendChild(row);
-            });
-          })
-          .catch((err) => {
-            console.error("Failed to load data:", err);
-            document.getElementById("summary-text").textContent =
-              window.location.protocol === "file:"
-                ? "Data loading requires a web server (use GitHub Pages or run: python -m http.server)"
-                : "Data not available";
-            document.getElementById("edge-table-body").innerHTML = "";
-          });
-      }
-
-      // Initial load - show placeholder for "all lines" by default
-      loadData("all", "all");
-      // Placeholder is shown by default, iframe hidden
-
-      // Mobile menu toggle
-      function toggleMobileMenu() {
-        const sidebar = document.getElementById("nav-sidebar");
-        const overlay = document.querySelector(".mobile-overlay");
-        sidebar.classList.toggle("open");
-        overlay.classList.toggle("open");
-      }
-
-      // Close menu when clicking a nav link on mobile
-      document.querySelectorAll(".nav-sidebar a").forEach((link) => {
-        link.addEventListener("click", () => {
-          if (window.innerWidth <= 768) {
-            toggleMobileMenu();
-          }
-        });
-      });
-    </script>
+    <script type="module" src="assets/js/main.js"></script>
   </body>
 </html>

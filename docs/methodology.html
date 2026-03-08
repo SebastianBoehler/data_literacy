@@ -3,365 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Pipeline & API Documentation - Tübingen Bus Network</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Georgia", "Times New Roman", serif;
-        background: #fafafa;
-        color: #333;
-        line-height: 1.7;
-      }
-      .page-wrapper {
-        display: flex;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .nav-sidebar {
-        width: 220px;
-        position: sticky;
-        top: 2rem;
-        height: fit-content;
-        padding: 1rem;
-        margin-top: 3rem;
-        font-size: 0.85rem;
-      }
-      .nav-sidebar .sidebar-section {
-        margin-bottom: 1.5rem;
-      }
-      .nav-sidebar .sidebar-title {
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 0.5rem;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      .nav-sidebar ul {
-        list-style: none;
-        border-left: 2px solid #e0e0e0;
-        padding-left: 1rem;
-      }
-      .nav-sidebar li {
-        margin-bottom: 0.5rem;
-      }
-      .nav-sidebar a {
-        color: #666;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .nav-sidebar a:hover {
-        color: #222;
-      }
-      /* Mobile menu toggle button */
-      .mobile-menu-toggle {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1001;
-        background: #333;
-        color: white;
-        border: none;
-        padding: 0.5rem 0.75rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 1rem;
-      }
-      .mobile-menu-toggle:hover {
-        background: #555;
-      }
-      /* Mobile responsive styles */
-      @media (max-width: 768px) {
-        .page-wrapper {
-          flex-direction: column;
-        }
-        .mobile-menu-toggle {
-          display: block;
-        }
-        .nav-sidebar {
-          position: fixed;
-          top: 0;
-          left: -270px;
-          width: 270px;
-          height: 100vh;
-          background: #fff;
-          z-index: 1000;
-          margin-top: 0;
-          padding-top: 4rem;
-          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-          transition: left 0.3s ease;
-          overflow-y: auto;
-        }
-        .nav-sidebar.open {
-          left: 0;
-        }
-        .mobile-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.5);
-          z-index: 999;
-        }
-        .mobile-overlay.open {
-          display: block;
-        }
-        .container {
-          padding: 1rem;
-          padding-top: 4rem;
-        }
-      }
-      .container {
-        flex: 1;
-        max-width: 900px;
-        padding: 3rem 2rem;
-        background: #fff;
-        min-height: 100vh;
-      }
-      .header {
-        text-align: center;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 2rem;
-      }
-      .header h1 {
-        font-size: 1.8rem;
-        font-weight: 400;
-        letter-spacing: 0.02em;
-        margin-bottom: 0.5rem;
-      }
-      .header .subtitle {
-        font-size: 1rem;
-        color: #666;
-        font-style: italic;
-      }
-      .section {
-        margin-bottom: 2.5rem;
-      }
-      .section h2 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #222;
-        border-bottom: 1px solid #e0e0e0;
-        padding-bottom: 0.5rem;
-      }
-      .section h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 1.5rem 0 0.75rem 0;
-        color: #333;
-      }
-      .section h4 {
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 1rem 0 0.5rem 0;
-        color: #444;
-      }
-      .section p {
-        font-size: 0.95rem;
-        color: #444;
-        margin-bottom: 1rem;
-      }
-      .section ul, .section ol {
-        margin-left: 1.5rem;
-        margin-bottom: 1rem;
-      }
-      .section li {
-        margin-bottom: 0.5rem;
-        font-size: 0.95rem;
-        color: #444;
-      }
-      code {
-        font-family: "SF Mono", "Monaco", "Consolas", monospace;
-        background: #f4f4f4;
-        padding: 0.15rem 0.4rem;
-        border-radius: 3px;
-        font-size: 0.85em;
-        color: #c7254e;
-      }
-      pre {
-        background: #2d2d2d;
-        color: #f8f8f2;
-        padding: 1rem 1.25rem;
-        border-radius: 6px;
-        overflow-x: auto;
-        margin: 1rem 0;
-        font-size: 0.85rem;
-        line-height: 1.5;
-      }
-      pre code {
-        background: none;
-        padding: 0;
-        color: inherit;
-        font-size: inherit;
-      }
-      .comment { color: #6a9955; }
-      .keyword { color: #569cd6; }
-      .string { color: #ce9178; }
-      .function { color: #dcdcaa; }
-      .class { color: #4ec9b0; }
-      .number { color: #b5cea8; }
-      .diagram-box {
-        background: #f8f9fa;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-        text-align: center;
-      }
-      .diagram-box svg {
-        max-width: 100%;
-        height: auto;
-      }
-      .api-method {
-        background: #f8f9fa;
-        border: 1px solid #e0e0e0;
-        border-radius: 6px;
-        padding: 1rem 1.25rem;
-        margin: 1rem 0;
-      }
-      .api-method .method-signature {
-        font-family: "SF Mono", "Monaco", "Consolas", monospace;
-        font-size: 0.9rem;
-        color: #333;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-      }
-      .api-method .method-desc {
-        font-size: 0.9rem;
-        color: #555;
-        margin-bottom: 0.5rem;
-      }
-      .api-method .params {
-        font-size: 0.85rem;
-        color: #666;
-      }
-      .api-method .params dt {
-        font-weight: 600;
-        color: #444;
-        margin-top: 0.5rem;
-      }
-      .api-method .params dd {
-        margin-left: 1rem;
-        margin-bottom: 0.25rem;
-      }
-      .returns {
-        margin-top: 0.75rem;
-        font-size: 0.85rem;
-      }
-      .returns strong {
-        color: #444;
-      }
-      .info-box {
-        background: #e7f3ff;
-        border-left: 4px solid #2196f3;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 0 4px 4px 0;
-      }
-      .info-box p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #1565c0;
-      }
-      .warning-box {
-        background: #fff3e0;
-        border-left: 4px solid #ff9800;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 0 4px 4px 0;
-      }
-      .warning-box p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #e65100;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 1rem 0;
-        font-size: 0.9rem;
-      }
-      th, td {
-        padding: 0.6rem 0.75rem;
-        text-align: left;
-        border-bottom: 1px solid #e0e0e0;
-      }
-      th {
-        background: #f5f5f5;
-        font-weight: 600;
-        color: #333;
-      }
-      tr:hover {
-        background: #fafafa;
-      }
-      .back-link {
-        display: inline-block;
-        margin-bottom: 1rem;
-        color: #666;
-        text-decoration: none;
-        font-size: 0.9rem;
-      }
-      .back-link:hover {
-        color: #333;
-      }
-      .footer {
-        text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid #e0e0e0;
-        margin-top: 2rem;
-        font-size: 0.8rem;
-        color: #888;
-      }
-    </style>
+    <title>Methodology | Long Overdue</title>
+    <meta
+      name="description"
+      content="Technical methodology, pipeline, and API documentation for the Long Overdue Tübingen bus delay analysis project."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/methodology.css" />
   </head>
   <body>
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-    <div class="mobile-overlay" onclick="toggleMobileMenu()"></div>
-    <div class="page-wrapper">
-      <nav class="nav-sidebar" id="nav-sidebar">
-        <div class="sidebar-section">
-          <div class="sidebar-title">Pages</div>
-          <ul>
-            <li><a href="index.html">← Back to Analysis</a></li>
-          </ul>
+    <div class="shell">
+      <header class="topbar">
+        <div class="site-heading">
+          <h1>Long Overdue</h1>
+          <p>Methodology and technical documentation</p>
         </div>
-        <div class="sidebar-section">
-          <div class="sidebar-title">On This Page</div>
-          <ul>
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#architecture">Architecture</a></li>
-            <li><a href="#data-collection">Data Collection</a></li>
-            <li><a href="#cloud-function">Cloud Function</a></li>
-            <li><a href="#data-storage">Data Storage</a></li>
-            <li><a href="#trias-api">TRIAS API Module</a></li>
-            <li><a href="#weather-api">Weather API</a></li>
-            <li><a href="#data-schema">Data Schema</a></li>
-          </ul>
+      </header>
+
+      <nav class="section-nav panel" aria-label="Sections">
+        <div class="section-nav-inner">
+          <div class="section-nav-scroll">
+            <a href="#overview"><span>01</span>Overview</a>
+            <a href="#architecture"><span>02</span>Architecture</a>
+            <a href="#data-collection"><span>03</span>Collection</a>
+            <a href="#cloud-function"><span>04</span>Cloud</a>
+            <a href="#data-storage"><span>05</span>Storage</a>
+            <a href="#trias-api"><span>06</span>TRIAS</a>
+            <a href="#weather-api"><span>07</span>Weather</a>
+            <a href="#data-schema"><span>08</span>Schema</a>
+          </div>
         </div>
       </nav>
 
-      <div class="container">
-        <a href="index.html" class="back-link">← Back to Delay Analysis</a>
-        
-        <div class="header">
-          <h1>Data Pipeline & API Documentation</h1>
-          <p class="subtitle">Technical Documentation — Data Literacy Project</p>
-        </div>
+      <main class="content docs-content">
+        <section class="hero">
+          <div class="hero-copy panel docs-hero" id="overview">
+            <span class="eyebrow">Technical Documentation • Data Literacy Project • University of Tübingen</span>
+            <h1>Data pipeline and API documentation</h1>
+            <p>
+              This document explains the collection infrastructure behind the Tübingen bus delay analysis, including data ingestion, weather enrichment,
+              storage, and the API clients used throughout the project.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="index.html">Back to the analysis</a>
+            </div>
+            <div class="hero-abstract">
+              <div class="minor-label">Scope</div>
+              <p>
+                The pipeline runs on a schedule, preserves raw timestamped outputs, enriches departures with weather, and supports reproducible downstream
+                analysis from cloud storage.
+              </p>
+            </div>
+            <div class="hero-meta">
+              <span>15-minute collection cadence</span>
+              <span>TRIAS and Open-Meteo sources</span>
+              <span>Versioned CSV and JSON artifacts</span>
+            </div>
+          </div>
+        </section>
 
-        <div class="section" id="overview">
-          <h2>Overview</h2>
+        <section class="section panel doc-section" id="overview-detail">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Overview</div>
+              <h2>Collection principles</h2>
+            </div>
+            <p class="section-lead">
+              The methodology emphasizes automation, reproducibility, and a direct path from raw collection artifacts to later analysis.
+            </p>
+          </div>
           <p>
             This document describes the data collection infrastructure for the Tübingen Bus Network delay analysis project.
             The system continuously collects real-time transit data from the TRIAS API, enriches it with weather information,
@@ -376,10 +87,10 @@
             <li><strong>Weather Enrichment</strong> — Each observation is tagged with current weather conditions</li>
             <li><strong>Reproducibility</strong> — All raw data is preserved with timestamps for full reproducibility</li>
           </ul>
-        </div>
+        </section>
 
-        <div class="section" id="architecture">
-          <h2>System Architecture</h2>
+        <section class="section panel doc-section" id="architecture">
+          <h2>System architecture</h2>
           <div class="diagram-box">
             <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg">
               <!-- TRIAS API Box -->
@@ -451,10 +162,10 @@
             <li><strong>Storage</strong> — All data is uploaded to GCS with timestamps for versioning</li>
             <li><strong>Analysis</strong> — Jupyter notebooks pull the latest data dynamically for analysis</li>
           </ol>
-        </div>
+        </section>
 
-        <div class="section" id="data-collection">
-          <h2>Data Collection Strategy</h2>
+        <section class="section panel doc-section" id="data-collection">
+          <h2>Data collection strategy</h2>
           <h3>Geographic Scope</h3>
           <p>
             Data collection is centered on Tübingen with a configurable search radius (default: 10 km).
@@ -491,10 +202,10 @@
           <div class="info-box">
             <p><strong>Collection Period:</strong> November 2025 – January 2026 (ongoing)</p>
           </div>
-        </div>
+        </section>
 
-        <div class="section" id="cloud-function">
-          <h2>Cloud Function Implementation</h2>
+        <section class="section panel doc-section" id="cloud-function">
+          <h2>Cloud function implementation</h2>
           <p>
             The data collection is implemented as a Google Cloud Function (<code>gc_function.py</code>).
             This serverless approach ensures reliable, scheduled execution without infrastructure management.
@@ -558,10 +269,10 @@
               <td>Collection metadata and file manifest</td>
             </tr>
           </table>
-        </div>
+        </section>
 
-        <div class="section" id="data-storage">
-          <h2>Data Storage & Access</h2>
+        <section class="section panel doc-section" id="data-storage">
+          <h2>Data storage and access</h2>
           <h3>Google Cloud Storage Structure</h3>
           <pre><code>gs://departure_data/
 ├── stops_20251115_143000.csv
@@ -595,10 +306,10 @@
         frames.append(df)
     
     <span class="keyword">return</span> pd.<span class="function">concat</span>(frames, ignore_index=<span class="keyword">True</span>)</code></pre>
-        </div>
+        </section>
 
-        <div class="section" id="trias-api">
-          <h2>TRIAS API Module</h2>
+        <section class="section panel doc-section" id="trias-api">
+          <h2>TRIAS API module</h2>
           <p>
             The <code>modules/trias.py</code> module provides a Python client for the TRIAS (Traveller Realtime Information and Advisory Standard) API.
             TRIAS is a European standard for real-time public transport information.
@@ -716,10 +427,10 @@ avg_delay = departures[<span class="string">"delay_minutes"</span>].mean()
 late_rate = (departures[<span class="string">"delay_minutes"</span>] > <span class="number">2</span>).mean()
 <span class="keyword">print</span>(<span class="string">f"Average delay: {avg_delay:.1f} min"</span>)
 <span class="keyword">print</span>(<span class="string">f"Late rate (>2 min): {late_rate:.1%}"</span>)</code></pre>
-        </div>
+        </section>
 
-        <div class="section" id="weather-api">
-          <h2>Weather API Integration</h2>
+        <section class="section panel doc-section" id="weather-api">
+          <h2>Weather API integration</h2>
           <p>
             Weather data is fetched from the Open-Meteo API, which provides free access to historical and current weather data.
             The <code>modules/weather.py</code> module handles weather data retrieval.
@@ -782,10 +493,10 @@ departures_with_weather = <span class="function">attach_weather_to_departures</s
 <span class="comment"># - snowfall</span>
 <span class="comment"># - wind_speed_10m</span>
 <span class="comment"># - weather_code</span></code></pre>
-        </div>
+        </section>
 
-        <div class="section" id="data-schema">
-          <h2>Data Schema Reference</h2>
+        <section class="section panel doc-section" id="data-schema">
+          <h2>Data schema reference</h2>
           
           <h3>Departures Table</h3>
           <p>Primary table for delay analysis. Each row represents one scheduled departure.</p>
@@ -931,29 +642,13 @@ departures_with_weather = <span class="function">attach_weather_to_departures</s
               <td>"previous" or "onward" (relative to query point)</td>
             </tr>
           </table>
-        </div>
+        </section>
 
-        <div class="footer">
+        <footer class="footer doc-footer">
           Data Literacy Project — University of Tübingen — 2025/2026
-        </div>
-      </div>
+        </footer>
+      </main>
     </div>
-
-    <script>
-      function toggleMobileMenu() {
-        const sidebar = document.getElementById("nav-sidebar");
-        const overlay = document.querySelector(".mobile-overlay");
-        sidebar.classList.toggle("open");
-        overlay.classList.toggle("open");
-      }
-
-      document.querySelectorAll(".nav-sidebar a").forEach(link => {
-        link.addEventListener("click", () => {
-          if (window.innerWidth <= 768) {
-            toggleMobileMenu();
-          }
-        });
-      });
-    </script>
+    <script type="module" src="assets/js/methodology.js"></script>
   </body>
 </html>
